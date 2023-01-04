@@ -156,6 +156,7 @@ const Farms: React.FC<React.PropsWithChildren> = ({ children }) => {
   const { t } = useTranslation()
   const { chainId } = useActiveChainId()
   const { data: farmsLP, userDataLoaded, poolLength, regularCakePerBlock } = useFarms()
+  console.log("farmsLP: ", farmsLP);
   const cakePrice = usePriceCakeBusd()
 
   const [_query, setQuery] = useState('')
@@ -232,6 +233,10 @@ const Farms: React.FC<React.PropsWithChildren> = ({ children }) => {
         }
 
         const totalLiquidity = new BigNumber(farm.lpTotalInQuoteToken).times(farm.quoteTokenPriceBusd)
+        console.log(
+          "isActive: ",
+          farm.lpTotalInQuoteToken.toString()
+        )
         const { cakeRewardsApr, lpRewardsApr } = isActive
           ? getFarmApr(
               chainId,
@@ -267,6 +272,7 @@ const Farms: React.FC<React.PropsWithChildren> = ({ children }) => {
   const chosenFarms = useMemo(() => {
     let chosenFs = []
     if (isActive) {
+      console.log("All active farm: ", stakedOnly, activeFarms);
       chosenFs = stakedOnly ? farmsList(stakedOnlyFarms) : farmsList(activeFarms)
     }
     if (isInactive) {
@@ -338,6 +344,8 @@ const Farms: React.FC<React.PropsWithChildren> = ({ children }) => {
   }, [chosenFarms, sortOption, numberOfFarmsVisible])
 
   chosenFarmsLength.current = chosenFarmsMemoized.length
+
+  console.log("chosenFarmsMemoized: ", chosenFarmsMemoized);
 
   useEffect(() => {
     if (isIntersecting) {

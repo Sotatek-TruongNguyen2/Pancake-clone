@@ -48,6 +48,7 @@ export const usePollFarmsWithUserData = () => {
     async () => {
       const farmsConfig = await getFarmConfig(chainId)
       const pids = farmsConfig.map((farmToFetch) => farmToFetch.pid)
+      // console.log("ZXDSAIDUIASUDISAUIDSAUID");
       dispatch(fetchFarmsPublicDataAsync({ pids, chainId, flag: farmFlag }))
     },
     {
@@ -81,9 +82,7 @@ export const usePollFarmsWithUserData = () => {
  */
 const coreFarmPIDs = {
   56: [2, 3],
-  97: [4, 10],
-  5: [13, 11],
-  1: [124, 125],
+  97: [4, 10]
 }
 
 export const usePollCoreFarmData = () => {
@@ -93,12 +92,15 @@ export const usePollCoreFarmData = () => {
 
   useEffect(() => {
     if (chainId) {
+      console.log('zeriaoriower');
       dispatch(fetchInitialFarmsData({ chainId }))
     }
   }, [chainId, dispatch])
 
   useFastRefreshEffect(() => {
     if (chainId && farmFlag !== 'api') {
+      console.log('zeriaoriower');
+
       dispatch(fetchFarmsPublicDataAsync({ pids: coreFarmPIDs[chainId], chainId, flag: farmFlag }))
     }
   }, [dispatch, chainId, farmFlag])

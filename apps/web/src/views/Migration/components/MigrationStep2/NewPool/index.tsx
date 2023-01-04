@@ -28,6 +28,8 @@ const NewPool: React.FC<React.PropsWithChildren> = () => {
     [pools],
   ) as Pool.DeserializedPool<Token>[]
 
+  console.log("stakedOnlyOpenPools: ", stakedOnlyOpenPools);
+
   const userDataReady: boolean = !account || (!!account && !cakeVault.userData?.isLoading)
 
   const dispatch = useAppDispatch()

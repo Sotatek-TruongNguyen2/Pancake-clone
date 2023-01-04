@@ -88,13 +88,13 @@ const MigrationPage: React.FC<React.PropsWithChildren> = () => {
         <ProgressSteps pickedStep={step} steps={steps} onClick={setStep} />
         {step === ProgressStepsType.STEP1 ? (
           <>
-            <OldPool pools={v1Pools} account={account} userDataLoaded={userDataLoaded} />
-            <OldFarm />
+            {/* <OldPool pools={v1Pools} account={account} userDataLoaded={userDataLoaded} />
+            <OldFarm /> */}
           </>
         ) : (
           <>
-            <NewPool />
-            <NewFarm />
+            {/* <NewPool />
+            <NewFarm /> */}
           </>
         )}
       </Page>

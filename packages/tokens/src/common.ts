@@ -57,7 +57,7 @@ export const BUSD_BSC = new ERC20Token(
 
 export const BUSD_TESTNET = new ERC20Token(
   ChainId.BSC_TESTNET,
-  '0xaB1a4d4f1D656d2450692D237fdD6C7f9146e814',
+  '0x8516Fc284AEEaa0374E66037BD2309349FF728eA',
   18,
   'BUSD',
   'Binance USD',

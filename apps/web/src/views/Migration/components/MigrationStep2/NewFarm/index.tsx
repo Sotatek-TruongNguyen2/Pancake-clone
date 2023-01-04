@@ -18,6 +18,8 @@ const NewFarmStep2: React.FC<React.PropsWithChildren> = () => {
 
   usePollFarmsWithUserData()
 
+  console.log("farmsLP: ", farmsLP);
+
   const userDataReady = !account || (!!account && userDataLoaded)
 
   const activeFarms = farmsLP.filter((farm) => farm.pid !== 0 && farm.multiplier !== '0X')

@@ -19,13 +19,13 @@ const farms: SerializedFarmConfig[] = [
     token: bscTestnetTokens.cake,
     quoteToken: bscTestnetTokens.wbnb,
   },
-  // {
-  //   pid: 10,
-  //   lpSymbol: 'BNB-BUSD LP',
-  //   lpAddress: '0x4E96D2e92680Ca65D58A0e2eB5bd1c0f44cAB897',
-  //   token: bscTestnetTokens.wbnb,
-  //   quoteToken: bscTestnetTokens.busd,
-  // },
+  {
+    pid: 10,
+    lpSymbol: 'BNB-BUSD LP',
+    lpAddress: '0x4E96D2e92680Ca65D58A0e2eB5bd1c0f44cAB897',
+    token: bscTestnetTokens.wbnb,
+    quoteToken: bscTestnetTokens.busd,
+  },
   // {
   //   pid: 9,
   //   lpSymbol: 'BUSD-USDC LP',
