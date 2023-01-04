@@ -157,7 +157,7 @@ const Farms: React.FC<React.PropsWithChildren> = ({ children }) => {
   const { chainId } = useActiveChainId()
   const { data: farmsLP, userDataLoaded, poolLength, regularCakePerBlock } = useFarms()
   console.log("farmsLP: ", farmsLP);
-  const cakePrice = usePriceCakeBusd()
+  const cakePrice = usePriceCakeBusd({ forceMainnet: true })
 
   const [_query, setQuery] = useState('')
   const normalizedUrlSearch = useMemo(() => (typeof urlQuery?.search === 'string' ? urlQuery.search : ''), [urlQuery])
@@ -233,10 +233,7 @@ const Farms: React.FC<React.PropsWithChildren> = ({ children }) => {
         }
 
         const totalLiquidity = new BigNumber(farm.lpTotalInQuoteToken).times(farm.quoteTokenPriceBusd)
-        console.log(
-          "isActive: ",
-          farm.lpTotalInQuoteToken.toString()
-        )
+
         const { cakeRewardsApr, lpRewardsApr } = isActive
           ? getFarmApr(
               chainId,

@@ -128,7 +128,6 @@ export const farmSelector = (chainId: number) =>
   createSelector(
     (state: State) => state.farms,
     (farms) => {
-      console.log("FARMS: ", farms);
       const deserializedFarmsData = farms.data.map(deserializeFarm).filter((farm) => farm.token.chainId === chainId)
       const { loadArchivedFarmsData, userDataLoaded, poolLength, regularCakePerBlock } = farms
 

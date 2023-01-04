@@ -18,6 +18,7 @@ const farms: SerializedFarmConfig[] = [
     lpAddress: '0xa96818CA65B57bEc2155Ba5c81a70151f63300CD',
     token: bscTestnetTokens.cake,
     quoteToken: bscTestnetTokens.wbnb,
+    boosted: true
   },
   {
     pid: 10,

@@ -171,6 +171,7 @@ export const useCakeBusdPrice = (
   const isTestnet = !forceMainnet && isChainTestnet(chainId)
   // Return bsc testnet cake if chain is testnet
   const cake: Token = isTestnet ? CAKE[ChainId.BSC_TESTNET] : CAKE[ChainId.BSC]
+  console.log("CAKE DETAILS: ", cake.address, cake.chainId, BUSD[cake.chainId]);
   return usePriceByPairs(BUSD[cake.chainId], cake)
 }
 

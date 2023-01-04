@@ -146,5 +146,6 @@ export const useLpTokenPrice = (symbol: string) => {
  */
 export const usePriceCakeBusd = ({ forceMainnet } = { forceMainnet: false }): BigNumber => {
   const price = useCakeBusdPrice({ forceMainnet })
+  // console.log("CAKE price: ", price.toSignificant(6));
   return useMemo(() => (price ? new BigNumber(price.toSignificant(6)) : BIG_ZERO), [price])
 }
