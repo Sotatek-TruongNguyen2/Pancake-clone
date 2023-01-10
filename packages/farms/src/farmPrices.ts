@@ -163,7 +163,6 @@ export const getFarmsPrices = (
 ): FarmWithPrices[] => {
   const nativeStableFarm = farms.find((farm) => equalsIgnoreCase(farm.lpAddress, nativeStableLp.address))
   const isNativeFirst = nativeStableFarm?.token.symbol === nativeStableLp.wNative
-  console.log("zerossss: ", farms, nativeStableLp);
 
   const nativePriceUSD =
     nativeStableFarm && _toNumber(nativeStableFarm?.tokenPriceVsQuote) !== 0
@@ -172,7 +171,6 @@ export const getFarmsPrices = (
         : FIXED_ONE.divUnsafe(FixedNumber.from(nativeStableFarm.tokenPriceVsQuote))
       : FIXED_ZERO
 
-  console.log("zeroi rweiuriwer: ", nativeStableFarm);
 
   const farmsWithPrices = farms.map((farm) => {
     const quoteTokenFarm = getFarmFromTokenAddress(farms, farm.quoteToken.address, [

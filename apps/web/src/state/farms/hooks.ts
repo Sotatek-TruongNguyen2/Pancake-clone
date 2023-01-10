@@ -92,15 +92,12 @@ export const usePollCoreFarmData = () => {
 
   useEffect(() => {
     if (chainId) {
-      console.log('zeriaoriower');
       dispatch(fetchInitialFarmsData({ chainId }))
     }
   }, [chainId, dispatch])
 
   useFastRefreshEffect(() => {
     if (chainId && farmFlag !== 'api') {
-      console.log('zeriaoriower');
-
       dispatch(fetchFarmsPublicDataAsync({ pids: coreFarmPIDs[chainId], chainId, flag: farmFlag }))
     }
   }, [dispatch, chainId, farmFlag])

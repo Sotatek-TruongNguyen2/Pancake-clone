@@ -7,7 +7,7 @@ import { BIG_ZERO } from '@pancakeswap/utils/bigNumber'
 import { ChainId } from '@pancakeswap/sdk'
 import { CAKE } from '@pancakeswap/tokens'
 
-const cakeVaultV2 = getCakeVaultAddress()
+const cakeVaultV2 = getCakeVaultAddress(97)
 const cakeFlexibleSideVaultV2 = getCakeFlexibleSideVaultAddress()
 export const fetchPublicVaultData = async (cakeVaultAddress = cakeVaultV2) => {
   try {
@@ -19,7 +19,7 @@ export const fetchPublicVaultData = async (cakeVaultAddress = cakeVaultV2) => {
 
     const cakeBalanceOfCall = {
       abi: cakeAbi,
-      address: CAKE[ChainId.BSC].address,
+      address: CAKE[ChainId.BSC_TESTNET].address,
       name: 'balanceOf',
       params: [cakeVaultV2],
     }
@@ -27,7 +27,9 @@ export const fetchPublicVaultData = async (cakeVaultAddress = cakeVaultV2) => {
     const [[sharePrice], [shares], totalLockedAmount, [totalCakeInVault]] = await multicallv3({
       calls: [...calls, cakeBalanceOfCall],
       allowFailure: true,
+      chainId: 97,
     })
+    console.log('cakeVaultAddess: ', sharePrice, totalLockedAmount)
 
     const totalSharesAsBigNumber = shares ? new BigNumber(shares.toString()) : BIG_ZERO
     const totalLockedAmountAsBigNumber = totalLockedAmount ? new BigNumber(totalLockedAmount[0].toString()) : BIG_ZERO
@@ -39,6 +41,7 @@ export const fetchPublicVaultData = async (cakeVaultAddress = cakeVaultV2) => {
       totalCakeInVault: new BigNumber(totalCakeInVault.toString()).toJSON(),
     }
   } catch (error) {
+    console.log('MEET ERROR: ', error)
     return {
       totalShares: null,
       totalLockedAmount: null,

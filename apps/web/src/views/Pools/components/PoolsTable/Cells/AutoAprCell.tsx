@@ -41,6 +41,7 @@ const AutoAprCell: React.FC<React.PropsWithChildren<AprCellProps>> = ({ pool }) 
   const { isMobile } = useMatchBreakpoints()
 
   const { userData } = useVaultPoolByKey(pool.vaultKey)
+  console.log('VAULT Pools: ', pool.vaultKey, userData)
 
   const vaultPosition = getVaultPosition(userData)
   const isLock = isLocked(userData)
@@ -67,7 +68,6 @@ const AutoAprCell: React.FC<React.PropsWithChildren<AprCellProps>> = ({ pool }) 
 
   const tooltipContent = <LockedAprTooltipContent boostedYieldAmount={boostedYieldAmount} />
   const { targetRef, tooltip, tooltipVisible } = useTooltip(tooltipContent, { placement: 'bottom-start' })
-
   if (pool.vaultKey === VaultKey.CakeVault && vaultPosition === VaultPosition.None) {
     return (
       <>

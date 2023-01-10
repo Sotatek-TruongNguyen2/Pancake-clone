@@ -25,6 +25,8 @@ const CakeVaultApr: React.FC<React.PropsWithChildren<CakeVaultAprProps>> = ({ po
         : MAX_LOCK_DURATION,
   })
 
+  console.log("flexibleApy: ", flexibleApy, lockedApy);
+
   const [onPresentFlexibleApyModal] = useModal(<VaultRoiCalculatorModal pool={pool} />)
   const [onPresentLockedApyModal] = useModal(<VaultRoiCalculatorModal pool={pool} initialView={1} />)
 

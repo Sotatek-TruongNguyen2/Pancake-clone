@@ -187,22 +187,11 @@ export function useAllLists(): {
 
   const urls = useAtomValue(selectorByUrlsAtom)
 
-  return useMemo(
-    () =>
-      _pickBy(
-        urls,
-        (_, url) =>
-          (chainId === ChainId.ETHEREUM && ETH_URLS.includes(url)) ||
-          (chainId === ChainId.BSC && BSC_URLS.includes(url)),
-      ),
-    [chainId, urls],
-  )
+  return useMemo(() => _pickBy(urls, (_, url) => chainId === ChainId.BSC && BSC_URLS.includes(url)), [chainId, urls])
 }
 
 function combineMaps(map1: TokenAddressMap, map2: TokenAddressMap): TokenAddressMap {
   return {
-    [ChainId.ETHEREUM]: { ...map1[ChainId.ETHEREUM], ...map2[ChainId.ETHEREUM] },
-    [ChainId.GOERLI]: { ...map1[ChainId.GOERLI], ...map2[ChainId.GOERLI] },
     [ChainId.BSC]: { ...map1[ChainId.BSC], ...map2[ChainId.BSC] },
     [ChainId.BSC_TESTNET]: { ...map1[ChainId.BSC_TESTNET], ...map2[ChainId.BSC_TESTNET] },
   }
@@ -213,15 +202,7 @@ export function useActiveListUrls(): string[] | undefined {
   const { chainId } = useActiveChainId()
   const urls = useAtomValue(activeListUrlsAtom)
 
-  return useMemo(
-    () =>
-      urls.filter(
-        (url) =>
-          (chainId === ChainId.ETHEREUM && ETH_URLS.includes(url)) ||
-          (chainId === ChainId.BSC && BSC_URLS.includes(url)),
-      ),
-    [urls, chainId],
-  )
+  return useMemo(() => urls.filter((url) => chainId === ChainId.BSC && BSC_URLS.includes(url)), [urls, chainId])
 }
 
 export function useInactiveListUrls() {

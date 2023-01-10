@@ -4,7 +4,6 @@ import { ChainId, Token } from '@pancakeswap/sdk'
 
 const mapping = {
   [ChainId.BSC]: 'smartchain',
-  [ChainId.ETHEREUM]: 'ethereum',
 }
 
 const getTokenLogoURL = memoize(

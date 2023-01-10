@@ -196,10 +196,7 @@ function ManageLists({
         const isValid = Boolean(lists[listUrl].current) && !UNSUPPORTED_LIST_URLS.includes(listUrl)
 
         if (isValid) {
-          return (
-            (chainId === ChainId.ETHEREUM && ETH_URLS.includes(listUrl)) ||
-            (chainId === ChainId.BSC && BSC_URLS.includes(listUrl))
-          )
+          return chainId === ChainId.BSC && BSC_URLS.includes(listUrl)
         }
 
         return false

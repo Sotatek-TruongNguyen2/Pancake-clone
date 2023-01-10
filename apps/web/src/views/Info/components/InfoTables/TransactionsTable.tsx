@@ -106,7 +106,7 @@ const DataRow: React.FC<React.PropsWithChildren<{ transaction: Transaction }>> =
     <ResponsiveGrid>
       <LinkExternal
         isBscScan
-        href={getBlockExploreLink(transaction.hash, 'transaction', chainName === 'ETH' && ChainId.ETHEREUM)}
+        href={getBlockExploreLink(transaction.hash, 'transaction', chainName === 'ETH' && ChainId.BSC)}
       >
         <Text>
           {transaction.type === TransactionType.MINT
@@ -125,7 +125,7 @@ const DataRow: React.FC<React.PropsWithChildren<{ transaction: Transaction }>> =
       </Text>
       <LinkExternal
         isBscScan
-        href={getBlockExploreLink(transaction.sender, 'address', chainName === 'ETH' && ChainId.ETHEREUM)}
+        href={getBlockExploreLink(transaction.sender, 'address', chainName === 'ETH' && ChainId.BSC)}
       >
         {truncateHash(transaction.sender)}
       </LinkExternal>

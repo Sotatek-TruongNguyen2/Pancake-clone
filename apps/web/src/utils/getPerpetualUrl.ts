@@ -9,7 +9,7 @@ interface GetPerpetualUrlProps {
 }
 
 export const getPerpetualUrl = ({ chainId, languageCode, isDark }: GetPerpetualUrlProps) => {
-  const perpChain = chainId === ChainId.ETHEREUM ? 'ethereum' : 'bnbchain'
+  const perpChain = 'bnbchain'
   return `https://perp.pancakeswap.finance/${perpLangMap(languageCode)}/futures/BTCUSDT?theme=${perpTheme(
     isDark,
   )}&chain=${perpChain}`

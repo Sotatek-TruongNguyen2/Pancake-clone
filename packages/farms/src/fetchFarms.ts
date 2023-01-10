@@ -64,6 +64,7 @@ export async function farmV2FetchFarms({
   }, {})
 
   const lpData = lpDataResults.map(formatClassicFarmResponse)
+  console.log("ZIPPER: ", totalRegularAllocPoint, totalSpecialAllocPoint);
 
   const farmsData = farms.map((farm, index) => {
     try {
@@ -103,6 +104,7 @@ export async function farmV2FetchFarms({
     }
   })
 
+  console.log("farmsData: ", farmsData);
   const farmsDataWithPrices = getFarmsPrices(farmsData, evmNativeStableLpMap[chainId], 18)
 
   return farmsDataWithPrices

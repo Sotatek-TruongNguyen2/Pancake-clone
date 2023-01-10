@@ -156,7 +156,7 @@ const Farms: React.FC<React.PropsWithChildren> = ({ children }) => {
   const { t } = useTranslation()
   const { chainId } = useActiveChainId()
   const { data: farmsLP, userDataLoaded, poolLength, regularCakePerBlock } = useFarms()
-  console.log("farmsLP: ", farmsLP);
+  console.log('farmsLP: ', farmsLP)
   const cakePrice = usePriceCakeBusd({ forceMainnet: true })
 
   const [_query, setQuery] = useState('')
@@ -269,7 +269,7 @@ const Farms: React.FC<React.PropsWithChildren> = ({ children }) => {
   const chosenFarms = useMemo(() => {
     let chosenFs = []
     if (isActive) {
-      console.log("All active farm: ", stakedOnly, activeFarms);
+      console.log('All active farm: ', stakedOnly, activeFarms)
       chosenFs = stakedOnly ? farmsList(stakedOnlyFarms) : farmsList(activeFarms)
     }
     if (isInactive) {
@@ -342,7 +342,7 @@ const Farms: React.FC<React.PropsWithChildren> = ({ children }) => {
 
   chosenFarmsLength.current = chosenFarmsMemoized.length
 
-  console.log("chosenFarmsMemoized: ", chosenFarmsMemoized);
+  console.log('chosenFarmsMemoized: ', chosenFarmsMemoized)
 
   useEffect(() => {
     if (isIntersecting) {
@@ -381,11 +381,11 @@ const Farms: React.FC<React.PropsWithChildren> = ({ children }) => {
               </Button>
             </NextLinkFromReactRouter>
           </Box>
-          {chainId === ChainId.BSC && (
-            <Box>
-              <BCakeBoosterCard />
-            </Box>
-          )}
+          {/* {chainId === ChainId.BSC && ( */}
+          <Box>
+            <BCakeBoosterCard />
+          </Box>
+          {/* )} */}
         </FarmFlexWrapper>
       </PageHeader>
       <Page>

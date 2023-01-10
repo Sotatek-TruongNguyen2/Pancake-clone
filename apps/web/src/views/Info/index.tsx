@@ -19,8 +19,6 @@ export const InfoPageLayout = ({ children }) => {
   useEffect(() => {
     if (account && chainId === ChainId.BSC && router.query.chainName === 'eth')
       router.replace('/info', undefined, { shallow: true })
-    else if (account && chainId === ChainId.ETHEREUM && router.query.chainName !== 'eth')
-      router.replace('/info/eth', undefined, { shallow: true })
     else if (isStableSwap && router.query.chainName) {
       if (router.query.chainName === 'eth') {
         router.replace('/info/eth', undefined, { shallow: true })

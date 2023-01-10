@@ -261,8 +261,9 @@ export const getTradingCompetitionContractMoD = (signer?: Signer | Provider) => 
 export const getEasterNftContract = (signer?: Signer | Provider) => {
   return getContract({ abi: easterNftAbi, address: getEasterNftAddress(), signer }) as EasterNft
 }
-export const getCakeVaultV2Contract = (signer?: Signer | Provider) => {
-  return getContract({ abi: cakeVaultV2Abi, address: getCakeVaultAddress(), signer }) as CakeVaultV2
+export const getCakeVaultV2Contract = (signer?: Signer | Provider, chainId?: number) => {
+  console.log('ZIARA: ', getCakeVaultAddress(chainId))
+  return getContract({ abi: cakeVaultV2Abi, address: getCakeVaultAddress(chainId), signer }) as CakeVaultV2
 }
 
 export const getCakeFlexibleSideVaultV2Contract = (signer?: Signer | Provider) => {

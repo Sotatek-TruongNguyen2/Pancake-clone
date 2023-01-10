@@ -197,9 +197,11 @@ export const useEasterNftContract = () => {
 
 export const useVaultPoolContract = (vaultKey: VaultKey): CakeVaultV2 | CakeFlexibleSideVaultV2 => {
   const { data: signer } = useSigner()
+  const { chainId } = useActiveChainId()
+
   return useMemo(() => {
     if (vaultKey === VaultKey.CakeVault) {
-      return getCakeVaultV2Contract(signer)
+      return getCakeVaultV2Contract(signer, chainId)
     }
     if (vaultKey === VaultKey.CakeFlexibleSideVault) {
       return getCakeFlexibleSideVaultV2Contract(signer)
@@ -210,7 +212,8 @@ export const useVaultPoolContract = (vaultKey: VaultKey): CakeVaultV2 | CakeFlex
 
 export const useCakeVaultContract = (withSignerIfPossible = true) => {
   const providerOrSigner = useProviderOrSigner(withSignerIfPossible)
-  return useMemo(() => getCakeVaultV2Contract(providerOrSigner), [providerOrSigner])
+  const { chainId } = useActiveChainId()
+  return useMemo(() => getCakeVaultV2Contract(providerOrSigner, chainId), [providerOrSigner, chainId])
 }
 
 export const useIfoCreditAddressContract = () => {
