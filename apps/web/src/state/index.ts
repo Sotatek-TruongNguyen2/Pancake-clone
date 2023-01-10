@@ -13,7 +13,6 @@ import poolsReducer from './pools'
 import swap from './swap/reducer'
 import transactions from './transactions/reducer'
 import user from './user/reducer'
-import potteryReducer from './pottery'
 import globalReducer from './global/reducer'
 
 const PERSISTED_KEYS: string[] = ['user', 'transactions']
@@ -33,7 +32,6 @@ const persistedReducer = persistReducer(
     farms: farmsReducer,
     farmsV1: farmsReducerV1,
     pools: poolsReducer,
-    pottery: potteryReducer,
 
     // Exchange
     user,
