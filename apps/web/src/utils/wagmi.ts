@@ -47,10 +47,10 @@ export const { provider, chains } = configureChains(CHAINS, [
         return { http: 'https://cloudflare-eth.com' }
       }
 
-      console.log('getNodeRealUrl(chain.network):', chain, getNodeRealUrl(chain.network))
-
       if (chain.id === bscTestnet.id) {
-        return process.env.NEXT_PUBLIC_TESTNET_RPC || chain.rpcUrls.default.http[0]
+        return {
+          http: process.env.NEXT_PUBLIC_TESTNET_RPC || chain.rpcUrls.default.http[0],
+        }
       }
       return (
         getNodeRealUrl(chain.network) || {
