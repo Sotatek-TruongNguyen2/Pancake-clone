@@ -16,6 +16,7 @@ export const fetchFarmUserAllowances = async (
   chainId: number,
   proxyAddress?: string,
 ) => {
+  console.log('farmsToFetch:', farmsToFetch)
   const isBscNetwork = verifyBscNetwork(chainId)
   const masterChefAddress = isBscNetwork ? getMasterChefAddress(chainId) : getNonBscVaultAddress(chainId)
 

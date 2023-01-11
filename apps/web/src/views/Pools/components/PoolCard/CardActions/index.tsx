@@ -38,25 +38,7 @@ const CardActions: React.FC<React.PropsWithChildren<CardActionsProps>> = ({ pool
   return (
     <Flex flexDirection="column">
       <Flex flexDirection="column">
-        <>
-          <Box display="inline">
-            <InlineText color="secondary" textTransform="uppercase" bold fontSize="12px">
-              {`${earningToken.symbol} `}
-            </InlineText>
-            <InlineText color="textSubtle" textTransform="uppercase" bold fontSize="12px">
-              {t('Earned')}
-            </InlineText>
-          </Box>
-          <HarvestActions
-            earnings={earnings}
-            earningTokenSymbol={earningToken.symbol}
-            earningTokenDecimals={earningToken.decimals}
-            sousId={sousId}
-            earningTokenPrice={earningTokenPrice}
-            isBnbPool={isBnbPool}
-            isLoading={isLoading}
-          />
-        </>
+        <></>
         <Box display="inline">
           <InlineText color={isStaked ? 'secondary' : 'textSubtle'} textTransform="uppercase" bold fontSize="12px">
             {isStaked ? stakingToken.symbol : t('Stake')}{' '}

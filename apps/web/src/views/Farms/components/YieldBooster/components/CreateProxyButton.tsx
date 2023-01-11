@@ -25,7 +25,6 @@ const CreateProxyButton: React.FC<React.PropsWithChildren<CreateProxyButtonProps
       onClick={async () => {
         try {
           setIsCreateProxyLoading(true)
-          console.log("farmBoosterProxyFactoryContract: ", farmBoosterProxyFactoryContract.address);
           const receipt = await fetchWithCatchTxError(() =>
             farmBoosterProxyFactoryContract.createFarmBoosterProxy({ gasLimit: MAX_GAS_LIMIT }),
           )

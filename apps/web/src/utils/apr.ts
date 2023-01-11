@@ -60,7 +60,7 @@ export const getFarmApr = (
     cakeRewardsAprAsNumber = cakeRewardsApr.toNumber()
   }
   const lpRewardsApr = (getLpApr(chainId)[farmAddress?.toLowerCase()] || getLpApr(chainId)[farmAddress]) ?? 0 // can get both checksummed or lowercase
-  console.log("LEU LEU: ", farmAddress.toLowerCase(), cakeRewardsAprAsNumber, lpRewardsApr)
+  console.log('LEU LEU: ', yearlyCakeRewardAllocation.toString(), cakePriceUsd.toString(), poolLiquidityUsd.toString())
   return { cakeRewardsApr: cakeRewardsAprAsNumber, lpRewardsApr }
 }
 

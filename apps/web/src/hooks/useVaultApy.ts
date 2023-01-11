@@ -91,6 +91,13 @@ export function useVaultApy({ duration = MAX_LOCK_DURATION }: { duration?: numbe
     [pricePerFullShareAsEtherBN, totalCakePoolEmissionPerYear, totalSharesAsEtherBN],
   )
 
+  // console.log(
+  //   'totalCakePoolEmissionPerYear:',
+  //   totalCakePoolEmissionPerYear.toString(),
+  //   pricePerFullShareAsEtherBN.toString(),
+  //   totalSharesAsEtherBN.toString(),
+  //   flexibleApy,
+  // )
   const boostFactor = useMemo(() => _getBoostFactor(BOOST_WEIGHT, duration, DURATION_FACTOR), [duration])
 
   const lockedApy = useMemo(() => {

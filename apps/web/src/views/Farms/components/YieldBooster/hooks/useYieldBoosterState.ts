@@ -9,6 +9,7 @@ import { useBCakeProxyContractAddress } from 'views/Farms/hooks/useBCakeProxyCon
 import { useUserLockedCakeStatus } from 'views/Farms/hooks/useUserLockedCakeStatus'
 import { useCallback } from 'react'
 import { useAccount } from 'wagmi'
+import { useActiveChainId } from 'hooks/useActiveChainId'
 
 export enum YieldBoosterState {
   UNCONNECTED,

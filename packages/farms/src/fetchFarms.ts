@@ -47,7 +47,6 @@ export async function farmV2FetchFarms({
   totalSpecialAllocPoint,
 }: FetchFarmsParams) {
   const stableFarms = farms.filter(isStableFarm)
-
   const [stableFarmsResults, poolInfos, lpDataResults] = await Promise.all([
     fetchStableFarmData(stableFarms, chainId, multicallv2),
     fetchMasterChefData(farms, isTestnet, multicallv2, masterChefAddress),
@@ -55,6 +54,7 @@ export async function farmV2FetchFarms({
   ])
 
   const stableFarmsData = (stableFarmsResults as StableLpData[]).map(formatStableFarm)
+  console.log('stableFarms:', stableFarmsData)
 
   const stableFarmsDataMap = stableFarms.reduce<Record<number, FormatStableFarmResponse>>((map, farm, index) => {
     return {
@@ -64,7 +64,6 @@ export async function farmV2FetchFarms({
   }, {})
 
   const lpData = lpDataResults.map(formatClassicFarmResponse)
-  console.log("ZIPPER: ", totalRegularAllocPoint, totalSpecialAllocPoint);
 
   const farmsData = farms.map((farm, index) => {
     try {
@@ -104,8 +103,8 @@ export async function farmV2FetchFarms({
     }
   })
 
-  console.log("farmsData: ", farmsData);
   const farmsDataWithPrices = getFarmsPrices(farmsData, evmNativeStableLpMap[chainId], 18)
+  console.log('farmsData: ', farmsDataWithPrices)
 
   return farmsDataWithPrices
 }

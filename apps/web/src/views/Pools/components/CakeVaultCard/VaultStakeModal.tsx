@@ -287,9 +287,7 @@ const VaultStakeModal: React.FC<React.PropsWithChildren<VaultStakeModalProps>> =
           {t('Max')}
         </StyledButton>
       </Flex>
-      {isRemovingStake && hasUnstakingFee && (
-        <FeeSummary vaultKey={vaultKey} stakingTokenSymbol={stakingToken.symbol} stakeAmount={stakeAmount} />
-      )}
+
       {!isRemovingStake && (
         <Flex mt="24px" alignItems="center" justifyContent="space-between">
           <Text mr="8px" color="textSubtle">

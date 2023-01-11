@@ -10,7 +10,7 @@ export const bscProvider = new StaticJsonRpcProvider(
 
 export const bscTestnetProvider = new StaticJsonRpcProvider(
   {
-    url: 'https://bsc-testnet.nodereal.io/v1/e9a36765eb8a40b9bd12e680a1fd2bc5',
+    url: 'https://bsc.getblock.io/f74f23a7-6e96-4206-8041-718a72eb3f2c/testnet/',
     skipFetchSetup: true,
   },
   97,

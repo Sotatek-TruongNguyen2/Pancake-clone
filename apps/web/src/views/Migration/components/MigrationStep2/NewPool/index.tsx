@@ -16,10 +16,12 @@ import {
 import { batch } from 'react-redux'
 import { Pool } from '@pancakeswap/uikit'
 import { Token } from '@pancakeswap/sdk'
+import { useActiveChainId } from 'hooks/useActiveChainId'
 import PoolsTable from './PoolTable'
 
 const NewPool: React.FC<React.PropsWithChildren> = () => {
   const { address: account } = useAccount()
+  const { chainId } = useActiveChainId()
   const { pools } = usePoolsWithVault()
   const cakeVault = useCakeVault()
 
@@ -28,16 +30,14 @@ const NewPool: React.FC<React.PropsWithChildren> = () => {
     [pools],
   ) as Pool.DeserializedPool<Token>[]
 
-  console.log("stakedOnlyOpenPools: ", stakedOnlyOpenPools);
-
   const userDataReady: boolean = !account || (!!account && !cakeVault.userData?.isLoading)
 
   const dispatch = useAppDispatch()
 
   useFastRefreshEffect(() => {
     batch(() => {
-      dispatch(fetchCakeVaultPublicData())
-      dispatch(fetchCakeFlexibleSideVaultPublicData())
+      dispatch(fetchCakeVaultPublicData({ chainId }))
+      dispatch(fetchCakeFlexibleSideVaultPublicData({ chainId }))
       dispatch(fetchCakePoolPublicDataAsync())
       if (account) {
         dispatch(fetchCakeVaultUserData({ account }))
@@ -49,8 +49,8 @@ const NewPool: React.FC<React.PropsWithChildren> = () => {
 
   useEffect(() => {
     batch(() => {
-      dispatch(fetchCakeVaultFees())
-      dispatch(fetchCakeFlexibleSideVaultFees())
+      dispatch(fetchCakeVaultFees({ chainId }))
+      dispatch(fetchCakeFlexibleSideVaultFees({ chainId }))
     })
   }, [dispatch])
 

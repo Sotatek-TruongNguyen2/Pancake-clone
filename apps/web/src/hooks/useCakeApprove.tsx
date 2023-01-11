@@ -5,13 +5,17 @@ import { useToast } from '@pancakeswap/uikit'
 import { useCallWithGasPrice } from 'hooks/useCallWithGasPrice'
 import useCatchTxError from 'hooks/useCatchTxError'
 import { ToastDescriptionWithTx } from 'components/Toast'
+import { useActiveChainId } from './useActiveChainId'
 
 const useCakeApprove = (setLastUpdated: () => void, spender, successMsg) => {
   const { t } = useTranslation()
   const { toastSuccess } = useToast()
   const { fetchWithCatchTxError, loading: pendingTx } = useCatchTxError()
   const { callWithGasPrice } = useCallWithGasPrice()
-  const { signer: cakeContract } = useCake()
+  const { chainId } = useActiveChainId()
+  const { signer: cakeContract } = useCake(chainId)
+
+  // console.log('CAKE CONTRACT:', cakeContract.address)
 
   const handleApprove = async () => {
     const receipt = await fetchWithCatchTxError(() => {

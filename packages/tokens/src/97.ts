@@ -33,7 +33,7 @@ export const bscTestnetTokens = {
   usdt: new ERC20Token(ChainId.BSC_TESTNET, '0x0fB5D7c73FA349A90392f873a4FA1eCf6a3d0a96', 18, 'USDT', 'Tether USD'),
   mockBusd: new ERC20Token(
     ChainId.BSC_TESTNET,
-    '0x3304dd20f6Fe094Cb0134a6c8ae07EcE26c7b6A7',
+    '0x8516Fc284AEEaa0374E66037BD2309349FF728eA',
     18,
     'BUSD',
     'Binance USD',

@@ -40,6 +40,8 @@ async function getPublicMultiplier({ farmBoosterContract }): Promise<number> {
 
   const boostPercent = PRECISION_FACTOR.addUnsafe(MAX_BOOST_PRECISION).divUnsafe(PRECISION_FACTOR)
 
+  console.log('boostPercent: ', boostPercent.toString())
+
   return _toNumber(boostPercent.round(3).toString())
 }
 

@@ -94,7 +94,7 @@ export const fetchInitialFarmsData = createAsyncThunk<
   }
 >('farms/fetchInitialFarmsData', async ({ chainId }) => {
   const farmDataList = await getFarmConfig(chainId)
-  console.log("sure: ", farmDataList);
+  console.log('sure: ', farmDataList)
   return {
     data: farmDataList.map((farm) => ({
       ...farm,
@@ -127,7 +127,7 @@ export const fetchFarmsPublicDataAsync = createAsyncThunk<
     }
     const chain = chains.find((c) => c.id === chainId)
     if (!chain || !farmFetcher.isChainSupported(chain.id)) throw new Error('chain not supported')
-    console.log("Run through here !!!", flag);
+    console.log('Run through here !!!', flag)
     try {
       if (flag === 'old') {
         return fetchFetchPublicDataOld({ pids, chainId })

@@ -5,10 +5,9 @@ import cakeVaultAbi from 'config/abi/cakeVaultV2.json'
 import { multicallv2 } from 'utils/multicall'
 import { getCakeFlexibleSideVaultV2Contract } from '../../utils/contractHelpers'
 
-const cakeVaultAddress = getCakeVaultAddress()
-const flexibleSideVaultContract = getCakeFlexibleSideVaultV2Contract()
+export const fetchVaultUser = async (account: string, chainId?: number): Promise<SerializedLockedVaultUser> => {
+  const cakeVaultAddress = getCakeVaultAddress(chainId)
 
-export const fetchVaultUser = async (account: string): Promise<SerializedLockedVaultUser> => {
   try {
     const calls = ['userInfo', 'calculatePerformanceFee', 'calculateOverdueFee'].map((method) => ({
       address: cakeVaultAddress,
@@ -19,6 +18,7 @@ export const fetchVaultUser = async (account: string): Promise<SerializedLockedV
     const [userContractResponse, [currentPerformanceFee], [currentOverdueFee]] = await multicallv2({
       abi: cakeVaultAbi,
       calls,
+      chainId,
     })
     return {
       isLoading: false,
@@ -52,7 +52,8 @@ export const fetchVaultUser = async (account: string): Promise<SerializedLockedV
   }
 }
 
-export const fetchFlexibleSideVaultUser = async (account: string): Promise<SerializedVaultUser> => {
+export const fetchFlexibleSideVaultUser = async (account: string, chainId?: number): Promise<SerializedVaultUser> => {
+  const flexibleSideVaultContract = getCakeFlexibleSideVaultV2Contract(null, chainId)
   try {
     const userContractResponse = await flexibleSideVaultContract.userInfo(account)
     return {

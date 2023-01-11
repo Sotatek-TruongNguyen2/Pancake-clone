@@ -11,7 +11,7 @@ export const CAKE_MAINNET = new ERC20Token(
 
 export const CAKE_TESTNET = new ERC20Token(
   ChainId.BSC_TESTNET,
-  '0xFa60D973F7642B748046464e165A65B7323b0DEE',
+  '0x483Ed007BA31da2D570bA816F028135d1F0c60A6',
   18,
   'CAKE',
   'PancakeSwap Token',
@@ -35,7 +35,6 @@ export const USDC_TESTNET = new ERC20Token(
   'Binance-Peg USD Coin',
   'https://www.centre.io/usdc',
 )
-
 
 export const USDT_BSC = new ERC20Token(
   ChainId.BSC,
@@ -64,7 +63,6 @@ export const BUSD_TESTNET = new ERC20Token(
   'https://www.paxos.com/busd/',
 )
 
-
 export const BUSD: Record<ChainId, ERC20Token> = {
   [ChainId.BSC]: BUSD_BSC,
   [ChainId.BSC_TESTNET]: BUSD_TESTNET,
@@ -77,9 +75,9 @@ export const CAKE = {
 
 export const USDC = {
   [ChainId.BSC]: USDC_BSC,
-  [ChainId.BSC_TESTNET]: USDC_TESTNET
+  [ChainId.BSC_TESTNET]: USDC_TESTNET,
 }
 
 export const USDT = {
-  [ChainId.BSC]: USDT_BSC
+  [ChainId.BSC]: USDT_BSC,
 }

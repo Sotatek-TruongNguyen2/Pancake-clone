@@ -47,7 +47,11 @@ export const { provider, chains } = configureChains(CHAINS, [
         return { http: 'https://cloudflare-eth.com' }
       }
 
-      return getNodeRealUrl(chain.network) || { http: chain.rpcUrls.default.http[0] }
+      return (
+        getNodeRealUrl(chain.network) || {
+          http: process.env.NEXT_PUBLIC_NODE_PRODUCTION || chain.rpcUrls.default.http[0],
+        }
+      )
     },
   }),
 ])
@@ -103,6 +107,8 @@ const ledgerConnector = new LedgerConnector({
 })
 
 export const bscConnector = new BinanceWalletConnector({ chains })
+
+console.log('chains:', chains)
 
 export const client = createClient({
   autoConnect: false,

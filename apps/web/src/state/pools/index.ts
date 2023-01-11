@@ -90,7 +90,6 @@ export const fetchCakePoolPublicDataAsync = () => async (dispatch, getState) => 
   const prices = getTokenPricesFromFarm(farmsData)
 
   const cakePool = poolsConfig.filter((p) => p.sousId === 0)[0]
-  console.log('CAKE POOL ::: ', cakePool)
   const stakingTokenAddress = isAddress(cakePool.stakingToken.address)
   const stakingTokenPrice = stakingTokenAddress ? prices[stakingTokenAddress] : 0
 
@@ -301,42 +300,45 @@ export const updateUserPendingReward = createAsyncThunk<
   return { sousId, field: 'pendingReward', value: pendingRewards[sousId] }
 })
 
-export const fetchCakeVaultPublicData = createAsyncThunk<SerializedLockedCakeVault>(
+export const fetchCakeVaultPublicData = createAsyncThunk<SerializedLockedCakeVault, { chainId?: number }>(
   'cakeVault/fetchPublicData',
-  async () => {
-    const publicVaultInfo = await fetchPublicVaultData()
+  async ({ chainId }) => {
+    const publicVaultInfo = await fetchPublicVaultData(chainId)
     return publicVaultInfo
   },
 )
 
-export const fetchCakeFlexibleSideVaultPublicData = createAsyncThunk<SerializedCakeVault>(
+export const fetchCakeFlexibleSideVaultPublicData = createAsyncThunk<SerializedCakeVault, { chainId?: number }>(
   'cakeFlexibleSideVault/fetchPublicData',
-  async () => {
-    const publicVaultInfo = await fetchPublicFlexibleSideVaultData()
+  async ({ chainId }) => {
+    const publicVaultInfo = await fetchPublicFlexibleSideVaultData(chainId)
     return publicVaultInfo
   },
 )
 
-export const fetchCakeVaultFees = createAsyncThunk<SerializedVaultFees>('cakeVault/fetchFees', async () => {
-  const vaultFees = await fetchVaultFees(getCakeVaultAddress())
-  return vaultFees
-})
-
-export const fetchCakeFlexibleSideVaultFees = createAsyncThunk<SerializedVaultFees>(
-  'cakeFlexibleSideVault/fetchFees',
-  async () => {
-    const vaultFees = await fetchVaultFees(getCakeFlexibleSideVaultAddress())
+export const fetchCakeVaultFees = createAsyncThunk<SerializedVaultFees, { chainId: number }>(
+  'cakeVault/fetchFees',
+  async ({ chainId }) => {
+    const vaultFees = await fetchVaultFees(getCakeVaultAddress(chainId), chainId)
     return vaultFees
   },
 )
 
-export const fetchCakeVaultUserData = createAsyncThunk<SerializedLockedVaultUser, { account: string }>(
-  'cakeVault/fetchUser',
-  async ({ account }) => {
-    const userData = await fetchVaultUser(account)
-    return userData
+export const fetchCakeFlexibleSideVaultFees = createAsyncThunk<SerializedVaultFees, { chainId?: number }>(
+  'cakeFlexibleSideVault/fetchFees',
+  async ({ chainId }) => {
+    const vaultFees = await fetchVaultFees(getCakeFlexibleSideVaultAddress(chainId), chainId)
+    return vaultFees
   },
 )
+
+export const fetchCakeVaultUserData = createAsyncThunk<
+  SerializedLockedVaultUser,
+  { account: string; chainId?: number }
+>('cakeVault/fetchUser', async ({ account, chainId }) => {
+  const userData = await fetchVaultUser(account, chainId)
+  return userData
+})
 
 export const fetchIfoPublicDataAsync = createAsyncThunk<PublicIfoData>('ifoVault/fetchIfoPublicDataAsync', async () => {
   const publicIfoData = await fetchPublicIfoData()
@@ -351,13 +353,13 @@ export const fetchUserIfoCreditDataAsync = (account: string) => async (dispatch)
     console.error('[Ifo Credit Action] Error fetching user Ifo credit data', error)
   }
 }
-export const fetchCakeFlexibleSideVaultUserData = createAsyncThunk<SerializedVaultUser, { account: string }>(
-  'cakeFlexibleSideVault/fetchUser',
-  async ({ account }) => {
-    const userData = await fetchFlexibleSideVaultUser(account)
-    return userData
-  },
-)
+export const fetchCakeFlexibleSideVaultUserData = createAsyncThunk<
+  SerializedVaultUser,
+  { account: string; chainId?: number }
+>('cakeFlexibleSideVault/fetchUser', async ({ account, chainId }) => {
+  const userData = await fetchFlexibleSideVaultUser(account, chainId)
+  return userData
+})
 
 export const PoolsSlice = createSlice({
   name: 'Pools',

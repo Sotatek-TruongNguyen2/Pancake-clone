@@ -156,8 +156,7 @@ const Farms: React.FC<React.PropsWithChildren> = ({ children }) => {
   const { t } = useTranslation()
   const { chainId } = useActiveChainId()
   const { data: farmsLP, userDataLoaded, poolLength, regularCakePerBlock } = useFarms()
-  console.log('farmsLP: ', farmsLP)
-  const cakePrice = usePriceCakeBusd({ forceMainnet: true })
+  const cakePrice = usePriceCakeBusd({ forceMainnet: false })
 
   const [_query, setQuery] = useState('')
   const normalizedUrlSearch = useMemo(() => (typeof urlQuery?.search === 'string' ? urlQuery.search : ''), [urlQuery])
@@ -195,7 +194,6 @@ const Farms: React.FC<React.PropsWithChildren> = ({ children }) => {
       farm.multiplier !== '0X' &&
       (!poolLength || poolLength > farm.pid),
   )
-
   const inactiveFarms = farmsLP.filter(
     (farm) =>
       farm.lpAddress === '0xB6040A9F294477dDAdf5543a24E5463B8F2423Ae' ||
@@ -233,7 +231,6 @@ const Farms: React.FC<React.PropsWithChildren> = ({ children }) => {
         }
 
         const totalLiquidity = new BigNumber(farm.lpTotalInQuoteToken).times(farm.quoteTokenPriceBusd)
-
         const { cakeRewardsApr, lpRewardsApr } = isActive
           ? getFarmApr(
               chainId,
@@ -312,6 +309,7 @@ const Farms: React.FC<React.PropsWithChildren> = ({ children }) => {
   ])
 
   const chosenFarmsMemoized = useMemo(() => {
+    console.log('chosenFarms:', chosenFarms)
     const sortFarms = (farms: FarmWithStakedValue[]): FarmWithStakedValue[] => {
       switch (sortOption) {
         case 'apr':

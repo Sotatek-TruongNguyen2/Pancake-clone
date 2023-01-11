@@ -21,6 +21,7 @@ export const useGetBoostedMultiplier = (userBalanceInFarm: BigNumber, lpTotalSup
       lpTotalSupply, // lpBalanceOfFarm
       avgLockDurationsInSeconds ? secondsToDays(avgLockDurationsInSeconds) : 280, // AverageLockDuration
     )
+
     return result.toString() === 'NaN' || isLoading ? '1.000' : result.toFixed(3)
   }, [
     userBalanceInFarm,

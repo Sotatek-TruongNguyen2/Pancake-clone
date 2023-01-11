@@ -95,6 +95,8 @@ export const fetchFarmUserDataAsync = createAsyncThunk<
     const userStakedBalances = await fetchFarmUserStakedBalances(account, farmsCanFetch)
     const userFarmEarnings = await fetchFarmUserEarnings(account, farmsCanFetch)
 
+    console.log('userFarmAllowances v1:', userFarmAllowances)
+
     return userFarmAllowances.map((farmAllowance, index) => {
       return {
         pid: farmsCanFetch[index].v1pid,

@@ -67,12 +67,11 @@ export const getVaultPoolAddress = (vaultKey: VaultKey) => {
 }
 
 export const getCakeVaultAddress = (chainId?: number) => {
-  console.log('zxcjzhxcjhasd: ', addresses.cakeVault)
   return getAddress(addresses.cakeVault, chainId)
 }
 
-export const getCakeFlexibleSideVaultAddress = () => {
-  return getAddress(addresses.cakeFlexibleSideVault)
+export const getCakeFlexibleSideVaultAddress = (chainId?: number) => {
+  return getAddress(addresses.cakeFlexibleSideVault, chainId)
 }
 
 export const getBunnySpecialCakeVaultAddress = () => {
@@ -114,12 +113,12 @@ export const getICakeAddress = () => {
   return getAddress(addresses.iCake)
 }
 
-export const getBCakeFarmBoosterAddress = () => {
-  return getAddress(addresses.bCakeFarmBooster)
+export const getBCakeFarmBoosterAddress = (chainId?: number) => {
+  return getAddress(addresses.bCakeFarmBooster, chainId)
 }
 
-export const getBCakeFarmBoosterProxyFactoryAddress = () => {
-  return getAddress(addresses.bCakeFarmBoosterProxyFactory)
+export const getBCakeFarmBoosterProxyFactoryAddress = (chainId?: number) => {
+  return getAddress(addresses.bCakeFarmBoosterProxyFactory, chainId)
 }
 
 export const getNonBscVaultAddress = (chainId?: number) => {

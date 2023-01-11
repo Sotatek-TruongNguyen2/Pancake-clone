@@ -266,10 +266,10 @@ export const getCakeVaultV2Contract = (signer?: Signer | Provider, chainId?: num
   return getContract({ abi: cakeVaultV2Abi, address: getCakeVaultAddress(chainId), signer }) as CakeVaultV2
 }
 
-export const getCakeFlexibleSideVaultV2Contract = (signer?: Signer | Provider) => {
+export const getCakeFlexibleSideVaultV2Contract = (signer?: Signer | Provider, chainId?: number) => {
   return getContract({
     abi: cakeFlexibleSideVaultV2Abi,
-    address: getCakeFlexibleSideVaultAddress(),
+    address: getCakeFlexibleSideVaultAddress(chainId),
     signer,
   }) as CakeFlexibleSideVaultV2
 }
@@ -352,14 +352,18 @@ export const getIfoCreditAddressContract = (signer?: Signer | Provider) => {
   return getContract({ abi: iCakeAbi, address: getICakeAddress(), signer }) as ICake
 }
 
-export const getBCakeFarmBoosterContract = (signer?: Signer | Provider) => {
-  return getContract({ abi: bCakeFarmBoosterAbi, address: getBCakeFarmBoosterAddress(), signer }) as BCakeFarmBooster
+export const getBCakeFarmBoosterContract = (signer?: Signer | Provider, chainId?: number) => {
+  return getContract({
+    abi: bCakeFarmBoosterAbi,
+    address: getBCakeFarmBoosterAddress(chainId),
+    signer,
+  }) as BCakeFarmBooster
 }
 
-export const getBCakeFarmBoosterProxyFactoryContract = (signer?: Signer | Provider) => {
+export const getBCakeFarmBoosterProxyFactoryContract = (signer?: Signer | Provider, chainId?: number) => {
   return getContract({
     abi: bCakeFarmBoosterProxyFactoryAbi,
-    address: getBCakeFarmBoosterProxyFactoryAddress(),
+    address: getBCakeFarmBoosterProxyFactoryAddress(chainId),
     signer,
   }) as BCakeFarmBoosterProxyFactory
 }

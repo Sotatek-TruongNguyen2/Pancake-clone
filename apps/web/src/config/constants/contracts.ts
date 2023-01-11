@@ -2,7 +2,7 @@ import { multicallAddresses } from '@pancakeswap/multicall'
 
 export default {
   masterChef: {
-    97: '0xB4A466911556e39210a6bB2FaECBB59E4eB7E43d',
+    97: '0x6c397dbb4AF0433BFcbc38b8f3380AdaF0aCb53A',
     56: '0xa5f8C5Dbd5F286960b9d90548680aE5ebFf07652',
   },
   masterChefV1: {
@@ -64,11 +64,11 @@ export default {
   },
   cakeVault: {
     56: '0x45c54210128a065de780C4B0Df3d16664f7f859e',
-    97: '0x7E4cCa056C0646421F6A4dc57de348Ad7F0373a9',
+    97: '0x5A68C31A897495078F41257Fc242B96154d71a10',
   },
   cakeFlexibleSideVault: {
     56: '0x615e896A8C2CA8470A2e9dc2E9552998f8658Ea0',
-    97: '',
+    97: '0x8F71d0EFd93043d16FbBf0182722F3F092bB774E',
   },
   predictionsBNB: {
     56: '0x18B2A687610328590Bc8F2e5fEdDe3b582A49cdA',
@@ -141,11 +141,11 @@ export default {
   },
   bCakeFarmBooster: {
     56: '0xE4FAa3Ef5A9708C894435B0F39c2B440936A3A52',
-    97: '',
+    97: '0x3F8ff4137d0082a968498597813adD4B3cB01769',
   },
   bCakeFarmBoosterProxyFactory: {
     56: '0x2C36221bF724c60E9FEE3dd44e2da8017a8EF3BA',
-    97: '',
+    97: '0x98145C7D53d846A2dd37fFEa0B8201F6c48f0a67',
   },
   nonBscVault: {
     56: '0xE6c904424417D03451fADd6E3f5b6c26BcC43841', // Only for pass contracts test

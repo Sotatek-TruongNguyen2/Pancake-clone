@@ -108,12 +108,12 @@ export const useERC721 = (address: string, withSignerIfPossible = true) => {
   return useMemo(() => getErc721Contract(address, providerOrSigner), [address, providerOrSigner])
 }
 
-export const useCake = (): { reader: Cake; signer: Cake } => {
+export const useCake = (chainId?: number): { reader: Cake; signer: Cake } => {
   const providerOrSigner = useProviderOrSigner(true, true)
   return useMemo(
     () => ({
-      reader: getCakeContract(null),
-      signer: getCakeContract(providerOrSigner),
+      reader: getCakeContract(null, chainId),
+      signer: getCakeContract(providerOrSigner, chainId),
     }),
     [providerOrSigner],
   )
@@ -356,13 +356,15 @@ export function useZapContract(withSignerIfPossible = true) {
 }
 
 export function useBCakeFarmBoosterContract(withSignerIfPossible = true) {
+  const { chainId } = useActiveChainId()
   const providerOrSigner = useProviderOrSigner(withSignerIfPossible, true)
-  return useMemo(() => getBCakeFarmBoosterContract(providerOrSigner), [providerOrSigner])
+  return useMemo(() => getBCakeFarmBoosterContract(providerOrSigner, chainId), [providerOrSigner, chainId])
 }
 
 export function useBCakeFarmBoosterProxyFactoryContract(withSignerIfPossible = true) {
+  const { chainId } = useActiveChainId()
   const providerOrSigner = useProviderOrSigner(withSignerIfPossible, true)
-  return useMemo(() => getBCakeFarmBoosterProxyFactoryContract(providerOrSigner), [providerOrSigner])
+  return useMemo(() => getBCakeFarmBoosterProxyFactoryContract(providerOrSigner, chainId), [providerOrSigner, chainId])
 }
 
 export function useBCakeProxyContract(proxyContractAddress: string, withSignerIfPossible = true) {

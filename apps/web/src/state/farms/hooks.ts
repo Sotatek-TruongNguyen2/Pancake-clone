@@ -1,6 +1,6 @@
 import BigNumber from 'bignumber.js'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
-import { SLOW_INTERVAL } from 'config/constants'
+import { FAST_INTERVAL, SLOW_INTERVAL } from 'config/constants'
 import { useCakeBusdPrice } from 'hooks/useBUSDPrice'
 import { useEffect, useMemo } from 'react'
 import { useSelector } from 'react-redux'
@@ -66,11 +66,10 @@ export const usePollFarmsWithUserData = () => {
       const farmsConfig = await getFarmConfig(chainId)
       const pids = farmsConfig.map((farmToFetch) => farmToFetch.pid)
       const params = proxyCreated ? { account, pids, proxyAddress, chainId } : { account, pids, chainId }
-
       dispatch(fetchFarmUserDataAsync(params))
     },
     {
-      refreshInterval: SLOW_INTERVAL,
+      refreshInterval: FAST_INTERVAL,
     },
   )
 }
@@ -82,7 +81,7 @@ export const usePollFarmsWithUserData = () => {
  */
 const coreFarmPIDs = {
   56: [2, 3],
-  97: [4, 10]
+  97: [4, 10],
 }
 
 export const usePollCoreFarmData = () => {
@@ -143,6 +142,5 @@ export const useLpTokenPrice = (symbol: string) => {
  */
 export const usePriceCakeBusd = ({ forceMainnet } = { forceMainnet: false }): BigNumber => {
   const price = useCakeBusdPrice({ forceMainnet })
-  // console.log("CAKE price: ", price.toSignificant(6));
   return useMemo(() => (price ? new BigNumber(price.toSignificant(6)) : BIG_ZERO), [price])
 }
