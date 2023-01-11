@@ -48,7 +48,6 @@ export const usePollFarmsWithUserData = () => {
     async () => {
       const farmsConfig = await getFarmConfig(chainId)
       const pids = farmsConfig.map((farmToFetch) => farmToFetch.pid)
-      // console.log("ZXDSAIDUIASUDISAUIDSAUID");
       dispatch(fetchFarmsPublicDataAsync({ pids, chainId, flag: farmFlag }))
     },
     {

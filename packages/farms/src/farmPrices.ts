@@ -53,7 +53,6 @@ export const getFarmQuoteTokenPrice = (
   wNative: string,
   stable: string,
 ): FixedNumber => {
-  console.log("asdjasdhjashdk: ", farm.quoteToken.symbol, stable, wNative);
   if (farm.quoteToken.symbol === stable) {
     return FIXED_ONE
   }
@@ -171,7 +170,6 @@ export const getFarmsPrices = (
         : FIXED_ONE.divUnsafe(FixedNumber.from(nativeStableFarm.tokenPriceVsQuote))
       : FIXED_ZERO
 
-
   const farmsWithPrices = farms.map((farm) => {
     const quoteTokenFarm = getFarmFromTokenAddress(farms, farm.quoteToken.address, [
       nativeStableLp.wNative,
@@ -194,7 +192,7 @@ export const getFarmsPrices = (
       nativeStableLp.stable,
       quoteTokenPriceBusd,
     )
-   
+
     const lpTokenPrice = isStableFarm(farm)
       ? getStableLpTokenPrice(
           FixedNumber.from(farm.lpTotalSupply),

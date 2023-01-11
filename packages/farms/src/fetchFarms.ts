@@ -54,7 +54,6 @@ export async function farmV2FetchFarms({
   ])
 
   const stableFarmsData = (stableFarmsResults as StableLpData[]).map(formatStableFarm)
-  console.log('stableFarms:', stableFarmsData)
 
   const stableFarmsDataMap = stableFarms.reduce<Record<number, FormatStableFarmResponse>>((map, farm, index) => {
     return {
