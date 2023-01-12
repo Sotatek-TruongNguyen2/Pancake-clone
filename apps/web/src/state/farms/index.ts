@@ -65,6 +65,7 @@ const fetchFarmPublicDataPkg = async ({ pids, chainId, chain }): Promise<[Serial
   const farmsCanFetch = farmsConfig.filter((farmConfig) => pids.includes(farmConfig.pid))
   const priceHelperLpsConfig = getFarmsPriceHelperLpFiles(chainId)
 
+  console.log('allaa: ', farmsConfig, pids)
   const { farmsWithPrice, poolLength, regularCakePerBlock } = await farmFetcher.fetchFarms({
     chainId,
     isTestnet: chain.testnet,
@@ -93,9 +94,7 @@ export const fetchInitialFarmsData = createAsyncThunk<
     state: AppState
   }
 >('farms/fetchInitialFarmsData', async ({ chainId }) => {
-  console.log('CHAININNN: ', chainId)
   const farmDataList = await getFarmConfig(chainId)
-  console.log('sure: ', farmDataList)
   return {
     data: farmDataList.map((farm) => ({
       ...farm,

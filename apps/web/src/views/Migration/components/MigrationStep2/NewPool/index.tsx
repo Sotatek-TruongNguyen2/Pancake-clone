@@ -40,8 +40,8 @@ const NewPool: React.FC<React.PropsWithChildren> = () => {
       dispatch(fetchCakeFlexibleSideVaultPublicData({ chainId }))
       dispatch(fetchCakePoolPublicDataAsync())
       if (account) {
-        dispatch(fetchCakeVaultUserData({ account }))
-        dispatch(fetchCakeFlexibleSideVaultUserData({ account }))
+        dispatch(fetchCakeVaultUserData({ account, chainId }))
+        dispatch(fetchCakeFlexibleSideVaultUserData({ account, chainId }))
         dispatch(fetchCakePoolUserDataAsync(account))
       }
     })

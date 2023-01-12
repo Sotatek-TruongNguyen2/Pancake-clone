@@ -24,9 +24,18 @@ const farms: SerializedFarmConfig[] = [
     pid: 2,
     lpSymbol: 'BNB-BUSD LP',
     lpAddress: '0x4E96D2e92680Ca65D58A0e2eB5bd1c0f44cAB897',
-    token: bscTestnetTokens.wbnb,
-    quoteToken: bscTestnetTokens.busd,
+    token: bscTestnetTokens.busd,
+    quoteToken: bscTestnetTokens.wbnb,
   },
+  // {
+  //   pid: 2,
+  //   v1pid: 251,
+  //   lpSymbol: 'CAKE-BNB LP',
+  //   lpAddress: '',
+  //   token: bscTokens.cake,
+  //   quoteToken: bscTokens.wbnb,
+  //   boosted: true,
+  // },
 ].map((p) => ({ ...p, token: p.token.serialize, quoteToken: p.quoteToken.serialize }))
 
 export default farms

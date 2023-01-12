@@ -13,6 +13,7 @@ import { getDecimalAmount } from '@pancakeswap/utils/formatBalance'
 import { useApprovePool } from 'views/Pools/hooks/useApprove'
 import { usePool } from 'state/pools/hooks'
 
+import { useActiveChainId } from 'hooks/useActiveChainId'
 import useStakePool from '../../hooks/useStakePool'
 import useUnstakePool from '../../hooks/useUnstakePool'
 
@@ -36,6 +37,7 @@ const StakeModalContainer = ({
     stakingLimit,
     enableEmergencyWithdraw,
   } = pool
+  const { chainId } = useActiveChainId()
   const { address: account } = useAccount()
   const { toastSuccess } = useToast()
   const { pool: singlePool } = usePool(sousId)
@@ -56,8 +58,8 @@ const StakeModalContainer = ({
   const onDone = useCallback(() => {
     dispatch(updateUserStakedBalance({ sousId, account }))
     dispatch(updateUserPendingReward({ sousId, account }))
-    dispatch(updateUserBalance({ sousId, account }))
-  }, [dispatch, sousId, account])
+    dispatch(updateUserBalance({ sousId, account, chainId }))
+  }, [dispatch, sousId, account, chainId])
 
   const handleConfirmClick = useCallback(
     async (stakeAmount: string) => {
@@ -118,7 +120,7 @@ const StakeModalContainer = ({
 
   const handleEnableApprove = async () => {
     await handleApprove()
-    dispatch(updateUserAllowance({ sousId, account }))
+    dispatch(updateUserAllowance({ sousId, account, chainId }))
   }
 
   return (

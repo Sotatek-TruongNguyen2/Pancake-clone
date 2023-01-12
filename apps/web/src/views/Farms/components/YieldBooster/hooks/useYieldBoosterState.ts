@@ -36,7 +36,7 @@ function useIsPoolActive(pid: number) {
   console.log('farmBoosterContract.address;', data, account, pid)
 
   return {
-    isActivePool: Array.isArray(data) && data[0] ? data[0][0] : false,
+    isActivePool: Array.isArray(data) ? data[0][0] : false,
     refreshIsPoolActive: mutate,
   }
 }

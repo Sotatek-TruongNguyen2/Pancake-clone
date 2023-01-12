@@ -79,6 +79,7 @@ const transformData = ({
   fees: { performanceFee, withdrawalFee, withdrawalFeePeriod },
   userData: { isLoading, userShares, cakeAtLastUserAction, lastDepositedTime, lastUserActionTime },
 }) => {
+  console.log('totalShares12312312: ', totalShares)
   return {
     totalShares: new BigNumber(totalShares),
     pricePerFullShare: new BigNumber(pricePerFullShare),

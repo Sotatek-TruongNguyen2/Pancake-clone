@@ -95,7 +95,6 @@ export const fetchCakePoolPublicDataAsync = () => async (dispatch, getState) => 
 
   const earningTokenAddress = isAddress(cakePool.earningToken.address)
   const earningTokenPrice = earningTokenAddress ? prices[earningTokenAddress] : 0
-
   dispatch(
     setPoolPublicData({
       sousId: 0,
@@ -270,17 +269,18 @@ export const fetchPoolsUserDataAsync = createAsyncThunk<
 
 export const updateUserAllowance = createAsyncThunk<
   { sousId: number; field: string; value: any },
-  { sousId: number; account: string }
->('pool/updateUserAllowance', async ({ sousId, account }) => {
-  const allowances = await fetchPoolsAllowance(account)
+  { sousId: number; account: string; chainId?: number }
+>('pool/updateUserAllowance', async ({ sousId, account, chainId }) => {
+  const allowances = await fetchPoolsAllowance(account, chainId)
   return { sousId, field: 'allowance', value: allowances[sousId] }
 })
 
 export const updateUserBalance = createAsyncThunk<
   { sousId: number; field: string; value: any },
-  { sousId: number; account: string }
->('pool/updateUserBalance', async ({ sousId, account }) => {
-  const tokenBalances = await fetchUserBalances(account)
+  { sousId: number; account: string; chainId?: number }
+>('pool/updateUserBalance', async ({ sousId, account, chainId }) => {
+  const tokenBalances = await fetchUserBalances(account, chainId)
+
   return { sousId, field: 'stakingTokenBalance', value: tokenBalances[sousId] }
 })
 
@@ -358,6 +358,7 @@ export const fetchCakeFlexibleSideVaultUserData = createAsyncThunk<
   { account: string; chainId?: number }
 >('cakeFlexibleSideVault/fetchUser', async ({ account, chainId }) => {
   const userData = await fetchFlexibleSideVaultUser(account, chainId)
+  console.log('lehman brother:', userData)
   return userData
 })
 

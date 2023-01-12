@@ -116,6 +116,8 @@ const getFarmsPrices = (farms: SerializedFarm[], chainId: number) => {
     }
   })
 
+  console.log('farmsWithPrices: ', farmsWithPrices)
+
   return farmsWithPrices
 }
 

@@ -26,6 +26,8 @@ const HasSharesActions: React.FC<React.PropsWithChildren<HasStakeActionProps>> =
     },
   } = useVaultPoolByKey(pool.vaultKey)
 
+  console.log('useVaultPoolByKey(pool.vaultKey)', useVaultPoolByKey(pool.vaultKey))
+
   const { stakingToken } = pool
 
   const cakePriceBusd = usePriceCakeBusd()

@@ -125,6 +125,8 @@ const CakeVaultCard: React.FC<React.PropsWithChildren<CakeVaultProps>> = ({
   const accountHasSharesStaked = userShares && userShares.gt(0)
   const isLoading = !pool.userData || isVaultUserDataLoading
 
+  console.log('aaaaaasdasdasdasd: ', userShares.toString())
+
   if (showStakedOnly && !accountHasSharesStaked) {
     return null
   }

@@ -204,10 +204,10 @@ export const useVaultPoolContract = (vaultKey: VaultKey): CakeVaultV2 | CakeFlex
       return getCakeVaultV2Contract(signer, chainId)
     }
     if (vaultKey === VaultKey.CakeFlexibleSideVault) {
-      return getCakeFlexibleSideVaultV2Contract(signer)
+      return getCakeFlexibleSideVaultV2Contract(signer, chainId)
     }
     return null
-  }, [signer, vaultKey])
+  }, [chainId, signer, vaultKey])
 }
 
 export const useCakeVaultContract = (withSignerIfPossible = true) => {

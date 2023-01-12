@@ -12,6 +12,7 @@ import useSWR, {
 } from 'swr'
 import { multicallv2, MulticallOptions, Call } from 'utils/multicall'
 import { MaybeContract, ContractMethodName, ContractMethodParams } from 'utils/types'
+import { useActiveChainId } from './useActiveChainId'
 
 declare module 'swr' {
   interface SWRResponse<Data = any, Error = any> {
@@ -135,8 +136,8 @@ export const immutableMiddleware: Middleware = (useSWRNext) => (key, fetcher, co
 
 export function useSWRMulticall<Data>(abi: any[], calls: Call[], options?: MulticallOptions & SWRConfiguration) {
   const { requireSuccess = true, ...config } = options || {}
-  console.log('CALLS: ', calls)
-  return useSWR<Data>(calls, () => multicallv2({ abi, calls, options: { requireSuccess } }), {
+  const { chainId } = useActiveChainId()
+  return useSWR<Data>(calls, () => multicallv2({ abi, calls, options: { requireSuccess }, chainId }), {
     revalidateIfStale: false,
     revalidateOnFocus: false,
     ...config,

@@ -17,11 +17,13 @@ const nonMasterPools = poolsConfig.filter((pool) => pool.sousId !== 0)
 const multicallAddress = getMulticallAddress()
 
 export const fetchPoolsAllowance = async (account, chainId?: number) => {
-  const calls = nonBnbPools.map((pool) => ({
-    address: pool.stakingToken.address,
-    name: 'allowance',
-    params: [account, getAddress(pool.contractAddress, chainId)],
-  }))
+  const calls = nonBnbPools.map((pool) => {
+    return {
+      address: pool.stakingToken.address,
+      name: 'allowance',
+      params: [account, getAddress(pool.contractAddress, chainId)],
+    }
+  })
 
   const allowances = await multicall(erc20ABI, calls, chainId)
   return fromPairs(nonBnbPools.map((pool, index) => [pool.sousId, new BigNumber(allowances[index]).toJSON()]))

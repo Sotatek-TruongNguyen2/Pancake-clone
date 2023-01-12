@@ -19,7 +19,7 @@ export const fetchPublicVaultData = async (cakeVaultAddress: string) => {
     const totalLockedAmountAsBigNumber = totalLockedAmount ? new BigNumber(totalLockedAmount[0].toString()) : BIG_ZERO
     const sharePriceAsBigNumber = sharePrice ? new BigNumber(sharePrice.toString()) : BIG_ZERO
     const totalCakeInVaultEstimate = convertSharesToCake(totalSharesAsBigNumber, sharePriceAsBigNumber)
-
+    console.log('totalSharesAsBigNumber: ', totalSharesAsBigNumber.toString())
     return {
       totalShares: totalSharesAsBigNumber.toJSON(),
       totalLockedAmount: totalLockedAmountAsBigNumber.toJSON(),

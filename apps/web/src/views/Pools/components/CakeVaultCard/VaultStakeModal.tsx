@@ -75,6 +75,7 @@ const VaultStakeModal: React.FC<React.PropsWithChildren<VaultStakeModalProps>> =
   onDismiss,
 }) => {
   const dispatch = useAppDispatch()
+  console.log('earningTokenPrice: ', pool)
   const { stakingToken, earningTokenPrice, vaultKey } = pool
   const { address: account } = useAccount()
   const { fetchWithCatchTxError, loading: pendingTx } = useCatchTxError()
@@ -98,6 +99,7 @@ const VaultStakeModal: React.FC<React.PropsWithChildren<VaultStakeModalProps>> =
   const { hasUnstakingFee } = useWithdrawalFeeTimer(parseInt(lastDepositedTime, 10), userShares)
   const cakePriceBusd = usePriceCakeBusd()
   const usdValueStaked = new BigNumber(stakeAmount).times(cakePriceBusd)
+  console.log('cakePriceBusd: ', usdValueStaked.toString(), cakePriceBusd.toString(), stakeAmount.toString())
   const formattedUsdValueStaked = cakePriceBusd.gt(0) && stakeAmount ? formatNumber(usdValueStaked.toNumber()) : ''
   const { flexibleApy } = useVaultApy()
   const { allowance, setLastUpdated } = useCheckVaultApprovalStatus(vaultKey)
@@ -115,6 +117,15 @@ const VaultStakeModal: React.FC<React.PropsWithChildren<VaultStakeModalProps>> =
     gasLimit: vaultPoolConfig[pool.vaultKey].gasLimit,
   }
 
+  console.log('LOL:LOL', {
+    usdValueStaked,
+    principalInUSD: !usdValueStaked.isNaN() ? usdValueStaked.toNumber() : 0,
+    apr: +flexibleApy,
+    earningTokenPrice,
+    performanceFee,
+    compoundFrequency: 0,
+  })
+
   const interestBreakdown = getInterestBreakdown({
     principalInUSD: !usdValueStaked.isNaN() ? usdValueStaked.toNumber() : 0,
     apr: +flexibleApy,
@@ -122,6 +133,8 @@ const VaultStakeModal: React.FC<React.PropsWithChildren<VaultStakeModalProps>> =
     performanceFee,
     compoundFrequency: 0,
   })
+
+  console.log('interestBreakdown:', interestBreakdown)
 
   const annualRoi = interestBreakdown[3] * pool.earningTokenPrice
   const formattedAnnualRoi = formatNumber(annualRoi, annualRoi > 10000 ? 0 : 2, annualRoi > 10000 ? 0 : 2)
@@ -287,7 +300,9 @@ const VaultStakeModal: React.FC<React.PropsWithChildren<VaultStakeModalProps>> =
           {t('Max')}
         </StyledButton>
       </Flex>
-
+      {isRemovingStake && hasUnstakingFee && (
+        <FeeSummary vaultKey={vaultKey} stakingTokenSymbol={stakingToken.symbol} stakeAmount={stakeAmount} />
+      )}
       {!isRemovingStake && (
         <Flex mt="24px" alignItems="center" justifyContent="space-between">
           <Text mr="8px" color="textSubtle">

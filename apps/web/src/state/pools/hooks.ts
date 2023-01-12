@@ -76,6 +76,7 @@ export const useFetchPublicPoolsData = () => {
     (currentBlock) => {
       const fetchPoolsDataWithFarms = async () => {
         const activeFarms = await getActiveFarms(chainId)
+        console.log('activeFarms: ', activeFarms)
         await dispatch(fetchFarmsPublicDataAsync({ pids: activeFarms, chainId, flag: farmFlag }))
 
         batch(() => {
@@ -119,17 +120,17 @@ export const usePoolsPageFetch = () => {
       if (account) {
         dispatch(fetchPoolsUserDataAsync({ account, chainId }))
         dispatch(fetchCakeVaultUserData({ account, chainId }))
-        dispatch(fetchCakeFlexibleSideVaultUserData({ account }))
+        dispatch(fetchCakeFlexibleSideVaultUserData({ account, chainId }))
       }
     })
-  }, [account, dispatch])
+  }, [account, dispatch, chainId])
 
   useEffect(() => {
     batch(() => {
       dispatch(fetchCakeVaultFees({ chainId }))
       dispatch(fetchCakeFlexibleSideVaultFees({ chainId }))
     })
-  }, [dispatch])
+  }, [dispatch, chainId])
 }
 
 export const useCakeVaultUserData = () => {

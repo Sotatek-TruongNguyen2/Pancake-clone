@@ -54,6 +54,7 @@ export const fetchVaultUser = async (account: string, chainId?: number): Promise
 
 export const fetchFlexibleSideVaultUser = async (account: string, chainId?: number): Promise<SerializedVaultUser> => {
   const flexibleSideVaultContract = getCakeFlexibleSideVaultV2Contract(null, chainId)
+
   try {
     const userContractResponse = await flexibleSideVaultContract.userInfo(account)
     return {
@@ -64,6 +65,7 @@ export const fetchFlexibleSideVaultUser = async (account: string, chainId?: numb
       cakeAtLastUserAction: new BigNumber(userContractResponse.cakeAtLastUserAction.toString()).toJSON(),
     }
   } catch (error) {
+    console.log('error:', error)
     return {
       isLoading: true,
       userShares: null,

@@ -60,7 +60,7 @@ export const fetchPoolsTotalStaking = async (chainId: number) => {
       params: [getAddress(poolConfig.contractAddress, chainId)],
     }
   })
-  console.log('poolsTotalStaked', poolsBalanceOf)
+  console.log('poolsTotalStaked v2', poolsBalanceOf)
   const poolsTotalStaked = await multicall(erc20ABI, poolsBalanceOf, chainId)
   return poolsConfig.map((p, index) => ({
     sousId: p.sousId,

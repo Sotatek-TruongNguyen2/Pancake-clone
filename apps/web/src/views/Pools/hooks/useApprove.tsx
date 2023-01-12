@@ -13,6 +13,7 @@ import useCatchTxError from 'hooks/useCatchTxError'
 import { ToastDescriptionWithTx } from 'components/Toast'
 import useCakeApprovalStatus from 'hooks/useCakeApprovalStatus'
 import useCakeApprove from 'hooks/useCakeApprove'
+import { useActiveChainId } from 'hooks/useActiveChainId'
 
 export const useApprovePool = (lpContract: Contract, sousId, earningTokenSymbol) => {
   const { toastSuccess } = useToast()
@@ -22,6 +23,7 @@ export const useApprovePool = (lpContract: Contract, sousId, earningTokenSymbol)
   const dispatch = useAppDispatch()
   const { address: account } = useAccount()
   const sousChefContract = useSousChef(sousId)
+  const { chainId } = useActiveChainId()
 
   const handleApprove = useCallback(async () => {
     const receipt = await fetchWithCatchTxError(() => {
@@ -34,7 +36,7 @@ export const useApprovePool = (lpContract: Contract, sousId, earningTokenSymbol)
           {t('You can now stake in the %symbol% pool!', { symbol: earningTokenSymbol })}
         </ToastDescriptionWithTx>,
       )
-      dispatch(updateUserAllowance({ sousId, account }))
+      dispatch(updateUserAllowance({ sousId, account, chainId }))
     }
   }, [
     account,
@@ -66,6 +68,5 @@ export const useVaultApprove = (vaultKey: VaultKey, setLastUpdated: () => void) 
 
 export const useCheckVaultApprovalStatus = (vaultKey: VaultKey) => {
   const vaultPoolContract = useVaultPoolContract(vaultKey)
-  console.log('asdjhjahsdjas: ', vaultPoolContract)
   return useCakeApprovalStatus(vaultPoolContract?.address)
 }

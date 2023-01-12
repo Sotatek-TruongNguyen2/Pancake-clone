@@ -266,10 +266,13 @@ export const getCakeVaultV2Contract = (signer?: Signer | Provider, chainId?: num
 }
 
 export const getCakeFlexibleSideVaultV2Contract = (signer?: Signer | Provider, chainId?: number) => {
+  // const providerOrSigner = useProviderOrSigner(withSignerIfPossible)
+
   return getContract({
     abi: cakeFlexibleSideVaultV2Abi,
     address: getCakeFlexibleSideVaultAddress(chainId),
     signer,
+    chainId,
   }) as CakeFlexibleSideVaultV2
 }
 
