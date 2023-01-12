@@ -64,6 +64,7 @@ export function createMulticall<TProvider extends Provider>(
 ) {
   const multicall: MultiCall = async (abi: any[], calls: Call[], chainId = ChainId.BSC) => {
     const multi = getMulticallContract(chainId, provider({ chainId }))
+    console.log('ZZZZZZZZ: ', chainId, multi)
     if (!multi) throw new Error(`Multicall Provider missing for ${chainId}`)
     const itf = new Interface(abi)
 
@@ -79,6 +80,7 @@ export function createMulticall<TProvider extends Provider>(
   }
 
   const multicallv2: MultiCallV2 = async ({ abi, calls, chainId = ChainId.BSC, options, provider: _provider }) => {
+    console.log('ChainID: ', chainId)
     const { requireSuccess = true, ...overrides } = options || {}
     const multi = getMulticallContract(chainId, _provider || provider({ chainId }))
     if (!multi) throw new Error(`Multicall Provider missing for ${chainId}`)

@@ -1,6 +1,6 @@
 import { BinanceWalletConnector } from '@pancakeswap/wagmi/connectors/binanceWallet'
 import { BloctoConnector } from '@pancakeswap/wagmi/connectors/blocto'
-import { bsc, bscTestnet, goerli, mainnet } from 'wagmi/chains'
+import { bsc, bscTestnet, mainnet } from 'wagmi/chains'
 import { configureChains, createClient } from 'wagmi'
 import memoize from 'lodash/memoize'
 import { CoinbaseWalletConnector } from 'wagmi/connectors/coinbaseWallet'
@@ -52,11 +52,8 @@ export const { provider, chains } = configureChains(CHAINS, [
           http: process.env.NEXT_PUBLIC_TESTNET_RPC || chain.rpcUrls.default.http[0],
         }
       }
-      return (
-        getNodeRealUrl(chain.network) || {
-          http: chain.rpcUrls.default.http[0],
-        }
-      )
+
+      return getNodeRealUrl(chain.network) || { http: chain.rpcUrls.default.http[0] }
     },
   }),
 ])
@@ -112,8 +109,6 @@ const ledgerConnector = new LedgerConnector({
 })
 
 export const bscConnector = new BinanceWalletConnector({ chains })
-
-console.log('chains:', chains)
 
 export const client = createClient({
   autoConnect: false,

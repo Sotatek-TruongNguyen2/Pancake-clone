@@ -33,9 +33,10 @@ function useIsPoolActive(pid: number) {
     [{ address: farmBoosterContract.address, name: 'isBoostedPool', params: [account, pid] }],
     { isPaused: () => !account },
   )
+  console.log('farmBoosterContract.address;', data, account, pid)
 
   return {
-    isActivePool: Array.isArray(data) ? data[0][0] : false,
+    isActivePool: Array.isArray(data) && data[0] ? data[0][0] : false,
     refreshIsPoolActive: mutate,
   }
 }

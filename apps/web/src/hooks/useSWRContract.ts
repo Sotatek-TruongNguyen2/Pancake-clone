@@ -115,7 +115,6 @@ export function useSWRContract<
 >(key?: UseSWRContractKey<T, N> | null, config: SWRConfiguration<Data, Error> = {}) {
   const { contract, methodName, params } = getContractKey(key) || {}
   const serializedKeys = useMemo(() => serializesContractKey(key), [key])
-
   return useSWR<Data, Error>(
     serializedKeys,
     async () => {
@@ -136,6 +135,7 @@ export const immutableMiddleware: Middleware = (useSWRNext) => (key, fetcher, co
 
 export function useSWRMulticall<Data>(abi: any[], calls: Call[], options?: MulticallOptions & SWRConfiguration) {
   const { requireSuccess = true, ...config } = options || {}
+  console.log('CALLS: ', calls)
   return useSWR<Data>(calls, () => multicallv2({ abi, calls, options: { requireSuccess } }), {
     revalidateIfStale: false,
     revalidateOnFocus: false,

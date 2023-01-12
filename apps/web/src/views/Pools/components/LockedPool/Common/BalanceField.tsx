@@ -68,6 +68,8 @@ const BalanceField: React.FC<React.PropsWithChildren<PropsType>> = ({
     [stakingMax, setLockedAmount, stakingDecimals],
   )
 
+  console.log('stakingMax: ', stakingMax)
+
   return (
     <>
       <Flex alignItems="center" justifyContent="space-between" mb="8px">

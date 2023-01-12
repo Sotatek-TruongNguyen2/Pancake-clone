@@ -8,7 +8,7 @@ import { useActiveChainId } from './useActiveChainId'
 // TODO: refactor as useTokenApprovalStatus for generic use
 
 export const useCakeApprovalStatus = (spender) => {
-  const account = useAccount()
+  const { address: account } = useAccount()
   const { chainId } = useActiveChainId()
   const { reader: cakeContract } = useCake(chainId)
 
@@ -25,6 +25,7 @@ export const useCakeApprovalStatus = (spender) => {
   )
 
   const { data, mutate } = useSWRContract(key)
+  console.log('DAAAAA: ', chainId, cakeContract.provider, account, spender, data)
 
   return {
     isVaultApproved: data ? data.gt(0) : false,

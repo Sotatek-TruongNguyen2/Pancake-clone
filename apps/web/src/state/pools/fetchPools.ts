@@ -52,17 +52,16 @@ export const fetchPoolsBlockLimits = async () => {
   })
 }
 
-const poolsBalanceOf = poolsConfig.map((poolConfig) => {
-  return {
-    address: poolConfig.stakingToken.address,
-    name: 'balanceOf',
-    params: [getAddress(poolConfig.contractAddress)],
-  }
-})
-
-export const fetchPoolsTotalStaking = async () => {
-  const poolsTotalStaked = await multicall(erc20ABI, poolsBalanceOf)
-
+export const fetchPoolsTotalStaking = async (chainId: number) => {
+  const poolsBalanceOf = poolsConfig.map((poolConfig) => {
+    return {
+      address: poolConfig.stakingToken.address,
+      name: 'balanceOf',
+      params: [getAddress(poolConfig.contractAddress, chainId)],
+    }
+  })
+  console.log('poolsTotalStaked', poolsBalanceOf)
+  const poolsTotalStaked = await multicall(erc20ABI, poolsBalanceOf, chainId)
   return poolsConfig.map((p, index) => ({
     sousId: p.sousId,
     totalStaked: new BigNumber(poolsTotalStaked[index]).toJSON(),

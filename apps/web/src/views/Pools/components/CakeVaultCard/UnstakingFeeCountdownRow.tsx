@@ -24,8 +24,6 @@ const UnstakingFeeCountdownRow: React.FC<React.PropsWithChildren<UnstakingFeeCou
     fees: { withdrawalFee, withdrawalFeePeriod },
   } = useVaultPoolByKey(vaultKey)
 
-  console.log('pAPAPA: ', withdrawalFeePeriod, withdrawalFee, vaultKey)
-
   const feeAsDecimal = withdrawalFee / 100 || '-'
   const withdrawalDayPeriod = withdrawalFeePeriod ? secondsToDay(withdrawalFeePeriod) : '-'
   const { targetRef, tooltip, tooltipVisible } = useTooltip(

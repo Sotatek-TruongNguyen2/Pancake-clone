@@ -137,7 +137,7 @@ export const fetchPoolsPublicDataAsync =
     try {
       const [blockLimits, totalStakings, profileRequirements, currentBlock] = await Promise.all([
         fetchPoolsBlockLimits(),
-        fetchPoolsTotalStaking(),
+        fetchPoolsTotalStaking(chainId),
         fetchPoolsProfileRequirement(),
         currentBlockNumber ? Promise.resolve(currentBlockNumber) : bscRpcProvider.getBlockNumber(),
       ])
@@ -245,14 +245,14 @@ export const fetchPoolsStakingLimitsAsync = () => async (dispatch, getState) => 
 
 export const fetchPoolsUserDataAsync = createAsyncThunk<
   { sousId: number; allowance: any; stakingTokenBalance: any; stakedBalance: any; pendingReward: any }[],
-  string
->('pool/fetchPoolsUserData', async (account, { rejectWithValue }) => {
+  { account: string; chainId?: number }
+>('pool/fetchPoolsUserData', async ({ account, chainId }, { rejectWithValue }) => {
   try {
     const [allowances, stakingTokenBalances, stakedBalances, pendingRewards] = await Promise.all([
-      fetchPoolsAllowance(account),
-      fetchUserBalances(account),
-      fetchUserStakeBalances(account),
-      fetchUserPendingRewards(account),
+      fetchPoolsAllowance(account, chainId),
+      fetchUserBalances(account, chainId),
+      fetchUserStakeBalances(account, chainId),
+      fetchUserPendingRewards(account, chainId),
     ])
 
     const userData = poolsConfig.map((pool) => ({

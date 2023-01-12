@@ -93,6 +93,7 @@ export const fetchInitialFarmsData = createAsyncThunk<
     state: AppState
   }
 >('farms/fetchInitialFarmsData', async ({ chainId }) => {
+  console.log('CHAININNN: ', chainId)
   const farmDataList = await getFarmConfig(chainId)
   console.log('sure: ', farmDataList)
   return {
