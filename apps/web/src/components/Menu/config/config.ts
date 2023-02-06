@@ -1,19 +1,5 @@
-import {
-  MenuItemsType,
-  DropdownMenuItemType,
-  SwapIcon,
-  SwapFillIcon,
-  EarnFillIcon,
-  EarnIcon,
-  TrophyIcon,
-  TrophyFillIcon,
-  NftIcon,
-  NftFillIcon,
-  MoreIcon,
-  DropdownMenuItems,
-} from '@pancakeswap/uikit'
+import { MenuItemsType, SwapIcon, SwapFillIcon, EarnFillIcon, EarnIcon, DropdownMenuItems } from '@pancakeswap/uikit'
 import { ContextApi } from '@pancakeswap/localization'
-import { nftsBaseUrl } from 'views/Nft/market/constants'
 import { SUPPORT_ONLY_BSC } from 'config/constants/supportChains'
 
 export type ConfigMenuDropDownItemsType = DropdownMenuItems & { hideSubNav?: boolean }
@@ -55,7 +41,7 @@ const config: (
         {
           label: t('Liquidity'),
           href: '/liquidity',
-        }
+        },
       ].map((item) => addMenuItemSupported(item, chainId)),
     },
     {

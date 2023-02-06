@@ -22,10 +22,7 @@ import { useSwitchNetwork } from 'hooks/useSwitchNetwork'
 import { useMemo } from 'react'
 import { useRouter } from 'next/router'
 import { chains } from 'utils/wagmi'
-import Image from 'next/image'
-
 import { ChainLogo } from './Logo/ChainLogo'
-
 
 const NetworkSelect = ({ switchNetwork, chainId }) => {
   const { t } = useTranslation()
