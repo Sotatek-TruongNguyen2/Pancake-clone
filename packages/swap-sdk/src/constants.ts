@@ -22,8 +22,7 @@ export const INIT_CODE_HASH_MAP: Record<number, string> = {
   [ChainId.BSC_TESTNET]: '0xd0d4c4cd0848c93cb4fd1f498d7013ee6bfb25783ea21593d5834f5d250ece66',
 }
 
-export const WETH9 = {
-}
+export const WETH9 = {}
 
 export const WBNB = {
   [ChainId.BSC]: new ERC20Token(
