@@ -91,7 +91,7 @@ export const useBCakeTooltipContent = () => {
     <>
       <Box mb="20px">
         {t(
-          'Yield Boosters allow you to boost your farming yields by locking CAKE in the fixed-term staking CAKE pool. The more CAKE you lock, and the longer you lock them, the higher the boost you will receive.',
+          'Yield Boosters allow you to boost your farming yields by locking TIKTAK in the fixed-term staking TIKTAK pool. The more TIKTAK you lock, and the longer you lock them, the higher the boost you will receive.',
         )}
       </Box>
       <Box>
@@ -156,7 +156,7 @@ const CardContent: React.FC = () => {
           {t('Connect wallet to view booster')}
         </Text>
         <Text color="textSubtle" fontSize={12} mb="16px">
-          {t('An active fixed-term CAKE staking position is required for activating farm yield boosters.')}
+          {t('An active fixed-term TIKTAK staking position is required for activating farm yield boosters.')}
         </Text>
         <ConnectWalletButton width="100%" style={{ backgroundColor: theme.colors.textSubtle }} />
       </Box>
@@ -165,10 +165,10 @@ const CardContent: React.FC = () => {
     return (
       <Box width="100%">
         <Text color="textSubtle" fontSize={12} bold>
-          {t('No CAKE locked')}
+          {t('No TIKTAK locked')}
         </Text>
         <Text color="textSubtle" fontSize={12} mb="16px">
-          {t('An active fixed-term CAKE staking position is required for activating farm yield boosters.')}
+          {t('An active fixed-term TIKTAK staking position is required for activating farm yield boosters.')}
         </Text>
         <NextLink href="/pools" passHref>
           <Button width="100%" style={{ backgroundColor: theme.colors.textSubtle }}>
@@ -184,7 +184,7 @@ const CardContent: React.FC = () => {
           {t('Locked staking is ended')}
         </Text>
         <Text color="textSubtle" fontSize={12} mb="16px">
-          {t('An active fixed-term CAKE staking position is required for activating farm yield boosters.')}
+          {t('An active fixed-term TIKTAK staking position is required for activating farm yield boosters.')}
         </Text>
         <NextLink href="/pools" passHref>
           <Button width="100%" style={{ backgroundColor: theme.colors.textSubtle }}>

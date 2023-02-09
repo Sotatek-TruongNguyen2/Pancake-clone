@@ -39,7 +39,7 @@ const TotalStaked: React.FC<React.PropsWithChildren<MultiplierProps>> = ({ multi
     <>
       <Text>
         {t(
-          'The Multiplier represents the proportion of CAKE rewards each farm receives, as a proportion of the CAKE produced each block.',
+          'The Multiplier represents the proportion of TIKTAK rewards each farm receives, as a proportion of the TIKTAK produced each block.',
         )}
       </Text>
       <Text my="24px">
