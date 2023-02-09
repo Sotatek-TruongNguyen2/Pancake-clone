@@ -13,8 +13,8 @@ export const CAKE_TESTNET = new ERC20Token(
   ChainId.BSC_TESTNET,
   '0x483Ed007BA31da2D570bA816F028135d1F0c60A6',
   18,
-  'CAKE',
-  'PancakeSwap Token',
+  'TIKTAK',
+  'Tiktak Token',
   'https://pancakeswap.finance/',
 )
 

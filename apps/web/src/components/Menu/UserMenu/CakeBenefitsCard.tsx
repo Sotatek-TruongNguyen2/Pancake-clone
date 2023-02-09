@@ -153,7 +153,7 @@ const CakeBenefitsCard: React.FC<React.PropsWithChildren<CakeBenefitsCardProps>>
             <Tag variant="secondary" mr="auto">
               <Flex alignItems="center">
                 <Box as={LockIcon} mr="4px" />
-                {t('No CAKE locked')}
+                {t('No TIKTAK locked')}
               </Flex>
             </Tag>
             <Text fontSize="16px">{cakeBenefits?.lockedCake}</Text>

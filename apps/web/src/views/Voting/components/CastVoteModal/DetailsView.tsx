@@ -91,7 +91,7 @@ const DetailsView: React.FC<React.PropsWithChildren<DetailsViewProps>> = ({
                   'Your vCAKE boosting was expired at the snapshot block. Renew your fixed-term staking position to activate the boost for future voting proposals.',
                 )
               : t(
-                  'Voting power is calculated using the staking amount and remaining staking duration of the fixed-term CAKE staking position at the block.',
+                  'Voting power is calculated using the staking amount and remaining staking duration of the fixed-term TIKTAK staking position at the block.',
                 )}
           </Text>
           <Text bold m="10px 0">
@@ -141,7 +141,7 @@ const DetailsView: React.FC<React.PropsWithChildren<DetailsViewProps>> = ({
       {Number.isFinite(cakeVaultBalance) && (
         <Flex alignItems="center" justifyContent="space-between" mb="4px">
           <Text color="textSubtle" fontSize="16px">
-            {t('Flexible CAKE Staking')}
+            {t('Flexible TIKTAK Staking')}
           </Text>
           <Text textAlign="right">{formatNumber(cakeVaultBalance, 0, 3)}</Text>
         </Flex>

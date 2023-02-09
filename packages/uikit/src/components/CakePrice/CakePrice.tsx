@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import LogoRound from "../Svg/Icons/LogoRound";
+// import LogoRound from "../Svg/Icons/LogoRound";
 import Text from "../Text/Text";
 import Skeleton from "../Skeleton/Skeleton";
 import { Colors } from "../../theme";
@@ -24,6 +24,12 @@ const PriceLink = styled.a`
   }
 `;
 
+const StyledLogo = styled("img")<{ size: string }>`
+  width: ${({ size }) => size};
+  height: ${({ size }) => size};
+  border-radius: 50%;
+`;
+
 const CakePrice: React.FC<React.PropsWithChildren<Props>> = ({
   cakePriceUsd,
   color = "textSubtle",
@@ -34,7 +40,8 @@ const CakePrice: React.FC<React.PropsWithChildren<Props>> = ({
       href="https://pancakeswap.finance/swap?outputCurrency=0x0e09fabb73bd3ade0a17ecc321fd13a19e81ce82&chainId=56"
       target="_blank"
     >
-      <LogoRound width="24px" mr="8px" />
+      {/* <LogoRound width="24px" mr="8px" /> */}
+      <StyledLogo src="https://picsum.photos/200/300" size="24px" />
       <Text color={color} bold>{`$${cakePriceUsd.toFixed(3)}`}</Text>
     </PriceLink>
   ) : showSkeleton ? (
