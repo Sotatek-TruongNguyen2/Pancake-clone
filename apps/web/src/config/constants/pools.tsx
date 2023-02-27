@@ -14,7 +14,7 @@ export const DURATION_FACTOR = BigNumber.from('31536000')
 
 export const vaultPoolConfig = {
   [VaultKey.CakeVaultV1]: {
-    name: <Trans>Auto TIKTAK</Trans>,
+    name: <Trans>Auto NIKA</Trans>,
     description: <Trans>Automatic restaking</Trans>,
     autoCompoundFrequency: 5000,
     gasLimit: 380000,
@@ -24,7 +24,7 @@ export const vaultPoolConfig = {
     },
   },
   [VaultKey.CakeVault]: {
-    name: <Trans>Stake TIKTAK</Trans>,
+    name: <Trans>Stake NIKA</Trans>,
     description: <Trans>Stake, Earn – And more!</Trans>,
     autoCompoundFrequency: 5000,
     gasLimit: 600000,
@@ -34,7 +34,7 @@ export const vaultPoolConfig = {
     },
   },
   [VaultKey.CakeFlexibleSideVault]: {
-    name: <Trans>Flexible TIKTAK</Trans>,
+    name: <Trans>Flexible NIKA</Trans>,
     description: <Trans>Flexible staking on the side.</Trans>,
     autoCompoundFrequency: 5000,
     gasLimit: 500000,
@@ -45,7 +45,7 @@ export const vaultPoolConfig = {
   },
   [VaultKey.IfoPool]: {
     name: 'IFO CAKE',
-    description: <Trans>Stake TIKTAK to participate in IFOs</Trans>,
+    description: <Trans>Stake NIKA to participate in IFOs</Trans>,
     autoCompoundFrequency: 1,
     gasLimit: 500000,
     tokenImage: {

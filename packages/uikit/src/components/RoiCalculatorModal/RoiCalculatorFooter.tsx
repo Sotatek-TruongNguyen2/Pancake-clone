@@ -71,16 +71,16 @@ const RoiCalculatorFooter: React.FC<React.PropsWithChildren<RoiCalculatorFooterP
       <Text>
         {rewardCakePerSecond
           ? t(
-              "The Multiplier represents the proportion of TIKTAK rewards each farm receives, as a proportion of the TIKTAK produced each second."
+              "The Multiplier represents the proportion of NIKA rewards each farm receives, as a proportion of the NIKA produced each second."
             )
           : t(
-              "The Multiplier represents the proportion of TIKTAK rewards each farm receives, as a proportion of the TIKTAK produced each block."
+              "The Multiplier represents the proportion of NIKA rewards each farm receives, as a proportion of the NIKA produced each block."
             )}
       </Text>
       <Text my="24px">
         {rewardCakePerSecond
-          ? t("For example, if a 1x farm received 1 TIKTAK per second, a 40x farm would receive 40 TIKTAK per second.")
-          : t("For example, if a 1x farm received 1 TIKTAK per block, a 40x farm would receive 40 TIKTAK per block.")}
+          ? t("For example, if a 1x farm received 1 NIKA per second, a 40x farm would receive 40 NIKA per second.")
+          : t("For example, if a 1x farm received 1 NIKA per block, a 40x farm would receive 40 NIKA per block.")}
       </Text>
       <Text>{t("This amount is already included in all APR calculations for the farm.")}</Text>
     </>,
@@ -125,7 +125,7 @@ const RoiCalculatorFooter: React.FC<React.PropsWithChildren<RoiCalculatorFooterP
                   {displayApr}%
                 </Text>
                 <Text color="textSubtle" small>
-                  *{t("Base APR (TIKTAK yield only)")}
+                  *{t("Base APR (NIKA yield only)")}
                 </Text>
                 <Text small textAlign="right">
                   {apr.toFixed(2)}%

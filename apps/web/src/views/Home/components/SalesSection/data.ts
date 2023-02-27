@@ -44,20 +44,20 @@ export const earnSectionData = (t: TranslateFunction): SalesSectionProps => ({
     attributes: [
       { src: 'pie', alt: t('Pie chart') },
       { src: 'stonks', alt: t('Stocks chart') },
-      { src: 'folder', alt: t('Folder with cake token') },
+      { src: 'folder', alt: t('Folder with nika token') },
     ],
   },
 })
 
 export const cakeSectionData = (t: TranslateFunction): SalesSectionProps => ({
-  headingText: t('TIKTAK makes our world go round.'),
+  headingText: t('NIKA makes our world go round.'),
   bodyText: t(
-    'TIKTAK token is at the heart of the Tiktak Code ecosystem. Buy it, win it, farm it, spend it, stake it... heck, you can even vote with it!',
+    'NIKA token is at the heart of the Tiktak Code ecosystem. Buy it, win it, farm it, spend it, stake it... heck, you can even vote with it!',
   ),
   reverse: false,
   primaryButton: {
     to: '/swap?outputCurrency=0x0e09fabb73bd3ade0a17ecc321fd13a19e81ce82&chainId=56',
-    text: t('Buy TIKTAK'),
+    text: t('Buy NIKA'),
     external: false,
   },
   secondaryButton: {
