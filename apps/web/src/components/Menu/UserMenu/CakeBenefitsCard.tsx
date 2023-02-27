@@ -129,7 +129,7 @@ const CakeBenefitsCard: React.FC<React.PropsWithChildren<CakeBenefitsCardProps>>
   } = useTooltip(
     <>
       <Text>
-        {t(`vCAKE boosts your voting power to %totalScore% in the PancakeSwap voting governance.`, {
+        {t(`vNIKA boosts your voting power to %totalScore% in the TIKTAK Code voting governance.`, {
           totalScore: cakeBenefits?.vCake?.totalScore,
         })}
       </Text>
@@ -153,7 +153,7 @@ const CakeBenefitsCard: React.FC<React.PropsWithChildren<CakeBenefitsCardProps>>
             <Tag variant="secondary" mr="auto">
               <Flex alignItems="center">
                 <Box as={LockIcon} mr="4px" />
-                {t('No TIKTAK locked')}
+                {t('No NIKA locked')}
               </Flex>
             </Tag>
             <Text fontSize="16px">{cakeBenefits?.lockedCake}</Text>
@@ -161,7 +161,7 @@ const CakeBenefitsCard: React.FC<React.PropsWithChildren<CakeBenefitsCardProps>>
           <Message mt="8px" mb="16px" variant="warning">
             <MessageText maxWidth="200px">
               {t(
-                'Lock CAKE to enjoy the benefits of farm yield boosting, participating in IFOs, voting power boosts, and so much more!',
+                'Lock NIKA to enjoy the benefits of farm yield boosting, participating in IFOs, voting power boosts, and so much more!',
               )}{' '}
               <NextLinkFromReactRouter
                 style={{ textDecoration: 'underline', fontWeight: 'bold' }}
@@ -179,7 +179,7 @@ const CakeBenefitsCard: React.FC<React.PropsWithChildren<CakeBenefitsCardProps>>
             <Tag variant="failure" mr="auto">
               <Flex alignItems="center">
                 <Box as={LockIcon} mr="4px" />
-                {t('CAKE staking expired')}
+                {t('NIKA staking expired')}
               </Flex>
             </Tag>
             <Text fontSize="16px">{cakeBenefits?.lockedCake}</Text>
@@ -216,21 +216,21 @@ const CakeBenefitsCard: React.FC<React.PropsWithChildren<CakeBenefitsCardProps>>
             </Flex>
             <Flex mt="10px" flexDirection="row" alignItems="center">
               <TooltipText ref={iCakeTargetRef} color="textSubtle" fontSize="16px" mr="auto">
-                iCAKE
+                iNIKA
               </TooltipText>
               {iCakeTooltipVisible && iCakeTooltip}
               {cakeBenefits?.iCake}
             </Flex>
             <Flex mt="10px" flexDirection="row" alignItems="center">
               <TooltipText ref={bCakeTargetRef} color="textSubtle" fontSize="16px" mr="auto">
-                bCAKE
+                bNIKA
               </TooltipText>
               {bCakeTooltipVisible && bCakeTooltip}
               {t('Up to %boostMultiplier%x', { boostMultiplier: 2 })}
             </Flex>
             <Flex mt="10px" flexDirection="row" alignItems="center">
               <TooltipText ref={vCakeTargetRef} color="textSubtle" fontSize="16px" mr="auto">
-                vCAKE
+                vNIKA
               </TooltipText>
               {vCakeTooltipVisible && vCakeTooltip}
               {cakeBenefits?.vCake?.vaultScore}
