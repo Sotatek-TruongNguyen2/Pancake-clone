@@ -1,6 +1,13 @@
 import { useMemo } from 'react'
 import { useRouter } from 'next/router'
-import { Menu as UikitMenu, NextLinkFromReactRouter, footerLinks } from '@pancakeswap/uikit'
+import {
+  Menu as UikitMenu,
+  NextLinkFromReactRouter,
+  footerLinks,
+  NotificationDot,
+  IconButton,
+  BellIcon,
+} from '@pancakeswap/uikit'
 import { useTranslation, languageList } from '@pancakeswap/localization'
 import { NetworkSwitcher } from 'components/NetworkSwitcher'
 import useTheme from 'hooks/useTheme'
@@ -41,6 +48,11 @@ const Menu = (props) => {
             <GlobalSettings mode={SettingsMode.GLOBAL} />
             <NetworkSwitcher />
             <UserMenu />
+            <NotificationDot show>
+              <IconButton variant="text" scale="sm">
+                <BellIcon height={24} width={24} stroke="#280D5F99" />
+              </IconButton>
+            </NotificationDot>
           </>
         }
         isDark={isDark}
