@@ -144,12 +144,12 @@ const Hero = () => {
           <Heading scale="md" mb="24px">
             {t('Swap, monetize and build on the leading multi-chain decentralized crytocurrency trading protocol.')}
           </Heading>
-          <Flex>
+          {/* <Flex>
             {!account && <ConnectWalletButton mr="8px" />}
             <NextLinkFromReactRouter to="/swap">
               <Button variant={!account ? 'secondary' : 'primary'}>{t('Trade Now')}</Button>
             </NextLinkFromReactRouter>
-          </Flex>
+          </Flex> */}
         </Flex>
       </Flex>
     </>
