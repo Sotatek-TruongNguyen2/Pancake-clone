@@ -853,8 +853,9 @@
   "Supply": "Supply",
   "Your Liquidity": "Your Liquidity",
   "Remove liquidity to receive tokens back": "Remove liquidity to receive tokens back",
-  "Trade anything. No registration, no hassle.": "Trade anything. No registration, no hassle.",
-  "Trade any token on BNB Smart Chain in seconds, just by connecting your wallet.": "Trade any token on BNB Smart Chain in seconds, just by connecting your wallet.",
+  "Nikaswap ecosystem": "Nikaswap ecosystem",
+  "Multi-chain defi application network": "Multi-chain defi application network",
+  "Developers, traders, and liquidity providers participate together in a financial marketplace that is open and accessible to all.": "Developers, traders, and liquidity providers participate together in a financial marketplace that is open and accessible to all.",
   "Learn": "Learn",
   "BNB token": "BNB token",
   "CAKE token": "CAKE token",
@@ -894,7 +895,7 @@
   "%earningsBusd% to collect": "%earningsBusd% to collect",
   "Harvest all": "Harvest all",
   "Start in seconds.": "Start in seconds.",
-  "Used by millions.": "Used by millions.",
+  "NKS is the hub of space activities": "NKS is the hub of space activities",
   "Hi, %userName%!": "Hi, %userName%!",
   "Play": "Play",
   "Connected with %address%": "Connected with %address%",
@@ -2076,5 +2077,9 @@
   "Expired Order": "Expired Order",
   "There is %amount% NIKA in the proxy booster contract. In order to harvest that amount you sho1,uld withdraw, deposit or harvest one of the boosted farms.": "There is %amount% NIKA in the proxy booster contract. In order to harvest that amount you should withdraw, deposit or harvest one of the boosted farms.",
   "Trade now using Trust Wallet": "Trade now using Trust Wallet",
-  "Download Trust Wallet": "Download Trust Wallet"
+  "Download Trust Wallet": "Download Trust Wallet",
+  "Stake your $NKS": "Stake your $NKS",
+  "Provide liquidity for your favorite tokens and earn": "Provide liquidity for your favorite tokens and earn",
+  "Stake your $NKS to earn rewards and access exlusive benefits": "Stake your $NKS to earn rewards and access exlusive benefits",
+  "Earn more profit by depositing tokens to the farm to increase your wealth": "Earn more profit by depositing tokens to the farm to increase your wealth"
 }
