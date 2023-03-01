@@ -7,6 +7,8 @@ import { PageMeta } from 'components/Layout/Page'
 import { useTranslation } from '@pancakeswap/localization'
 import { useActiveChainId } from 'hooks/useActiveChainId'
 import { ChainId } from '@pancakeswap/sdk'
+import Image from 'next/legacy/image'
+import { Link, Text } from '@pancakeswap/uikit'
 import Hero from './components/Hero'
 import { swapSectionData, earnSectionData, cakeSectionData } from './components/SalesSection/data'
 import MetricsSection from './components/MetricsSection'
@@ -17,6 +19,12 @@ import CakeDataRow from './components/CakeDataRow'
 import { WedgeTopLeft, InnerWedgeWrapper, OuterWedgeWrapper, WedgeTopRight } from './components/WedgeSvgs'
 import UserBanner from './components/UserBanner'
 import MultipleBanner from './components/Banners/MultipleBanner'
+import ethereumIcon from '../../../public/images/home/chain/ethereum.svg'
+import avalancheIcon from '../../../public/images/home/chain/avalanche.svg'
+import solanaIcon from '../../../public/images/home/chain/solana.svg'
+import bnbIcon from '../../../public/images/home/chain/bnb.svg'
+import fantomIcon from '../../../public/images/home/chain/fantom.svg'
+import polygonIcon from '../../../public/images/home/chain/polygon.svg'
 
 const StyledHeroSection = styled(PageSection)`
   padding-top: 16px;
@@ -41,6 +49,48 @@ const UserBannerWrapper = styled(Container)`
     padding-right: 24px;
   }
 `
+const ChainList = styled.div`
+  display: flex;
+  justify-content: space-between;
+`
+
+const ChainItemWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+`
+
+const chainList = [
+  {
+    icon: ethereumIcon,
+    label: 'ethereum',
+    link: 'https://ethereum.org/en/',
+  },
+  {
+    icon: avalancheIcon,
+    label: 'avalanche',
+    link: 'https://www.avax.network/',
+  },
+  {
+    icon: solanaIcon,
+    label: 'solana',
+    link: 'https://solana.com/',
+  },
+  {
+    icon: bnbIcon,
+    label: 'bnb',
+    link: 'https://www.bnbchain.world/en',
+  },
+  {
+    icon: fantomIcon,
+    label: 'fantom',
+    link: 'https://fantom.foundation/',
+  },
+  {
+    icon: polygonIcon,
+    label: 'polygon',
+    link: 'https://polygon.technology/',
+  },
+]
 
 const Home: React.FC<React.PropsWithChildren> = () => {
   const { theme } = useTheme()
@@ -96,6 +146,27 @@ const Home: React.FC<React.PropsWithChildren> = () => {
         <MultipleBanner />
         <Hero />
       </StyledHeroSection>
+      <PageSection index={2}>
+        <ChainList>
+          {chainList.map(({ icon, link, label }) => (
+            <Link href={link} style={{ textDecoration: 'none' }}>
+              <ChainItemWrapper>
+                <Image src={icon} priority width={200} />
+                <Text
+                  display="inline"
+                  textAlign="center"
+                  color="textSubtle"
+                  mb="20px"
+                  fontWeight={700}
+                  textTransform="uppercase"
+                >
+                  {label}
+                </Text>
+              </ChainItemWrapper>
+            </Link>
+          ))}
+        </ChainList>
+      </PageSection>
       <PageSection
         innerProps={{ style: { margin: '0', width: '100%' } }}
         containerProps={{
