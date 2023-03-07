@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled, { keyframes } from 'styled-components'
 import PageSection from 'components/PageSection'
 import { useAccount } from 'wagmi'
 import useTheme from 'hooks/useTheme'
@@ -59,8 +59,46 @@ const ChainItemWrapper = styled.div`
   flex-direction: column;
 `
 
-const TrendingSalesContainer = styled.div`
+const TokenList = styled.div`
   display: flex;
+`
+
+const TrendingSalesItems = styled.div`
+  display: inline-block;
+`
+
+const marquee = keyframes`
+  0% {
+    -webkit-transform: translate3d(0, 0, 0);
+    -moz-transform: translate3d(0, 0, 0);
+    -o-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+  }
+  100% {
+    -webkit-transform: translate3d(-50%, 0, 0);
+    -moz-transform: translate3d(-50%, 0, 0);
+    -o-transform: translate3d(-50%, 0, 0);
+    transform: translate3d(-50%, 0, 0);
+  }
+`
+
+const TrendingSales = styled.div`
+  padding-bottom: 10px;
+  display: inline-block;
+  white-space: nowrap;
+  overflow: hidden;
+  -webkit-animation: ${marquee} 20s linear infinite;
+  -moz-animation: ${marquee} 20s linear infinite;
+  -o-animation: ${marquee} 20s linear infinite;
+  animation: ${marquee} 20s linear infinite;
+  animation-delay: 0.5s;
+
+  &:hover {
+    -webkit-animation-play-state: paused;
+    -moz-animation-play-state: paused;
+    -o-animation-play-state: paused;
+    animation-play-state: paused;
+  }
 `
 
 const TokenContainer = styled.div`
@@ -86,8 +124,6 @@ const TokenImage = styled.div`
     border-radius: 50%;
   }
 `
-
-const TokenInfo = styled.div``
 
 const chainList = [
   {
@@ -246,24 +282,32 @@ const Home: React.FC<React.PropsWithChildren> = () => {
       </PageSection>
 
       <PageSection index={2}>
-        <TrendingSalesContainer>
-          {' '}
-          {trendingSales.map(({ image, name }) => (
-            <TokenContainer>
-              <TokenImage>
-                <img alt="" className="jss330" src={image} />
-              </TokenImage>
-              <TokenInfo className="MuiGrid-root jss329">
+        <div style={{ overflow: 'hidden' }}>
+          <TrendingSales>
+            {[1, 2, 3, 4].map(() => (
+              <TrendingSalesItems>
                 <div>
-                  {' '}
-                  <Text display="inline">0</Text>
-                  <FireIcon stroke="#2196f3" />
+                  <TokenList>
+                    {trendingSales.map(({ image, name }) => (
+                      <TokenContainer>
+                        <TokenImage>
+                          <img alt="" className="jss330" src={image} />
+                        </TokenImage>
+                        <div>
+                          <div>
+                            <Text display="inline">0</Text>
+                            <FireIcon stroke="#2196f3" />
+                          </div>
+                          <Text>{name}</Text>
+                        </div>
+                      </TokenContainer>
+                    ))}
+                  </TokenList>
                 </div>
-                <Text>{name}</Text>
-              </TokenInfo>
-            </TokenContainer>
-          ))}
-        </TrendingSalesContainer>
+              </TrendingSalesItems>
+            ))}
+          </TrendingSales>
+        </div>
       </PageSection>
       <PageSection
         innerProps={{ style: { margin: '0', width: '100%' } }}
