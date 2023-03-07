@@ -8,7 +8,7 @@ import { useTranslation } from '@pancakeswap/localization'
 import { useActiveChainId } from 'hooks/useActiveChainId'
 import { ChainId } from '@pancakeswap/sdk'
 import Image from 'next/legacy/image'
-import { Link, Text } from '@pancakeswap/uikit'
+import { FireIcon, Link, Slider, Text } from '@pancakeswap/uikit'
 import Hero from './components/Hero'
 import { swapSectionData } from './components/SalesSection/data'
 import MetricsSection from './components/MetricsSection'
@@ -59,6 +59,36 @@ const ChainItemWrapper = styled.div`
   flex-direction: column;
 `
 
+const TrendingSalesContainer = styled.div`
+  display: flex;
+`
+
+const TokenContainer = styled.div`
+  color: #2196f3;
+  width: 170px;
+  cursor: pointer;
+  height: 70px;
+  margin: 3px 6px 0 0;
+  display: flex;
+  padding: 0 10px 0 10px;
+  font-size: 90%;
+  box-shadow: 1px 1px 15px -6px #7ec2f8;
+  align-items: center;
+  border-radius: 10px;
+  justify-content: center;
+`
+
+const TokenImage = styled.div`
+  width: 42px;
+  height: 42px;
+  margin-right: 10px;
+  & img {
+    border-radius: 50%;
+  }
+`
+
+const TokenInfo = styled.div``
+
 const chainList = [
   {
     icon: ethereumIcon,
@@ -92,6 +122,45 @@ const chainList = [
   },
 ]
 
+const trendingSales = [
+  {
+    image: 'https://pbs.twimg.com/profile_images/1484599264214929413/beISbI6c_400x400.jpg',
+    name: 'PUP',
+  },
+  {
+    image: 'https://i.pinimg.com/originals/7d/ce/1e/7dce1ee0c4aa735693a175d78233e7ff.gif',
+    name: 'TDD',
+  },
+  {
+    image: 'https://i.imgur.com/2uASJ74.png',
+    name: 'ZOI',
+  },
+  {
+    image: 'https://i.postimg.cc/Vv7x6N4Z/Blue-Rocket-Doge2.png',
+    name: 'BRD',
+  },
+  {
+    image: 'https://i.postimg.cc/6qNhYCHB/7On.gif',
+    name: 'mV4',
+  },
+  {
+    image: 'https://www.triplex-token.com/gallery_gen/939ddb956693340e47dbf6b23d09793a.png',
+    name: 'TXT',
+  },
+
+  {
+    image: 'https://i.postimg.cc/0Qvt7Shx/Logo-MAI.png',
+    name: 'MAI',
+  },
+  {
+    image: 'https://i.postimg.cc/1tcxbQP1/IMG-20230203-130756-732.png',
+    name: 'QUKA',
+  },
+  {
+    image: 'https://cryptonican.com/wp-content/uploads/2023/01/Cryptonican.com-Automatic-CAN-Token.png',
+    name: 'ACAN',
+  },
+]
 const Home: React.FC<React.PropsWithChildren> = () => {
   const { theme } = useTheme()
   const { address: account } = useAccount()
@@ -176,6 +245,26 @@ const Home: React.FC<React.PropsWithChildren> = () => {
         <SalesSection {...swapSectionData(t)} />
       </PageSection>
 
+      <PageSection index={2}>
+        <TrendingSalesContainer>
+          {' '}
+          {trendingSales.map(({ image, name }) => (
+            <TokenContainer>
+              <TokenImage>
+                <img alt="" className="jss330" src={image} />
+              </TokenImage>
+              <TokenInfo className="MuiGrid-root jss329">
+                <div>
+                  {' '}
+                  <Text display="inline">0</Text>
+                  <FireIcon stroke="#2196f3" />
+                </div>
+                <Text>{name}</Text>
+              </TokenInfo>
+            </TokenContainer>
+          ))}
+        </TrendingSalesContainer>
+      </PageSection>
       <PageSection
         innerProps={{ style: { margin: '0', width: '100%' } }}
         containerProps={{
