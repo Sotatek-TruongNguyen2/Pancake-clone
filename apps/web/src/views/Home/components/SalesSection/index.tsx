@@ -1,5 +1,5 @@
-import { Flex, Text, Button, Link, NextLinkFromReactRouter as RouterLink } from '@pancakeswap/uikit'
-import CompositeImage, { CompositeImageProps } from '../CompositeImage'
+import { Flex, Text } from '@pancakeswap/uikit'
+import { CompositeImageProps } from '../CompositeImage'
 import ColoredWordHeading from '../ColoredWordHeading'
 
 interface SalesSectionButton {
@@ -10,66 +10,34 @@ interface SalesSectionButton {
 
 export interface SalesSectionProps {
   headingText: string
-  bodyText: string
-  reverse: boolean
-  primaryButton: SalesSectionButton
-  secondaryButton: SalesSectionButton
-  images: CompositeImageProps
+  bodyText1: string
+  bodyText2: string
 }
 
 const SalesSection: React.FC<React.PropsWithChildren<SalesSectionProps>> = (props) => {
-  const { headingText, bodyText, reverse, primaryButton, secondaryButton, images } = props
+  const { headingText, bodyText1, bodyText2 } = props
 
   return (
     <Flex flexDirection="column">
       <Flex
-        flexDirection={['column-reverse', null, null, reverse ? 'row-reverse' : 'row']}
+        flexDirection={['column-reverse', null, null, 'row']}
         alignItems={['flex-end', null, null, 'center']}
         justifyContent="center"
       >
         <Flex
           flexDirection="column"
           flex="1"
-          ml={[null, null, null, reverse && '64px']}
-          mr={[null, null, null, !reverse && '64px']}
+          ml={[null, null, null]}
+          mr={[null, null, null]}
           alignSelf={['flex-start', null, null, 'center']}
         >
-          <ColoredWordHeading text={headingText} />
-          <Text color="textSubtle" mb="24px">
-            {bodyText}
+          <ColoredWordHeading text={headingText} textAlign="center" />
+          <Text color="textSubtle" textAlign="center">
+            {bodyText1}
           </Text>
-          <Flex>
-            <Button mr="16px">
-              {primaryButton.external ? (
-                <Link external href={primaryButton.to}>
-                  <Text color="card" bold fontSize="16px">
-                    {primaryButton.text}
-                  </Text>
-                </Link>
-              ) : (
-                <RouterLink to={primaryButton.to}>
-                  <Text color="card" bold fontSize="16px">
-                    {primaryButton.text}
-                  </Text>
-                </RouterLink>
-              )}
-            </Button>
-            {secondaryButton.external ? (
-              <Link external href={secondaryButton.to}>
-                {secondaryButton.text}
-              </Link>
-            ) : (
-              <RouterLink to={secondaryButton.to}>{secondaryButton.text}</RouterLink>
-            )}
-          </Flex>
-        </Flex>
-        <Flex
-          height={['192px', null, null, '100%']}
-          width={['192px', null, null, '100%']}
-          flex={[null, null, null, '1']}
-          mb={['24px', null, null, '0']}
-        >
-          <CompositeImage {...images} />
+          <Text color="textSubtle" mb="24px" textAlign="center">
+            {bodyText2}
+          </Text>
         </Flex>
       </Flex>
     </Flex>

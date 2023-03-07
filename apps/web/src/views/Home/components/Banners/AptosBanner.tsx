@@ -18,6 +18,13 @@ const RightWrapper = styled.div`
     bottom: -21px;
   }
 `
+const AptosSubtitle = styled.div`
+  font-family: 'Kanit';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  color: #ffffff;
+`
 const AptosTitle = styled.div`
   font-family: 'Kanit';
   font-style: normal;
@@ -40,6 +47,10 @@ const AptosTitle = styled.div`
     font-size: 40px;
   }
 `
+const Actions = styled.div`
+  display: flex;
+  gap: 20px;
+`
 
 const AptosBanner = () => {
   const { t } = useTranslation()
@@ -54,11 +65,12 @@ const AptosBanner = () => {
       <S.Inner>
         <S.LeftWrapper>
           <Box>
-            <Image src={AptosXPancakeSwap} alt="aptosXPancakeSwapImage" width={211} height={18} placeholder="blur" />
+            {/* <Image src={AptosXPancakeSwap} alt="aptosXPancakeSwapImage" width={211} height={18} placeholder="blur" /> */}
+            <AptosSubtitle>PancakeSwap x Trustwallet</AptosSubtitle>
           </Box>
-          <AptosTitle>{t('Hello Aptos Project Teams!')}</AptosTitle>
+          <AptosTitle>{t('Trade and win $10,000 Prize Pool')}</AptosTitle>
 
-          <Button
+          {/* <Button
             minHeight="48px"
             onClick={() =>
               window?.open('https://docs.pancakeswap.finance/aptos-deployment', '_blank', 'noopener noreferrer')
@@ -68,7 +80,33 @@ const AptosBanner = () => {
               👋 {t('Get in Touch')}
             </Text>
             <OpenNewIcon color="invertedContrast" />
-          </Button>
+          </Button> */}
+          <Actions>
+            <Button
+              minHeight="48px"
+              onClick={() =>
+                window?.open(
+                  'https://perp.pancakeswap.finance/en/futures/BTCUSDT?theme=light&chain=bnbchain',
+                  '_blank',
+                  'noopener noreferrer',
+                )
+              }
+            >
+              <Text color="invertedContrast" bold fontSize="16px" mr="4px">
+                👋 {t('Trade now using Trust Wallet')}
+              </Text>
+              <OpenNewIcon color="invertedContrast" />
+            </Button>
+            <Button
+              minHeight="48px"
+              onClick={() => window?.open('https://trustwallet.com/download/', '_blank', 'noopener noreferrer')}
+            >
+              <Text color="invertedContrast" bold fontSize="16px" mr="4px">
+                👋 {t('Download Trust Wallet')}
+              </Text>
+              <OpenNewIcon color="invertedContrast" />
+            </Button>
+          </Actions>
         </S.LeftWrapper>
         <RightWrapper>
           <Image

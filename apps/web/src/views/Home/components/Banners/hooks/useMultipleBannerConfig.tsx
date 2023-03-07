@@ -1,7 +1,5 @@
 import { ReactElement, useMemo } from 'react'
-import shuffle from 'lodash/shuffle'
 import IFOBanner from '../IFOBanner'
-import PerpetualBanner from '../PerpetualBanner'
 import useIsRenderIfoBanner from './useIsRenderIFOBanner'
 import AptosBanner from '../AptosBanner'
 
@@ -34,14 +32,8 @@ export const useMultipleBannerConfig = () => {
       },
     ]
 
-    const SHUFFLE_BANNERS: IBannerConfig[] = [
-      {
-        shouldRender: true,
-        banner: <PerpetualBanner />,
-      },
-    ]
-    return [...NO_SHUFFLE_BANNERS, ...shuffle(SHUFFLE_BANNERS)]
-      .filter((bannerConfig: IBannerConfig) => bannerConfig.shouldRender)
-      .map((bannerConfig: IBannerConfig) => bannerConfig.banner)
+    return NO_SHUFFLE_BANNERS.filter((bannerConfig: IBannerConfig) => bannerConfig.shouldRender).map(
+      (bannerConfig: IBannerConfig) => bannerConfig.banner,
+    )
   }, [isRenderIFOBanner])
 }

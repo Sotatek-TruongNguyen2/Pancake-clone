@@ -1,6 +1,5 @@
-import { Button, Flex, Heading, NextLinkFromReactRouter } from '@pancakeswap/uikit'
+import { Flex, Heading } from '@pancakeswap/uikit'
 import { useAccount } from 'wagmi'
-import ConnectWalletButton from 'components/ConnectWalletButton'
 import { useTranslation } from '@pancakeswap/localization'
 import Image from 'next/legacy/image'
 import styled, { keyframes } from 'styled-components'
@@ -123,20 +122,6 @@ const Hero = () => {
         mt={[account ? '280px' : '50px', null, 0]}
         id="homepage-hero"
       >
-        <Flex flex="1" flexDirection="column">
-          <Heading scale="xxl" color="secondary" mb="24px">
-            {t('The moon is made of tiktak.')}
-          </Heading>
-          <Heading scale="md" mb="24px">
-            {t('Trade, earn, and win crypto on the most popular decentralized platform in the galaxy.')}
-          </Heading>
-          <Flex>
-            {!account && <ConnectWalletButton mr="8px" />}
-            <NextLinkFromReactRouter to="/swap">
-              <Button variant={!account ? 'secondary' : 'primary'}>{t('Trade Now')}</Button>
-            </NextLinkFromReactRouter>
-          </Flex>
-        </Flex>
         <Flex
           height={['192px', null, null, '100%']}
           width={['192px', null, null, '100%']}
@@ -150,6 +135,20 @@ const Hero = () => {
           <StarsWrapper>
             <CompositeImage {...starsImage} />
           </StarsWrapper>
+        </Flex>
+        <Flex flex="1" flexDirection="column">
+          <Heading scale="xxl" color="secondary" mb="24px">
+            {t('Multi chain decentralized protocals & services.')}
+          </Heading>
+          <Heading scale="md" mb="24px">
+            {t('Swap, monetize and build on the leading multi-chain decentralized crytocurrency trading protocol.')}
+          </Heading>
+          {/* <Flex>
+            {!account && <ConnectWalletButton mr="8px" />}
+            <NextLinkFromReactRouter to="/swap">
+              <Button variant={!account ? 'secondary' : 'primary'}>{t('Trade Now')}</Button>
+            </NextLinkFromReactRouter>
+          </Flex> */}
         </Flex>
       </Flex>
     </>
