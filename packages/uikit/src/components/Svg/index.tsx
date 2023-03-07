@@ -172,4 +172,5 @@ export { default as SortArrowIcon } from "./Icons/SortArrowIcon";
 export { default as YoutubeIcon } from "./Icons/YoutubeIcon";
 export { default as BridgeIcon } from "./Icons/BridgeIcon";
 export { default as BellIcon } from "./Icons/Bell";
+export { default as FireIcon } from "./Icons/Fire";
 export type { SvgProps } from "./types";
