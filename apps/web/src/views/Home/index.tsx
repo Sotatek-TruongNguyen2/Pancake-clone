@@ -8,17 +8,14 @@ import { useTranslation } from '@pancakeswap/localization'
 import { useActiveChainId } from 'hooks/useActiveChainId'
 import { ChainId } from '@pancakeswap/sdk'
 import Image from 'next/legacy/image'
-import { FireIcon, Link, Slider, Text } from '@pancakeswap/uikit'
+import { FireIcon, Link, Text } from '@pancakeswap/uikit'
 import Hero from './components/Hero'
 import { swapSectionData } from './components/SalesSection/data'
 import MetricsSection from './components/MetricsSection'
 import SalesSection from './components/SalesSection'
-import FarmsPoolsRow from './components/FarmsPoolsRow'
 import Footer from './components/Footer'
-import CakeDataRow from './components/CakeDataRow'
-import { WedgeTopLeft, InnerWedgeWrapper, OuterWedgeWrapper, WedgeTopRight } from './components/WedgeSvgs'
+import { WedgeTopLeft, InnerWedgeWrapper, OuterWedgeWrapper } from './components/WedgeSvgs'
 import UserBanner from './components/UserBanner'
-import MultipleBanner from './components/Banners/MultipleBanner'
 import ethereumIcon from '../../../public/images/home/chain/ethereum.svg'
 import avalancheIcon from '../../../public/images/home/chain/avalanche.svg'
 import solanaIcon from '../../../public/images/home/chain/solana.svg'
@@ -52,6 +49,7 @@ const UserBannerWrapper = styled(Container)`
 const ChainList = styled.div`
   display: flex;
   justify-content: space-between;
+  margin-top: 60px;
 `
 
 const ChainItemWrapper = styled.div`
@@ -248,10 +246,8 @@ const Home: React.FC<React.PropsWithChildren> = () => {
             <UserBanner />
           </UserBannerWrapper>
         )}
-        <MultipleBanner />
+        {/* <MultipleBanner /> */}
         <Hero />
-      </StyledHeroSection>
-      <PageSection index={2}>
         <ChainList>
           {chainList.map(({ icon, link, label }) => (
             <Link href={link} style={{ textDecoration: 'none' }}>
@@ -271,7 +267,8 @@ const Home: React.FC<React.PropsWithChildren> = () => {
             </Link>
           ))}
         </ChainList>
-      </PageSection>
+      </StyledHeroSection>
+
       <PageSection index={2} hasCurvedDivider={false} background={theme.colors.background}>
         <OuterWedgeWrapper>
           <InnerWedgeWrapper top>
@@ -279,10 +276,7 @@ const Home: React.FC<React.PropsWithChildren> = () => {
           </InnerWedgeWrapper>
         </OuterWedgeWrapper>
         <SalesSection {...swapSectionData(t)} />
-      </PageSection>
-
-      <PageSection index={2}>
-        <div style={{ overflow: 'hidden' }}>
+        <div style={{ overflow: 'hidden', marginTop: '60px' }}>
           <TrendingSales>
             {[1, 2, 3, 4].map(() => (
               <TrendingSalesItems>
@@ -309,6 +303,7 @@ const Home: React.FC<React.PropsWithChildren> = () => {
           </TrendingSales>
         </div>
       </PageSection>
+
       <PageSection
         innerProps={{ style: { margin: '0', width: '100%' } }}
         containerProps={{

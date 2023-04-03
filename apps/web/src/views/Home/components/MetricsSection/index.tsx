@@ -1,25 +1,23 @@
-import { Heading, Flex, Text, ChartIcon, CommunityIcon, SwapIcon } from '@pancakeswap/uikit'
+import { Heading, Flex, Text } from '@pancakeswap/uikit'
 import { useTranslation } from '@pancakeswap/localization'
-import useTheme from 'hooks/useTheme'
-import IconCard, { IconCardData } from '../IconCard'
-import StatCardContent from './StatCardContent'
 import GradientLogo from '../GradientLogoSvg'
+import Carousel from './Carousel'
 
 const Stats = () => {
   const { t } = useTranslation()
-  const { theme } = useTheme()
+  // const { theme } = useTheme()
 
-  const UsersCardData: IconCardData = {
-    icon: <CommunityIcon color="secondary" width="36px" />,
-  }
+  // const UsersCardData: IconCardData = {
+  //   icon: <CommunityIcon color="secondary" width="36px" />,
+  // }
 
-  const TradesCardData: IconCardData = {
-    icon: <SwapIcon color="primary" width="36px" />,
-  }
+  // const TradesCardData: IconCardData = {
+  //   icon: <SwapIcon color="primary" width="36px" />,
+  // }
 
-  const StakedCardData: IconCardData = {
-    icon: <ChartIcon color="failure" width="36px" />,
-  }
+  // const StakedCardData: IconCardData = {
+  //   icon: <ChartIcon color="failure" width="36px" />,
+  // }
 
   return (
     <Flex justifyContent="center" alignItems="center" flexDirection="column">
@@ -37,7 +35,11 @@ const Stats = () => {
         {t('Will you join them?')}
       </Text>
 
-      <Flex flexDirection={['column', null, null, 'row']}>
+      <div style={{ width: '100%' }}>
+        <Carousel />
+      </div>
+
+      {/* <Flex flexDirection={['column', null, null, 'row']}>
         <IconCard {...UsersCardData} mr={[null, null, null, '16px']} mb={['16px', null, null, '0']}>
           <StatCardContent
             headingText={t('Pools')}
@@ -66,7 +68,7 @@ const Stats = () => {
             highlightColor={theme.colors.failure}
           />
         </IconCard>
-      </Flex>
+      </Flex> */}
     </Flex>
   )
 }

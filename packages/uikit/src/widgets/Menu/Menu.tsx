@@ -3,6 +3,7 @@ import { AtomBox } from "@pancakeswap/ui/components/AtomBox";
 import throttle from "lodash/throttle";
 import React, { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
+import { BellIcon, IconButton, NotificationDot } from "../../components";
 import BottomNav from "../../components/BottomNav";
 import { Box } from "../../components/Box";
 import Flex from "../../components/Box/Flex";
@@ -164,6 +165,11 @@ const Menu: React.FC<React.PropsWithChildren<NavProps>> = ({
                     hideLanguage
                   />
                 </Box>
+                <NotificationDot show>
+                  <IconButton variant="text" scale="sm">
+                    <BellIcon height={24} width={24} stroke="#280D5F99" />
+                  </IconButton>
+                </NotificationDot>
                 {rightSide}
               </Flex>
             </StyledNav>

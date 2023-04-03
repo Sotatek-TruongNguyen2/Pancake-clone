@@ -1,15 +1,7 @@
 import { useMemo } from 'react'
 import { useRouter } from 'next/router'
-import {
-  Menu as UikitMenu,
-  NextLinkFromReactRouter,
-  footerLinks,
-  NotificationDot,
-  IconButton,
-  BellIcon,
-} from '@pancakeswap/uikit'
+import { Menu as UikitMenu, NextLinkFromReactRouter, footerLinks } from '@pancakeswap/uikit'
 import { useTranslation, languageList } from '@pancakeswap/localization'
-import { NetworkSwitcher } from 'components/NetworkSwitcher'
 import useTheme from 'hooks/useTheme'
 import { useCakeBusdPrice } from 'hooks/useBUSDPrice'
 import UserMenu from './UserMenu'
@@ -46,13 +38,8 @@ const Menu = (props) => {
         rightSide={
           <>
             <GlobalSettings mode={SettingsMode.GLOBAL} />
-            <NetworkSwitcher />
+            {/* <NetworkSwitcher /> */}
             <UserMenu />
-            <NotificationDot show>
-              <IconButton variant="text" scale="sm">
-                <BellIcon height={24} width={24} stroke="#280D5F99" />
-              </IconButton>
-            </NotificationDot>
           </>
         }
         isDark={isDark}

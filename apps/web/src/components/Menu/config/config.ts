@@ -43,7 +43,7 @@ const config: (
 ) => ConfigMenuItemsType[] = (t, isDark, languageCode, chainId) =>
   [
     {
-      label: t('IDO'),
+      label: t('Trade'),
       icon: SwapIcon,
       fillIcon: SwapFillIcon,
       href: '/swap',
@@ -74,6 +74,11 @@ const config: (
         },
         {
           label: t('Bridge'),
+          href: 'https://bridge.pancakeswap.finance/',
+          type: DropdownMenuItemType.EXTERNAL_LINK,
+        },
+        {
+          label: t('IDO'),
           href: 'https://bridge.pancakeswap.finance/',
           type: DropdownMenuItemType.EXTERNAL_LINK,
         },

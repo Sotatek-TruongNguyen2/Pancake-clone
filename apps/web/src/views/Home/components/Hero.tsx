@@ -137,11 +137,11 @@ const Hero = () => {
           </StarsWrapper>
         </Flex>
         <Flex flex="1" flexDirection="column">
-          <Heading scale="xxl" color="secondary" mb="24px">
-            {t('Multi chain decentralized protocals & services.')}
+          <Heading scale="xxl" color="secondary" mb="24px" textAlign="center">
+            {t('Multi chain decentralized protocols & services.')}
           </Heading>
-          <Heading scale="md" mb="24px">
-            {t('Swap, monetize and build on the leading multi-chain decentralized crytocurrency trading protocol.')}
+          <Heading scale="md" mb="24px" textAlign="center">
+            {t('Swap, monetize and build on the leading multi-chain decentralized crypto currency trading protocol.')}
           </Heading>
           {/* <Flex>
             {!account && <ConnectWalletButton mr="8px" />}
