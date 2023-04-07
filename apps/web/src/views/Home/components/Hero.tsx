@@ -6,6 +6,7 @@ import styled, { keyframes } from 'styled-components'
 import bunnyImage from '../../../../public/images/home/lunar-bunny/astronaut-bunny.png'
 import CompositeImage, { CompositeImageProps } from './CompositeImage'
 import { SlideSvgDark, SlideSvgLight } from './SlideSvg'
+import RotatingPlanets from './RotatingPlanets'
 
 const flyingAnim = () => keyframes`
   from {
@@ -129,12 +130,13 @@ const Hero = () => {
           mb={['24px', null, null, '0']}
           position="relative"
         >
-          <BunnyWrapper>
+          <RotatingPlanets />
+          {/* <BunnyWrapper>
             <Image src={bunnyImage} priority placeholder="blur" alt={t('Lunar bunny')} />
           </BunnyWrapper>
           <StarsWrapper>
             <CompositeImage {...starsImage} />
-          </StarsWrapper>
+          </StarsWrapper> */}
         </Flex>
         <Flex flex="1" flexDirection="column">
           <Heading scale="xxl" color="secondary" mb="24px" textAlign="center">

@@ -3,7 +3,7 @@ import { useTranslation } from '@pancakeswap/localization'
 import GradientLogo from '../GradientLogoSvg'
 import Carousel from './Carousel'
 
-const Stats = () => {
+const MetricsSection = () => {
   const { t } = useTranslation()
   // const { theme } = useTheme()
 
@@ -73,4 +73,4 @@ const Stats = () => {
   )
 }
 
-export default Stats
+export default MetricsSection
