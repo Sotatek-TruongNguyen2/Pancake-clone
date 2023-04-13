@@ -252,12 +252,13 @@ const Home: React.FC<React.PropsWithChildren> = () => {
           {chainList.map(({ icon, link, label }) => (
             <Link href={link} style={{ textDecoration: 'none' }}>
               <ChainItemWrapper>
-                <Image src={icon} priority width={200} />
+                <Image src={icon} priority width={55} height={55}/>
                 <Text
                   display="inline"
                   textAlign="center"
                   color="textSubtle"
                   mb="20px"
+                  mt="30px"
                   fontWeight={700}
                   textTransform="uppercase"
                 >

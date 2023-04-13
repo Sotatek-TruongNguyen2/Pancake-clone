@@ -13,18 +13,19 @@ const images = [
 ]
 
 const CardImage = styled('div')<{ url: string }>`
-  max-width: 280px;
-  min-height: 280px;
+  max-width: 300px;
+  min-height: 300px;
   width: 280px;
   height: 280px;
   background-image: ${(props) => `url('${props.url}')`};
   border-radius: 24px;
+  background-size: cover;
 `
 const Carousel = () => {
   const settings = {
     infinite: true,
     speed: 500,
-    slidesToShow: 4,
+    slidesToShow: 3,
     slidesToScroll: 1,
     initialSlide: 0,
     responsive: [

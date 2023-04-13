@@ -14,7 +14,6 @@ import {
 } from '@pancakeswap/uikit'
 import { ContextApi } from '@pancakeswap/localization'
 import { nftsBaseUrl } from 'views/Nft/market/constants'
-import { getPerpetualUrl } from 'utils/getPerpetualUrl'
 import { SUPPORT_ONLY_BSC } from 'config/constants/supportChains'
 
 export type ConfigMenuDropDownItemsType = DropdownMenuItems & { hideSubNav?: boolean }
@@ -55,7 +54,7 @@ const config: (
         },
         {
           label: t('Limit'),
-          href: '/limit-orders',
+          // href: '/limit-orders',
           supportChainIds: SUPPORT_ONLY_BSC,
           image: '/images/decorations/3d-coin.png',
         },
@@ -65,22 +64,22 @@ const config: (
         },
         {
           label: t('Perpetual'),
-          href: getPerpetualUrl({
-            chainId,
-            languageCode,
-            isDark,
-          }),
-          type: DropdownMenuItemType.EXTERNAL_LINK,
+          // href: getPerpetualUrl({
+          //   chainId,
+          //   languageCode,
+          //   isDark,
+          // }),
+          // type: DropdownMenuItemType.EXTERNAL_LINK,
         },
         {
           label: t('Bridge'),
-          href: 'https://bridge.pancakeswap.finance/',
-          type: DropdownMenuItemType.EXTERNAL_LINK,
+          // href: 'https://bridge.pancakeswap.finance/',
+          // type: DropdownMenuItemType.EXTERNAL_LINK,
         },
         {
           label: t('IDO'),
-          href: 'https://bridge.pancakeswap.finance/',
-          type: DropdownMenuItemType.EXTERNAL_LINK,
+          // href: 'https://bridge.pancakeswap.finance/',
+          // type: DropdownMenuItemType.EXTERNAL_LINK,
         },
       ].map((item) => addMenuItemSupported(item, chainId)),
     },
@@ -111,23 +110,23 @@ const config: (
       items: [
         {
           label: t('Trading Competition'),
-          href: '/competition',
+          // href: '/competition',
           image: '/images/decorations/tc.png',
           hideSubNav: true,
         },
         {
           label: t('Prediction (BETA)'),
-          href: '/prediction',
+          // href: '/prediction',
           image: '/images/decorations/prediction.png',
         },
         {
           label: t('Lottery'),
-          href: '/lottery',
+          // href: '/lottery',
           image: '/images/decorations/lottery.png',
         },
         {
           label: t('Pottery (BETA)'),
-          href: '/pottery',
+          // href: '/pottery',
           image: '/images/decorations/lottery.png',
         },
       ],
@@ -142,15 +141,15 @@ const config: (
       items: [
         {
           label: t('Overview'),
-          href: `${nftsBaseUrl}`,
+          // href: `${nftsBaseUrl}`,
         },
         {
           label: t('Collections'),
-          href: `${nftsBaseUrl}/collections`,
+          // href: `${nftsBaseUrl}/collections`,
         },
         {
           label: t('Activity'),
-          href: `${nftsBaseUrl}/activity`,
+          // href: `${nftsBaseUrl}/activity`,
         },
       ],
     },

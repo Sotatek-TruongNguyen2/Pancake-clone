@@ -18,6 +18,127 @@ const rotate = keyframes`
   transform: rotateZ(360deg)  ;
 }
 `
+
+const correct2 = keyframes`
+0% {
+  transform: rotateZ(360deg);
+}
+
+100% {
+  transform: rotateZ(0deg);
+}
+`
+const rotate2 = keyframes`
+0%{
+  transform: rotateZ(0deg) ;
+}
+100%{
+  transform: rotateZ(360deg)  ;
+}
+`
+
+const correct3 = keyframes`
+0% {
+  transform: rotateZ(260deg);
+}
+100% {
+  transform: rotateZ(-100deg);
+}
+`
+const rotate3 = keyframes`
+0%{
+  transform: rotateZ(100deg) ;
+}
+100%{
+  transform: rotateZ(460deg)  ;
+}
+`
+
+const correct4 = keyframes`
+0% {
+  transform: rotateZ(60deg);
+}
+100% {
+  transform: rotateZ(-300deg);
+}
+`
+const rotate4 = keyframes`
+0%{
+  transform: rotateZ(300deg) ;
+}
+100%{
+  transform: rotateZ(660deg)  ;
+}
+`
+
+const correct5 = keyframes`
+0% {
+  transform: rotateZ(160deg);
+}
+100% {
+  transform: rotateZ(-200deg);
+}
+`
+const rotate5 = keyframes`
+0%{
+  transform: rotateZ(200deg) ;
+}
+100%{
+  transform: rotateZ(560deg)  ;
+}
+`
+
+const correct6 = keyframes`
+0% {
+  transform: rotateZ(30deg);
+}
+100% {
+  transform: rotateZ(-330deg);
+}
+`
+const rotate6 = keyframes`
+0%{
+  transform: rotateZ(330deg) ;
+}
+100%{
+  transform: rotateZ(690deg)  ;
+}
+`
+
+const correct7 = keyframes`
+0% {
+  transform: rotateZ(120deg);
+}
+100% {
+  transform: rotateZ(-240deg);
+}
+`
+const rotate7 = keyframes`
+0%{
+  transform: rotateZ(240deg) ;
+}
+100%{
+  transform: rotateZ(600deg)  ;
+}
+`
+
+const correct8 = keyframes`
+0% {
+  transform: rotateZ(300deg);
+}
+100% {
+  transform: rotateZ(-60deg);
+}
+`
+const rotate8 = keyframes`
+0%{
+  transform: rotateZ(60deg) ;
+}
+100%{
+  transform: rotateZ(420deg)  ;
+}
+`
+
 const Container = styled.div`
   width: 576px;
   height: 576px;
@@ -113,89 +234,90 @@ const Trajectory8 = styled.div`
 const Route2 = styled.div`
   width: 100%;
   height: 100%;
-  animation: ${rotate} 6s infinite linear;
+  animation: ${rotate2} 10s infinite linear;
   position: absolute;
+  transform: rotateZ(50deg);
 `
 const Route3 = styled.div`
   width: 100%;
   height: 100%;
-  animation: ${rotate} 12s infinite linear;
+  animation: ${rotate3} 10s infinite linear;
   position: absolute;
 `
 const Route4 = styled.div`
   width: 100%;
   height: 100%;
-  animation: ${rotate} 8s infinite linear;
+  animation: ${rotate4} 10s infinite linear;
   position: absolute;
 `
 const Route5 = styled.div`
   width: 100%;
   height: 100%;
-  animation: ${rotate} 15s infinite linear;
+  animation: ${rotate5} 10s infinite linear;
   position: absolute;
 `
 const Route6 = styled.div`
   width: 100%;
   height: 100%;
-  animation: ${rotate} 16s infinite linear;
+  animation: ${rotate6} 10s infinite linear;
   position: absolute;
 `
 const Route7 = styled.div`
   width: 100%;
   height: 100%;
-  animation: ${rotate} 27s infinite linear;
+  animation: ${rotate7} 10s infinite linear;
   position: absolute;
 `
 const Route8 = styled.div`
   width: 100%;
   height: 100%;
-  animation: ${rotate} 25s infinite linear;
+  animation: ${rotate8} 10s infinite linear;
   position: absolute;
 `
 const PlanetContainer2 = styled.div`
   width: 24px;
   height: 24px;
-  animation: ${correct} 6s infinite linear;
+  animation: ${correct2} 10s infinite linear;
   position: absolute;
 `
 const PlanetContainer3 = styled.div`
   width: 33px;
   height: 33px;
-  animation: ${correct} 12s infinite linear;
+  animation: ${correct3} 10s infinite linear;
   position: absolute;
 `
 const PlanetContainer4 = styled.div`
   width: 27px;
   height: 27px;
-  animation: ${correct} 8s infinite linear;
+  animation: ${correct4} 10s infinite linear;
   position: absolute;
-  left: 105px;
+  left: 15px;
 `
 const PlanetContainer5 = styled.div`
   width: 37px;
   height: 37px;
-  animation: ${correct} 15s infinite linear;
+  animation: ${correct5} 10s infinite linear;
   position: absolute;
   left: 15px;
 `
 const PlanetContainer6 = styled.div`
   width: 34px;
   height: 34px;
-  animation: ${correct} 16s infinite linear;
+  animation: ${correct6} 10s infinite linear;
   position: absolute;
   left: 25px;
 `
 const PlanetContainer7 = styled.div`
   width: 40px;
   height: 40px;
-  animation: ${correct} 27s infinite linear;
+  animation: ${correct7} 10s infinite linear;
   position: absolute;
   left: 30px;
 `
 const PlanetContainer8 = styled.div`
   width: 30px;
   height: 30px;
-  animation: ${correct} 25s infinite linear;
+  animation: ${correct8} 10s infinite linear;
   position: absolute;
   left: 55px;
 `
@@ -204,7 +326,7 @@ const PolygonPlanet = styled.div`
   height: 24px;
   border-radius: 50%;
   transform: scaleX(0.5);
-  background-image: url('/images/polygon-coin.png');
+  background-image: url('/images/home/chain/polygon.svg');
   background-size: contain;
 `
 const AvalanchePlanet = styled.div`
@@ -212,7 +334,7 @@ const AvalanchePlanet = styled.div`
   height: 33px;
   border-radius: 50%;
   transform: scaleX(0.5);
-  background-image: url('/images/avalanche-logo.png');
+  background-image: url('/images/home/chain/avalanche.svg');
   background-size: contain;
 `
 const SolanaPlanet = styled.div`
@@ -228,7 +350,7 @@ const EthereumPlanet = styled.div`
   height: 37px;
   border-radius: 50%;
   transform: scaleX(0.5);
-  background-image: url('/images/ethereum-coin.png');
+  background-image: url('/images/home/chain/ethereum.svg');
   background-size: contain;
 `
 const FantomPlanet = styled.div`
@@ -236,7 +358,7 @@ const FantomPlanet = styled.div`
   height: 37px;
   border-radius: 50%;
   transform: scaleX(0.5);
-  background-image: url('/images/fantom-coin.png');
+  background-image: url('/images/home/chain/fantom.svg');
   background-size: contain;
 `
 const CardanoPlanet = styled.div`

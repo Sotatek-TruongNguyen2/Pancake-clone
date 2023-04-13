@@ -85,7 +85,7 @@ const TabContainer = ({ children, docLink, docText }: PropsWithChildren<{ docLin
         </TabMenu>
       </AtomBox>
       <AtomBox
-        display="flex"
+        // display="flex"
         position="relative"
         background="gradientCardHeader"
         borderRadius="card"

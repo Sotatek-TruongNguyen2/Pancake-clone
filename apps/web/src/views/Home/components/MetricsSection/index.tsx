@@ -35,7 +35,7 @@ const MetricsSection = () => {
         {t('Will you join them?')}
       </Text>
 
-      <div style={{ width: '100%' }}>
+      <div style={{ width: '80%' }}>
         <Carousel />
       </div>
 
