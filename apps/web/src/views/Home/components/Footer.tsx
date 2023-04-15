@@ -17,7 +17,7 @@ const BgWrapper = styled.div`
   background-image: url('/images/cosmic.png');
   background-size: cover;
   background-repeat: no-repeat;
-  background-position-x: center;
+  background-position: center;
 `
 
 const StyledSunburst = styled(SunburstSvg)`
@@ -102,7 +102,7 @@ const Footer = () => {
         <Link external href="https://docs.pancakeswap.finance/">
           {t('Learn how to start')}
         </Link>
-        {!account && <ConnectWalletButton mt="24px" />}
+        {!account && <ConnectWalletButton mt="24px" button={false} />}
       </Wrapper>
     </Container>
   )

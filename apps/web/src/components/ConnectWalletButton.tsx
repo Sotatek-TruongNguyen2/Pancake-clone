@@ -11,7 +11,7 @@ import { useMemo, useState } from 'react'
 import { useConnect } from 'wagmi'
 import Trans from './Trans'
 
-const ConnectWalletButton = ({ children, ...props }: ButtonProps) => {
+const ConnectWalletButton = ({ children, button = true, ...props }: ButtonProps & { button?: boolean }) => {
   const handleActive = useActiveHandle()
   const { login } = useAuth()
   const {
@@ -36,18 +36,21 @@ const ConnectWalletButton = ({ children, ...props }: ButtonProps) => {
 
   return (
     <>
-      {/* <Button onClick={handleClick} {...props}>
-        {children || <Trans>Connect Wallet</Trans>}
-      </Button> */}
-      <Text
-        {...props}
-        style={{ position: 'absolute', bottom: 0, cursor: 'pointer' }}
-        color="white"
-        bold
-        onClick={handleClick}
-      >
-        {children || <Trans>Connect Wallet</Trans>}
-      </Text>
+      {button ? (
+        <Button onClick={handleClick} {...props}>
+          {children || <Trans>Connect Wallet</Trans>}
+        </Button>
+      ) : (
+        <Text
+          {...props}
+          style={{ position: 'absolute', bottom: 0, cursor: 'pointer' }}
+          color="white"
+          bold
+          onClick={handleClick}
+        >
+          {children || <Trans>Connect Wallet</Trans>}
+        </Text>
+      )}
       <WalletModalV2
         docText={t('Learn How to Connect')}
         docLink={docLink}
