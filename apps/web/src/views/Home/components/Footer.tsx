@@ -5,6 +5,7 @@ import ConnectWalletButton from 'components/ConnectWalletButton'
 import Container from 'components/Layout/Container'
 import { useAccount } from 'wagmi'
 import SunburstSvg from './SunburstSvg'
+import CompositeImage from './CompositeImage'
 
 const BgWrapper = styled.div`
   overflow: hidden;
@@ -31,15 +32,18 @@ const StyledSunburst = styled(SunburstSvg)`
 
 const Wrapper = styled(Flex)`
   z-index: 1;
-  position: relative;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
   flex-direction: column;
   align-items: center;
   justify-content: center;
   overflow: hidden;
+  height: 100%;
+  bottom: 0;
 `
 
 const FloatingPancakesWrapper = styled(Container)`
-  overflow: hidden;
   position: absolute;
   width: 100%;
   height: 100%;
@@ -53,13 +57,27 @@ const FloatingPancakesWrapper = styled(Container)`
   }
 `
 
+const topLeftImage = {
+  path: '/images/home/flying-pancakes/',
+  attributes: [
+    { src: 'AVAX-3D', alt: 'Pancake flying on the top' },
+    { src: 'PHANTOM-3D', alt: 'Pancake flying on the left' },
+    { src: 'CAR-3D', alt: 'Pancake flying on the bottom' },
+    { src: 'POL-3D', alt: 'Pancake flying on the bottom' },
+    { src: 'BNB-3D', alt: 'Pancake flying on the top' },
+    { src: 'CHAINLINK-3D', alt: 'Pancake flying on the right' },
+    { src: 'ETH-3D', alt: 'Pancake flying on the bottom' },
+    { src: 'TEL-3D', alt: 'Pancake flying on the bottom' },
+  ],
+}
+
 const Footer = () => {
   const { t } = useTranslation()
   const { address: account } = useAccount()
   const { isTablet, isDesktop } = useMatchBreakpoints()
 
   return (
-    <>
+    <Container height={250}>
       <BgWrapper>
         <Flex alignItems="center" justifyContent="center" width="100%" height="100%">
           <StyledSunburst />
@@ -67,12 +85,7 @@ const Footer = () => {
       </BgWrapper>
       {(isTablet || isDesktop) && (
         <FloatingPancakesWrapper>
-          {/* <TopLeftImgWrapper>
-            <CompositeImage {...topLeftImage} maxHeight="256px" />
-          </TopLeftImgWrapper>
-          <BottomRightImgWrapper>
-            <CompositeImage {...bottomRightImage} maxHeight="256px" />
-          </BottomRightImgWrapper> */}
+          <CompositeImage {...topLeftImage} maxHeight="110px" />
         </FloatingPancakesWrapper>
       )}
       <Wrapper>
@@ -91,7 +104,7 @@ const Footer = () => {
         </Link>
         {!account && <ConnectWalletButton mt="24px" />}
       </Wrapper>
-    </>
+    </Container>
   )
 }
 

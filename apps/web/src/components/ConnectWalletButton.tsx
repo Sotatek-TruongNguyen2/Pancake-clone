@@ -1,6 +1,6 @@
 import { useTranslation } from '@pancakeswap/localization'
 import { WalletModalV2 } from '@pancakeswap/ui-wallets'
-import { Button, ButtonProps } from '@pancakeswap/uikit'
+import { Button, ButtonProps, Text } from '@pancakeswap/uikit'
 import { createWallets, getDocLink } from 'config/wallet'
 import { useActiveChainId } from 'hooks/useActiveChainId'
 import useAuth from 'hooks/useAuth'
@@ -36,9 +36,18 @@ const ConnectWalletButton = ({ children, ...props }: ButtonProps) => {
 
   return (
     <>
-      <Button onClick={handleClick} {...props}>
+      {/* <Button onClick={handleClick} {...props}>
         {children || <Trans>Connect Wallet</Trans>}
-      </Button>
+      </Button> */}
+      <Text
+        {...props}
+        style={{ position: 'absolute', bottom: 0, cursor: 'pointer' }}
+        color="white"
+        bold
+        onClick={handleClick}
+      >
+        {children || <Trans>Connect Wallet</Trans>}
+      </Text>
       <WalletModalV2
         docText={t('Learn How to Connect')}
         docLink={docLink}
