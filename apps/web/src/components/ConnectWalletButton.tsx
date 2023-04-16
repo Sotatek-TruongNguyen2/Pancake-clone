@@ -11,7 +11,13 @@ import { useMemo, useState } from 'react'
 import { useConnect } from 'wagmi'
 import Trans from './Trans'
 
-const ConnectWalletButton = ({ children, button = true, ...props }: ButtonProps & { button?: boolean }) => {
+const ConnectWalletButton = ({
+  children,
+  button = true,
+  handleOpen,
+  handleClose,
+  ...props
+}: ButtonProps & { button?: boolean; handleOpen?: () => void; handleClose?: () => void }) => {
   const handleActive = useActiveHandle()
   const { login } = useAuth()
   const {
@@ -29,6 +35,7 @@ const ConnectWalletButton = ({ children, button = true, ...props }: ButtonProps 
       handleActive()
     } else {
       setOpen(true)
+      if (handleOpen) handleOpen()
     }
   }
 
@@ -43,7 +50,7 @@ const ConnectWalletButton = ({ children, button = true, ...props }: ButtonProps 
       ) : (
         <Text
           {...props}
-          style={{ position: 'absolute', bottom: 0, cursor: 'pointer' }}
+          style={{ position: 'absolute', bottom: '80px', cursor: 'pointer' }}
           color="white"
           bold
           onClick={handleClick}
@@ -57,7 +64,10 @@ const ConnectWalletButton = ({ children, button = true, ...props }: ButtonProps 
         isOpen={open}
         wallets={wallets}
         login={login}
-        onDismiss={() => setOpen(false)}
+        onDismiss={() => {
+          setOpen(false)
+          if (handleClose) handleClose()
+        }}
       />
     </>
   )

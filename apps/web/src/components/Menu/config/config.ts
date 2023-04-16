@@ -13,7 +13,7 @@ import {
   DropdownMenuItems,
 } from '@pancakeswap/uikit'
 import { ContextApi } from '@pancakeswap/localization'
-import { nftsBaseUrl } from 'views/Nft/market/constants'
+// import { nftsBaseUrl } from 'views/Nft/market/constants'
 import { SUPPORT_ONLY_BSC } from 'config/constants/supportChains'
 
 export type ConfigMenuDropDownItemsType = DropdownMenuItems & { hideSubNav?: boolean }
@@ -103,7 +103,7 @@ const config: (
     },
     {
       label: t('Win'),
-      href: '/prediction',
+      // href: '/prediction',
       icon: TrophyIcon,
       fillIcon: TrophyFillIcon,
       supportChainIds: SUPPORT_ONLY_BSC,
@@ -133,7 +133,7 @@ const config: (
     },
     {
       label: t('NFT'),
-      href: `${nftsBaseUrl}`,
+      // href: `${nftsBaseUrl}`,
       icon: NftIcon,
       fillIcon: NftFillIcon,
       supportChainIds: SUPPORT_ONLY_BSC,
@@ -155,23 +155,23 @@ const config: (
     },
     {
       label: '',
-      href: '/info',
+      // href: '/info',
       icon: MoreIcon,
       hideSubNav: true,
       items: [
         {
           label: t('Info'),
-          href: '/info',
+          // href: '/info',
         },
         {
           label: t('IFO'),
-          href: '/ifo',
+          // href: '/ifo',
           supportChainIds: SUPPORT_ONLY_BSC,
           image: '/images/ifos/ifo-bunny.png',
         },
         {
           label: t('Voting'),
-          href: '/voting',
+          // href: '/voting',
           supportChainIds: SUPPORT_ONLY_BSC,
           image: '/images/voting/voting-bunny.png',
         },
@@ -180,7 +180,7 @@ const config: (
         },
         {
           label: t('Leaderboard'),
-          href: '/teams',
+          // href: '/teams',
           supportChainIds: SUPPORT_ONLY_BSC,
           image: '/images/decorations/leaderboard.png',
         },
@@ -189,12 +189,12 @@ const config: (
         },
         {
           label: t('Blog'),
-          href: 'https://medium.com/pancakeswap',
+          // href: 'https://medium.com/pancakeswap',
           type: DropdownMenuItemType.EXTERNAL_LINK,
         },
         {
           label: t('Docs'),
-          href: 'https://docs.pancakeswap.finance',
+          // href: 'https://docs.pancakeswap.finance',
           type: DropdownMenuItemType.EXTERNAL_LINK,
         },
       ].map((item) => addMenuItemSupported(item, chainId)),

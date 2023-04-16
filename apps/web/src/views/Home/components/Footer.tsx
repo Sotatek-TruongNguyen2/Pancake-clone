@@ -4,6 +4,7 @@ import { useTranslation } from '@pancakeswap/localization'
 import ConnectWalletButton from 'components/ConnectWalletButton'
 import Container from 'components/Layout/Container'
 import { useAccount } from 'wagmi'
+import { useState } from 'react'
 import SunburstSvg from './SunburstSvg'
 import CompositeImage from './CompositeImage'
 
@@ -14,7 +15,7 @@ const BgWrapper = styled.div`
   height: 100%;
   top: 0px;
   left: 0px;
-  background-image: url('/images/cosmic.png');
+  // background-image: url('/images/cosmic.png');
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
@@ -37,7 +38,7 @@ const Wrapper = styled(Flex)`
   transform: translateX(-50%);
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  padding-top: 30px;
   overflow: hidden;
   height: 100%;
   bottom: 0;
@@ -75,17 +76,18 @@ const Footer = () => {
   const { t } = useTranslation()
   const { address: account } = useAccount()
   const { isTablet, isDesktop } = useMatchBreakpoints()
+  const [showAnimation, setShowAnimation] = useState(false)
 
   return (
     <Container height={250}>
       <BgWrapper>
         <Flex alignItems="center" justifyContent="center" width="100%" height="100%">
-          <StyledSunburst />
+          {/* <StyledSunburst /> */}
         </Flex>
       </BgWrapper>
       {(isTablet || isDesktop) && (
         <FloatingPancakesWrapper>
-          <CompositeImage {...topLeftImage} maxHeight="110px" />
+          <CompositeImage {...topLeftImage} showAnimation={showAnimation} />
         </FloatingPancakesWrapper>
       )}
       <Wrapper>
@@ -102,7 +104,14 @@ const Footer = () => {
         <Link external href="https://docs.pancakeswap.finance/">
           {t('Learn how to start')}
         </Link>
-        {!account && <ConnectWalletButton mt="24px" button={false} />}
+        {!account && (
+          <ConnectWalletButton
+            mt="24px"
+            button={false}
+            handleOpen={() => setShowAnimation(true)}
+            handleClose={() => setShowAnimation(false)}
+          />
+        )}
       </Wrapper>
     </Container>
   )
