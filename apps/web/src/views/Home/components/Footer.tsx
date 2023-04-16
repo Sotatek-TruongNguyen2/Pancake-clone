@@ -14,6 +14,10 @@ const BgWrapper = styled.div`
   height: 100%;
   top: 0px;
   left: 0px;
+  background-image: url('/images/cosmic.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
 `
 
 const StyledSunburst = styled(SunburstSvg)`
@@ -28,15 +32,18 @@ const StyledSunburst = styled(SunburstSvg)`
 
 const Wrapper = styled(Flex)`
   z-index: 1;
-  position: relative;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
   flex-direction: column;
   align-items: center;
   justify-content: center;
   overflow: hidden;
+  height: 100%;
+  bottom: 0;
 `
 
 const FloatingPancakesWrapper = styled(Container)`
-  overflow: hidden;
   position: absolute;
   width: 100%;
   height: 100%;
@@ -50,33 +57,17 @@ const FloatingPancakesWrapper = styled(Container)`
   }
 `
 
-const TopLeftImgWrapper = styled(Flex)`
-  position: absolute;
-  left: 0;
-  top: 0;
-`
-
-const BottomRightImgWrapper = styled(Flex)`
-  position: absolute;
-  right: 0;
-  bottom: 0;
-`
-
 const topLeftImage = {
   path: '/images/home/flying-pancakes/',
   attributes: [
-    { src: '1-bottom', alt: 'Pancake flying on the bottom' },
-    { src: '1-left', alt: 'Pancake flying on the left' },
-    { src: '1-top', alt: 'Pancake flying on the top' },
-  ],
-}
-
-const bottomRightImage = {
-  path: '/images/home/flying-pancakes/',
-  attributes: [
-    { src: '2-bottom', alt: 'Pancake flying on the bottom' },
-    { src: '2-top', alt: 'Pancake flying on the top' },
-    { src: '2-right', alt: 'Pancake flying on the right' },
+    { src: 'AVAX-3D', alt: 'Pancake flying on the top' },
+    { src: 'PHANTOM-3D', alt: 'Pancake flying on the left' },
+    { src: 'CAR-3D', alt: 'Pancake flying on the bottom' },
+    { src: 'POL-3D', alt: 'Pancake flying on the bottom' },
+    { src: 'BNB-3D', alt: 'Pancake flying on the top' },
+    { src: 'CHAINLINK-3D', alt: 'Pancake flying on the right' },
+    { src: 'ETH-3D', alt: 'Pancake flying on the bottom' },
+    { src: 'TEL-3D', alt: 'Pancake flying on the bottom' },
   ],
 }
 
@@ -86,7 +77,7 @@ const Footer = () => {
   const { isTablet, isDesktop } = useMatchBreakpoints()
 
   return (
-    <>
+    <Container height={250}>
       <BgWrapper>
         <Flex alignItems="center" justifyContent="center" width="100%" height="100%">
           <StyledSunburst />
@@ -94,12 +85,7 @@ const Footer = () => {
       </BgWrapper>
       {(isTablet || isDesktop) && (
         <FloatingPancakesWrapper>
-          <TopLeftImgWrapper>
-            <CompositeImage {...topLeftImage} maxHeight="256px" />
-          </TopLeftImgWrapper>
-          <BottomRightImgWrapper>
-            <CompositeImage {...bottomRightImage} maxHeight="256px" />
-          </BottomRightImgWrapper>
+          <CompositeImage {...topLeftImage} maxHeight="110px" />
         </FloatingPancakesWrapper>
       )}
       <Wrapper>
@@ -116,9 +102,9 @@ const Footer = () => {
         <Link external href="https://docs.pancakeswap.finance/">
           {t('Learn how to start')}
         </Link>
-        {!account && <ConnectWalletButton mt="24px" />}
+        {!account && <ConnectWalletButton mt="24px" button={false} />}
       </Wrapper>
-    </>
+    </Container>
   )
 }
 

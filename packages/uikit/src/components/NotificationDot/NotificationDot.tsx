@@ -5,6 +5,7 @@ import { NotificationDotProps, DotProps } from "./types";
 const NotificationDotRoot = styled.span`
   display: inline-flex;
   position: relative;
+  margin-right: 8px;
 `;
 
 const Dot = styled.span<DotProps>`

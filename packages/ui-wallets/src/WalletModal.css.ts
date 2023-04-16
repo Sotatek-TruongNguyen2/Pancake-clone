@@ -37,7 +37,7 @@ export const modalWrapperClass = style([
       height: '490px',
     },
     lg: {
-      width: '792px',
+      width: '408px',
     },
   }),
 ])
