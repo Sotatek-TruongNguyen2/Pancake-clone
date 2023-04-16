@@ -41,7 +41,7 @@ const CakePrice: React.FC<React.PropsWithChildren<Props>> = ({
       target="_blank"
     >
       {/* <LogoRound width="24px" mr="8px" /> */}
-      <StyledLogo src="https://picsum.photos/200/300" size="24px" />
+      <StyledLogo src="/images/nika-token.png" size="24px" />
       <Text color={color} bold>{`$${cakePriceUsd.toFixed(3)}`}</Text>
     </PriceLink>
   ) : showSkeleton ? (

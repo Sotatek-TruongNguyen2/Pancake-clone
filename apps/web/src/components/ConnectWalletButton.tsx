@@ -17,7 +17,7 @@ const ConnectWalletButton = ({
   handleOpen,
   handleClose,
   ...props
-}: ButtonProps & { button?: boolean; handleOpen?: () => void; handleClose: () => void }) => {
+}: ButtonProps & { button?: boolean; handleOpen?: () => void; handleClose?: () => void }) => {
   const handleActive = useActiveHandle()
   const { login } = useAuth()
   const {

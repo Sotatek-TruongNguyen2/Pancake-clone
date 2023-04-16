@@ -8,7 +8,10 @@
   },
   "tags": {},
   "logoURI": "https://pancakeswap.finance/logo.png",
-  "keywords": ["pancake", "default"],
+  "keywords": [
+    "pancake",
+    "default"
+  ],
   "tokens": [
     {
       "name": "Wrapped BNB",
@@ -52,11 +55,11 @@
     },
     {
       "name": "PancakeSwap Token",
-      "symbol": "CAKE",
+      "symbol": "NIKA",
       "address": "0x0E09FaBB73Bd3Ade0a17ECC321fD13a19e81cE82",
       "chainId": 56,
       "decimals": 18,
-      "logoURI": "https://pancakeswap.finance/images/tokens/0x0E09FaBB73Bd3Ade0a17ECC321fD13a19e81cE82.png"
+      "logoURI": "/images/nika-token.png"
     },
     {
       "name": "Venus",
@@ -120,7 +123,7 @@
       "address": "0x483Ed007BA31da2D570bA816F028135d1F0c60A6",
       "chainId": 97,
       "decimals": 18,
-      "logoURI": "https://picsum.photos/200/300"
+      "logoURI": "/images/nika-token.png"
     },
     {
       "name": "BUSD Token",
