@@ -7,7 +7,7 @@
     "patch": 0
   },
   "tags": {},
-  "logoURI": "https://pancakeswap.finance/logo.png",
+  "logoURI": "/images/nika-token.png",
   "keywords": [
     "pancake",
     "default"
@@ -54,7 +54,7 @@
       "logoURI": "https://tokens.pancakeswap.finance/images/symbol/usdt.png"
     },
     {
-      "name": "PancakeSwap Token",
+      "name": "Tiktak Code",
       "symbol": "NIKA",
       "address": "0x0E09FaBB73Bd3Ade0a17ECC321fD13a19e81cE82",
       "chainId": 56,

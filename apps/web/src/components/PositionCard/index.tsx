@@ -260,12 +260,7 @@ function MinimalPositionCardView({
                 {t(
                   'By adding liquidity, you’ll earn 50% from the fees of all trades on this pair, proportional to your share in the trading pair. Fees are added to the pair, accrue in real time, and can be claimed by withdrawing your liquidity. For more information on Stableswap fees click',
                 )}
-                <Link
-                  style={{ display: 'inline' }}
-                  ml="4px"
-                  external
-                  href="https://docs.pancakeswap.finance/products/stableswap#stableswap-fees"
-                >
+                <Link style={{ display: 'inline' }} ml="4px" href="">
                   {t('here.')}
                 </Link>
               </>
