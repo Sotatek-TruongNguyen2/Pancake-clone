@@ -65,33 +65,12 @@ const AptosBanner = () => {
       <S.Inner>
         <S.LeftWrapper>
           <Box>
-            {/* <Image src={AptosXPancakeSwap} alt="aptosXPancakeSwapImage" width={211} height={18} placeholder="blur" /> */}
             <AptosSubtitle>PancakeSwap x Trustwallet</AptosSubtitle>
           </Box>
           <AptosTitle>{t('Trade and win $10,000 Prize Pool')}</AptosTitle>
 
-          {/* <Button
-            minHeight="48px"
-            onClick={() =>
-              window?.open('https://docs.pancakeswap.finance/aptos-deployment', '_blank', 'noopener noreferrer')
-            }
-          >
-            <Text color="invertedContrast" bold fontSize="16px" mr="4px">
-              👋 {t('Get in Touch')}
-            </Text>
-            <OpenNewIcon color="invertedContrast" />
-          </Button> */}
           <Actions>
-            <Button
-              minHeight="48px"
-              onClick={() =>
-                window?.open(
-                  'https://perp.pancakeswap.finance/en/futures/BTCUSDT?theme=light&chain=bnbchain',
-                  '_blank',
-                  'noopener noreferrer',
-                )
-              }
-            >
+            <Button minHeight="48px">
               <Text color="invertedContrast" bold fontSize="16px" mr="4px">
                 👋 {t('Trade now using Trust Wallet')}
               </Text>

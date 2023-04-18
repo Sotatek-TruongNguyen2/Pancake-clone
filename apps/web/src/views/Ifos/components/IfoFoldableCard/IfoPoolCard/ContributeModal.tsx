@@ -254,14 +254,12 @@ const ContributeModal: React.FC<React.PropsWithChildren<Props>> = ({
             {t(
               'If you don’t commit enough CAKE, you may not receive a meaningful amount of IFO tokens, or you may not receive any IFO tokens at all.',
             )}
-            <Link
-              fontSize="12px"
-              display="inline"
-              href="https://docs.pancakeswap.finance/products/ifo-initial-farm-offering"
-              external
-            >
+            {/* <Link fontSize="12px" display="inline" href="">
               {t('Read more')}
-            </Link>
+            </Link> */}
+            <Text fontSize="12px" display="inline">
+              {t('Read more')}
+            </Text>
           </Text>
           <ApproveConfirmButtons
             isApproveDisabled={isConfirmed || isConfirming || isApproved}

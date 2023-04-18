@@ -75,14 +75,14 @@ const MigrationPage: React.FC<React.PropsWithChildren> = () => {
         <Heading scale="lg" color="text">
           {t('Migrate your stakings to the new MasterChef contract.')}
         </Heading>
-        <Link href="https://docs.pancakeswap.finance/code/migration/migrate-your-stakings" external>
-          <Button p="0" variant="text">
-            <Text color="primary" bold fontSize="16px" mr="4px">
-              {t('Learn more')}
-            </Text>
-            <ArrowForwardIcon color="primary" />
-          </Button>
-        </Link>
+        {/* <Link href=""> */}
+        <Button p="0" variant="text">
+          <Text color="primary" bold fontSize="16px" mr="4px">
+            {t('Learn more')}
+          </Text>
+          <ArrowForwardIcon color="primary" />
+        </Button>
+        {/* </Link> */}
       </PageHeader>
       <Page>
         <ProgressSteps pickedStep={step} steps={steps} onClick={setStep} />

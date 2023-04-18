@@ -215,14 +215,7 @@ export const bscTokens = {
     'Blink Token',
     'https://blink.wink.org',
   ),
-  syrup: new ERC20Token(
-    ChainId.BSC,
-    '0x009cF7bC57584b7998236eff51b98A168DceA9B0',
-    18,
-    'SYRUP',
-    'SyrupBar Token',
-    'https://pancakeswap.finance/',
-  ),
+  syrup: new ERC20Token(ChainId.BSC, '0x009cF7bC57584b7998236eff51b98A168DceA9B0', 18, 'SYRUP', 'SyrupBar Token', ''),
   pha: new ERC20Token(
     ChainId.BSC,
     '0x0112e557d400474717056C4e6D40eDD846F38351',

@@ -14,12 +14,10 @@ const BTTWarning = () => {
       <Text>1 BTT (OLD) = 1,000 BTT (NEW)</Text>
       <Text mb="8px">
         {t('Trade the new BTT token')}{' '}
-        <Link
-          style={{ display: 'inline' }}
-          href="https://pancakeswap.finance/swap?outputCurrency=0x352Cb5E19b12FC216548a2677bD0fce83BaE434B"
-        >
+        {/* <Link style={{ display: 'inline' }} href="">
           {t('here')}
-        </Link>
+        </Link> */}
+        <Text> {t('here')}</Text>
       </Text>
       <LinkExternal href="https://medium.com/@BitTorrent/tutorial-how-to-swap-bttold-to-btt-453264d7142">
         {t('For more details on the swap, please refer here.')}

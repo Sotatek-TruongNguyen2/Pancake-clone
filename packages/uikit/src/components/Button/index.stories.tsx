@@ -70,15 +70,7 @@ export const Anchors: React.FC<React.PropsWithChildren> = () => {
             <Box key={variant} mb="32px">
               {Object.values(scales).map((scale) => {
                 return (
-                  <Button
-                    as="a"
-                    href="https://pancakeswap.finance"
-                    key={scale}
-                    variant={variant}
-                    scale={scale}
-                    external
-                    mr="8px"
-                  >
+                  <Button as="a" href="" key={scale} variant={variant} scale={scale} mr="8px">
                     {`${capitalize(variant)} anchor ${scale.toUpperCase()}`}
                   </Button>
                 );
@@ -88,10 +80,10 @@ export const Anchors: React.FC<React.PropsWithChildren> = () => {
         })}
       </Box>
       <Box>
-        <Button as="a" href="https://pancakeswap.finance" mr="8px" external disabled>
+        <Button as="a" href="" mr="8px" disabled>
           Disabled
         </Button>
-        <Button as="a" href="https://pancakeswap.finance" variant="secondary" external disabled>
+        <Button as="a" href="" variant="secondary"  disabled>
           Disabled
         </Button>
       </Box>

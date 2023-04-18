@@ -99,14 +99,9 @@ function TradeSummary({
                     <>
                       <Text mt="12px">
                         {t('For each stableswap trade, refer to the fee table')}
-                        <Link
-                          style={{ display: 'inline' }}
-                          ml="4px"
-                          external
-                          href="https://docs.pancakeswap.finance/products/stableswap#stableswap-fees"
-                        >
+                        <Text as="span" ml="4px">
                           {t('here.')}
-                        </Link>
+                        </Text>
                       </Text>
                     </>
                   )}

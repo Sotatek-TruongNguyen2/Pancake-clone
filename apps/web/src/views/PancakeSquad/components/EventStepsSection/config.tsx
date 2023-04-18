@@ -54,12 +54,7 @@ const stepsConfigBuilder = ({ t, userInfos, eventInfos, userStatus, account, the
       bodyText: [t('Each NFT costs NIKA to mint. Remember you also need BNB to cover transaction fees too!')],
       buttons: (
         <>
-          <Button
-            as="a"
-            href="https://pancakeswap.finance/swap?outputCurrency=0x0e09fabb73bd3ade0a17ecc321fd13a19e81ce82&chainId=56"
-            target="_blank"
-            width="100%"
-          >
+          <Button as="a" href="" width="100%">
             {t('Buy NIKA')}
           </Button>
         </>
@@ -76,10 +71,10 @@ const stepsConfigBuilder = ({ t, userInfos, eventInfos, userStatus, account, the
       bodyText: [
         t('Buy Squad Tickets, while stocks last. You’ll use them in step 4.'),
         `04:00 UTC, Oct. 7 ${t(
-          'Pre-sale: Wallets which held “Gen 0” Pancake Bunnies NFTs (bunnyID 0,1,2,3,4) at a snapshot taken some time between 12 and 2 hours before the presale begins can purchase one Squad Ticket per Gen 0 NFT.',
+          'Pre-sale: Wallets which held “Gen 0” Nika Bunnies NFTs (bunnyID 0,1,2,3,4) at a snapshot taken some time between 12 and 2 hours before the presale begins can purchase one Squad Ticket per Gen 0 NFT.',
         )}`,
         `08:00 UTC, Oct. 7 ${t(
-          'Public Sale: Any wallet with an active Pancake Profile can purchase up to 10 Squad Tickets, while stocks last.',
+          'Public Sale: Any wallet with an active Nika Profile can purchase up to 10 Squad Tickets, while stocks last.',
         )}`,
       ],
       buttons: (
@@ -116,7 +111,7 @@ const stepsConfigBuilder = ({ t, userInfos, eventInfos, userStatus, account, the
       }),
       title: t('Claim Phase'),
       bodyText: [
-        t('During this phase, any wallet holding a Squad Ticket can redeem their ticket to claim a Pancake Squad NFT.'),
+        t('During this phase, any wallet holding a Squad Ticket can redeem their ticket to claim a Nika Squad NFT.'),
       ],
       buttons: (
         <>

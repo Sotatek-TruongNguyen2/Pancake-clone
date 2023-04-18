@@ -96,9 +96,8 @@ export const useBCakeTooltipContent = () => {
       </Box>
       <Box>
         {t('To learn more, check out the')}
-        <Link target="_blank" href="https://medium.com/pancakeswap/introducing-bcake-farm-yield-boosters-b27b7a6f0f84">
-          {t('Medium Article')}
-        </Link>
+        {/* <Link href="">{t('Medium Article')}</Link> */}
+        <Text>{t('Medium Article')}</Text>
       </Box>
     </>
   )
@@ -118,9 +117,9 @@ export const BCakeBoosterCard = () => {
   })
   return (
     <CardWrapper>
-      <ImageWrapper>
-        <Image src={boosterCardImage} alt="boosterCardImage" width={99} height={191} placeholder="blur" />
-      </ImageWrapper>
+      {/* <ImageWrapper>
+        <Image src="https://picsum.photos/200/300" alt="boosterCardImage" width={99} height={191} placeholder="blur" />
+      </ImageWrapper> */}
       <Card p="0px" style={{ zIndex: 1 }}>
         <StyledCardBody style={{ padding: '15px 24px' }}>
           <RocketIcon />

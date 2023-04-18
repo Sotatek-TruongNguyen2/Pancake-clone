@@ -187,7 +187,8 @@ const docLangCodeMapping: Record<string, string> = {
   'pt-br': 'portuguese-brazilian',
 }
 
-export const getDocLink = (code: string) =>
-  docLangCodeMapping[code]
-    ? `https://docs.pancakeswap.finance/v/${docLangCodeMapping[code]}/get-started/wallet-guide`
-    : `https://docs.pancakeswap.finance/get-started/wallet-guide`
+// export const getDocLink = (code: string) =>
+//   docLangCodeMapping[code]
+//     ? `https://docs.pancakeswap.finance/v/${docLangCodeMapping[code]}/get-started/wallet-guide`
+//     : `https://docs.pancakeswap.finance/get-started/wallet-guide`
+export const getDocLink = (code: string) => ''

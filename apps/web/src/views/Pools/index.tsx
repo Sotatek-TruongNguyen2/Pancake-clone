@@ -15,6 +15,7 @@ import CardFooter from './components/PoolCard/CardFooter'
 import CakeVaultCard from './components/CakeVaultCard'
 import PoolControls from './components/PoolControls'
 import PoolRow, { VaultPoolRow } from './components/PoolsTable/PoolRow'
+import BuyInPool from './components/BuyInPool'
 
 const CardLayout = styled(FlexLayout)`
   justify-content: center;
@@ -77,6 +78,7 @@ const Pools: React.FC<React.PropsWithChildren> = () => {
                   <Loading />
                 </Flex>
               )}
+              <BuyInPool />
               {viewMode === ViewMode.CARD ? (
                 <CardLayout>
                   {chosenPools.map((pool) => {
@@ -135,7 +137,7 @@ const Pools: React.FC<React.PropsWithChildren> = () => {
                   )}
                 </Pool.PoolsTable>
               )}
-              <Image
+              {/* <Image
                 mx="auto"
                 mt="12px"
                 src="/images/decorations/3d-syrup-bunnies.png"
@@ -143,6 +145,7 @@ const Pools: React.FC<React.PropsWithChildren> = () => {
                 width={192}
                 height={184.5}
               />
+              https://picsum.photos/200/300 */}
             </>
           )}
         </PoolControls>
