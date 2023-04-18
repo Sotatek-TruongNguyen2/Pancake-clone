@@ -96,7 +96,8 @@ export const useBCakeTooltipContent = () => {
       </Box>
       <Box>
         {t('To learn more, check out the')}
-        <Link href="">{t('Medium Article')}</Link>
+        {/* <Link href="">{t('Medium Article')}</Link> */}
+        <Text>{t('Medium Article')}</Text>
       </Box>
     </>
   )

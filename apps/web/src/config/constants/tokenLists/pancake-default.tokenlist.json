@@ -8,10 +8,7 @@
   },
   "tags": {},
   "logoURI": "/images/nika-token.png",
-  "keywords": [
-    "pancake",
-    "default"
-  ],
+  "keywords": ["pancake", "default"],
   "tokens": [
     {
       "name": "Wrapped BNB",

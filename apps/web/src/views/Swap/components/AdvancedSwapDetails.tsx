@@ -99,9 +99,9 @@ function TradeSummary({
                     <>
                       <Text mt="12px">
                         {t('For each stableswap trade, refer to the fee table')}
-                        <Link style={{ display: 'inline' }} ml="4px" href="">
+                        <Text as="span" ml="4px">
                           {t('here.')}
-                        </Link>
+                        </Text>
                       </Text>
                     </>
                   )}
