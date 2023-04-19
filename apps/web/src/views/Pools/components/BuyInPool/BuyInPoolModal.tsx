@@ -14,6 +14,7 @@ import {
   Text,
   RoiCalculatorModal,
   Modal,
+  Input,
 } from '@pancakeswap/uikit'
 import getThemeValue from '@pancakeswap/uikit/src/util/getThemeValue'
 import PercentageButton from '../Modals/PercentageButton'
@@ -49,7 +50,7 @@ interface BuyInPoolModalProps {
   pendingTx: boolean
   imageUrl?: string
 }
-
+const NULL_ADDR = '0x0000000000000000000000000000000000000000'
 export const BuyInPoolModal: React.FC<React.PropsWithChildren<BuyInPoolModalProps>> = ({
   stakingTokenDecimals,
   stakingTokenSymbol,
@@ -75,6 +76,7 @@ export const BuyInPoolModal: React.FC<React.PropsWithChildren<BuyInPoolModalProp
   const { t } = useTranslation()
   const theme = useTheme()
   const [stakeAmount, setStakeAmount] = useState('')
+  const [address, setAddress] = useState('')
   const [hasReachedStakeLimit, setHasReachedStakedLimit] = useState(false)
   const [percent, setPercent] = useState(0)
   const [showRoiCalculator, setShowRoiCalculator] = useState(false)
@@ -110,6 +112,12 @@ export const BuyInPoolModal: React.FC<React.PropsWithChildren<BuyInPoolModalProp
       setPercent(0)
     }
     setStakeAmount(input)
+  }
+
+  const handleAddressChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.currentTarget.validity.valid) {
+      setAddress(e.currentTarget.value.replace(/,/g, '.'))
+    }
   }
 
   const handleChangePercent = useCallback(
@@ -159,14 +167,6 @@ export const BuyInPoolModal: React.FC<React.PropsWithChildren<BuyInPoolModalProp
       onDismiss={onDismiss}
       headerBackground={getThemeValue(theme, 'colors.gradientCardHeader')}
     >
-      {stakingLimit.gt(0) && (
-        <Text color="secondary" bold mb="24px" style={{ textAlign: 'center' }} fontSize="16px">
-          {t('Max buy for this pool: %amount% %token%', {
-            amount: getFullDisplayBalance(stakingLimit, stakingTokenDecimals, 0),
-            token: stakingTokenSymbol,
-          })}
-        </Text>
-      )}
       <Flex alignItems="center" justifyContent="space-between" mb="8px">
         <Text bold>{t('Buy')}:</Text>
         <Flex alignItems="center" minWidth="70px">
@@ -213,13 +213,7 @@ export const BuyInPoolModal: React.FC<React.PropsWithChildren<BuyInPoolModalProp
       <Flex alignItems="center" justifyContent="space-between" mb="8px" mt="16px">
         <Text bold>Referrer address:</Text>
       </Flex>
-      <BalanceInput
-        value={stakeAmount}
-        onUserInput={handleStakeInputChange}
-        currencyValue={stakingTokenPrice !== 0 && `~${formattedUsdValueStaked || 0} USD`}
-        isWarning={hasReachedStakeLimit || userNotEnoughToken}
-        decimals={stakingTokenDecimals}
-      />
+      <Input onChange={handleAddressChange} value={address} />
 
       <Slider
         min={0}
@@ -259,11 +253,9 @@ export const BuyInPoolModal: React.FC<React.PropsWithChildren<BuyInPoolModalProp
         </Button>
       )}
 
-      <StyledLink href="">
-        <Button width="100%" mt="8px" variant="secondary">
-          {t('Get %symbol%', { symbol: stakingTokenSymbol })}
-        </Button>
-      </StyledLink>
+      <Button width="100%" mt="8px" variant="secondary">
+        {t('Get %symbol%', { symbol: stakingTokenSymbol })}
+      </Button>
     </Modal>
   )
 }

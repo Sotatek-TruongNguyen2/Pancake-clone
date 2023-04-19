@@ -63,7 +63,7 @@ const PoolStatsInfo: React.FC<React.PropsWithChildren<ExpandedFooterProps>> = ({
 
   return (
     <>
-      {profileRequirement && (profileRequirement.required || profileRequirement.thresholdPoints.gt(0)) && (
+      {/* {profileRequirement && (profileRequirement.required || profileRequirement.thresholdPoints.gt(0)) && (
         <Flex mb="8px" justifyContent="space-between">
           <Text small>{t('Requirement')}:</Text>
           <Text small textAlign="right">
@@ -75,11 +75,11 @@ const PoolStatsInfo: React.FC<React.PropsWithChildren<ExpandedFooterProps>> = ({
             )}
           </Text>
         </Flex>
-      )}
-      {!vaultKey && <AprInfo pool={pool} stakedBalance={stakedBalance} />}
+      )} */}
+      {/* {!vaultKey && <AprInfo pool={pool} stakedBalance={stakedBalance} />}
       {showTotalStaked && (
         <TotalStaked totalStaked={vaultKey ? totalCakeInVault : totalStaked} stakingToken={stakingToken} />
-      )}
+      )} */}
       {vaultKey === VaultKey.CakeVault && <TotalLocked totalLocked={totalLockedAmount} lockedToken={stakingToken} />}
       {vaultKey === VaultKey.CakeVault && <DurationAvg />}
       {!isFinished && stakingLimit && stakingLimit.gt(0) && (
