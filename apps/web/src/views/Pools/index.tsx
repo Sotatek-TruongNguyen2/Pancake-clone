@@ -16,6 +16,7 @@ import CakeVaultCard from './components/CakeVaultCard'
 import PoolControls from './components/PoolControls'
 import PoolRow, { VaultPoolRow } from './components/PoolsTable/PoolRow'
 import BuyInPool from './components/BuyInPool'
+import CustomStakedPool from './components/CustomStakedPool'
 
 const CardLayout = styled(FlexLayout)`
   justify-content: center;
@@ -79,6 +80,7 @@ const Pools: React.FC<React.PropsWithChildren> = () => {
                 </Flex>
               )}
               <BuyInPool />
+
               {viewMode === ViewMode.CARD ? (
                 <CardLayout>
                   {chosenPools.map((pool) => {
@@ -118,6 +120,7 @@ const Pools: React.FC<React.PropsWithChildren> = () => {
                 </CardLayout>
               ) : (
                 <Pool.PoolsTable>
+                  <CustomStakedPool />
                   {chosenPools.map((pool) =>
                     pool.vaultKey ? (
                       <VaultPoolRow

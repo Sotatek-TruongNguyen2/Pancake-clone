@@ -143,14 +143,14 @@ const ActionPanel: React.FC<React.PropsWithChildren<ActionPanelProps>> = ({ acco
   return (
     <StyledActionPanel expanded={expanded}>
       <InfoSection>
-        {isMobile && vaultKey === VaultKey.CakeVault && isLocked && (
+        {/* {isMobile && vaultKey === VaultKey.CakeVault && isLocked && (
           <Box mb="16px">
             <YieldBoostDurationRow
               lockEndTime={(vaultData as DeserializedLockedCakeVault).userData.lockEndTime}
               lockStartTime={(vaultData as DeserializedLockedCakeVault).userData.lockStartTime}
             />
           </Box>
-        )}
+        )} */}
         <Flex flexDirection="column" mb="8px">
           <PoolStatsInfo pool={pool} account={account} showTotalStaked={isMobile} alignLinksToRight={isMobile} />
         </Flex>
