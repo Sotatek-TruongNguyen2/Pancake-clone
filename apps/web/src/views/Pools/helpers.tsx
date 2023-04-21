@@ -66,7 +66,6 @@ export const getCakeVaultEarnings = (
   earningTokenPrice: number,
   fee?: BigNumber,
 ) => {
-  console.log('user shares: ', pricePerFullShare.toString(), userShares.toString())
   const hasAutoEarnings = account && cakeAtLastUserAction?.gt(0) && userShares?.gt(0)
   const { cakeAsBigNumber } = convertSharesToCake(userShares, pricePerFullShare)
   const autoCakeProfit = cakeAsBigNumber.minus(fee || BIG_ZERO).minus(cakeAtLastUserAction)

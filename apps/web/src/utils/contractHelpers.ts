@@ -86,6 +86,9 @@ import nftSaleAbi from 'config/abi/nftSale.json'
 import pancakeSquadAbi from 'config/abi/pancakeSquad.json'
 import erc721CollectionAbi from 'config/abi/erc721collection.json'
 import potteryVaultAbi from 'config/abi/potteryVaultAbi.json'
+import nikaStakingAbi from 'config/abi/nikaStakingAbi.json'
+import nikaIdoPoolAbi from 'config/abi/nikaIdoPoolAbi.json'
+import oracleAbi from 'config/abi/oracleAbi.json'
 import potteryDrawAbi from 'config/abi/potteryDrawAbi.json'
 import iCakeAbi from 'config/abi/iCake.json'
 import ifoV3Abi from 'config/abi/ifoV3.json'
@@ -402,4 +405,16 @@ export const getCrossFarmingProxyContract = (
   chainId?: number,
 ) => {
   return getContract({ abi: crossFarmingProxyAbi, address: proxyContractAddress, chainId, signer }) as CrossFarmingProxy
+}
+
+export const getNikaStakingContract = (address: string, signer?: Signer | Provider) => {
+  return getContract({ abi: nikaStakingAbi, address, signer })
+}
+
+export const getNikaIdoPoolContract = (address: string, signer?: Signer | Provider) => {
+  return getContract({ abi: nikaIdoPoolAbi, address, signer })
+}
+
+export const getOracleContract = (address: string, signer?: Signer | Provider) => {
+  return getContract({ abi: oracleAbi, address, signer })
 }

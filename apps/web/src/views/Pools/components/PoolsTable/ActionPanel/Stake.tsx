@@ -237,22 +237,22 @@ const Staked: React.FunctionComponent<React.PropsWithChildren<StackedActionProps
     )
   }
 
-  if (needsApproval && !isNotVaultAndHasStake && !isVaultWithShares) {
-    return (
-      <ActionContainer>
-        <ActionTitles>
-          <Text fontSize="12px" bold color="textSubtle" as="span" textTransform="uppercase">
-            {t('Enable pool')}
-          </Text>
-        </ActionTitles>
-        <ActionContent>
-          <Button width="100%" disabled={pendingTx} onClick={handleApprove} variant="secondary">
-            {t('Enable')}
-          </Button>
-        </ActionContent>
-      </ActionContainer>
-    )
-  }
+  // if (needsApproval && !isNotVaultAndHasStake && !isVaultWithShares) {
+  //   return (
+  //     <ActionContainer>
+  //       <ActionTitles>
+  //         <Text fontSize="12px" bold color="textSubtle" as="span" textTransform="uppercase">
+  //           {t('Enable pool')}
+  //         </Text>
+  //       </ActionTitles>
+  //       <ActionContent>
+  //         <Button width="100%" disabled={pendingTx} onClick={handleApprove} variant="secondary">
+  //           {t('Enable')}
+  //         </Button>
+  //       </ActionContent>
+  //     </ActionContainer>
+  //   )
+  // }
 
   // Wallet connected, user data loaded and approved
   if (isNotVaultAndHasStake || isVaultWithShares) {
@@ -468,7 +468,7 @@ const Staked: React.FunctionComponent<React.PropsWithChildren<StackedActionProps
         </Text>
       </ActionTitles>
       <ActionContent>
-        {vaultKey ? (
+        {!vaultKey ? (
           <VaultStakeButtonGroup
             onFlexibleClick={stakingTokenBalance.gt(0) ? onStake : onPresentTokenRequired}
             onLockedClick={vaultKey === VaultKey.CakeVault ? openPresentLockedStakeModal : null}

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Balance, Button, Flex, Heading, Text, useModal } from '@pancakeswap/uikit'
 import { useAccount } from 'wagmi'
 import { useTranslation } from '@pancakeswap/localization'
@@ -7,47 +7,45 @@ import BigNumber from 'bignumber.js'
 import { BIG_ZERO } from '@pancakeswap/utils/bigNumber'
 import { formatNumber, getBalanceNumber, getFullDisplayBalance } from '@pancakeswap/utils/formatBalance'
 import { PoolCategory } from 'config/constants/types'
+import { useOracleContract } from 'hooks/useContract'
 import { ActionContainer, ActionContent, ActionTitles } from '../PoolsTable/ActionPanel/styles'
 import { CollectModalContainer } from '../Modals/CollectModal'
 
 interface HarvestProps {
-  sousId: number
-  poolCategory: PoolCategory
-  earningToken: Token
-  userData: {
-    allowance: BigNumber
-    stakingTokenBalance: BigNumber
-    stakedBalance: BigNumber
-    pendingReward: BigNumber
-  }
-  earningTokenPrice: number
+  pendingReward: number
+  onClaim: () => void
 }
-const Harvest = ({ sousId, poolCategory, earningToken, userData, earningTokenPrice }: HarvestProps) => {
+
+const NIKA_ADDR = '0x1549C1A238B4b7aa396B5D8c315df53ceC1FEa51'
+
+const Harvest = ({ pendingReward, onClaim }: HarvestProps) => {
   const { t } = useTranslation()
   const { address: account } = useAccount()
-  const earnings = userData?.pendingReward ? new BigNumber(userData.pendingReward) : BIG_ZERO
-  const earningTokenBalance = getBalanceNumber(earnings, earningToken.decimals)
-  const earningTokenDollarBalance = getBalanceNumber(earnings.multipliedBy(earningTokenPrice), earningToken.decimals)
+  const earnings = pendingReward ? new BigNumber(pendingReward) : BIG_ZERO
   const hasEarnings = earnings.gt(0)
-  const fullBalance = getFullDisplayBalance(earnings, earningToken.decimals)
-  const formattedBalance = formatNumber(earningTokenBalance, 3, 3)
-  const isBnbPool = poolCategory === PoolCategory.BINANCE
+  const oracleContract = useOracleContract()
+  const [usdcAmount, setUsdcAmount] = useState(0)
 
-  const [onPresentCollect] = useModal(
-    <CollectModalContainer
-      formattedBalance={formattedBalance}
-      fullBalance={fullBalance}
-      earningTokenSymbol={earningToken.symbol}
-      earningsDollarValue={earningTokenDollarBalance}
-      sousId={sousId}
-      isBnbPool={isBnbPool}
-    />,
-  )
+  useEffect(() => {
+    const fetchData = async () => {
+      if (!pendingReward) return
+      const _usdcAmount = await oracleContract.consult(
+        NIKA_ADDR,
+        new BigNumber(pendingReward || 0).times(new BigNumber(10).pow(18)).toString(),
+      )
+      setUsdcAmount(new BigNumber(_usdcAmount.toString() || 0).dividedBy(new BigNumber(10).pow(18)).toNumber())
+    }
+    fetchData()
+  }, [pendingReward])
 
   if (!account) {
     return (
       <ActionContainer>
-        <ActionTitles>NIKA Earned</ActionTitles>
+        <ActionTitles>
+          <Text fontSize="12px" bold color="secondary" as="span" textTransform="uppercase">
+            {t(' NIKA Earned')}
+          </Text>
+        </ActionTitles>
         <ActionContent>
           <Heading>0</Heading>
           <Button disabled>{t('Harvest')}</Button>
@@ -58,24 +56,27 @@ const Harvest = ({ sousId, poolCategory, earningToken, userData, earningTokenPri
 
   return (
     <ActionContainer>
-      <ActionTitles>NIKA Earned</ActionTitles>
+      <ActionTitles>
+        <Text fontSize="12px" bold color="secondary" as="span" textTransform="uppercase">
+          {t(' NIKA Earned')}
+        </Text>
+      </ActionTitles>
       <ActionContent>
         <Flex flex="1" flexDirection="column" alignSelf="flex-center">
           <>
             {hasEarnings ? (
               <>
-                <Balance lineHeight="1" bold fontSize="20px" decimals={5} value={earningTokenBalance} />
-                {earningTokenPrice > 0 && (
-                  <Balance
-                    display="inline"
-                    fontSize="12px"
-                    color="textSubtle"
-                    decimals={2}
-                    prefix="~"
-                    value={earningTokenDollarBalance}
-                    unit=" USD"
-                  />
-                )}
+                <Balance lineHeight="1" bold fontSize="20px" decimals={5} value={pendingReward} />
+
+                <Balance
+                  display="inline"
+                  fontSize="12px"
+                  color="textSubtle"
+                  decimals={2}
+                  prefix="~"
+                  value={usdcAmount}
+                  unit=" USDC"
+                />
               </>
             ) : (
               <>
@@ -87,7 +88,7 @@ const Harvest = ({ sousId, poolCategory, earningToken, userData, earningTokenPri
             )}
           </>
         </Flex>
-        <Button disabled={!hasEarnings} onClick={onPresentCollect}>
+        <Button disabled={!hasEarnings} onClick={onClaim}>
           {t('Harvest')}
         </Button>
       </ActionContent>

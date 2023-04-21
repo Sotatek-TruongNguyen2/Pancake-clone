@@ -13,7 +13,7 @@ const StyledCell = styled(Pool.BaseCell)`
   }
 `
 
-const NameCell = () => {
+const NameCell = ({ title }: { title: string }) => {
   const { t } = useTranslation()
   const isLoaded = true
   const { isMobile } = useMatchBreakpoints()
@@ -31,7 +31,7 @@ const NameCell = () => {
           />
           <Pool.CellContent>
             <Text bold={!isMobile} small={isMobile}>
-              Stake NIKA
+              {title}
             </Text>
             {showSubtitle && (
               <Text fontSize="12px" color="textSubtle">

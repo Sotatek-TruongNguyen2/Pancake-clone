@@ -48,6 +48,7 @@ import {
   getPointCenterIfoContract,
   getPotteryDrawContract,
   getPotteryVaultContract,
+  getNikaStakingContract,
   getPredictionsContract,
   getPredictionsV1Contract,
   getProfileContract,
@@ -59,6 +60,8 @@ import {
   getNonBscVaultContract,
   getCrossFarmingProxyContract,
   getIfoCreditAddressContract,
+  getNikaIdoPoolContract,
+  getOracleContract,
 } from 'utils/contractHelpers'
 import { useSigner } from 'wagmi'
 
@@ -343,6 +346,24 @@ export function useMulticallContract() {
 export const usePotterytVaultContract = (address) => {
   const { data: signer } = useSigner()
   return useMemo(() => getPotteryVaultContract(address, signer), [address, signer])
+}
+
+export const useNikaStakingContract = () => {
+  const { data: signer } = useSigner()
+  const address = process.env.NEXT_PUBLIC_NIKA_STAKING_CONTRACT || '0xEC3678A05633eEAC73668c32b4c495A343574756'
+  return useMemo(() => getNikaStakingContract(address, signer), [address, signer])
+}
+
+export const useNikaIdoPoolContract = () => {
+  const { data: signer } = useSigner()
+  const address = process.env.NEXT_PUBLIC_NIKA_IDO_POOL_CONTRACT || '0x7C7f643D15D1EC8a55a350031E3e33803b10d474'
+  return useMemo(() => getNikaIdoPoolContract(address, signer), [address, signer])
+}
+
+export const useOracleContract = () => {
+  const { data: signer } = useSigner()
+  const address = process.env.NEXT_PUBLIC_ORACLE_CONTRACT || '0x75a58B7949e86a30b225dC190C87806Bb0De8B62'
+  return useMemo(() => getOracleContract(address, signer), [address, signer])
 }
 
 export const usePotterytDrawContract = () => {

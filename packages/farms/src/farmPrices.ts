@@ -176,19 +176,6 @@ export const getFarmsPrices = (
       nativeStableLp.stable,
     ])
 
-    console.log(
-      'asdjkasjdkasdj:',
-      farms,
-      nativeStableLp.address,
-      farm.quoteToken.address,
-      [nativeStableLp.wNative, nativeStableLp.stable],
-      farm,
-      quoteTokenFarm,
-      nativePriceUSD,
-      nativeStableLp.wNative,
-      nativeStableLp.stable,
-    )
-
     const quoteTokenPriceBusd = getFarmQuoteTokenPrice(
       farm,
       quoteTokenFarm,

@@ -1,14 +1,14 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Button, Flex, Text, useModal } from '@pancakeswap/uikit'
+import { Button, Flex, useModal } from '@pancakeswap/uikit'
 import { useTranslation } from '@pancakeswap/localization'
-import BigNumber from 'bignumber.js'
-import { ActionContent, ActionTitles } from '../PoolsTable/ActionPanel/styles'
 import { BuyInPoolModal } from './BuyInPoolModal'
+import NameCell from '../CustomStakedPool/NameCell'
+import Status from '../CustomStakedPool/Status'
 
 const BuyContainer = styled(Flex)`
-  flex-direction: column;
-  padding: 16px;
+background-color: ${({ theme }) => theme.card.background};
+  display: flex;
   border: 2px solid ${({ theme }) => theme.colors.input};
   border-radius: 16px;
   margin-bottom: 16px!important;
@@ -23,43 +23,31 @@ const BuyContainer = styled(Flex)`
     margin-right: 0;
   }
 `
+const ActionWrapper = styled(Flex)`
+  padding-right: 32px;
+  align-items: center;
+`
 
 const BuyInPool = () => {
   const { t } = useTranslation()
 
   const [onPresentBuyInPoolModal] = useModal(
     <BuyInPoolModal
-      stakingTokenDecimals={18}
-      stakingTokenSymbol="NIKA"
-      stakingTokenAddress="0x483Ed007BA31da2D570bA816F028135d1F0c60A6"
-      apr={1}
-      stakingLimit={new BigNumber(1000)}
-      earningTokenPrice={1}
-      earningTokenSymbol="BUSD"
-      userDataStakedBalance={new BigNumber(1000)}
-      userDataStakingTokenBalance={new BigNumber(1000)}
-      enableEmergencyWithdraw={false}
-      stakingTokenBalance={new BigNumber(1000)}
-      stakingTokenPrice={1}
-      handleConfirmClick={() => {
-        console.log('confirm')
-      }}
-      account="0x483Ed007BA31da2D570bA816F028135d1F0c60A6"
-      pendingTx={false}
+      buyingTokenDecimals={18}
+      buyingTokenSymbol="NIKA"
+      buyingTokenAddress="0x483Ed007BA31da2D570bA816F028135d1F0c60A6" // to show token image
     />,
   )
   return (
     <BuyContainer>
-      <ActionTitles>
-        <Text fontSize="12px" bold color="textSubtle" as="span" textTransform="uppercase">
-          {t('Start buying')}
-        </Text>
-      </ActionTitles>
-      <ActionContent>
+      <NameCell title="Buy NIKA" />
+
+      <Status status="Open" />
+      <ActionWrapper>
         <Button width={400} onClick={onPresentBuyInPoolModal}>
-          Buy
+          {t('Buy')}
         </Button>
-      </ActionContent>
+      </ActionWrapper>
     </BuyContainer>
   )
 }

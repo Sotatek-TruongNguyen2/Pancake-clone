@@ -21,7 +21,7 @@ const MetricsSection = () => {
 
   return (
     <Flex justifyContent="center" alignItems="center" flexDirection="column">
-      <GradientLogo height="48px" width="48px" mb="24px" />
+      {/* <GradientLogo height="48px" width="48px" mb="24px" /> */}
       <Heading textAlign="center" scale="xl">
         {t('NKS is the hub of space activities')}
       </Heading>

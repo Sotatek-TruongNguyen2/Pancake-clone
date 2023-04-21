@@ -5,41 +5,41 @@ import { useTheme } from 'styled-components'
 import { formatNumber } from '@pancakeswap/utils/formatBalance'
 import { AutoRenewIcon, BalanceInput, Button, Flex, Image, Text, Modal, Input, useToast } from '@pancakeswap/uikit'
 import getThemeValue from '@pancakeswap/uikit/src/util/getThemeValue'
-import { useNikaIdoPoolContract, useOracleContract, useTokenContract } from 'hooks/useContract'
+import { useNikaIdoPoolContract, useNikaStakingContract, useOracleContract, useTokenContract } from 'hooks/useContract'
 import { ToastDescriptionWithTx } from 'components/Toast'
 import { useAccount, useWaitForTransaction } from 'wagmi'
 import { MaxUint256 } from '@ethersproject/constants'
 import useCatchTxError from 'hooks/useCatchTxError'
 import { useCallWithGasPrice } from 'hooks/useCallWithGasPrice'
 
-interface BuyInPoolModalProps {
+interface StakeInPoolModalProps {
   // Pool attributes
-  buyingTokenDecimals: number
-  buyingTokenSymbol: string
-  buyingTokenAddress: string
+  stakingTokenDecimals: number
+  stakingTokenSymbol: string
+  stakingTokenAddress: string
   onDismiss?: () => void
   imageUrl?: string
 }
 
 const NULL_ADDR = '0x0000000000000000000000000000000000000000'
-const USDC_ADDR = '0xe1283F92e5513fbE125185221cDc8e3D3Dda422D'
 const NIKA_ADDR = '0x1549C1A238B4b7aa396B5D8c315df53ceC1FEa51'
+const USDC_ADDR = '0xe1283F92e5513fbE125185221cDc8e3D3Dda422D'
 const MIN_AMOUNT = 100
 
-export const BuyInPoolModal: React.FC<React.PropsWithChildren<BuyInPoolModalProps>> = ({
-  buyingTokenDecimals,
-  buyingTokenSymbol,
-  buyingTokenAddress,
+export const StakeInPoolModal: React.FC<React.PropsWithChildren<StakeInPoolModalProps>> = ({
+  stakingTokenDecimals,
+  stakingTokenSymbol,
+  stakingTokenAddress,
   onDismiss,
   imageUrl = '/images/tokens/',
 }) => {
   const { t } = useTranslation()
   const theme = useTheme()
-  const [buyAmount, setBuyAmount] = useState('')
+  const [stakeAmount, setStakeAmount] = useState('')
   const [address, setAddress] = useState('')
-  const idoContract = useNikaIdoPoolContract()
+  const nikaStakingContract = useNikaStakingContract()
   const oracleContract = useOracleContract()
-  const usdcTokenContract = useTokenContract(USDC_ADDR)
+  const nikaTokenContract = useTokenContract(NIKA_ADDR)
   const { toastSuccess } = useToast()
   const { callWithGasPrice } = useCallWithGasPrice()
   const { fetchWithCatchTxError, loading: pendingTx } = useCatchTxError()
@@ -49,33 +49,32 @@ export const BuyInPoolModal: React.FC<React.PropsWithChildren<BuyInPoolModalProp
   const [minApproveAmount, setMinApproveAmount] = useState<BigNumber>()
 
   const handleSubmit = async () => {
-    const approvedAmount = await usdcTokenContract.allowance(account, idoContract.address)
-    console.log('approvedAmount: ', approvedAmount.toString(), minApproveAmount.toString())
-    if (new BigNumber(approvedAmount.toString()).gte(new BigNumber(minApproveAmount.toString() || 0))) {
-      buyToken()
+    const approvedAmount = await nikaTokenContract.allowance(account, nikaStakingContract.address)
+    if (new BigNumber(approvedAmount.toString()).gte(new BigNumber(minApproveAmount || 0))) {
+      stakeToken()
     } else {
       const receipt = await fetchWithCatchTxError(() => {
-        return callWithGasPrice(usdcTokenContract, 'approve', [idoContract.address, MaxUint256])
+        return callWithGasPrice(nikaTokenContract, 'approve', [nikaStakingContract.address, MaxUint256])
       })
       if (receipt?.status) {
         setApproveTxHash(receipt.transactionHash)
       }
     }
   }
-  const buyToken = async () => {
-    if (!buyAmount || new BigNumber(buyAmount).lt(MIN_AMOUNT)) return
+  const stakeToken = async () => {
+    if (!stakeAmount || new BigNumber(stakeAmount).lt(MIN_AMOUNT)) return
     const receipt = await fetchWithCatchTxError(() => {
-      return idoContract.buyToken(
-        new BigNumber(buyAmount).times(new BigNumber(10).pow(18)).toString(),
+      return nikaStakingContract.deposit(
+        new BigNumber(stakeAmount).times(new BigNumber(10).pow(18)).toString(),
         address || NULL_ADDR,
       )
     })
     if (receipt?.status) {
       onDismiss()
       toastSuccess(
-        `${t('Bought')}!`,
+        `${t('Stake')}!`,
         <ToastDescriptionWithTx txHash={receipt.transactionHash}>
-          {`You have successfully bought ${buyAmount} NIKA`}
+          {`You have successfully staked ${stakeAmount} NIKA`}
         </ToastDescriptionWithTx>,
       )
     }
@@ -84,20 +83,17 @@ export const BuyInPoolModal: React.FC<React.PropsWithChildren<BuyInPoolModalProp
   useWaitForTransaction({
     hash: approveTxHash as any,
     onSuccess: async () => {
-      buyToken()
+      stakeToken()
     },
   })
 
   const usdValueStaked = new BigNumber(minApproveAmount ? minApproveAmount.toString() : 0).dividedBy(
     new BigNumber(10).pow(18),
   )
-  // console.log('minApproveAmount: ', minApproveAmount?.toString())
-  // console.log('usdValueStaked: ', usdValueStaked.toNumber())
-  const formattedUsdValueBought = !usdValueStaked.isNaN() && formatNumber(usdValueStaked.toNumber())
-  // console.log('formattedUsdValueBought: ', formattedUsdValueBought)
+  const formattedUsdValueStaked = !usdValueStaked.isNaN() && formatNumber(usdValueStaked.toNumber())
 
-  const handleBuyInputChange = (input: string) => {
-    setBuyAmount(input)
+  const handleStakeInputChange = (input: string) => {
+    setStakeAmount(input)
   }
 
   const handleAddressChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -108,44 +104,43 @@ export const BuyInPoolModal: React.FC<React.PropsWithChildren<BuyInPoolModalProp
 
   useEffect(() => {
     const updateData = async () => {
-      const _buyAmount = new BigNumber(buyAmount || 0)
-      const isValid = _buyAmount.gte(MIN_AMOUNT)
-      // console.log('fbjdsk: ', _buyAmount.times(new BigNumber(10).pow(18)).toString())
-      const minAmount = await oracleContract.consult(NIKA_ADDR, _buyAmount.times(new BigNumber(10).pow(18)).toString())
-      // console.log('minAmount: ', new BigNumber(minAmount).dividedBy(new BigNumber(10).pow(18)).toNumber())
-      // console.log('minAmount: ', minAmount.toString())
+      const _stakeAmount = new BigNumber(stakeAmount || 0)
+      const isValid = _stakeAmount.gte(MIN_AMOUNT)
+      const minAmount = await oracleContract.consult(
+        NIKA_ADDR,
+        _stakeAmount.times(new BigNumber(10).pow(18)).toString(),
+      )
       setIsValidAmount(isValid)
       setMinApproveAmount(minAmount)
     }
     updateData()
-  }, [buyAmount])
+  }, [stakeAmount])
 
   return (
     <Modal
       minWidth="346px"
-      title={t('Buy in Pool')}
+      title={t('Stake in Pool')}
       onDismiss={onDismiss}
       headerBackground={getThemeValue(theme, 'colors.gradientCardHeader')}
     >
       <Flex alignItems="center" justifyContent="space-between" mb="8px">
-        <Text bold>{t('Buy')}:</Text>
+        <Text bold>{t('Stake')}:</Text>
         <Flex alignItems="center" minWidth="70px">
-          <Image src={`${imageUrl}${buyingTokenAddress}.png`} width={24} height={24} alt={buyingTokenSymbol} />
+          <Image src={`${imageUrl}${stakingTokenAddress}.png`} width={24} height={24} alt={stakingTokenSymbol} />
           <Text ml="4px" bold>
-            {buyingTokenSymbol}
+            {stakingTokenSymbol}
           </Text>
         </Flex>
       </Flex>
       <BalanceInput
-        value={buyAmount}
-        onUserInput={handleBuyInputChange}
-        currencyValue={`~${formattedUsdValueBought || 0} USDC`}
-        decimals={buyingTokenDecimals}
+        value={stakeAmount}
+        onUserInput={handleStakeInputChange}
+        currencyValue={`~${formattedUsdValueStaked || 0} USDC`}
+        decimals={stakingTokenDecimals}
         isWarning={!isValidAmount}
       />
-
       <Text ml="auto" color="textSubtle" fontSize="12px" mb="8px">
-        {t('Minimum amount of NIKA to buy is 100 tokens')}
+        {t('Minimum amount of NIKA to stake is 100 tokens')}
       </Text>
 
       <Flex alignItems="center" justifyContent="space-between" mb="8px" mt="16px">
@@ -157,7 +152,7 @@ export const BuyInPoolModal: React.FC<React.PropsWithChildren<BuyInPoolModalProp
         isLoading={pendingTx}
         endIcon={pendingTx ? <AutoRenewIcon spin color="currentColor" /> : null}
         onClick={handleSubmit}
-        disabled={!buyAmount || parseFloat(buyAmount) === 0 || !isValidAmount}
+        disabled={!stakeAmount || parseFloat(stakeAmount) === 0 || !isValidAmount}
         mt="24px"
       >
         {pendingTx ? t('Confirming') : t('Confirm')}
