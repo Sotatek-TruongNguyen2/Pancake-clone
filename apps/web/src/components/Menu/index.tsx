@@ -4,6 +4,7 @@ import { Menu as UikitMenu, NextLinkFromReactRouter, footerLinks } from '@pancak
 import { useTranslation, languageList } from '@pancakeswap/localization'
 import useTheme from 'hooks/useTheme'
 import { useCakeBusdPrice } from 'hooks/useBUSDPrice'
+import { NetworkSwitcher } from 'components/NetworkSwitcher'
 import UserMenu from './UserMenu'
 import { useMenuItems } from './hooks/useMenuItems'
 import GlobalSettings from './GlobalSettings'
@@ -38,7 +39,7 @@ const Menu = (props) => {
         rightSide={
           <>
             <GlobalSettings mode={SettingsMode.GLOBAL} />
-            {/* <NetworkSwitcher /> */}
+            <NetworkSwitcher />
             <UserMenu />
           </>
         }

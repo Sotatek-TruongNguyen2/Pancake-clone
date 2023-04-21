@@ -358,7 +358,6 @@ export const fetchCakeFlexibleSideVaultUserData = createAsyncThunk<
   { account: string; chainId?: number }
 >('cakeFlexibleSideVault/fetchUser', async ({ account, chainId }) => {
   const userData = await fetchFlexibleSideVaultUser(account, chainId)
-  console.log('lehman brother:', userData)
   return userData
 })
 

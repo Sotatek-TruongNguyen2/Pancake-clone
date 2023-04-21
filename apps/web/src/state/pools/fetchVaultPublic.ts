@@ -32,7 +32,6 @@ export const fetchPublicVaultData = async (chainId?: number) => {
     const totalSharesAsBigNumber = shares ? new BigNumber(shares.toString()) : BIG_ZERO
     const totalLockedAmountAsBigNumber = totalLockedAmount ? new BigNumber(totalLockedAmount[0].toString()) : BIG_ZERO
     const sharePriceAsBigNumber = sharePrice ? new BigNumber(sharePrice.toString()) : BIG_ZERO
-    console.log('totalSharesAsBigNumber as: ', totalSharesAsBigNumber.toString())
 
     return {
       totalShares: totalSharesAsBigNumber.toJSON(),
@@ -75,15 +74,12 @@ export const fetchPublicFlexibleSideVaultData = async (chainId?: number) => {
     const totalSharesAsBigNumber = shares ? new BigNumber(shares.toString()) : BIG_ZERO
     const sharePriceAsBigNumber = sharePrice ? new BigNumber(sharePrice.toString()) : BIG_ZERO
 
-    console.log('12323123123', totalSharesAsBigNumber.toString(), sharePriceAsBigNumber.toString())
-
     return {
       totalShares: totalSharesAsBigNumber.toJSON(),
       pricePerFullShare: sharePriceAsBigNumber.toJSON(),
       totalCakeInVault: new BigNumber(totalCakeInVault.toString()).toJSON(),
     }
   } catch (error) {
-    console.log('erroasdasdsadkjr: ', error)
     return {
       totalShares: null,
       pricePerFullShare: null,

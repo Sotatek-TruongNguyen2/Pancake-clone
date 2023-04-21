@@ -5,32 +5,18 @@ import ConnectWalletButton from 'components/ConnectWalletButton'
 import { useTranslation } from '@pancakeswap/localization'
 import { Token } from '@pancakeswap/sdk'
 import { ActionContainer, ActionContent, ActionTitles } from '../PoolsTable/ActionPanel/styles'
-import { VaultStakeButtonGroup } from '../Vault/VaultStakeButtonGroup'
 
 interface StakeProps {
   isApproved: boolean
   pendingTx: boolean
   stakingToken: Token
-  isFinished: boolean
+  onStake: () => void
+  onApprove: () => void
 }
-const Stake = ({ isApproved, pendingTx, stakingToken, isFinished }: StakeProps) => {
+const Stake = ({ isApproved, pendingTx, stakingToken, onStake, onApprove }: StakeProps) => {
   const { t } = useTranslation()
   const { address: account } = useAccount()
-  const handleApprove = () => {
-    console.log('handleEnablePool')
-  }
 
-  const handleStake = () => {
-    console.log('handleStake')
-  }
-
-  const handleFlexibleClick = () => {
-    console.log('handleFlexibleClick')
-  }
-
-  const handleLockedClick = () => {
-    console.log('handleLockedClick')
-  }
   if (!account) {
     return (
       <ActionContainer>
@@ -55,32 +41,27 @@ const Stake = ({ isApproved, pendingTx, stakingToken, isFinished }: StakeProps) 
           </Text>
         </ActionTitles>
         <ActionContent>
-          <Button width="100%" disabled={pendingTx} onClick={handleApprove} variant="secondary">
+          <Button width="100%" disabled={pendingTx} onClick={onApprove} variant="secondary">
             {t('Enable')}
           </Button>
         </ActionContent>
       </ActionContainer>
     )
   }
-
   return (
     <ActionContainer>
       <ActionTitles>
         <Text fontSize="12px" bold color="secondary" as="span" textTransform="uppercase">
-          {t('Stake')}{' '}
+          {t('Stake')}
         </Text>
         <Text fontSize="12px" bold color="textSubtle" as="span" textTransform="uppercase">
           {stakingToken.symbol}
         </Text>
       </ActionTitles>
       <ActionContent>
-        {true ? (
-          <VaultStakeButtonGroup onFlexibleClick={handleFlexibleClick} onLockedClick={handleLockedClick} />
-        ) : (
-          <Button width="100%" onClick={handleStake} variant="secondary" disabled={isFinished}>
-            {t('Stake')}
-          </Button>
-        )}
+        <Button width="100%" onClick={onStake} variant="secondary" disabled={pendingTx}>
+          {t('Stake')}
+        </Button>
       </ActionContent>
     </ActionContainer>
   )

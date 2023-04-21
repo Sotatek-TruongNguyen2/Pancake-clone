@@ -46,7 +46,6 @@ export async function farmV2FetchFarms({
   totalRegularAllocPoint,
   totalSpecialAllocPoint,
 }: FetchFarmsParams) {
-  console.log('alskdjkjasdkjasd: ', farms)
   const stableFarms = farms.filter(isStableFarm)
   const [stableFarmsResults, poolInfos, lpDataResults] = await Promise.all([
     fetchStableFarmData(stableFarms, chainId, multicallv2),
@@ -104,7 +103,6 @@ export async function farmV2FetchFarms({
   })
 
   const farmsDataWithPrices = getFarmsPrices(farmsData, evmNativeStableLpMap[chainId], 18)
-  console.log('farmsData: ', farmsDataWithPrices)
 
   return farmsDataWithPrices
 }
@@ -370,12 +368,11 @@ const getClassicFarmsDynamicData = ({
   // Raw amount of token in the LP, including those not staked
   const tokenAmountTotal = getTokenAmount(tokenBalanceLP, token0Decimals)
   const quoteTokenAmountTotal = getTokenAmount(quoteTokenBalanceLP, token1Decimals)
-  console.log('quoteTokenAmountTotal: ', tokenAmountTotal.toString(), quoteTokenAmountTotal.toString())
+
   // Ratio in % of LP tokens that are staked in the MC, vs the total number in circulation
   const lpTokenRatio =
     !lpTotalSupply.isZero() && !lpTokenBalanceMC.isZero() ? lpTokenBalanceMC.divUnsafe(lpTotalSupply) : FIXED_ZERO
 
-  console.log('lP ratio: ', lpTokenRatio)
   // // Amount of quoteToken in the LP that are staked in the MC
   const quoteTokenAmountMcFixed = quoteTokenAmountTotal.mulUnsafe(lpTokenRatio)
 

@@ -41,7 +41,7 @@ const AutoAprCell: React.FC<React.PropsWithChildren<AprCellProps>> = ({ pool }) 
   const { isMobile } = useMatchBreakpoints()
 
   const { userData } = useVaultPoolByKey(pool.vaultKey)
-  console.log('VAULT Pools: ', pool.vaultKey, userData)
+  // console.log('VAULT Pools: ', pool.vaultKey, userData)
 
   const vaultPosition = getVaultPosition(userData)
   const isLock = isLocked(userData)
