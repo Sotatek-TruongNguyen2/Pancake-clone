@@ -46,7 +46,7 @@ const TeamPodiumIcon: React.FC<React.PropsWithChildren<PodiumIconProps>> = ({ te
         <Skeleton variant="circle" width="100%" height="100%" />
       ) : (
         <Sticker backgroundColor={teamData[teamId].stickerCol} borderColor={teamData[teamId].stickerCol}>
-          <Image src={`/images/teams/${teamData[teamId].imgSrc}`} width={imageSize} height={imageSize} />
+          <Image src="" width={imageSize} height={imageSize} />
         </Sticker>
       )}
     </Wrapper>

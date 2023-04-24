@@ -44,7 +44,7 @@ const Team: React.FC<React.PropsWithChildren> = () => {
                   name="teams-selection"
                   value={team.id}
                   isChecked={currentTeamId === team.id}
-                  image={`/images/teams/${team.images.md}`}
+                  image=""
                   onChange={handleTeamSelection}
                   disabled={!team.isJoinable}
                 >

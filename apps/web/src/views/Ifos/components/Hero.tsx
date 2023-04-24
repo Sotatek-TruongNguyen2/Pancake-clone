@@ -4,7 +4,7 @@ import { Box, Button, Container, Flex, Heading, Text, useMatchBreakpoints } from
 import { useRouter } from 'next/router'
 
 const StyledHero = styled(Box)`
-  background-image: url('/images/ifos/assets/ifo-banner-${({ theme }) => (theme.isDark ? 'dark' : 'light')}.png');
+  // background-image: url('/images/ifos/assets/ifo-banner-${({ theme }) => (theme.isDark ? 'dark' : 'light')}.png');
   background-position: top, center;
   background-repeat: no-repeat;
   background-size: auto 100%;

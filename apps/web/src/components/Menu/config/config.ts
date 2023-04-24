@@ -56,7 +56,7 @@ const config: (
           label: t('Limit'),
           // href: '/limit-orders',
           supportChainIds: SUPPORT_ONLY_BSC,
-          image: '/images/decorations/3d-coin.png',
+          image: '',
         },
         {
           label: t('Liquidity'),
@@ -88,7 +88,7 @@ const config: (
       href: '/farms',
       icon: EarnIcon,
       fillIcon: EarnFillIcon,
-      image: '/images/decorations/pe2.png',
+      image: '',
       items: [
         {
           label: t('Farms'),
@@ -111,23 +111,23 @@ const config: (
         {
           label: t('Trading Competition'),
           // href: '/competition',
-          image: '/images/decorations/tc.png',
+          image: '',
           hideSubNav: true,
         },
         {
           label: t('Prediction (BETA)'),
           // href: '/prediction',
-          image: '/images/decorations/prediction.png',
+          image: '',
         },
         {
           label: t('Lottery'),
           // href: '/lottery',
-          image: '/images/decorations/lottery.png',
+          image: '',
         },
         {
           label: t('Pottery (BETA)'),
           // href: '/pottery',
-          image: '/images/decorations/lottery.png',
+          image: '',
         },
       ],
     },
@@ -137,7 +137,7 @@ const config: (
       icon: NftIcon,
       fillIcon: NftFillIcon,
       supportChainIds: SUPPORT_ONLY_BSC,
-      image: '/images/decorations/nft.png',
+      image: '',
       items: [
         {
           label: t('Overview'),
@@ -167,13 +167,13 @@ const config: (
           label: t('IFO'),
           // href: '/ifo',
           supportChainIds: SUPPORT_ONLY_BSC,
-          image: '/images/ifos/ifo-bunny.png',
+          image: '',
         },
         {
           label: t('Voting'),
           // href: '/voting',
           supportChainIds: SUPPORT_ONLY_BSC,
-          image: '/images/voting/voting-bunny.png',
+          image: '',
         },
         {
           type: DropdownMenuItemType.DIVIDER,
@@ -182,7 +182,7 @@ const config: (
           label: t('Leaderboard'),
           // href: '/teams',
           supportChainIds: SUPPORT_ONLY_BSC,
-          image: '/images/decorations/leaderboard.png',
+          image: '',
         },
         {
           type: DropdownMenuItemType.DIVIDER,

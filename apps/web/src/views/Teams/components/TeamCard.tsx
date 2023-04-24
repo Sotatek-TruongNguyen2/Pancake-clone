@@ -81,9 +81,9 @@ const TeamCard: React.FC<React.PropsWithChildren<TeamCardProps>> = ({ id }) => {
   return (
     <Wrapper>
       <StyledCard>
-        <StyledCardHeader bg={`/images/teams/${team.background}`}>
+        <StyledCardHeader bg="">
           <AvatarWrap>
-            <Avatar src={`/images/teams/${team.images.md}`} alt="team avatar" />
+            <Avatar src="" alt="team avatar" />
           </AvatarWrap>
           <TeamName color={team.textColor}>{team.name}</TeamName>
           <Text as="p" color={team.textColor}>
