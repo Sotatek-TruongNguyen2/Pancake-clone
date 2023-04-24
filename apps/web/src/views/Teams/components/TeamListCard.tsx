@@ -90,7 +90,7 @@ const StyledTeamCard = styled(Card)`
 
 const TeamCard: React.FC<React.PropsWithChildren<TeamCardProps>> = ({ rank, team }) => {
   const { t } = useTranslation()
-  const avatar = <Avatar src={`/images/teams/${team.images.md}`} alt="team avatar" />
+  const avatar = <Avatar src="" alt="team avatar" />
 
   return (
     <StyledTeamCard id={`team-${team.id}`}>

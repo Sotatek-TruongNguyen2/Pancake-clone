@@ -40,12 +40,12 @@ const eventDescriptionConfigBuilder = ({ t }: EventDescriptionType) => ({
     external: true,
     isDisplayed: false,
   },
-  image: { src: '/images/pancakeSquad/moonBunny/body.png', alt: 'moon bunny' },
+  image: { src: '', alt: 'moon bunny' },
   accessoriesImages: [
-    { src: '/images/pancakeSquad/moonBunny/band.png', alt: 'headband' },
-    { src: '/images/pancakeSquad/moonBunny/cloth.png', alt: 'cloth' },
-    { src: '/images/pancakeSquad/moonBunny/glasses.png', alt: 'glasses' },
-    { src: '/images/pancakeSquad/moonBunny/pancake.png', alt: 'pancake' },
+    { src: '', alt: 'headband' },
+    { src: '', alt: 'cloth' },
+    { src: '', alt: 'glasses' },
+    { src: '', alt: 'pancake' },
   ],
 })
 

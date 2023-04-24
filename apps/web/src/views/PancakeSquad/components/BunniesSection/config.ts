@@ -15,7 +15,7 @@ const bunniesConfig = (t: ContextApi['t']) => {
       to: '/nfts',
       text: t('View in Market'),
     },
-    images: { basePath: '/images/pancakeSquad/bunnies/bunny', alt: 'bunny nft' },
+    images: { basePath: '', alt: 'bunny nft' },
   }
 }
 
