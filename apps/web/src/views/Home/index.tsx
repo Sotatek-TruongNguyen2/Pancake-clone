@@ -55,6 +55,7 @@ const ChainList = styled.div`
 const ChainItemWrapper = styled.div`
   display: flex;
   flex-direction: column;
+  margin-left: 130px;
 `
 
 const TokenList = styled.div`
@@ -89,6 +90,40 @@ const TrendingSales = styled.div`
   -moz-animation: ${marquee} 20s linear infinite;
   -o-animation: ${marquee} 20s linear infinite;
   animation: ${marquee} 20s linear infinite;
+  animation-delay: 0.5s;
+
+  &:hover {
+    -webkit-animation-play-state: paused;
+    -moz-animation-play-state: paused;
+    -o-animation-play-state: paused;
+    animation-play-state: paused;
+  }
+`
+
+const marqueeRevert = keyframes`
+  0% {
+    -webkit-transform: translate3d(-50%, 0, 0);
+    -moz-transform: translate3d(-50%, 0, 0);
+    -o-transform: translate3d(-50%, 0, 0);
+    transform: translate3d(-50%, 0, 0);
+  }
+  100% {
+    -webkit-transform: translate3d(0, 0, 0);
+    -moz-transform: translate3d(0, 0, 0);
+    -o-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+  }
+`
+
+const TrendingSalesRevert = styled.div`
+  padding-bottom: 10px;
+  display: inline-block;
+  white-space: nowrap;
+  overflow: hidden;
+  -webkit-animation: ${marqueeRevert} 20s linear infinite;
+  -moz-animation: ${marqueeRevert} 20s linear infinite;
+  -o-animation: ${marqueeRevert} 20s linear infinite;
+  animation: ${marqueeRevert} 20s linear infinite;
   animation-delay: 0.5s;
 
   &:hover {
@@ -248,26 +283,37 @@ const Home: React.FC<React.PropsWithChildren> = () => {
         )}
         {/* <MultipleBanner /> */}
         <Hero />
-        <ChainList>
-          {chainList.map(({ icon, link, label }) => (
-            <Link href={link} style={{ textDecoration: 'none' }}>
-              <ChainItemWrapper>
-                <Image src={icon} priority width={55} height={55} />
-                <Text
-                  display="inline"
-                  textAlign="center"
-                  color="textSubtle"
-                  mb="20px"
-                  mt="30px"
-                  fontWeight={700}
-                  textTransform="uppercase"
-                >
-                  {label}
-                </Text>
-              </ChainItemWrapper>
-            </Link>
-          ))}
-        </ChainList>
+
+        <div style={{ overflow: 'hidden', marginTop: '60px' }}>
+          <TrendingSalesRevert>
+            {[1, 2, 3, 4].map(() => (
+              <TrendingSalesItems>
+                <div>
+                  <ChainList>
+                    {chainList.map(({ icon, link, label }) => (
+                      <Link href={link} style={{ textDecoration: 'none' }}>
+                        <ChainItemWrapper>
+                          <Image src={icon} priority width={55} height={55} />
+                          <Text
+                            display="inline"
+                            textAlign="center"
+                            color="textSubtle"
+                            mb="20px"
+                            mt="30px"
+                            fontWeight={700}
+                            textTransform="uppercase"
+                          >
+                            {label}
+                          </Text>
+                        </ChainItemWrapper>
+                      </Link>
+                    ))}
+                  </ChainList>
+                </div>
+              </TrendingSalesItems>
+            ))}
+          </TrendingSalesRevert>
+        </div>
       </StyledHeroSection>
 
       <PageSection index={2} hasCurvedDivider={false} background={theme.colors.background}>
@@ -318,7 +364,8 @@ const Home: React.FC<React.PropsWithChildren> = () => {
 
       <PageSection
         innerProps={{ style: HomeSectionContainerStyles }}
-        background="linear-gradient(180deg, #7645D9 0%, #5121B1 100%)"
+        // background="linear-gradient(180deg, #7645D9 0%, #5121B1 100%)"
+        background={theme.isDark ? 'linear-gradient(180deg, #333333 0%, #434343 100%)' : '#D7CAEC'}
         index={2}
         hasCurvedDivider={false}
       >

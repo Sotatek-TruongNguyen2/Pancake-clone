@@ -132,13 +132,12 @@ const NoHatBunny = ({ isLive, isCurrent }: { isLive?: boolean; isCurrent?: boole
   if (isSmallerThanTablet && isLive) return null
   return (
     <StyledNoHatBunny $isLive={isLive} $isCurrent={isCurrent}>
-      <img
-        // src={`/images/ifos/assets/bunnypop-${!isSmallerThanTablet ? 'right' : 'left'}.png`}
-        src=""
+      {/* <img
+        src={`/images/ifos/assets/bunnypop-${!isSmallerThanTablet ? 'right' : 'left'}.png`}
         width={123}
         height={162}
         alt="bunny"
-      />
+      /> */}
     </StyledNoHatBunny>
   )
 }

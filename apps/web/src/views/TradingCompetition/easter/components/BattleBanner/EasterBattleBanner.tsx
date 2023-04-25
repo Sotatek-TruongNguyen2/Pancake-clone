@@ -44,7 +44,7 @@ const EasterBattleBanner = () => {
   return (
     <Flex flexDirection="column">
       <ImageWrapper>
-        <Image src={EasterAllBunniesImage} alt="all the bunnies" width={1208} height={659} />
+        <Image src={EasterAllBunniesImage} alt="all the" width={1208} height={659} />
       </ImageWrapper>
       <StyledText mb="16px" color="textSubtle" bold>
         {t('April')} 07—14, 2021

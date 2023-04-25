@@ -22,7 +22,7 @@ const BunniesSection = () => {
         alignItems={['flex-end', null, 'center', null]}
         flexDirection={['column', null, null, 'row']}
       >
-        <BunniesImages basePath={images.basePath} altText={images.alt} />
+        {/* <BunniesImages basePath={images.basePath} altText={images.alt} /> */}
         <StyledTextContainer
           flexDirection="column"
           alignSelf={['flex-start', null, null, 'center']}

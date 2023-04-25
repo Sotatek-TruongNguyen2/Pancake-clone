@@ -63,7 +63,7 @@ const DummyImg = styled.img<{ maxHeight: string }>`
   visibility: hidden;
 `
 
-const Sun = styled.div`
+const Sun = styled.div<{ theme }>`
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
@@ -73,7 +73,8 @@ const Sun = styled.div`
   border-radius: 50%;
   background-image: url('/images/nika-token.png');
   background-size: contain;
-  box-shadow: 0 0 60px white, 0 0 98px white;
+  box-shadow: ${({ theme }) =>
+    theme.isDark ? '0 0 60px #cfca86, 0 0 98px #cfca86' : '0 0 60px #b286db, 0 0 98px #b286db'};
 `
 const ImageWrapper0 = styled(Box)`
   height: 100%;
@@ -341,7 +342,7 @@ const Meteor0 = styled.section`
   background: #ffffff;
   border-radius: 50%;
   // box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.1), 0 0 0 8px rgba(255, 255, 255, 0.1), 0 0 20px rgba(255, 255, 255, 1);
-  animation: ${animate0} 1s linear;
+  animation: ${animate0} 1s linear infinite;
   &:before {
     content: '';
     position: absolute;
@@ -349,7 +350,7 @@ const Meteor0 = styled.section`
     transform: translateY(-50%);
     height: 2px;
     background: linear-gradient(90deg, #ffffff, transparent);
-    animation: ${hidden} 1s linear;
+    animation: ${hidden} 1s linear infinite;
   }
 `
 const Meteor1 = styled.section`
@@ -358,7 +359,7 @@ const Meteor1 = styled.section`
   height: 1px;
   background: #ffffff;
   border-radius: 50%;
-  animation: ${animate1} 1s linear;
+  animation: ${animate1} 1s linear infinite;
   &:before {
     content: '';
     position: absolute;
@@ -366,7 +367,7 @@ const Meteor1 = styled.section`
     transform: translateY(-50%);
     height: 3px;
     background: linear-gradient(90deg, #ffffff, transparent);
-    animation: ${hidden} 1s linear;
+    animation: ${hidden} 1s linear infinite;
   }
 `
 const Meteor2 = styled.section`
@@ -375,7 +376,7 @@ const Meteor2 = styled.section`
   height: 1px;
   background: #ffffff;
   border-radius: 50%;
-  animation: ${animate2} 1s linear;
+  animation: ${animate2} 1s linear infinite;
   &:before {
     content: '';
     position: absolute;
@@ -383,7 +384,7 @@ const Meteor2 = styled.section`
     transform: translateY(-50%);
     height: 3px;
     background: linear-gradient(90deg, #ffffff, transparent);
-    animation: ${hidden} 1s linear;
+    animation: ${hidden} 1s linear infinite;
   }
 `
 const Meteor3 = styled.section`
@@ -392,7 +393,7 @@ const Meteor3 = styled.section`
   height: 1px;
   background: #ffffff;
   border-radius: 50%;
-  animation: ${animate3} 1s linear;
+  animation: ${animate3} 1s linear infinite;
   &:before {
     content: '';
     position: absolute;
@@ -400,7 +401,7 @@ const Meteor3 = styled.section`
     transform: translateY(-50%);
     height: 2px;
     background: linear-gradient(90deg, #ffffff, transparent);
-    animation: ${hidden} 1s linear;
+    animation: ${hidden} 1s linear infinite;
   }
 `
 const Meteor4 = styled.section`
@@ -409,7 +410,7 @@ const Meteor4 = styled.section`
   height: 1px;
   background: #ffffff;
   border-radius: 50%;
-  animation: ${animate4} 1s linear;
+  animation: ${animate4} 1s linear infinite;
   &:before {
     content: '';
     position: absolute;
@@ -417,7 +418,7 @@ const Meteor4 = styled.section`
     transform: translateY(-50%);
     height: 2px;
     background: linear-gradient(90deg, #ffffff, transparent);
-    animation: ${hidden} 1s linear;
+    animation: ${hidden} 1s linear infinite;
   }
 `
 const Meteor5 = styled.section`
@@ -426,7 +427,7 @@ const Meteor5 = styled.section`
   height: 1px;
   background: #ffffff;
   border-radius: 50%;
-  animation: ${animate5} 1s linear;
+  animation: ${animate5} 1s linear infinite;
   &:before {
     content: '';
     position: absolute;
@@ -434,7 +435,7 @@ const Meteor5 = styled.section`
     transform: translateY(-50%);
     height: 3px;
     background: linear-gradient(90deg, #ffffff, transparent);
-    animation: ${hidden} 1s linear;
+    animation: ${hidden} 1s linear infinite;
   }
 `
 const Meteor6 = styled.section`
@@ -443,7 +444,7 @@ const Meteor6 = styled.section`
   height: 1px;
   background: #ffffff;
   border-radius: 50%;
-  animation: ${animate6} 1s linear;
+  animation: ${animate6} 1s linear infinite;
   &:before {
     content: '';
     position: absolute;
@@ -451,7 +452,7 @@ const Meteor6 = styled.section`
     transform: translateY(-50%);
     height: 3px;
     background: linear-gradient(90deg, #ffffff, transparent);
-    animation: ${hidden} 1s linear;
+    animation: ${hidden} 1s linear infinite;
   }
 `
 const Meteor7 = styled.section`
@@ -460,7 +461,7 @@ const Meteor7 = styled.section`
   height: 1px;
   background: #ffffff;
   border-radius: 50%;
-  animation: ${animate7} 1s linear;
+  animation: ${animate7} 1s linear infinite;
   &:before {
     content: '';
     position: absolute;
@@ -468,7 +469,7 @@ const Meteor7 = styled.section`
     transform: translateY(-50%);
     height: 2px;
     background: linear-gradient(90deg, #ffffff, transparent);
-    animation: ${hidden} 1s linear;
+    animation: ${hidden} 1s linear infinite;
   }
 `
 enum Resolution {

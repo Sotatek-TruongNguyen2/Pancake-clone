@@ -5,6 +5,7 @@ import SocialLinks from "./Components/SocialLinks";
 
 export const StyledFooter = styled(Flex)`
   background: ${darkColors.backgroundAlt};
+  padding-bottom: 100px;
 `;
 
 export const StyledList = styled.ul`
@@ -18,7 +19,7 @@ export const StyledList = styled.ul`
 
 export const StyledListItem = styled.li`
   font-size: 16px;
-  margin-bottom: 8px;
+  margin-bottom: 18px;
   text-transform: capitalize;
 
   &:first-child {

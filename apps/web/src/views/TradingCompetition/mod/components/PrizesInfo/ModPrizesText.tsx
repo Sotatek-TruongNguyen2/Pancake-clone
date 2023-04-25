@@ -37,7 +37,7 @@ const ModPrizesText = () => {
       <Text>A. {t('300 newly-designed PancakeSwap NFTs to the Top 100 Traders in each team.')}</Text>
       <Text>B. {t('100 Mines of Dalarnia NFTs to the Top 100 Traders ranked by the $DAR Trading Volume.')}</Text>
       <ImageWrapper>
-        <Image src={FlipperBunny} alt="Flipper bunny" width={270} height={293} />
+        <Image src={FlipperBunny} alt="Flipper" width={270} height={293} />
       </ImageWrapper>
     </StyledFlex>
   )

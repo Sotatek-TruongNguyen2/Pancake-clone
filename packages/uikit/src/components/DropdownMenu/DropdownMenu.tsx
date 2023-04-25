@@ -122,7 +122,7 @@ const DropdownMenu: React.FC<React.PropsWithChildren<DropdownMenuProps>> = ({
                         $isActive={isActive}
                         disabled={disabled || isDisabled}
                         as={linkComponent}
-                        href={href}
+                        href={href || "/"}
                         onClick={() => {
                           setIsOpen(false);
                         }}

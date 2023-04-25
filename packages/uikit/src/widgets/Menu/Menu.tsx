@@ -165,11 +165,11 @@ const Menu: React.FC<React.PropsWithChildren<NavProps>> = ({
                     hideLanguage
                   />
                 </Box>
-                <NotificationDot show>
+                {/* <NotificationDot show>
                   <IconButton variant="text" scale="sm">
                     <BellIcon height={24} width={24} stroke="#280D5F99" />
                   </IconButton>
-                </NotificationDot>
+                </NotificationDot> */}
                 {rightSide}
               </Flex>
             </StyledNav>

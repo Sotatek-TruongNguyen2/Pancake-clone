@@ -34,7 +34,7 @@ const FanTokenPrizesText = () => {
         )}
       </Text>
       <ImageWrapper>
-        <Image src={FanTokenFlipperBunny} alt="Flipper bunny" width={499} height={400} />
+        <Image src={FanTokenFlipperBunny} alt="Flipper" width={499} height={400} />
       </ImageWrapper>
     </StyledFlex>
   )

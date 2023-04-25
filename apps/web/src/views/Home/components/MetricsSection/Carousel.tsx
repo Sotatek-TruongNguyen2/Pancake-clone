@@ -4,12 +4,12 @@ import 'slick-carousel/slick/slick-theme.css'
 import styled from 'styled-components'
 
 const images = [
-  '/images/farm1.png',
-  '/images/farm2.png',
-  '/images/farm3.png',
-  '/images/farm1.png',
-  '/images/farm2.png',
-  '/images/farm3.png',
+  '/images/farm1.svg',
+  '/images/farm2.svg',
+  '/images/farm3.svg',
+  '/images/farm4.svg',
+  '/images/farm5.svg',
+  '/images/farm6.svg',
 ]
 
 const CardImage = styled('div')<{ url: string }>`

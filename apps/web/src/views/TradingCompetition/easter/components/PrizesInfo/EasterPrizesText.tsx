@@ -34,7 +34,7 @@ const EasterPrizesText = () => {
         )}
       </Text>
       <ImageWrapper>
-        <Image src={EasterFlipperBunny} alt="Flipper bunny" width={499} height={400} />
+        <Image src={EasterFlipperBunny} alt="Flipper" width={499} height={400} />
       </ImageWrapper>
     </StyledFlex>
   )

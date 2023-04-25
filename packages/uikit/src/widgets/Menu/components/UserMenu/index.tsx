@@ -7,11 +7,11 @@ import { UserMenuProps, variants } from "./types";
 import MenuIcon from "./MenuIcon";
 import { UserMenuItem } from "./styles";
 
-export const StyledUserMenu = styled(Flex)`
+export const StyledUserMenu = styled(Flex)<{ isOpen: boolean }>`
   align-items: center;
-  background-color: ${({ theme }) => theme.colors.tertiary};
+  background-color: ${({ isOpen, theme }) => (isOpen ? theme.colors.tertiary : "")};
   border-radius: 16px;
-  box-shadow: inset 0px -2px 0px rgba(0, 0, 0, 0.1);
+  box-shadow: ${({ isOpen }) => (isOpen ? "inset 0px -2px 0px rgba(0, 0, 0, 0.1)" : "")};
   cursor: pointer;
   display: inline-flex;
   height: 32px;
@@ -20,6 +20,8 @@ export const StyledUserMenu = styled(Flex)`
   position: relative;
 
   &:hover {
+    background-color: ${({ theme }) => theme.colors.tertiary};
+    box-shadow: inset 0px -2px 0px rgba(0, 0, 0, 0.1);
     opacity: 0.65;
   }
 `;
@@ -43,7 +45,8 @@ const Menu = styled.div<{ isOpen: boolean }>`
   padding-bottom: 4px;
   padding-top: 4px;
   pointer-events: auto;
-  width: 280px;
+  // width: 280px;
+  width: 320px;
   visibility: visible;
   z-index: 1001;
 
@@ -91,9 +94,9 @@ const UserMenu: React.FC<UserMenuProps> = ({
   }, [isOpen, update, recalculatePopover]);
 
   useEffect(() => {
-    const showDropdownMenu = () => {
-      setIsOpen(true);
-    };
+    // const showDropdownMenu = () => {
+    //   setIsOpen(true);
+    // };
 
     const hideDropdownMenu = (evt: MouseEvent | TouchEvent) => {
       const target = evt.target as Node;
@@ -103,21 +106,25 @@ const UserMenu: React.FC<UserMenuProps> = ({
       }
     };
 
-    targetRef?.addEventListener("mouseenter", showDropdownMenu);
-    targetRef?.addEventListener("mouseleave", hideDropdownMenu);
+    document.addEventListener("mousedown", hideDropdownMenu);
+    // targetRef?.addEventListener("mouseenter", showDropdownMenu);
+    // targetRef?.addEventListener("mouseleave", hideDropdownMenu);
 
     return () => {
-      targetRef?.removeEventListener("mouseenter", showDropdownMenu);
-      targetRef?.removeEventListener("mouseleave", hideDropdownMenu);
+      document.removeEventListener("mousedown", hideDropdownMenu);
+      // targetRef?.removeEventListener("mouseenter", showDropdownMenu);
+      // targetRef?.removeEventListener("mouseleave", hideDropdownMenu);
     };
   }, [targetRef, tooltipRef, setIsOpen]);
 
   return (
     <Flex alignItems="center" height="100%" ref={setTargetRef} {...props}>
       <StyledUserMenu
-        onTouchStart={() => {
-          setIsOpen((s) => !s);
-        }}
+        // onTouchStart={() => {
+        //   setIsOpen((s) => !s);
+        // }}
+        onClick={() => setIsOpen(true)}
+        isOpen={isOpen}
       >
         <MenuIcon className={avatarClassName} avatarSrc={avatarSrc} variant={variant} />
         <LabelText title={typeof text === "string" ? text || account : account}>{text || accountEllipsis}</LabelText>

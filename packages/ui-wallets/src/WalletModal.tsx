@@ -95,9 +95,13 @@ const TabContainer = ({ children, docLink, docText }: PropsWithChildren<{ docLin
         }}
         zIndex="modal"
         width="full"
+        overflow="hidden"
+        style={{ height: '510px' }}
       >
-        {index === 0 && children}
-        {index === 1 && <StepIntro docLink={docLink} docText={docText} />}
+        <AtomBox overflow="auto" style={{ maxHeight: '530px' }}>
+          {index === 0 && children}
+          {index === 1 && <StepIntro docLink={docLink} docText={docText} />}
+        </AtomBox>
       </AtomBox>
     </AtomBox>
   )
