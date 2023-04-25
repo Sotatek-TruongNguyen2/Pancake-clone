@@ -61,14 +61,14 @@ const FloatingPancakesWrapper = styled(Container)`
 const topLeftImage = {
   path: '/images/home/flying-pancakes/',
   attributes: [
-    { src: 'AVAX-3D', alt: 'Pancake flying on the top' },
-    { src: 'PHANTOM-3D', alt: 'Pancake flying on the left' },
-    { src: 'CAR-3D', alt: 'Pancake flying on the bottom' },
-    { src: 'POL-3D', alt: 'Pancake flying on the bottom' },
-    { src: 'BNB-3D', alt: 'Pancake flying on the top' },
-    { src: 'CHAINLINK-3D', alt: 'Pancake flying on the right' },
-    { src: 'ETH-3D', alt: 'Pancake flying on the bottom' },
-    { src: 'TEL-3D', alt: 'Pancake flying on the bottom' },
+    { src: 'AVAX-3D', alt: 'Avax' },
+    { src: 'PHANTOM-3D', alt: 'Phantom' },
+    { src: 'CAR-3D', alt: 'Cardano' },
+    { src: 'POL-3D', alt: 'Polygon' },
+    { src: 'BNB-3D', alt: 'Bnb' },
+    { src: 'CHAINLINK-3D', alt: 'ChainLink' },
+    { src: 'ETH-3D', alt: 'Eth' },
+    { src: 'TEL-3D', alt: 'Telcoin' },
   ],
 }
 
@@ -104,7 +104,7 @@ const Footer = () => {
         {/* <Link external href="">
           {t('Learn how to start')}
         </Link> */}
-        <Text>{t('Learn how to start')}</Text>
+        {/* <Text>{t('Learn how to start')}</Text> */}
         {!account && (
           <ConnectWalletButton
             mt="24px"

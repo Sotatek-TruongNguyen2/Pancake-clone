@@ -14,7 +14,7 @@ const farms: SerializedFarmConfig[] = [
   // },
   {
     pid: 1,
-    lpSymbol: 'CAKE-BNB LP',
+    lpSymbol: 'NIKA-BNB LP',
     lpAddress: '0x6de93e48c687924b6f0e5ea44c7d8b08591da4d1',
     token: bscTestnetTokens.cake,
     quoteToken: bscTestnetTokens.wbnb,

@@ -103,7 +103,7 @@ const TeamCard: React.FC<React.PropsWithChildren<TeamCardProps>> = ({ rank, team
         <Body>
           <Info>
             <Flex alignItems="center" mb="16px">
-              <MobileAvatar>{avatar}</MobileAvatar>
+              {/* <MobileAvatar>{avatar}</MobileAvatar> */}
               <TeamName>{team.name}</TeamName>
             </Flex>
             <Text as="p" color="textSubtle" pr="24px" mb="16px">

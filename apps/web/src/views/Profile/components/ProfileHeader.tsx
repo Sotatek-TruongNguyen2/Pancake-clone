@@ -131,7 +131,8 @@ const ProfileHeader: React.FC<React.PropsWithChildren<HeaderProps>> = ({
               }}
             />
           ) : (
-            <AvatarImage src={avatarImage} alt={t('User profile picture')} />
+            // <AvatarImage src={avatarImage} alt={t('User profile picture')} />
+            <></>
           )}
         </>
       )

@@ -143,7 +143,8 @@ const ActionPanel: React.FunctionComponent<React.PropsWithChildren<ActionPanelPr
     chainId,
   })
   const { lpAddress } = farm
-  const bsc = getBlockExploreLink(lpAddress, 'address', chainId)
+  // const bsc = getBlockExploreLink(lpAddress, 'address', chainId)
+  const bsc = ''
   const { stakedBalance, tokenBalance, proxy } = farm.userData
 
   const infoUrl = useMemo(() => {
@@ -188,9 +189,8 @@ const ActionPanel: React.FunctionComponent<React.PropsWithChildren<ActionPanelPr
         </ValueContainer>
         {isActive && (
           <StakeContainer>
-            <StyledLinkExternal href={`/add/${liquidityUrlPathParts}`}>
-              {t('Get %symbol%', { symbol: lpLabel })}
-            </StyledLinkExternal>
+            {/* <StyledLinkExternal href={`/add/${liquidityUrlPathParts}`}> */}
+            <StyledLinkExternal href="">{t('Get %symbol%', { symbol: lpLabel })}</StyledLinkExternal>
           </StakeContainer>
         )}
         <StyledLinkExternal isBscScan href={bsc}>

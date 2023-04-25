@@ -28,7 +28,7 @@ export const footerLinks: FooterLinkType[] = [
         href: "",
       },
       {
-        label: "CAKE",
+        label: "NIKA",
         href: "",
       },
       {

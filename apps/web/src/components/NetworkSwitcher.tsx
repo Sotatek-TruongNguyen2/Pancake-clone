@@ -5,6 +5,7 @@ import {
   ArrowUpIcon,
   Box,
   Button,
+  CheckmarkIcon,
   Flex,
   InfoIcon,
   Text,
@@ -29,22 +30,24 @@ const NetworkSelect = ({ switchNetwork, chainId }) => {
 
   return (
     <>
-      <Box px="16px" py="8px">
+      {/* <Box px="16px" py="8px">
         <Text color="textSubtle">{t('Select a Network')}</Text>
       </Box>
-      <UserMenuDivider />
+      <UserMenuDivider /> */}
       {chains
         .filter((chain) => !chain.testnet || chain.id === chainId)
         .map((chain) => (
           <UserMenuItem
             key={chain.id}
-            style={{ justifyContent: 'flex-start' }}
+            // style={{ justifyContent: 'flex-start' }}
             onClick={() => chain.id !== chainId && switchNetwork(chain.id)}
           >
-            <ChainLogo chainId={chain.id} />
-            <Text color={chain.id === chainId ? 'secondary' : 'text'} bold={chain.id === chainId} pl="12px">
-              {chain.name}
-            </Text>
+            <Flex>
+              <ChainLogo chainId={chain.id} />
+              {/* <Text color={chain.id === chainId ? 'secondary' : 'text'} bold={chain.id === chainId} pl="12px"> */}
+              <Text pl="12px">{chain.name}</Text>
+            </Flex>
+            {chain.id === chainId && <CheckmarkIcon color="text" />}
           </UserMenuItem>
         ))}
     </>
@@ -139,7 +142,7 @@ export const NetworkSwitcher = () => {
         placement="bottom"
         variant={isLoading ? 'pending' : isWrongNetwork ? 'danger' : 'default'}
         avatarSrc={`/images/chains/${chainId}.png`}
-        disabled
+        disabled={cannotChangeNetwork}
         text={
           isLoading ? (
             t('Requesting')
@@ -147,7 +150,7 @@ export const NetworkSwitcher = () => {
             t('Network')
           ) : foundChain ? (
             <>
-              <Box display={['none', null, null, null, null, 'block']}>{foundChain.name}</Box>
+              {/* <Box display={['none', null, null, null, null, 'block']}>{foundChain.name}</Box> */}
               <Box display={['block', null, null, null, null, 'none']}>{symbol}</Box>
             </>
           ) : (

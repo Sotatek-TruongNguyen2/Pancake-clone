@@ -1,24 +1,6 @@
 import React from 'react'
 import styled, { keyframes } from 'styled-components'
 
-const correct = keyframes`
-0% {
-  transform: rotateZ(360deg);
-}
-
-100% {
-  transform: rotateZ(0deg);
-}
-`
-const rotate = keyframes`
-0%{
-  transform: rotateZ(0deg) ;
-}
-100%{
-  transform: rotateZ(360deg)  ;
-}
-`
-
 const correct2 = keyframes`
 0% {
   transform: rotateZ(360deg);

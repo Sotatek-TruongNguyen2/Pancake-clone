@@ -24,12 +24,12 @@ const FinishedCompetitions: React.FC<React.PropsWithChildren> = () => {
           background="linear-gradient(#7645d9 0%, #452a7a 100%)"
           to="/competition/finished/fantoken"
         />
-        <FinishedCompetitionBanner
+        {/* <FinishedCompetitionBanner
           title={t('Easter Trading Competition')}
           imgSrc=""
           background="radial-gradient(77.72% 89.66% at 79.76% 65.74%, #FEDC90 0%, #FFA514 74.5%)"
           to="/competition/finished/easter"
-        />
+        /> */}
       </Flex>
     </>
   )

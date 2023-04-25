@@ -185,7 +185,7 @@ const ModBattleBanner = () => {
         <BgShine />
 
         <ImageWrapper>
-          <Image src={AllBunniesImage} alt="all the bunnies" width={523} height={395} />
+          <Image src={AllBunniesImage} alt="all the" width={523} height={395} />
         </ImageWrapper>
         <StyledText
           mb="16px"

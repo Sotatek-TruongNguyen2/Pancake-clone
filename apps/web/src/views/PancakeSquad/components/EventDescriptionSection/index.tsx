@@ -66,9 +66,9 @@ const EventDescriptionSection = () => {
             <img src={image.src} alt={image.alt} />
           </Box>
           <StyledBunnyAccessoriesContainer>
-            {accessoriesImages.map((accessory) => (
+            {/* {accessoriesImages.map((accessory) => (
               <StyledBunnyAccessory key={accessory.alt} src={accessory.src} alt={accessory.alt} />
-            ))}
+            ))} */}
           </StyledBunnyAccessoriesContainer>
         </Flex>
       </LandingBodyWrapper>

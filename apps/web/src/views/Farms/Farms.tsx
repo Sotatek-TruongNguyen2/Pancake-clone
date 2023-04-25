@@ -370,14 +370,14 @@ const Farms: React.FC<React.PropsWithChildren> = ({ children }) => {
             <FarmH2 scale="lg" color="text">
               {t('Stake LP tokens to earn.')}
             </FarmH2>
-            <NextLinkFromReactRouter to="/farms/auction" prefetch={false}>
-              <Button p="0" variant="text">
-                <Text color="primary" bold fontSize="16px" mr="4px">
-                  {t('Community Auctions')}
-                </Text>
-                <ArrowForwardIcon color="primary" />
-              </Button>
-            </NextLinkFromReactRouter>
+            {/* <NextLinkFromReactRouter to="/farms/auction" prefetch={false}> */}
+            <Button p="0" variant="text">
+              <Text color="primary" bold fontSize="16px" mr="4px">
+                {t('Community Auctions')}
+              </Text>
+              <ArrowForwardIcon color="primary" />
+            </Button>
+            {/* </NextLinkFromReactRouter> */}
           </Box>
           {/* {chainId === ChainId.BSC && ( */}
           <Box>
@@ -456,7 +456,7 @@ const Farms: React.FC<React.PropsWithChildren> = ({ children }) => {
             </LabelWrapper>
           </FilterContainer>
         </ControlContainer>
-        {isInactive && (
+        {/* {isInactive && (
           <FinishedTextContainer>
             <Text fontSize={['16px', null, '20px']} color="failure" pr="4px">
               {t("Don't see the farm you are staking?")}
@@ -478,7 +478,7 @@ const Farms: React.FC<React.PropsWithChildren> = ({ children }) => {
               </FinishedTextLink>
             </Flex>
           </FinishedTextContainer>
-        )}
+        )} */}
         {viewMode === ViewMode.TABLE ? (
           <Table farms={chosenFarmsMemoized} cakePrice={cakePrice} userDataReady={userDataReady} />
         ) : (
@@ -490,7 +490,7 @@ const Farms: React.FC<React.PropsWithChildren> = ({ children }) => {
           </Flex>
         )}
         {poolLength && <div ref={observerRef} />}
-        <StyledImage src="" alt="Pancake illustration" width={120} height={103} />
+        {/* <StyledImage src="" alt="Pancake illustration" width={120} height={103} /> */}
       </Page>
     </FarmsContext.Provider>
   )

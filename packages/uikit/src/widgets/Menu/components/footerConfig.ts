@@ -3,19 +3,6 @@ import { FooterLinkType } from "../../../components/Footer/types";
 
 export const footerLinks: (t: ContextApi["t"]) => FooterLinkType[] = (t) => [
   {
-    label: "About",
-    items: [
-      {
-        label: "Company",
-        href: "",
-      },
-      {
-        label: "Docs",
-        href: "",
-      },
-    ],
-  },
-  {
     label: "Community",
     items: [
       {
@@ -41,6 +28,10 @@ export const footerLinks: (t: ContextApi["t"]) => FooterLinkType[] = (t) => [
     items: [
       {
         label: "Github",
+        href: "",
+      },
+      {
+        label: "Docs",
         href: "",
       },
     ],
