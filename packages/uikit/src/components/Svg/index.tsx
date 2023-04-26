@@ -95,7 +95,6 @@ export { default as MoreVerticalIcon } from "./Icons/MoreVertical";
 export { default as NftFilledIcon } from "./Icons/NftFilled";
 export { default as NftFillIcon } from "./Icons/NftFill";
 export { default as NftIcon } from "./Icons/Nft";
-export { default as NoProfileAvatarIcon } from "./Icons/NoProfileAvatar";
 export { default as OpenNewIcon } from "./Icons/OpenNew";
 export { default as OperaIcon } from "./Icons/Opera";
 export { default as PancakeRoundIcon } from "./Icons/PancakeRound";

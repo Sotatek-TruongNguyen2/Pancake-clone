@@ -77,6 +77,11 @@ import { getContract } from 'utils'
 
 import { IPancakePair } from 'config/abi/types/IPancakePair'
 import { VaultKey } from 'state/types'
+import {
+  NIKA_IDO_POOL_CONTRACT_ADDR,
+  NIKA_STAKING_CONTRACT_ADDR,
+  ORACLE_CONTRACT_ADDR,
+} from 'config/constants/nikaContract'
 import { useActiveChainId } from './useActiveChainId'
 
 /**
@@ -350,19 +355,19 @@ export const usePotterytVaultContract = (address) => {
 
 export const useNikaStakingContract = () => {
   const { data: signer } = useSigner()
-  const address = process.env.NEXT_PUBLIC_NIKA_STAKING_CONTRACT || '0xEC3678A05633eEAC73668c32b4c495A343574756'
+  const address = process.env.NEXT_PUBLIC_NIKA_STAKING_CONTRACT || NIKA_STAKING_CONTRACT_ADDR
   return useMemo(() => getNikaStakingContract(address, signer), [address, signer])
 }
 
 export const useNikaIdoPoolContract = () => {
   const { data: signer } = useSigner()
-  const address = process.env.NEXT_PUBLIC_NIKA_IDO_POOL_CONTRACT || '0x7C7f643D15D1EC8a55a350031E3e33803b10d474'
+  const address = process.env.NEXT_PUBLIC_NIKA_IDO_POOL_CONTRACT || NIKA_IDO_POOL_CONTRACT_ADDR
   return useMemo(() => getNikaIdoPoolContract(address, signer), [address, signer])
 }
 
 export const useOracleContract = () => {
   const { data: signer } = useSigner()
-  const address = process.env.NEXT_PUBLIC_ORACLE_CONTRACT || '0x75a58B7949e86a30b225dC190C87806Bb0De8B62'
+  const address = process.env.NEXT_PUBLIC_ORACLE_CONTRACT || ORACLE_CONTRACT_ADDR
   return useMemo(() => getOracleContract(address, signer), [address, signer])
 }
 

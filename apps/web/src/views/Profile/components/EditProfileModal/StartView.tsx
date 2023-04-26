@@ -12,7 +12,6 @@ import useGetProfileCosts from 'views/Profile/hooks/useGetProfileCosts'
 import { FetchStatus } from 'config/constants/types'
 import { requiresApproval } from 'utils/requiresApproval'
 import { useProfile } from 'state/profile/hooks'
-import ProfileAvatarWithTeam from 'components/ProfileAvatarWithTeam'
 import ApproveConfirmButtons from 'components/ApproveConfirmButtons'
 import { UseEditProfileResponse } from './reducer'
 
@@ -30,16 +29,6 @@ const DangerOutline = styled(Button).attrs({ variant: 'secondary' })`
   &:hover:not(:disabled):not(.button--disabled):not(:active) {
     border-color: ${({ theme }) => theme.colors.failure};
     opacity: 0.8;
-  }
-`
-
-const AvatarWrapper = styled.div`
-  height: 64px;
-  width: 64px;
-
-  ${({ theme }) => theme.mediaQueries.sm} {
-    height: 128px;
-    width: 128px;
   }
 `
 
@@ -91,9 +80,6 @@ const StartPage: React.FC<React.PropsWithChildren<StartPageProps>> = ({ goToAppr
 
   return (
     <Flex alignItems="center" justifyContent="center" flexDirection="column">
-      <AvatarWrapper>
-        <ProfileAvatarWithTeam profile={profile} />
-      </AvatarWrapper>
       {profile.isActive ? (
         <>
           <Message variant="warning" my="16px">

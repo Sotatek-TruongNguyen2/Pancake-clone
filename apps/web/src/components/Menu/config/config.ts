@@ -99,37 +99,37 @@ const config: (
         },
       ].map((item) => addMenuItemSupported(item, chainId)),
     },
-    {
-      label: t('Win'),
-      // href: '/prediction',
-      href: null,
-      icon: TrophyIcon,
-      fillIcon: TrophyFillIcon,
-      supportChainIds: SUPPORT_ONLY_BSC,
-      items: [
-        {
-          label: t('Trading Competition'),
-          // href: '/competition',
-          href: null,
-          hideSubNav: true,
-        },
-        {
-          label: t('Prediction (BETA)'),
-          // href: '/prediction',
-          href: null,
-        },
-        {
-          label: t('Lottery'),
-          // href: '/lottery',
-          href: null,
-        },
-        {
-          label: t('Pottery (BETA)'),
-          // href: '/pottery',
-          href: null,
-        },
-      ],
-    },
+    // {
+    //   label: t('Win'),
+    //   // href: '/prediction',
+    //   href: null,
+    //   icon: TrophyIcon,
+    //   fillIcon: TrophyFillIcon,
+    //   supportChainIds: SUPPORT_ONLY_BSC,
+    //   items: [
+    //     {
+    //       label: t('Trading Competition'),
+    //       // href: '/competition',
+    //       href: null,
+    //       hideSubNav: true,
+    //     },
+    //     {
+    //       label: t('Prediction (BETA)'),
+    //       // href: '/prediction',
+    //       href: null,
+    //     },
+    //     {
+    //       label: t('Lottery'),
+    //       // href: '/lottery',
+    //       href: null,
+    //     },
+    //     {
+    //       label: t('Pottery (BETA)'),
+    //       // href: '/pottery',
+    //       href: null,
+    //     },
+    //   ],
+    // },
     {
       label: t('NFT'),
       // href: `${nftsBaseUrl}`,
@@ -200,6 +200,27 @@ const config: (
         //   // href: 'https://docs.pancakeswap.finance',
         //   type: DropdownMenuItemType.EXTERNAL_LINK,
         // },
+        {
+          label: t('Trading Competition'),
+          // href: '/competition',
+          href: null,
+          hideSubNav: true,
+        },
+        {
+          label: t('Prediction (BETA)'),
+          // href: '/prediction',
+          href: null,
+        },
+        {
+          label: t('Lottery'),
+          // href: '/lottery',
+          href: null,
+        },
+        {
+          label: t('Pottery (BETA)'),
+          // href: '/pottery',
+          href: null,
+        },
       ].map((item) => addMenuItemSupported(item, chainId)),
     },
   ].map((item) => addMenuItemSupported(item, chainId))

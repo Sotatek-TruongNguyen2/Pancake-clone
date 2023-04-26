@@ -17,7 +17,7 @@ const Status = ({ status }: StatusProps) => {
         <Text fontSize="12px" color="textSubtle" textAlign="left">
           {t('Status')}
         </Text>
-        <Text color={status.toLocaleLowerCase() === 'active' ? 'primary' : ''}>{status}</Text>
+        <Text color={status.toLocaleLowerCase() === 'active' ? 'primary' : 'text'}>{status}</Text>
       </Pool.CellContent>
     </StyledCell>
   )

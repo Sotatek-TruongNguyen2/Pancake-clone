@@ -1,6 +1,6 @@
 import { BinanceWalletConnector } from '@pancakeswap/wagmi/connectors/binanceWallet'
 import { BloctoConnector } from '@pancakeswap/wagmi/connectors/blocto'
-import { bsc, bscTestnet, mainnet } from 'wagmi/chains'
+import { arbitrum, bsc, bscTestnet, mainnet, optimism, polygon } from 'wagmi/chains'
 import { configureChains, createClient } from 'wagmi'
 import memoize from 'lodash/memoize'
 import { CoinbaseWalletConnector } from 'wagmi/connectors/coinbaseWallet'
@@ -11,7 +11,31 @@ import { LedgerConnector } from 'wagmi/connectors/ledger'
 import { jsonRpcProvider } from 'wagmi/providers/jsonRpc'
 import { SafeConnector } from './safeConnector'
 
-const CHAINS = [bsc, bscTestnet]
+const celo = {
+  id: 42220,
+  name: 'Celo',
+  network: 'celo',
+  nativeCurrency: {
+    name: 'CELO',
+    symbol: 'CGLD',
+    decimals: 18,
+  },
+  rpcUrls: {
+    default: {
+      http: ['https://rpc.ankr.com/celo'],
+    },
+  },
+  testnet: false,
+  blockExplorers: {
+    default: {
+      name: 'Celo explorer',
+      url: 'https://explorer.celo.org/mainnet/',
+    },
+  },
+}
+console.log('polygon: ', polygon)
+console.log('bsc: ', bsc)
+const CHAINS = [mainnet, polygon, optimism, arbitrum, celo, bsc, bscTestnet]
 
 const getNodeRealUrl = (networkName: string) => {
   let host = null
