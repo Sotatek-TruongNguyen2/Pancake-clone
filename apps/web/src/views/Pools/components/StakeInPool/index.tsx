@@ -5,12 +5,13 @@ import { useTheme } from 'styled-components'
 import { formatNumber } from '@pancakeswap/utils/formatBalance'
 import { AutoRenewIcon, BalanceInput, Button, Flex, Image, Text, Modal, Input, useToast } from '@pancakeswap/uikit'
 import getThemeValue from '@pancakeswap/uikit/src/util/getThemeValue'
-import { useNikaIdoPoolContract, useNikaStakingContract, useOracleContract, useTokenContract } from 'hooks/useContract'
+import { useNikaStakingContract, useOracleContract, useTokenContract } from 'hooks/useContract'
 import { ToastDescriptionWithTx } from 'components/Toast'
 import { useAccount, useWaitForTransaction } from 'wagmi'
 import { MaxUint256 } from '@ethersproject/constants'
 import useCatchTxError from 'hooks/useCatchTxError'
 import { useCallWithGasPrice } from 'hooks/useCallWithGasPrice'
+import { NIKA_ADDR, NULL_ADDR } from 'config/constants/nikaContract'
 
 interface StakeInPoolModalProps {
   // Pool attributes
@@ -19,11 +20,9 @@ interface StakeInPoolModalProps {
   stakingTokenAddress: string
   onDismiss?: () => void
   imageUrl?: string
+  updateStakingData: any
 }
 
-const NULL_ADDR = '0x0000000000000000000000000000000000000000'
-const NIKA_ADDR = '0x1549C1A238B4b7aa396B5D8c315df53ceC1FEa51'
-const USDC_ADDR = '0xe1283F92e5513fbE125185221cDc8e3D3Dda422D'
 const MIN_AMOUNT = 100
 
 export const StakeInPoolModal: React.FC<React.PropsWithChildren<StakeInPoolModalProps>> = ({
@@ -32,6 +31,7 @@ export const StakeInPoolModal: React.FC<React.PropsWithChildren<StakeInPoolModal
   stakingTokenAddress,
   onDismiss,
   imageUrl = '/images/tokens/',
+  updateStakingData,
 }) => {
   const { t } = useTranslation()
   const theme = useTheme()
@@ -77,6 +77,8 @@ export const StakeInPoolModal: React.FC<React.PropsWithChildren<StakeInPoolModal
           {`You have successfully staked ${stakeAmount} NIKA`}
         </ToastDescriptionWithTx>,
       )
+
+      updateStakingData()
     }
   }
 

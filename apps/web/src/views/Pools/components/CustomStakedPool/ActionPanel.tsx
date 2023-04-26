@@ -16,9 +16,11 @@ import nikaStakingAbi from 'config/abi/nikaStakingAbi.json'
 import { format } from 'date-fns'
 import { formatNumber, formatLpBalance } from '@pancakeswap/utils/formatBalance'
 import StakedActionComponent from '@pancakeswap/uikit/src/widgets/Farm/components/FarmTable/Actions/StakedActionComponent'
+import { NIKA_ADDR } from 'config/constants/nikaContract'
 import Harvest from './Harvest'
 import Stake from './Stake'
 import { StakeInPoolModal } from '../StakeInPool'
+import { WithdrawModal } from './WithdrawModal'
 
 const expandAnimation = keyframes`
   from {
@@ -128,8 +130,6 @@ const formatPercent = (number: any) => {
   return formatNumber(new BigNumber(number.toString()).dividedBy(100).toNumber(), 2, 4)
 }
 
-// const NIKA_TOKEN_ADDRESS = '0x483Ed007BA31da2D570bA816F028135d1F0c60A6'
-const NIKA_TOKEN_ADDRESS = '0x1549C1A238B4b7aa396B5D8c315df53ceC1FEa51'
 interface StakeData {
   monthlyAPR: string
   maxInterest: number
@@ -165,20 +165,145 @@ const ActionPanel: React.FC<React.PropsWithChildren<ActionPanelProps>> = ({ expa
   const { address: account } = useAccount()
   const { chainId } = useActiveChainId()
   const nikaStakingContract = useNikaStakingContract()
-  const nikaTokenContract = useTokenContract(NIKA_TOKEN_ADDRESS)
+  const nikaTokenContract = useTokenContract(NIKA_ADDR)
   const { toastSuccess } = useToast()
   const { callWithGasPrice } = useCallWithGasPrice()
   const { fetchWithCatchTxError, loading: pendingTx } = useCatchTxError()
   const [isApproved, setIsApproved] = useState(false)
   const blockExplorers = chainId === 97 ? 'https://testnet.bscscan.com/' : 'https://bscscan.com/'
   const [stakeData, setStakeData] = useState<StakeData>()
-  const [isStaked, setIsStaked] = useState(true)
+
+  const getContractsData = async () => {
+    if (!account) {
+      const data: StakeData = {
+        monthlyAPR: '0',
+        maxInterest: 0,
+        claimedInterest: 0,
+        f1Referee: 0,
+        referrer: 'No data',
+        claimEndsIn: 'No data',
+        vestingEndsIn: 'No data',
+        pendingRewards: 0,
+        totalStaked: 0,
+      }
+
+      setStakeData(data)
+      return
+    }
+    const stakingContract = {
+      address: nikaStakingContract.address,
+      abi: nikaStakingAbi,
+      chainId: 97,
+    }
+    const [poolPendingRewardPerday, userInformation, f1Referee, referrer] = await readContracts({
+      contracts: [
+        {
+          ...stakingContract,
+          functionName: 'poolPendingRewardPerday',
+          args: [account],
+        },
+        {
+          ...stakingContract,
+          functionName: 'getUserInformation',
+          args: [account],
+        },
+        {
+          ...stakingContract,
+          functionName: 'getF1Invited',
+          args: [account],
+        },
+        {
+          ...stakingContract,
+          functionName: 'getUserReferrer',
+          args: [account],
+        },
+      ],
+    })
+
+    const pendingRewards = poolPendingRewardPerday[0]
+
+    // const [
+    //   totalStakes,0
+    //   totalWithdrawClaimed,1
+    //   totalClaimed,2
+    //   claimStakedPerDay,3
+    //   maxClaim,4
+    //   vestingDuration,5
+    //   interestDuration,6
+    //   lastClaimStaked,7
+    //   lastUpdatedTime,8
+    //   lastTimeDeposited,9
+    //   lastTimeClaimed,10
+    //   interestRates,11
+    //   joinByReferral,12
+    // ] = userInformation
+
+    const totalStakes = userInformation[0]
+    const totalClaimed = userInformation[2]
+    const maxClaim = userInformation[4]
+    const vestingDuration = userInformation[5]
+    const interestDuration = userInformation[6]
+    const lastTimeDeposited = userInformation[9]
+    const interestRates = userInformation[11]
+
+    const _totalStakes = formatLpBalance(new BigNumber(totalStakes.toString()), 18)
+    const _maxClaim = formatLpBalance(new BigNumber(maxClaim.toString()), 18)
+    const _totalClaimed = formatLpBalance(new BigNumber(totalClaimed.toString()), 18)
+    const _pendingRewards = formatLpBalance(new BigNumber(pendingRewards.toString()), 18)
+
+    const _referrer = referrer as string
+    const accountEllipsis = referrer
+      ? `${_referrer.substring(0, 2)}...${_referrer.substring(_referrer.length - 4)}`
+      : ''
+    const claimEndsIn = new BigNumber(lastTimeDeposited.toString()).plus(interestDuration.toString())
+    const vestingEndsIn = claimEndsIn.plus(vestingDuration.toString())
+    const data: StakeData = {
+      monthlyAPR: formatPercent(interestRates),
+      maxInterest: Number(_maxClaim),
+      claimedInterest: Number(_totalClaimed),
+      f1Referee: Number(f1Referee),
+      referrer: accountEllipsis,
+      claimEndsIn: formatTime(claimEndsIn.times(1000).toString()),
+      vestingEndsIn: formatTime(vestingEndsIn.times(1000).toString()),
+      pendingRewards: Number(_pendingRewards),
+      totalStaked: Number(_totalStakes),
+    }
+
+    setStakeData(data)
+    setStakeData(data)
+    setStakeData(data)
+  }
+
   const [onPresentStakeInPoolModal] = useModal(
     <StakeInPoolModal
       stakingTokenDecimals={18}
       stakingTokenSymbol="NIKA"
       stakingTokenAddress="0x483Ed007BA31da2D570bA816F028135d1F0c60A6" // to show token image
+      updateStakingData={getContractsData}
     />,
+  )
+
+  const onWithdraw = async () => {
+    const receipt = await fetchWithCatchTxError(() => {
+      return nikaStakingContract.withdraw()
+    })
+    if (receipt?.status) {
+      setIsApproved(true)
+      toastSuccess(t('Successfully withdraw'))
+      getContractsData()
+    }
+  }
+
+  const [onPresentWithdrawModal] = useModal(
+    <WithdrawModal
+      handleWithdrawConfirm={onWithdraw}
+      pendingTx={pendingTx}
+      formattedBalance=""
+      fullBalance=""
+      stakingTokenSymbol="NIKA"
+      earningsDollarValue={0}
+    />,
+    false,
   )
 
   const handleApprove = useCallback(async () => {
@@ -199,117 +324,27 @@ const ActionPanel: React.FC<React.PropsWithChildren<ActionPanelProps>> = ({ expa
   useEffect(() => {
     const fetchData = async () => {
       const amount = await nikaTokenContract.allowance(account, nikaStakingContract.address)
-      console.log('amount: ', amount.toString())
       const _isApproved = new BigNumber(amount.toString()).gt(0)
       setIsApproved(_isApproved)
     }
     fetchData()
   }, [])
 
-  const handleStake = async () => {
+  const handleStake = () => {
     onPresentStakeInPoolModal()
   }
 
   const handleWithdraw = () => {
-    console.log('handleWithdraw')
-  }
-
-  const handleClaimRewards = async () => {
-    const receipt = await fetchWithCatchTxError(() => {
-      return nikaStakingContract.claimReward()
-    })
-    if (receipt?.status) {
-      setIsApproved(true)
-      toastSuccess(t('Successfully Claim'))
-    }
+    onPresentWithdrawModal()
   }
 
   useEffect(() => {
-    const getContracstData = async () => {
-      if (!account) return
-      const stakingContract = {
-        address: nikaStakingContract.address,
-        abi: nikaStakingAbi,
-        chainId: 97,
-      }
-      const [poolPendingRewardPerday, userInformation, f1Referee, referrer] = await readContracts({
-        contracts: [
-          {
-            ...stakingContract,
-            functionName: 'poolPendingRewardPerday',
-            args: [account],
-          },
-          {
-            ...stakingContract,
-            functionName: 'getUserInformation',
-            args: [account],
-          },
-          {
-            ...stakingContract,
-            functionName: 'getF1Invited',
-            args: [account],
-          },
-          {
-            ...stakingContract,
-            functionName: 'getUserReferrer',
-            args: [account],
-          },
-        ],
-      })
-
-      const pendingRewards = poolPendingRewardPerday[0]
-
-      // const [
-      //   totalStakes,0
-      //   totalWithdrawClaimed,1
-      //   totalClaimed,2
-      //   claimStakedPerDay,3
-      //   maxClaim,4
-      //   vestingDuration,5
-      //   interestDuration,6
-      //   lastClaimStaked,7
-      //   lastUpdatedTime,8
-      //   lastTimeDeposited,9
-      //   lastTimeClaimed,10
-      //   interestRates,11
-      //   joinByReferral,12
-      // ] = userInformation
-
-      const totalStakes = userInformation[0]
-      const totalClaimed = userInformation[2]
-      const maxClaim = userInformation[4]
-      const vestingDuration = userInformation[5]
-      const interestDuration = userInformation[6]
-      const lastTimeDeposited = userInformation[9]
-      const interestRates = userInformation[11]
-
-      const _totalStakes = formatLpBalance(new BigNumber(totalStakes.toString()), 18)
-      const _maxClaim = formatLpBalance(new BigNumber(maxClaim.toString()), 18)
-      const _totalClaimed = formatLpBalance(new BigNumber(totalClaimed.toString()), 18)
-      const _pendingRewards = formatLpBalance(new BigNumber(pendingRewards.toString()), 18)
-
-      const _referrer = referrer as string
-      const accountEllipsis = referrer
-        ? `${_referrer.substring(0, 2)}...${_referrer.substring(_referrer.length - 4)}`
-        : ''
-      const claimEndsIn = new BigNumber(lastTimeDeposited.toString()).plus(interestDuration.toString())
-      const vestingEndsIn = claimEndsIn.plus(vestingDuration.toString())
-      const data: StakeData = {
-        monthlyAPR: formatPercent(interestRates),
-        maxInterest: Number(_maxClaim),
-        claimedInterest: Number(_totalClaimed),
-        f1Referee: Number(f1Referee),
-        referrer: accountEllipsis,
-        claimEndsIn: formatTime(claimEndsIn.times(1000).toString()),
-        vestingEndsIn: formatTime(vestingEndsIn.times(1000).toString()),
-        pendingRewards: Number(_pendingRewards),
-        totalStaked: Number(_totalStakes),
-      }
-
-      setStakeData(data)
+    getContractsData()
+    const timer = setInterval(getContractsData, 10000)
+    return () => {
+      clearInterval(timer)
     }
-    getContracstData()
-  }, [])
+  }, [account])
 
   return (
     <StyledActionPanel expanded={expanded}>
@@ -320,12 +355,12 @@ const ActionPanel: React.FC<React.PropsWithChildren<ActionPanelProps>> = ({ expa
           </StatWrapper>
           <StatWrapper label={<Text small>{t('Max Interest')}:</Text>}>
             <Text ml="4px" small>
-              <TotalToken value={stakeData?.maxInterest} unit="NIKA" />
+              <TotalToken value={stakeData?.maxInterest} unit=" NIKA" />
             </Text>
           </StatWrapper>
           <StatWrapper label={<Text small>{t('Claimed Interest')}:</Text>}>
             <Text ml="4px" small>
-              <TotalToken value={stakeData?.claimedInterest} unit="NIKA" />
+              <TotalToken value={stakeData?.claimedInterest} unit=" NIKA" />
             </Text>
           </StatWrapper>
           <StatWrapper label={<Text small>{t('F1-Referee')}:</Text>}>
@@ -334,9 +369,13 @@ const ActionPanel: React.FC<React.PropsWithChildren<ActionPanelProps>> = ({ expa
             </Text>
           </StatWrapper>
           <StatWrapper label={<Text small>{t('Referrer')}:</Text>}>
-            <LinkExternal href={`https://testnet.bscscan.com/address/${account}`}>
+            {stakeData?.referrer !== 'No data' ? (
+              <LinkExternal href={`https://testnet.bscscan.com/address/${account}`}>
+                <LoadingData value={stakeData?.referrer} />
+              </LinkExternal>
+            ) : (
               <LoadingData value={stakeData?.referrer} />
-            </LinkExternal>
+            )}
           </StatWrapper>
           <StatWrapper label={<Text small>{t('Claim Ends In')}:</Text>}>
             <LoadingData value={stakeData?.claimEndsIn} />
@@ -353,7 +392,7 @@ const ActionPanel: React.FC<React.PropsWithChildren<ActionPanelProps>> = ({ expa
             </LinkExternal>
           </Flex>
           <StyledLinkExternal isBscScan href={`${blockExplorers}address/${nikaStakingContract.address}`}>
-            {t('View Contract')}
+            {t('View Contract ')}
           </StyledLinkExternal>
           <Flex justifyContent="flex-start">
             <AddToWalletButton
@@ -361,9 +400,9 @@ const ActionPanel: React.FC<React.PropsWithChildren<ActionPanelProps>> = ({ expa
               p="0"
               height="auto"
               style={{ fontSize: '14px', fontWeight: '400', lineHeight: 'normal' }}
-              width="fit-content"
+              marginTextBetweenLogo="4px"
               textOptions={AddToWalletTextOptions.TEXT}
-              tokenAddress={NIKA_TOKEN_ADDRESS}
+              tokenAddress={NIKA_ADDR}
               tokenSymbol="NIKA"
               tokenDecimals={18}
               tokenLogo="https://tokens.pancakeswap.finance/images/0x483Ed007BA31da2D570bA816F028135d1F0c60A6.png"
@@ -377,7 +416,6 @@ const ActionPanel: React.FC<React.PropsWithChildren<ActionPanelProps>> = ({ expa
             <Harvest
               // earningToken={new Token(56, NIKA_TOKEN_ADDRESS, 18, 'NIKA')}
               pendingReward={stakeData?.pendingRewards}
-              onClaim={handleClaimRewards}
             />
             {stakeData ? (
               stakeData.totalStaked > 0 ? (
@@ -404,7 +442,7 @@ const ActionPanel: React.FC<React.PropsWithChildren<ActionPanelProps>> = ({ expa
                 <Stake
                   isApproved={isApproved}
                   pendingTx={pendingTx}
-                  stakingToken={new Token(56, NIKA_TOKEN_ADDRESS, 18, 'NIKA')}
+                  stakingToken={new Token(56, NIKA_ADDR, 18, 'NIKA')}
                   onStake={handleStake}
                   onApprove={handleApprove}
                 />

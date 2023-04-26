@@ -40,7 +40,7 @@ const NetworkSelect = ({ switchNetwork, chainId }) => {
           <UserMenuItem
             key={chain.id}
             // style={{ justifyContent: 'flex-start' }}
-            onClick={() => chain.id !== chainId && switchNetwork(chain.id)}
+            onClick={() => chain.id !== chainId && [97, 56].includes(chain.id) && switchNetwork(chain.id)}
           >
             <Flex>
               <ChainLogo chainId={chain.id} />

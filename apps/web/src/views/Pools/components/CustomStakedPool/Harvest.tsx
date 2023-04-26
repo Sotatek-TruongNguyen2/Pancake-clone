@@ -1,30 +1,55 @@
 import React, { useEffect, useState } from 'react'
-import { Balance, Button, Flex, Heading, Text, useModal } from '@pancakeswap/uikit'
+import { Balance, Button, Flex, Heading, Text, useModal, useToast } from '@pancakeswap/uikit'
 import { useAccount } from 'wagmi'
 import { useTranslation } from '@pancakeswap/localization'
-import { Token } from '@pancakeswap/sdk'
 import BigNumber from 'bignumber.js'
 import { BIG_ZERO } from '@pancakeswap/utils/bigNumber'
-import { formatNumber, getBalanceNumber, getFullDisplayBalance } from '@pancakeswap/utils/formatBalance'
-import { PoolCategory } from 'config/constants/types'
-import { useOracleContract } from 'hooks/useContract'
+import { useNikaStakingContract, useOracleContract } from 'hooks/useContract'
+import { NIKA_ADDR } from 'config/constants/nikaContract'
+import { CollectModal } from '@pancakeswap/uikit/src/widgets/Pool'
+import useCatchTxError from 'hooks/useCatchTxError'
+import { ToastDescriptionWithTx } from 'components/Toast'
 import { ActionContainer, ActionContent, ActionTitles } from '../PoolsTable/ActionPanel/styles'
-import { CollectModalContainer } from '../Modals/CollectModal'
 
 interface HarvestProps {
   pendingReward: number
-  onClaim: () => void
 }
 
-const NIKA_ADDR = '0x1549C1A238B4b7aa396B5D8c315df53ceC1FEa51'
-
-const Harvest = ({ pendingReward, onClaim }: HarvestProps) => {
+const Harvest = ({ pendingReward }: HarvestProps) => {
   const { t } = useTranslation()
   const { address: account } = useAccount()
+  const { toastSuccess } = useToast()
+  const nikaStakingContract = useNikaStakingContract()
   const earnings = pendingReward ? new BigNumber(pendingReward) : BIG_ZERO
   const hasEarnings = earnings.gt(0)
   const oracleContract = useOracleContract()
   const [usdcAmount, setUsdcAmount] = useState(0)
+  const { fetchWithCatchTxError, loading: pendingTx } = useCatchTxError()
+
+  const handleClaimRewards = async () => {
+    const receipt = await fetchWithCatchTxError(() => {
+      return nikaStakingContract.claimReward()
+    })
+    if (receipt?.status) {
+      toastSuccess(
+        `${t('Harvested')}!`,
+        <ToastDescriptionWithTx txHash={receipt.transactionHash}>
+          {t('Your %symbol% earnings have been sent to your wallet!', { symbol: 'NIKA' })}
+        </ToastDescriptionWithTx>,
+      )
+    }
+  }
+
+  const [onPresentCollect] = useModal(
+    <CollectModal
+      formattedBalance={earnings.toString()}
+      fullBalance=""
+      earningTokenSymbol="NIKA"
+      earningsDollarValue={100}
+      handleHarvestConfirm={handleClaimRewards}
+      pendingTx={pendingTx}
+    />,
+  )
 
   useEffect(() => {
     const fetchData = async () => {
@@ -88,7 +113,7 @@ const Harvest = ({ pendingReward, onClaim }: HarvestProps) => {
             )}
           </>
         </Flex>
-        <Button disabled={!hasEarnings} onClick={onClaim}>
+        <Button disabled={!hasEarnings} onClick={onPresentCollect}>
           {t('Harvest')}
         </Button>
       </ActionContent>

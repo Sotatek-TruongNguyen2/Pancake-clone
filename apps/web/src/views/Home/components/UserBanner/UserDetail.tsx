@@ -1,18 +1,7 @@
-import {
-  NoProfileAvatarIcon,
-  Flex,
-  Heading,
-  Skeleton,
-  Text,
-  Box,
-  useMatchBreakpoints,
-  VisibilityOff,
-  VisibilityOn,
-} from '@pancakeswap/uikit'
+import { Flex, Heading, Skeleton, Text, useMatchBreakpoints, VisibilityOff, VisibilityOn } from '@pancakeswap/uikit'
 import { useAccount } from 'wagmi'
 import styled from 'styled-components'
 import { useProfile } from 'state/profile/hooks'
-import ProfileAvatarWithTeam from 'components/ProfileAvatarWithTeam'
 import { useTranslation } from '@pancakeswap/localization'
 import truncateHash from '@pancakeswap/utils/truncateHash'
 import useGetUsernameWithVisibility from 'hooks/useUsernameWithVisibility'
@@ -29,20 +18,6 @@ const Mobile = styled(Flex)`
   ${({ theme }) => theme.mediaQueries.md} {
     display: none;
   }
-`
-
-const Sticker = styled(Flex)`
-  height: 92px;
-  width: 92px;
-  background-color: ${({ theme }) => theme.colors.invertedContrast};
-  border: 3px solid ${({ theme }) => theme.colors.invertedContrast};
-  border-radius: ${({ theme }) => theme.radii.circle};
-  box-shadow: ${({ theme }) => theme.card.boxShadow};
-`
-
-const StyledNoProfileAvatarIcon = styled(NoProfileAvatarIcon)`
-  height: 100%;
-  width: 100%;
 `
 
 const UserDetail = () => {
@@ -63,9 +38,6 @@ const UserDetail = () => {
     <>
       {(isTablet || isDesktop) && (
         <Desktop>
-          <Box mr="24px">
-            <Sticker>{profile ? <ProfileAvatarWithTeam profile={profile} /> : <StyledNoProfileAvatarIcon />}</Sticker>
-          </Box>
           <Flex flexDirection="column">
             {profile ? (
               <Heading scale="xl">

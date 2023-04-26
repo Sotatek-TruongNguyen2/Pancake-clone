@@ -2,7 +2,7 @@ import { useTranslation } from '@pancakeswap/localization'
 import BigNumber from 'bignumber.js'
 import { useEffect, useState } from 'react'
 import { useTheme } from 'styled-components'
-import { formatNumber } from '@pancakeswap/utils/formatBalance'
+import { getDecimalAmount, formatLpBalance } from '@pancakeswap/utils/formatBalance'
 import { AutoRenewIcon, BalanceInput, Button, Flex, Image, Text, Modal, Input, useToast } from '@pancakeswap/uikit'
 import getThemeValue from '@pancakeswap/uikit/src/util/getThemeValue'
 import { useNikaIdoPoolContract, useOracleContract, useTokenContract } from 'hooks/useContract'
@@ -11,6 +11,7 @@ import { useAccount, useWaitForTransaction } from 'wagmi'
 import { MaxUint256 } from '@ethersproject/constants'
 import useCatchTxError from 'hooks/useCatchTxError'
 import { useCallWithGasPrice } from 'hooks/useCallWithGasPrice'
+import { NIKA_ADDR, NULL_ADDR, USDC_ADDR } from 'config/constants/nikaContract'
 
 interface BuyInPoolModalProps {
   // Pool attributes
@@ -21,9 +22,6 @@ interface BuyInPoolModalProps {
   imageUrl?: string
 }
 
-const NULL_ADDR = '0x0000000000000000000000000000000000000000'
-const USDC_ADDR = '0xe1283F92e5513fbE125185221cDc8e3D3Dda422D'
-const NIKA_ADDR = '0x1549C1A238B4b7aa396B5D8c315df53ceC1FEa51'
 const MIN_AMOUNT = 100
 
 export const BuyInPoolModal: React.FC<React.PropsWithChildren<BuyInPoolModalProps>> = ({
@@ -46,12 +44,11 @@ export const BuyInPoolModal: React.FC<React.PropsWithChildren<BuyInPoolModalProp
   const { address: account } = useAccount()
   const [approveTxHash, setApproveTxHash] = useState<string>()
   const [isValidAmount, setIsValidAmount] = useState(true)
-  const [minApproveAmount, setMinApproveAmount] = useState<BigNumber>()
+  const [minApproveAmount, setMinApproveAmount] = useState<BigNumber>(new BigNumber(0))
 
   const handleSubmit = async () => {
     const approvedAmount = await usdcTokenContract.allowance(account, idoContract.address)
-    console.log('approvedAmount: ', approvedAmount.toString(), minApproveAmount.toString())
-    if (new BigNumber(approvedAmount.toString()).gte(new BigNumber(minApproveAmount.toString() || 0))) {
+    if (new BigNumber(approvedAmount.toString()).gte(new BigNumber(minApproveAmount || 0))) {
       buyToken()
     } else {
       const receipt = await fetchWithCatchTxError(() => {
@@ -62,13 +59,13 @@ export const BuyInPoolModal: React.FC<React.PropsWithChildren<BuyInPoolModalProp
       }
     }
   }
+
   const buyToken = async () => {
-    if (!buyAmount || new BigNumber(buyAmount).lt(MIN_AMOUNT)) return
+    if (!buyAmount) return
+    const bigBuyAmount = new BigNumber(buyAmount)
+    if (bigBuyAmount.lt(MIN_AMOUNT)) return
     const receipt = await fetchWithCatchTxError(() => {
-      return idoContract.buyToken(
-        new BigNumber(buyAmount).times(new BigNumber(10).pow(18)).toString(),
-        address || NULL_ADDR,
-      )
+      return idoContract.buyToken(getDecimalAmount(bigBuyAmount).toString(), address || NULL_ADDR)
     })
     if (receipt?.status) {
       onDismiss()
@@ -88,12 +85,10 @@ export const BuyInPoolModal: React.FC<React.PropsWithChildren<BuyInPoolModalProp
     },
   })
 
-  const usdValueStaked = new BigNumber(minApproveAmount ? minApproveAmount.toString() : 0).dividedBy(
-    new BigNumber(10).pow(18),
-  )
-  // console.log('minApproveAmount: ', minApproveAmount?.toString())
-  // console.log('usdValueStaked: ', usdValueStaked.toNumber())
-  const formattedUsdValueBought = !usdValueStaked.isNaN() && formatNumber(usdValueStaked.toNumber())
+  const usdValueStaked = formatLpBalance(minApproveAmount, 18)
+  // console.log('minApproveAmount: ', minApproveAmount)
+  console.log('usdValueStaked: ', usdValueStaked.toString())
+  // const formattedUsdValueBought = !usdValueStaked.isNaN() && formatNumber(usdValueStaked.toNumber())
   // console.log('formattedUsdValueBought: ', formattedUsdValueBought)
 
   const handleBuyInputChange = (input: string) => {
@@ -108,14 +103,11 @@ export const BuyInPoolModal: React.FC<React.PropsWithChildren<BuyInPoolModalProp
 
   useEffect(() => {
     const updateData = async () => {
-      const _buyAmount = new BigNumber(buyAmount || 0)
-      const isValid = _buyAmount.gte(MIN_AMOUNT)
-      // console.log('fbjdsk: ', _buyAmount.times(new BigNumber(10).pow(18)).toString())
-      const minAmount = await oracleContract.consult(NIKA_ADDR, _buyAmount.times(new BigNumber(10).pow(18)).toString())
-      // console.log('minAmount: ', new BigNumber(minAmount).dividedBy(new BigNumber(10).pow(18)).toNumber())
-      // console.log('minAmount: ', minAmount.toString())
+      const bigBuyAmount = new BigNumber(buyAmount || 0)
+      const isValid = bigBuyAmount.gte(MIN_AMOUNT)
+      const minAmount = await oracleContract.consult(NIKA_ADDR, getDecimalAmount(bigBuyAmount).toString())
       setIsValidAmount(isValid)
-      setMinApproveAmount(minAmount)
+      if (minAmount) setMinApproveAmount(new BigNumber(minAmount.toString()))
     }
     updateData()
   }, [buyAmount])
@@ -139,7 +131,7 @@ export const BuyInPoolModal: React.FC<React.PropsWithChildren<BuyInPoolModalProp
       <BalanceInput
         value={buyAmount}
         onUserInput={handleBuyInputChange}
-        currencyValue={`~${formattedUsdValueBought || 0} USDC`}
+        currencyValue={`~${usdValueStaked || 0} USDC`}
         decimals={buyingTokenDecimals}
         isWarning={!isValidAmount}
       />
