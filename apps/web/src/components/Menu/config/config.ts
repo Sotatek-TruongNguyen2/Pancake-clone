@@ -89,7 +89,7 @@ const config: (
       fillIcon: EarnFillIcon,
       items: [
         {
-          label: t('Farms'),
+          label: t('IFO'),
           href: '/farms',
         },
         {
@@ -165,12 +165,6 @@ const config: (
           label: t('Info'),
           // href: '/info',
           href: null,
-        },
-        {
-          label: t('IFO'),
-          // href: '/ifo',
-          href: null,
-          supportChainIds: SUPPORT_ONLY_BSC,
         },
         {
           label: t('Voting'),

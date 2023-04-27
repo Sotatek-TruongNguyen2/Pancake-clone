@@ -62,8 +62,8 @@ const topLeftImage = {
   path: '/images/home/flying-pancakes/',
   attributes: [
     { src: 'AVAX-3D', alt: 'Avax' },
+    { src: 'ARBITRUM-3D', alt: 'Arbitrum' },
     { src: 'PHANTOM-3D', alt: 'Phantom' },
-    { src: 'CAR-3D', alt: 'Cardano' },
     { src: 'POL-3D', alt: 'Polygon' },
     { src: 'BNB-3D', alt: 'Bnb' },
     { src: 'CHAINLINK-3D', alt: 'ChainLink' },
