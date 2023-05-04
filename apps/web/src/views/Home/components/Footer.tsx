@@ -61,14 +61,14 @@ const FloatingPancakesWrapper = styled(Container)`
 const topLeftImage = {
   path: '/images/home/flying-pancakes/',
   attributes: [
-    { src: 'AVAX-3D', alt: 'Avax' },
-    { src: 'ARBITRUM-3D', alt: 'Arbitrum' },
-    { src: 'PHANTOM-3D', alt: 'Phantom' },
-    { src: 'POL-3D', alt: 'Polygon' },
-    { src: 'BNB-3D', alt: 'Bnb' },
-    { src: 'CHAINLINK-3D', alt: 'ChainLink' },
-    { src: 'ETH-3D', alt: 'Eth' },
-    { src: 'TEL-3D', alt: 'Telcoin' },
+    { src: 'avax-left', alt: 'Avax' },
+    { src: 'arbitrum-left', alt: 'Arbitrum' },
+    { src: 'phantom-left', alt: 'Phantom' },
+    { src: 'polygon-left', alt: 'Polygon' },
+    { src: 'bnb-right', alt: 'Bnb' },
+    { src: 'chain-link-right', alt: 'ChainLink' },
+    { src: 'ethereum-right', alt: 'Eth' },
+    { src: 'tel-right', alt: 'Telcoin' },
   ],
 }
 

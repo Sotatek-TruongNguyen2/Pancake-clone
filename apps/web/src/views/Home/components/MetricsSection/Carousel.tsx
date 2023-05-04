@@ -8,8 +8,8 @@ const images = [
   '/images/farm2.svg',
   '/images/farm3.svg',
   '/images/farm4.svg',
-  '/images/farm5.svg',
-  '/images/farm6.svg',
+  // '/images/farm5.svg',
+  // '/images/farm6.svg',
 ]
 
 const CardImage = styled('div')<{ url: string }>`
