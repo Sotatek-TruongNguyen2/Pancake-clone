@@ -127,17 +127,13 @@ const Container = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  // background-image: url('/images/solar-bg.png');
-  // background-position: center;
-  // background-size: contain;
-  // background-repeat: no-repeat;
 `
 const Sun = styled.div`
   position: absolute;
   width: 60px;
   height: 60px;
   border-radius: 50%;
-  background-image: url('/images/nika-token.png');
+  background-image: url('/images/home/tokens/nika.svg');
   background-size: contain;
   box-shadow: 0 0 60px white, 0 0 98px white;
 `
@@ -308,7 +304,7 @@ const PolygonPlanet = styled.div`
   height: 24px;
   border-radius: 50%;
   transform: scaleX(0.5);
-  background-image: url('/images/home/chain/polygon.svg');
+  background-image: url('/images/home/tokens/polygon.svg');
   background-size: contain;
 `
 const AvalanchePlanet = styled.div`
@@ -316,7 +312,7 @@ const AvalanchePlanet = styled.div`
   height: 33px;
   border-radius: 50%;
   transform: scaleX(0.5);
-  background-image: url('/images/home/chain/avalanche.svg');
+  background-image: url('/images/home/tokens/avalanche.svg');
   background-size: contain;
 `
 const SolanaPlanet = styled.div`
@@ -324,7 +320,7 @@ const SolanaPlanet = styled.div`
   height: 27px;
   border-radius: 50%;
   transform: scaleX(0.5);
-  background-image: url('/images/solana-logo.png');
+  background-image: url('/images/home/tokens/solana.svg');
   background-size: contain;
 `
 const EthereumPlanet = styled.div`
@@ -332,7 +328,7 @@ const EthereumPlanet = styled.div`
   height: 37px;
   border-radius: 50%;
   transform: scaleX(0.5);
-  background-image: url('/images/home/chain/ethereum.svg');
+  background-image: url('/images/home/tokens/ethereum.svg');
   background-size: contain;
 `
 const FantomPlanet = styled.div`
@@ -340,7 +336,7 @@ const FantomPlanet = styled.div`
   height: 37px;
   border-radius: 50%;
   transform: scaleX(0.5);
-  background-image: url('/images/home/chain/fantom.svg');
+  background-image: url('/images/home/tokens/fantom.svg');
   background-size: contain;
 `
 const CardanoPlanet = styled.div`
@@ -348,7 +344,7 @@ const CardanoPlanet = styled.div`
   height: 40px;
   border-radius: 50%;
   transform: scaleX(0.5);
-  background-image: url('/images/cardano-coin.png');
+  background-image: url('/images/home/tokens/cardano.svg');
   background-size: contain;
 `
 const TelcoinPlanet = styled.div`
@@ -356,7 +352,7 @@ const TelcoinPlanet = styled.div`
   height: 30px;
   border-radius: 50%;
   transform: scaleX(0.5);
-  background-image: url('/images/telcoin-logo.png');
+  background-image: url('/images/home/tokens/tel.svg');
   background-size: contain;
 `
 

@@ -90,6 +90,9 @@ const config: (
       items: [
         {
           label: t('IFO'),
+        },
+        {
+          label: t('Farms'),
           href: '/farms',
         },
         {

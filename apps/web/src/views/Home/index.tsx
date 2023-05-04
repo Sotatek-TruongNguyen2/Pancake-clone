@@ -16,12 +16,12 @@ import SalesSection from './components/SalesSection'
 import Footer from './components/Footer'
 import { WedgeTopLeft, InnerWedgeWrapper, OuterWedgeWrapper } from './components/WedgeSvgs'
 import UserBanner from './components/UserBanner'
-import ethereumIcon from '../../../public/images/home/chain/ethereum.svg'
-import avalancheIcon from '../../../public/images/home/chain/avalanche.svg'
-import solanaIcon from '../../../public/images/home/chain/solana.svg'
-import bnbIcon from '../../../public/images/home/chain/bnb.svg'
-import fantomIcon from '../../../public/images/home/chain/fantom.svg'
-import polygonIcon from '../../../public/images/home/chain/polygon.svg'
+import ethereumIcon from '../../../public/images/home/tokens/ethereum.svg'
+import avalancheIcon from '../../../public/images/home/tokens/avalanche.svg'
+import solanaIcon from '../../../public/images/home/tokens/solana.svg'
+import bnbIcon from '../../../public/images/home/tokens/bnb.svg'
+import fantomIcon from '../../../public/images/home/tokens/fantom.svg'
+import polygonIcon from '../../../public/images/home/tokens/polygon.svg'
 
 const StyledHeroSection = styled(PageSection)`
   padding-top: 16px;
