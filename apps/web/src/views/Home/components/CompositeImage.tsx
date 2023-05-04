@@ -71,7 +71,7 @@ const Sun = styled.div<{ theme }>`
   width: 170px;
   height: 170px;
   border-radius: 50%;
-  background-image: url('/images/home/tokens/nika-full.svg');
+  background-image: url('/images/home/tokens/nika-full.png');
   background-size: contain;
   box-shadow: ${({ theme }) =>
     theme.isDark ? '0 0 60px #cfca86, 0 0 98px #cfca86' : '0 0 60px #b286db, 0 0 98px #b286db'};
