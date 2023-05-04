@@ -7,7 +7,6 @@ import { PageMeta } from 'components/Layout/Page'
 import { useTranslation } from '@pancakeswap/localization'
 import { useActiveChainId } from 'hooks/useActiveChainId'
 import { ChainId } from '@pancakeswap/sdk'
-import Image from 'next/legacy/image'
 import { FireIcon, Link, Text } from '@pancakeswap/uikit'
 import Hero from './components/Hero'
 import { swapSectionData } from './components/SalesSection/data'
@@ -16,12 +15,6 @@ import SalesSection from './components/SalesSection'
 import Footer from './components/Footer'
 import { WedgeTopLeft, InnerWedgeWrapper, OuterWedgeWrapper } from './components/WedgeSvgs'
 import UserBanner from './components/UserBanner'
-import ethereumIcon from '../../../public/images/home/tokens/ethereum.svg'
-import avalancheIcon from '../../../public/images/home/tokens/avalanche.svg'
-import solanaIcon from '../../../public/images/home/tokens/solana.svg'
-import bnbIcon from '../../../public/images/home/tokens/bnb.svg'
-import fantomIcon from '../../../public/images/home/tokens/fantom.svg'
-import polygonIcon from '../../../public/images/home/tokens/polygon.svg'
 
 const StyledHeroSection = styled(PageSection)`
   padding-top: 16px;
@@ -157,35 +150,41 @@ const TokenImage = styled.div`
     border-radius: 50%;
   }
 `
-
+const Token = styled.div<{ name: string }>`
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background-image: ${(props) => `url('images/home/tokens/${props.name}.png')`};
+  background-size: cover;
+`
 const chainList = [
   {
-    icon: ethereumIcon,
+    icon: 'ethereum',
     label: 'ethereum',
     link: 'https://ethereum.org/en/',
   },
   {
-    icon: avalancheIcon,
+    icon: 'avalanche',
     label: 'avalanche',
     link: 'https://www.avax.network/',
   },
   {
-    icon: solanaIcon,
+    icon: 'solana',
     label: 'solana',
     link: 'https://solana.com/',
   },
   {
-    icon: bnbIcon,
+    icon: 'bnb',
     label: 'bnb',
     link: 'https://www.bnbchain.world/en',
   },
   {
-    icon: fantomIcon,
+    icon: 'fantom',
     label: 'fantom',
     link: 'https://fantom.foundation/',
   },
   {
-    icon: polygonIcon,
+    icon: 'polygon',
     label: 'polygon',
     link: 'https://polygon.technology/',
   },
@@ -293,7 +292,8 @@ const Home: React.FC<React.PropsWithChildren> = () => {
                     {chainList.map(({ icon, link, label }) => (
                       <Link href={link} style={{ textDecoration: 'none' }}>
                         <ChainItemWrapper>
-                          <Image src={icon} priority width={55} height={55} />
+                          <Token name={icon} />
+                          {/* <Image src={icon} priority width={55} height={55} /> */}
                           <Text
                             display="inline"
                             textAlign="center"
