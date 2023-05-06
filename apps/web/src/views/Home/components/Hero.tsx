@@ -57,13 +57,7 @@ const Hero = () => {
         mt={[account ? '280px' : '50px', null, 0]}
         id="homepage-hero"
       >
-        <Flex
-          height={['192px', null, null, '100%']}
-          width={['192px', null, null, '100%']}
-          flex={[null, null, null, '1']}
-          mb={['24px', null, null, '0']}
-          position="relative"
-        >
+        <Flex width="100%">
           <RotatingPlanets />
         </Flex>
         <Flex flex="1" flexDirection="column">
@@ -73,12 +67,6 @@ const Hero = () => {
           <Heading scale="md" mb="24px" textAlign="center">
             {t('Swap, monetize and build on the leading multi-chain decentralized crypto currency trading protocol.')}
           </Heading>
-          {/* <Flex>
-            {!account && <ConnectWalletButton mr="8px" />}
-            <NextLinkFromReactRouter to="/swap">
-              <Button variant={!account ? 'secondary' : 'primary'}>{t('Trade Now')}</Button>
-            </NextLinkFromReactRouter>
-          </Flex> */}
         </Flex>
       </Flex>
     </>

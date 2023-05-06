@@ -58,7 +58,7 @@ const Navbar = ({ height = 44 }) => {
         }}
       >
         <Wallet />
-        <Image height={20} width={130} src={isDark ? title.dark : title.light} />
+        <Image height={28} width={130} src={isDark ? title.dark : title.light} />
       </Box>
       <Box style={{ height: `${height + top}px` }} />
     </Box>

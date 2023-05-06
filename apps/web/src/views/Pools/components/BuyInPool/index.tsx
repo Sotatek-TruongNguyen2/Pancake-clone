@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Button, Flex, Pool, useModal } from '@pancakeswap/uikit'
+import { Button, Flex, Pool, useMatchBreakpoints, useModal } from '@pancakeswap/uikit'
 import { useTranslation } from '@pancakeswap/localization'
 import { useAccount } from 'wagmi'
 import ConnectWalletButton from 'components/ConnectWalletButton'
@@ -11,7 +11,7 @@ import TokenPrice from './TokenPrice'
 
 const BuyContainer = styled(Flex)`
   background-color: ${({ theme }) => theme.card.background};
-  display: flex;
+  display: block;
   border: 2px solid ${({ theme }) => theme.colors.input};
   border-radius: 16px;
   margin-bottom: 16px!important;
@@ -26,13 +26,13 @@ const BuyContainer = styled(Flex)`
     margin-right: 0;
   }
 `
+
 const ActionWrapper = styled(Flex)`
   flex-direction: row;
   justify-content: flex-end;
   align-items: center;
   flex: 1;
-  padding-right: 12px;
-  padding-left: 0px;
+  padding: 0px 12px 12px;
   ${({ theme }) => theme.mediaQueries.md} {
     flex: 0 0 120px;
     padding-right: 32px;
@@ -49,6 +49,7 @@ const StyledCell = styled(Pool.BaseCell)`
 const BuyInPool = () => {
   const { t } = useTranslation()
   const { address: account } = useAccount()
+  const { isTablet, isDesktop, isMobile } = useMatchBreakpoints()
 
   const [onPresentBuyInPoolModal] = useModal(
     <BuyInPoolModal
@@ -57,21 +58,43 @@ const BuyInPool = () => {
       buyingTokenAddress="0x483Ed007BA31da2D570bA816F028135d1F0c60A6" // to show token image
     />,
   )
+  if (isMobile)
+    return (
+      <BuyContainer>
+        <Flex>
+          <NameCell title="Buy NIKA" />
+          <TokenPrice />
+          <Status status="Open" />
+        </Flex>
+        <ActionWrapper>
+          {account ? (
+            <Button width="100%" onClick={onPresentBuyInPoolModal}>
+              {t('Buy')}
+            </Button>
+          ) : (
+            <ConnectWalletButton width="100%" />
+          )}
+        </ActionWrapper>
+      </BuyContainer>
+    )
   return (
     <BuyContainer>
-      <NameCell title="Buy NIKA" />
-      <TokenPrice />
-      <Status status="Open" />
-      <StyledCell />
-      <ActionWrapper>
-        {account ? (
-          <Button width={300} onClick={onPresentBuyInPoolModal}>
-            {t('Buy')}
-          </Button>
-        ) : (
-          <ConnectWalletButton />
-        )}
-      </ActionWrapper>
+      <Flex>
+        <NameCell title="Buy NIKA" />
+        <TokenPrice />
+        <Status status="Open" />
+
+        <StyledCell />
+        <ActionWrapper>
+          {account ? (
+            <Button width={300} onClick={onPresentBuyInPoolModal}>
+              {t('Buy')}
+            </Button>
+          ) : (
+            <ConnectWalletButton width={300} />
+          )}
+        </ActionWrapper>
+      </Flex>
     </BuyContainer>
   )
 }

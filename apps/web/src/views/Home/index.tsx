@@ -1,7 +1,6 @@
 import styled, { keyframes } from 'styled-components'
 import PageSection from 'components/PageSection'
 import { useAccount } from 'wagmi'
-import useTheme from 'hooks/useTheme'
 import Container from 'components/Layout/Container'
 import { PageMeta } from 'components/Layout/Page'
 import { useTranslation } from '@pancakeswap/localization'
@@ -230,7 +229,6 @@ const trendingSales = [
   },
 ]
 const Home: React.FC<React.PropsWithChildren> = () => {
-  const { theme } = useTheme()
   const { address: account } = useAccount()
   const { chainId } = useActiveChainId()
 
@@ -255,7 +253,10 @@ const Home: React.FC<React.PropsWithChildren> = () => {
           background: linear-gradient(180deg, #09070c 22%, #201335 100%);
         }
         #home-3 .page-bg {
-          background: linear-gradient(180deg, #6fb6f1 0%, #eaf2f6 100%);
+          background: #d7caec;
+        }
+        [data-theme='dark'] #home-3 .page-bg {
+          background: linear-gradient(180deg, #201335 0%, #27262c 100%);
         }
         [data-theme='dark'] #home-3 .page-bg {
           background: linear-gradient(180deg, #0b4576 0%, #091115 100%);
@@ -280,7 +281,6 @@ const Home: React.FC<React.PropsWithChildren> = () => {
             <UserBanner />
           </UserBannerWrapper>
         )}
-        {/* <MultipleBanner /> */}
         <Hero />
 
         <div style={{ overflow: 'hidden', marginTop: '60px' }}>
@@ -293,7 +293,6 @@ const Home: React.FC<React.PropsWithChildren> = () => {
                       <Link href={link} style={{ textDecoration: 'none' }}>
                         <ChainItemWrapper>
                           <Token name={icon} />
-                          {/* <Image src={icon} priority width={55} height={55} /> */}
                           <Text
                             display="inline"
                             textAlign="center"
@@ -316,7 +315,14 @@ const Home: React.FC<React.PropsWithChildren> = () => {
         </div>
       </StyledHeroSection>
 
-      <PageSection index={2} hasCurvedDivider={false} background={theme.colors.background}>
+      <PageSection
+        index={2}
+        hasCurvedDivider={false}
+        innerProps={{ style: { margin: '0', width: '100%' } }}
+        containerProps={{
+          id: 'home-5',
+        }}
+      >
         <OuterWedgeWrapper>
           <InnerWedgeWrapper top>
             <WedgeTopLeft />
@@ -364,10 +370,11 @@ const Home: React.FC<React.PropsWithChildren> = () => {
 
       <PageSection
         innerProps={{ style: HomeSectionContainerStyles }}
-        // background="linear-gradient(180deg, #7645D9 0%, #5121B1 100%)"
-        background={theme.isDark ? 'linear-gradient(180deg, #201335 0%, #27262c 100%)' : '#D7CAEC'}
         index={2}
         hasCurvedDivider={false}
+        containerProps={{
+          id: 'home-3',
+        }}
       >
         <Footer />
       </PageSection>

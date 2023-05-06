@@ -62,20 +62,6 @@ const DummyImg = styled.img<{ maxHeight: string }>`
   max-height: ${({ maxHeight }) => maxHeight};
   visibility: hidden;
 `
-
-const Sun = styled.div<{ theme }>`
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  bottom: 60px;
-  width: 170px;
-  height: 170px;
-  border-radius: 50%;
-  background-image: url('/images/home/tokens/nika-full.png');
-  background-size: contain;
-  box-shadow: ${({ theme }) =>
-    theme.isDark ? '0 0 60px #cfca86, 0 0 98px #cfca86' : '0 0 60px #b286db, 0 0 98px #b286db'};
-`
 const ImageWrapper0 = styled(Box)`
   height: 100%;
   position: absolute;
@@ -713,8 +699,6 @@ const CompositeImage: React.FC<React.PropsWithChildren<ComponentProps>> = ({
             <Meteor7 />
           </>
         )}
-
-        <Sun />
       </Wrapper>
     </>
   )
