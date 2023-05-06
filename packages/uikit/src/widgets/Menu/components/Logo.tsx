@@ -1,8 +1,10 @@
 import React, { useContext } from "react";
 import styled, { keyframes } from "styled-components";
+import { useTheme } from "@pancakeswap/hooks";
 import Flex from "../../../components/Box/Flex";
-import { LogoWithTextIcon } from "../../../components/Svg";
+import { LogoIcon } from "../../../components/Svg";
 import { MenuContext } from "../context";
+import { Image } from "../../../components";
 
 interface Props {
   href: string;
@@ -22,10 +24,10 @@ const StyledLink = styled("a")`
   }
   .desktop-icon {
     width: 160px;
-    // display: none;
-    // ${({ theme }) => theme.mediaQueries.lg} {
-    //   display: block;
-    // }
+    display: none;
+    ${({ theme }) => theme.mediaQueries.lg} {
+      display: block;
+    }
   }
   .eye {
     animation-delay: 20ms;
@@ -39,14 +41,19 @@ const StyledLink = styled("a")`
     }
   }
 `;
+const title = {
+  dark: "/images/nav-title-dark.png",
+  light: "/images/nav-title-light.png",
+};
 
 const Logo: React.FC<React.PropsWithChildren<Props>> = ({ href }) => {
   const { linkComponent } = useContext(MenuContext);
+  const { isDark } = useTheme();
   const isAbsoluteUrl = href.startsWith("http");
   const innerLogo = (
     <>
-      {/* <LogoIcon className="mobile-icon" /> */}
-      <LogoWithTextIcon className="desktop-icon" />
+      <LogoIcon className="mobile-icon" />
+      <Image className="desktop-icon" src={isDark ? title.dark : title.light} width={130} height={28} />
     </>
   );
 

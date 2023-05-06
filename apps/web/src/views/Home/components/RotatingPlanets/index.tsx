@@ -122,11 +122,15 @@ const rotate8 = keyframes`
 `
 
 const Container = styled.div`
-  width: 576px;
-  height: 576px;
+  width: 100%;
+  height: 550px;
   display: flex;
   justify-content: center;
   align-items: center;
+  @media screen and (max-width: 480px) {
+    scale: 0.65;
+    height: 300px;
+  }
 `
 const Sun = styled.div`
   position: absolute;
