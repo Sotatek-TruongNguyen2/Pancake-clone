@@ -15,11 +15,6 @@ import { SkeletonV2 } from "../Skeleton";
 import { Image } from "../Image";
 import { useMatchBreakpoints } from "../../contexts";
 
-const title = {
-  dark: "/images/nav-title-dark.png",
-  light: "/images/nav-title-light.png",
-};
-
 const MenuItem: React.FC<React.PropsWithChildren<FooterProps>> = ({
   items,
   isDark,
@@ -51,7 +46,7 @@ const MenuItem: React.FC<React.PropsWithChildren<FooterProps>> = ({
           mb={["42px", null, "36px"]}
         >
           <Flex flexDirection="column" alignItems={isMobile ? "left" : "center"} style={{ gap: "15px" }} mb="24px">
-            <Image src={isDark ? title.dark : title.light} width={130} height={28} />
+            <Image src="/images/nav-title-light.png" width={130} height={28} />
 
             <Flex order={[1, null, 2]} justifyContent="space-between" alignItems="center">
               <Box mr="20px">
