@@ -12,12 +12,16 @@ const StyledCell = styled(Pool.BaseCell)`
 const Status = ({ status }: StatusProps) => {
   const { t } = useTranslation()
   return (
-    <StyledCell role="cell">
+    <StyledCell>
       <Pool.CellContent>
         <Text fontSize="12px" color="textSubtle" textAlign="left">
           {t('Status')}
         </Text>
-        <Text color={status.toLocaleLowerCase() === 'active' ? 'primary' : 'text'}>{status}</Text>
+        <Text
+          color={status.toLocaleLowerCase() === 'active' || status.toLocaleLowerCase() === 'open' ? 'primary' : 'text'}
+        >
+          {status}
+        </Text>
       </Pool.CellContent>
     </StyledCell>
   )

@@ -14,7 +14,7 @@ import AutoEarningsCell from './AutoEarningsCell'
 import Status from './Status'
 
 const StyledCell = styled(Pool.BaseCell)`
-  flex: 4.5;
+  flex: 1;
   ${({ theme }) => theme.mediaQueries.sm} {
     flex: 1 0 120px;
   }
