@@ -12,7 +12,7 @@ const GlobalStyle = createGlobalStyle`
   }
   body {
     background-color: ${({ theme }) => theme.colors.background};
-
+    overflow-x: hidden!important;
     img {
       height: auto;
       max-width: 100%;
