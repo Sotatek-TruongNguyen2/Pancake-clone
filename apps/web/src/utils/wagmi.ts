@@ -33,9 +33,54 @@ const celo = {
     },
   },
 }
-console.log('polygon: ', polygon)
-console.log('bsc: ', bsc)
-const CHAINS = [mainnet, polygon, optimism, arbitrum, celo, bsc, bscTestnet]
+
+const sui = {
+  id: 11110000,
+  name: 'Sui',
+  network: 'sui',
+  nativeCurrency: {
+    name: 'Sui',
+    symbol: 'SUI',
+    decimals: 18,
+  },
+  rpcUrls: {
+    default: {
+      http: ['https://sui.io/rpc'],
+    },
+  },
+  testnet: false,
+  blockExplorers: {
+    default: {
+      name: 'Sui explorer',
+      url: 'https://suiexplorer.com/',
+    },
+  },
+}
+
+const aptos = {
+  id: 100,
+  name: 'Aptos',
+  network: 'aptos',
+  nativeCurrency: {
+    name: 'Aptops',
+    symbol: 'APT',
+    decimals: 18,
+  },
+  rpcUrls: {
+    default: {
+      http: ['https://aptos-mainnet-archive.allthatnode.com/v1'],
+    },
+  },
+  testnet: false,
+  blockExplorers: {
+    default: {
+      name: 'Sui explorer',
+      url: 'https://aptoscan.com/',
+    },
+  },
+}
+
+const CHAINS = [mainnet, polygon, arbitrum, celo, bsc, bscTestnet, aptos, sui]
 
 const getNodeRealUrl = (networkName: string) => {
   let host = null
