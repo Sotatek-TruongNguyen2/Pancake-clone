@@ -42,8 +42,8 @@ const StyledLink = styled("a")`
   }
 `;
 const title = {
-  dark: "/images/nav-title-light.png",
-  light: "/images/nav-title-dark.png",
+  dark: "/images/nav-title-dark.png",
+  light: "/images/nav-title-light.png",
 };
 
 const Logo: React.FC<React.PropsWithChildren<Props>> = ({ href }) => {
