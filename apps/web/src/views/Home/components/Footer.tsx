@@ -6,6 +6,7 @@ import Container from 'components/Layout/Container'
 import { useAccount } from 'wagmi'
 import { useState } from 'react'
 import CompositeImage from './CompositeImage'
+import CompositeImageMobile from './CompositeImageMobile'
 
 const Wrapper = styled(Flex)`
   width: 100%;
@@ -28,11 +29,11 @@ const FloatingPancakesWrapper = styled(Container)`
   top: 0;
   left: 50%;
   transform: translateX(-50%);
-  visibility: hidden;
+  visibility: visible;
 
-  ${({ theme }) => theme.mediaQueries.md} {
-    visibility: visible;
-  }
+  // ${({ theme }) => theme.mediaQueries.md} {
+  //   visibility: visible;
+  // }
 `
 
 const topLeftImage = {
@@ -54,19 +55,23 @@ const Sun = styled.div<{ theme }>`
   left: 50%;
   transform: translateX(-50%);
   bottom: 60px;
-  width: 170px;
-  height: 170px;
+  width: 130px;
+  height: 130px;
   border-radius: 50%;
   background-image: url('/images/home/tokens/nika-full.png');
   background-size: contain;
   box-shadow: ${({ theme }) =>
     theme.isDark ? '0 0 60px #cfca86, 0 0 98px #cfca86' : '0 0 60px #b286db, 0 0 98px #b286db'};
+  ${({ theme }) => theme.mediaQueries.md} {
+    width: 170px;
+    height: 170px;
+  }
 `
 
 const Footer = () => {
   const { t } = useTranslation()
   const { address: account } = useAccount()
-  const { isTablet, isDesktop } = useMatchBreakpoints()
+  const { isTablet, isDesktop, isMobile } = useMatchBreakpoints()
   const [showAnimation, setShowAnimation] = useState(false)
 
   return (
@@ -74,6 +79,12 @@ const Footer = () => {
       {(isTablet || isDesktop) && (
         <FloatingPancakesWrapper>
           <CompositeImage {...topLeftImage} showAnimation={showAnimation} />
+        </FloatingPancakesWrapper>
+      )}
+
+      {isMobile && (
+        <FloatingPancakesWrapper>
+          <CompositeImageMobile {...topLeftImage} showAnimation={showAnimation} />
         </FloatingPancakesWrapper>
       )}
       <Wrapper>
