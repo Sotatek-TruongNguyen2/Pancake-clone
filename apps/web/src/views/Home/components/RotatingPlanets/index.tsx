@@ -308,7 +308,7 @@ const PolygonPlanet = styled.div`
   height: 24px;
   border-radius: 50%;
   transform: scaleX(0.5);
-  background-image: url('/images/home/tokens/polygon.png');
+  background-image: url('/images/home/flying-pancakes/polygon-left.png');
   background-size: contain;
 `
 const AvalanchePlanet = styled.div`
@@ -316,7 +316,7 @@ const AvalanchePlanet = styled.div`
   height: 33px;
   border-radius: 50%;
   transform: scaleX(0.5);
-  background-image: url('/images/home/tokens/avalanche.png');
+  background-image: url('/images/home/flying-pancakes/avax-left.png');
   background-size: contain;
 `
 const SolanaPlanet = styled.div`
@@ -324,7 +324,7 @@ const SolanaPlanet = styled.div`
   height: 27px;
   border-radius: 50%;
   transform: scaleX(0.5);
-  background-image: url('/images/home/tokens/solana.png');
+  background-image: url('/images/home/flying-pancakes/solana-left.png');
   background-size: contain;
 `
 const EthereumPlanet = styled.div`
@@ -332,7 +332,7 @@ const EthereumPlanet = styled.div`
   height: 37px;
   border-radius: 50%;
   transform: scaleX(0.5);
-  background-image: url('/images/home/tokens/ethereum.png');
+  background-image: url('/images/home/flying-pancakes/ethereum-left.png');
   background-size: contain;
 `
 const FantomPlanet = styled.div`
@@ -340,7 +340,7 @@ const FantomPlanet = styled.div`
   height: 37px;
   border-radius: 50%;
   transform: scaleX(0.5);
-  background-image: url('/images/home/tokens/fantom.png');
+  background-image: url('/images/home/flying-pancakes/fantom-left.png');
   background-size: contain;
 `
 const CardanoPlanet = styled.div`
@@ -348,7 +348,7 @@ const CardanoPlanet = styled.div`
   height: 40px;
   border-radius: 50%;
   transform: scaleX(0.5);
-  background-image: url('/images/home/tokens/cardano.png');
+  background-image: url('/images/home/flying-pancakes/cardano-left.png');
   background-size: contain;
 `
 const TelcoinPlanet = styled.div`
@@ -356,7 +356,7 @@ const TelcoinPlanet = styled.div`
   height: 30px;
   border-radius: 50%;
   transform: scaleX(0.5);
-  background-image: url('/images/home/tokens/tel.png');
+  background-image: url('/images/home/flying-pancakes/tel-left.png');
   background-size: contain;
 `
 

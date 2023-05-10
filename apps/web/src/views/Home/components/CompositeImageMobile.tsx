@@ -65,108 +65,108 @@ const DummyImg = styled.img<{ maxHeight: string }>`
 const ImageWrapper0 = styled(Box)`
   height: 100%;
   position: absolute;
-  top: 30px;
-  left: 200px;
+  top: 170px;
+  left: 40px;
 
   img {
-    max-height: 80px;
-    width: 80px;
+    max-height: 40px;
+    width: 40px;
   }
 `
 const ImageWrapper1 = styled(Box)`
   height: 100%;
   position: absolute;
-  top: 90px;
-  left: 50px;
+  top: 210px;
+  left: -10px;
 
   img {
     max-height: 100px;
-    width: 100px;
+    width: 60px;
   }
 `
 const ImageWrapper2 = styled(Box)`
   height: 100%;
   position: absolute;
-  top: 220px;
-  left: -60px;
+  top: 280px;
+  left: -50px;
 
   img {
     max-height: 120px;
-    width: 120px;
+    width: 80px;
   }
 `
 const ImageWrapper3 = styled(Box)`
   height: 100%;
   position: absolute;
-  top: 330px;
-  left: 150px;
+  top: 340px;
+  left: 30px;
 
   img {
-    max-height: 80px;
-    width: 80px;
+    max-height: 40px;
+    width: 40px;
   }
 `
 const ImageWrapper4 = styled(Box)`
   height: 100%;
   position: absolute;
-  top: 30px;
-  right: 200px;
+  top: 170px;
+  right: 40px;
 
   img {
-    max-height: 80px;
-    width: 80px;
+    max-height: 40px;
+    width: 40px;
   }
 `
 const ImageWrapper5 = styled(Box)`
   height: 100%;
   position: absolute;
-  top: 90px;
-  right: 50px;
+  top: 210px;
+  right: -10px;
 
   img {
-    max-height: 100px;
-    width: 100px;
+    max-height: 60px;
+    width: 60px;
   }
 `
 const ImageWrapper6 = styled(Box)`
   height: 100%;
   position: absolute;
-  top: 230px;
-  right: -60px;
+  top: 280px;
+  right: -50px;
 
   img {
     max-height: 120px;
-    width: 120px;
+    width: 80px;
   }
 `
 const ImageWrapper7 = styled(Box)`
   height: 100%;
   position: absolute;
-  top: 330px;
-  right: 150px;
+  top: 340px;
+  right: 30px;
 
   img {
-    max-height: 80px;
-    width: 80px;
+    max-height: 40px;
+    width: 40px;
   }
 `
 const animate0 = () => keyframes`
   0% {
     left: 50%;
     top: 70%;
-    transform: translateX(-50%) rotate(35deg);
+    transform: translateX(-50%) rotate(40deg);
     opacity: 1;
   }
-  60% {
+  50% {
     opacity: 1;
   }
-  80% {
+  75% {
     opacity: 0;
   }
   100% {
-    transform: rotate(35deg);
-    top: 30px;
-    left: 200px;
+    transform: rotate(40deg);
+    top: 170px;
+    left: 40px;
     opacity: 0;
   }
 `
@@ -177,15 +177,15 @@ const animate1 = () => keyframes`
     transform: rotate(23deg) translateX(-50%)  ;
     opacity: 1;
   }
-  60% {
+  50% {
     opacity: 1;
   }
-  80% {
+  75% {
     opacity: 0;
   }
   100% {
-    top: 100px;
-    left: 50px;
+    top: 230px;
+    left: -10px;
     transform: rotate(23deg) ;
     opacity: 0;
   }
@@ -194,19 +194,19 @@ const animate2 = () => keyframes`
   0% {
     left: 50%;
     top: 70%;
-    transform: translateX(-50%) rotate(0deg) ;
+    transform: translateX(-50%) rotate(-10deg) ;
     opacity: 1;
   }
-  60% {
+  50% {
     opacity: 1;
   }
-  80% {
+  75% {
     opacity: 0;
   }
   100% {
-    top: 250px;
-    left: -60px;
-    transform: rotate(0deg) ;
+    top: 320px;
+    left: -50px;
+    transform: rotate(-10deg) ;
     opacity: 0;
   }
 `
@@ -214,19 +214,19 @@ const animate3 = () => keyframes`
 0% {
   left: 50%;
   top: 70%;
-  transform: translateX(-50%) rotate(-15deg) ;
+  transform: translateX(-50%) rotate(-30deg) ;
   opacity: 1;
 }
-60% {
+50% {
   opacity: 1;
 }
-80% {
+75% {
   opacity: 0;
 }
 100% {
-  top: 360px;
-  left: 150px;
-  transform: rotate(-15deg) ;
+  top: 370px;
+  left: 30px;
+  transform: rotate(-30deg) ;
   opacity: 0;
 }
 `
@@ -237,16 +237,16 @@ const animate4 = () => keyframes`
     transform: translateX(-50%) rotate(145deg);
     opacity: 1;
   }
-  60% {
+  50% {
     opacity: 1;
   }
-  80% {
+  75% {
     opacity: 0;
   }
   100% {
     transform: rotate(140deg);
-    top: 40px;
-    right: 200px;
+    top: 170px;
+    right: 40px;
     opacity: 0;
   }
 `
@@ -257,15 +257,15 @@ const animate5 = () => keyframes`
     transform: rotate(157deg) translateX(-50%)  ;
     opacity: 1;
   }
-  60% {
+  50% {
     opacity: 1;
   }
-  80% {
+  75% {
     opacity: 0;
   }
   100% {
-    top: 100px;
-    right: 50px;
+    top: 230px;
+    right: -10px;
     transform: rotate(157deg) ;
     opacity: 0;
   }
@@ -274,19 +274,19 @@ const animate6 = () => keyframes`
   0% {
     right: 50%;
     top: 70%;
-    transform: translateX(-50%) rotate(180deg) ;
+    transform: translateX(-50%) rotate(190deg) ;
     opacity: 1;
   }
-  60% {
+  50% {
     opacity: 1;
   }
-  80% {
+  75% {
     opacity: 0;
   }
   100% {
-    top: 280px;
-  right: -60px;
-    transform: rotate(180deg) ;
+    top: 320px;
+    right: -50px;
+    transform: rotate(190deg) ;
     opacity: 0;
   }
 `
@@ -294,19 +294,19 @@ const animate7 = () => keyframes`
 0% {
   right: 50%;
   top: 70%;
-  transform: translateX(-50%) rotate(195deg) ;
+  transform: translateX(-50%) rotate(210deg) ;
   opacity: 1;
 }
-60% {
+50% {
   opacity: 1;
 }
-80% {
+75% {
   opacity: 0;
 }
 100% {
-  top: 380px;
-  right: 150px;
-  transform: rotate(195deg) ;
+  top: 370px;
+  right: 30px;
+  transform: rotate(210deg) ;
   opacity: 0;
 }
 `
@@ -315,10 +315,10 @@ const hidden = () => keyframes`
     width: 0px;
   }
   70% {
-    width: 200px;
+    width: 50px;
   }
   100% {
-    width: 200px;
+    width: 50px;
   }
 `
 const Meteor0 = styled.section`
@@ -466,12 +466,12 @@ interface ImageAttributes {
   alt: string
 }
 
-export interface CompositeImageProps {
+export interface CompositeImageMobileProps {
   path: string
   attributes: ImageAttributes[]
 }
 
-interface ComponentProps extends CompositeImageProps {
+interface ComponentProps extends CompositeImageMobileProps {
   animate?: boolean
   maxHeight?: string
   showAnimation?: boolean
@@ -486,7 +486,7 @@ export const getSrcSet = (base: string, imageSrc: string, extension = '.png') =>
   ${getImageUrl(base, imageSrc, Resolution.LG, extension)} 1024w,`
 }
 
-const CompositeImage: React.FC<React.PropsWithChildren<ComponentProps>> = ({
+const CompositeImageMobile: React.FC<React.PropsWithChildren<ComponentProps>> = ({
   path,
   attributes,
   maxHeight = '512px',
@@ -703,4 +703,4 @@ const CompositeImage: React.FC<React.PropsWithChildren<ComponentProps>> = ({
   )
 }
 
-export default CompositeImage
+export default CompositeImageMobile
