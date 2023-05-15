@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 
 import { useAccount } from 'wagmi'
-import { Heading, Flex, Image, Text, Link, FlexLayout, PageHeader, Loading, Pool, ViewMode } from '@pancakeswap/uikit'
+import { Heading, Flex, Text, Link, FlexLayout, PageHeader, Loading, Pool, ViewMode } from '@pancakeswap/uikit'
 import { useTranslation } from '@pancakeswap/localization'
 import { usePoolsPageFetch, usePoolsWithVault } from 'state/pools/hooks'
 import Page from 'components/Layout/Page'
@@ -22,24 +22,12 @@ const CardLayout = styled(FlexLayout)`
   justify-content: center;
 `
 
-const FinishedTextContainer = styled(Flex)`
-  padding-bottom: 32px;
-  flex-direction: column;
-  ${({ theme }) => theme.mediaQueries.md} {
-    flex-direction: row;
-  }
-`
-
-const FinishedTextLink = styled(Link)`
-  font-weight: 400;
-  white-space: nowrap;
-  text-decoration: underline;
-`
-
 const Pools: React.FC<React.PropsWithChildren> = () => {
   const { t } = useTranslation()
   const { address: account } = useAccount()
   const { pools, userDataLoaded } = usePoolsWithVault()
+  // console.log('pools:', pools)
+  // console.log('userDataLoaded: ', userDataLoaded)
 
   usePoolsPageFetch()
 
@@ -62,18 +50,8 @@ const Pools: React.FC<React.PropsWithChildren> = () => {
       </PageHeader>
       <Page>
         <PoolControls pools={pools}>
-          {({ chosenPools, viewMode, stakedOnly, normalizedUrlSearch, showFinishedPools }) => (
+          {({ chosenPools, viewMode, stakedOnly, normalizedUrlSearch }) => (
             <>
-              {/* {showFinishedPools && (
-                <FinishedTextContainer>
-                  <Text fontSize={['16px', null, '20px']} color="failure" pr="4px">
-                    {t('Looking for v1 NIKA syrup pools?')}
-                  </Text>
-                  <FinishedTextLink href="/migration" fontSize={['16px', null, '20px']} color="failure">
-                    {t('Go to migration page')}.
-                  </FinishedTextLink>
-                </FinishedTextContainer>
-              )} */}
               {account && !userDataLoaded && stakedOnly && (
                 <Flex justifyContent="center" mb="4px">
                   <Loading />
@@ -140,15 +118,6 @@ const Pools: React.FC<React.PropsWithChildren> = () => {
                   )}
                 </Pool.PoolsTable>
               )}
-              {/* <Image
-                mx="auto"
-                mt="12px"
-                src="/images/decorations/3d-syrup-bunnies.png"
-                alt="Pancake illustration"
-                width={192}
-                height={184.5}
-              />
-              https://picsum.photos/200/300 */}
             </>
           )}
         </PoolControls>

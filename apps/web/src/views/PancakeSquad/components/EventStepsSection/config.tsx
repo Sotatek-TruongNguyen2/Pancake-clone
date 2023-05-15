@@ -35,7 +35,7 @@ const stepsConfigBuilder = ({ t, userInfos, eventInfos, userStatus, account, the
         eventStatus: [SaleStatusEnum.Pending, SaleStatusEnum.Premint],
       }),
       title: t('Activate your profile'),
-      bodyText: [t('You’ll need an active Tiktak Code Profile to buy Minting Tickets and mint a Tiktak Code NFT!')],
+      bodyText: [t('You’ll need an active NikaSwap Profile to buy Minting Tickets and mint a NikaSwap NFT!')],
       buttons: (
         <>
           <ActivateProfileButton userStatus={userStatus} t={t} />

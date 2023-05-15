@@ -16,6 +16,7 @@ const GlobalStyle = createGlobalStyle`
       height: auto;
       max-width: 100%;
     }
+    overflow-x: hidden!important;
   }
   html {
     overflow-x: hidden!important;

@@ -220,7 +220,7 @@ const ActionPanel: React.FC<React.PropsWithChildren<ActionPanelProps>> = ({ expa
       ],
     })
 
-    const pendingRewards = poolPendingRewardPerday[0]
+    const pendingRewards = poolPendingRewardPerday ? poolPendingRewardPerday[0] : new BigNumber(0)
 
     // const [
     //   totalStakes,0
@@ -269,8 +269,6 @@ const ActionPanel: React.FC<React.PropsWithChildren<ActionPanelProps>> = ({ expa
       totalStaked: Number(_totalStakes),
     }
 
-    setStakeData(data)
-    setStakeData(data)
     setStakeData(data)
   }
 
@@ -413,10 +411,7 @@ const ActionPanel: React.FC<React.PropsWithChildren<ActionPanelProps>> = ({ expa
       <ActionContainer>
         <Box width="100%">
           <ActionContainer>
-            <Harvest
-              // earningToken={new Token(56, NIKA_TOKEN_ADDRESS, 18, 'NIKA')}
-              pendingReward={stakeData?.pendingRewards}
-            />
+            <Harvest pendingReward={stakeData?.pendingRewards} />
             {stakeData ? (
               stakeData.totalStaked > 0 ? (
                 <StakedActionComponent

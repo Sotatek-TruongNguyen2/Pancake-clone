@@ -58,7 +58,7 @@ const FAQs = () => {
             <FoldableText title={t('Step 2: Await whitelisting')} mt="24px">
               <Box color="textSubtle">
                 <Text color="textSubtle" mb="4px">
-                  {t('The Tiktak Code team will try to respond within a week.')}
+                  {t('The NikaSwap team will try to respond within a week.')}
                 </Text>
                 <List>
                   <FaqLi>

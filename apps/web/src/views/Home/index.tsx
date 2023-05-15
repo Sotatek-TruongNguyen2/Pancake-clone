@@ -153,37 +153,37 @@ const Token = styled.div<{ name: string }>`
   width: 52px;
   height: 52px;
   border-radius: 50%;
-  background-image: ${(props) => `url('images/home/tokens/${props.name}.png')`};
+  background-image: ${(props) => `url('images/home/flying-pancakes/${props.name}.png')`};
   background-size: cover;
 `
 const chainList = [
   {
-    icon: 'ethereum',
+    icon: 'ethereum-right',
     label: 'ethereum',
     link: 'https://ethereum.org/en/',
   },
   {
-    icon: 'avalanche',
+    icon: 'avax-right',
     label: 'avalanche',
     link: 'https://www.avax.network/',
   },
   {
-    icon: 'solana',
+    icon: 'solana-right',
     label: 'solana',
     link: 'https://solana.com/',
   },
   {
-    icon: 'bnb',
+    icon: 'bnb-right',
     label: 'bnb',
     link: 'https://www.bnbchain.world/en',
   },
   {
-    icon: 'fantom',
+    icon: 'fantom-right',
     label: 'fantom',
     link: 'https://fantom.foundation/',
   },
   {
-    icon: 'polygon',
+    icon: 'polygon-right',
     label: 'polygon',
     link: 'https://polygon.technology/',
   },
@@ -257,9 +257,6 @@ const Home: React.FC<React.PropsWithChildren> = () => {
         }
         [data-theme='dark'] #home-3 .page-bg {
           background: linear-gradient(180deg, #201335 0%, #27262c 100%);
-        }
-        [data-theme='dark'] #home-3 .page-bg {
-          background: linear-gradient(180deg, #0b4576 0%, #091115 100%);
         }
         #home-4 .inner-wedge svg {
           fill: #d8cbed;

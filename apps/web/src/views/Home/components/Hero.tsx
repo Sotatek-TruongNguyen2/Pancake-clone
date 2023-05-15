@@ -1,4 +1,4 @@
-import { Flex, Heading } from '@pancakeswap/uikit'
+import { Flex, Heading, useMatchBreakpoints } from '@pancakeswap/uikit'
 import { useAccount } from 'wagmi'
 import { useTranslation } from '@pancakeswap/localization'
 import styled from 'styled-components'
@@ -24,6 +24,8 @@ const InnerWrapper = styled.div`
 const Hero = () => {
   const { t } = useTranslation()
   const { address: account } = useAccount()
+
+  const { isMobile, isTablet, isDesktop } = useMatchBreakpoints()
 
   return (
     <>
@@ -57,7 +59,7 @@ const Hero = () => {
         mt={[account ? '280px' : '50px', null, 0]}
         id="homepage-hero"
       >
-        <Flex width="100%">
+        <Flex width={!isDesktop ? '100%' : '50%'}>
           <RotatingPlanets />
         </Flex>
         <Flex flex="1" flexDirection="column">

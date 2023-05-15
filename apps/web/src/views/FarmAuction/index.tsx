@@ -97,7 +97,7 @@ const FarmAuction = () => {
               {t('Community Farm Auction')}
             </Heading>
             <Text color="textSubtle" mb="24px">
-              {t('Each week, qualifying projects can bid NIKA for the right to host a 10-day Farm on Tiktak Code.')}
+              {t('Each week, qualifying projects can bid NIKA for the right to host a 10-day Farm on NikaSwap.')}
             </Text>
             <Text color="textSubtle">{t('This page is for projects to bid for farms.')}</Text>
             <Text color="textSubtle" mb="24px">

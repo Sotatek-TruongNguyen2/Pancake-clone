@@ -37,10 +37,12 @@ const Harvest = ({ pendingReward }: HarvestProps) => {
           {t('Your %symbol% earnings have been sent to your wallet!', { symbol: 'NIKA' })}
         </ToastDescriptionWithTx>,
       )
+
+      onDismiss?.()
     }
   }
 
-  const [onPresentCollect] = useModal(
+  const [onPresentCollect, onDismiss] = useModal(
     <CollectModal
       formattedBalance={earnings.toString()}
       fullBalance=""
