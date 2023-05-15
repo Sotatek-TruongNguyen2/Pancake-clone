@@ -10,7 +10,7 @@ const MetricsSection = () => {
       <Heading textAlign="center" scale="xl">
         {t('NKS is the hub of space activities')}
       </Heading>
-      <Text textAlign="center" color="textSubtle" mb="20px">
+      <Text textAlign="center" color="textSubtle" mt="20px" mb="20px">
         {t(
           'NKS token is at the heart of the NikaSwap ecosystem. Buy it, win it, spent it, stake it,... heck, you can even vote with it!',
         )}

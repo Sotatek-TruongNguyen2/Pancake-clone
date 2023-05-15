@@ -129,7 +129,7 @@ const CakeBenefitsCard: React.FC<React.PropsWithChildren<CakeBenefitsCardProps>>
   } = useTooltip(
     <>
       <Text>
-        {t(`vNIKA boosts your voting power to %totalScore% in the TIKTAK Code voting governance.`, {
+        {t(`vNIKA boosts your voting power to %totalScore% in the NikaSwap voting governance.`, {
           totalScore: cakeBenefits?.vCake?.totalScore,
         })}
       </Text>

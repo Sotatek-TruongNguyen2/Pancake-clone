@@ -132,14 +132,29 @@ const Container = styled.div`
     height: 300px;
   }
 `
+const floatingAnim = (x: string, y: string) => keyframes`
+from {
+  transform: translate(0,  0px);
+}
+50% {
+  transform: translate(${x}, ${y});
+}
+to {
+  transform: translate(0, 0px);
+}
+`
 const Sun = styled.div`
-  position: absolute;
-  width: 60px;
-  height: 60px;
+  position: relative;
+  top: -5px;
+  width: 70px;
+  height: 70px;
   border-radius: 50%;
-  background-image: url('/images/home/tokens/nika.png');
+  background-image: url('/images/home/flying-pancakes/nika.png');
   background-size: contain;
   box-shadow: 0 0 60px white, 0 0 98px white;
+  animation: ${floatingAnim('3px', '10px')} 3s ease-in-out infinite;
+  animation-delay: 1s;
+  background-color: #ffffff6e;
 `
 const Trajectory1 = styled.div`
   width: 60px;
@@ -308,7 +323,7 @@ const PolygonPlanet = styled.div`
   height: 24px;
   border-radius: 50%;
   transform: scaleX(0.5);
-  background-image: url('/images/home/flying-pancakes/polygon-left.png');
+  background-image: url('/images/home/flying-pancakes/polygon-right.png');
   background-size: contain;
 `
 const AvalanchePlanet = styled.div`
@@ -316,7 +331,7 @@ const AvalanchePlanet = styled.div`
   height: 33px;
   border-radius: 50%;
   transform: scaleX(0.5);
-  background-image: url('/images/home/flying-pancakes/avax-left.png');
+  background-image: url('/images/home/flying-pancakes/avax-right.png');
   background-size: contain;
 `
 const SolanaPlanet = styled.div`

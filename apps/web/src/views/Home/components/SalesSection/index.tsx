@@ -1,12 +1,5 @@
 import { Flex, Text } from '@pancakeswap/uikit'
-import { CompositeImageProps } from '../CompositeImage'
 import ColoredWordHeading from '../ColoredWordHeading'
-
-interface SalesSectionButton {
-  to: string
-  text: string
-  external: boolean
-}
 
 export interface SalesSectionProps {
   headingText: string
@@ -24,13 +17,7 @@ const SalesSection: React.FC<React.PropsWithChildren<SalesSectionProps>> = (prop
         alignItems={['flex-end', null, null, 'center']}
         justifyContent="center"
       >
-        <Flex
-          flexDirection="column"
-          flex="1"
-          ml={[null, null, null]}
-          mr={[null, null, null]}
-          alignSelf={['flex-start', null, null, 'center']}
-        >
+        <Flex flexDirection="column" margin="auto" alignSelf={['flex-start', null, null, 'center']} width="80%">
           <ColoredWordHeading text={headingText} textAlign="center" />
           <Text color="textSubtle" textAlign="center">
             {bodyText1}
