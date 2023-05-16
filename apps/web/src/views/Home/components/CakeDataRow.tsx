@@ -173,7 +173,7 @@ const CakeDataRow = () => {
       <StyledColumn style={{ gridArea: 'f' }}>
         <Text color="textSubtle">{t('Current emissions')}</Text>
 
-        <Heading scale="lg">{t('%cakeEmissions%/block', { cakeEmissions: emissionsPerBlock })}</Heading>
+        <Heading scale="lg">{t('%nikaEmissions%/block', { cakeEmissions: emissionsPerBlock })}</Heading>
       </StyledColumn>
     </Grid>
   )

@@ -47,9 +47,7 @@ const title = {
 };
 
 const Logo: React.FC<React.PropsWithChildren<Props>> = ({ href }) => {
-  const { linkComponent } = useContext(MenuContext);
   const { isDark } = useTheme();
-  const isAbsoluteUrl = href.startsWith("http");
   const innerLogo = (
     <>
       <LogoIcon className="mobile-icon" />
@@ -59,15 +57,9 @@ const Logo: React.FC<React.PropsWithChildren<Props>> = ({ href }) => {
 
   return (
     <Flex alignItems="center">
-      {isAbsoluteUrl ? (
-        <StyledLink as="a" href={href} aria-label="Tiktak home page">
-          {innerLogo}
-        </StyledLink>
-      ) : (
-        <StyledLink href={href} as={linkComponent} aria-label="Tiktak home page">
-          {innerLogo}
-        </StyledLink>
-      )}
+      <StyledLink as="a" href={href} aria-label="Nika home page">
+        {innerLogo}
+      </StyledLink>
     </Flex>
   );
 };

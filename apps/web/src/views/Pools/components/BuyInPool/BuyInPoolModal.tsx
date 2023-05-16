@@ -72,7 +72,9 @@ export const BuyInPoolModal: React.FC<React.PropsWithChildren<BuyInPoolModalProp
       toastSuccess(
         `${t('Bought')}!`,
         <ToastDescriptionWithTx txHash={receipt.transactionHash}>
-          {`You have successfully bought ${buyAmount} NIKA`}
+          {t('You have successfully bought %buyAmount% NIKA', {
+            buyAmount,
+          })}
         </ToastDescriptionWithTx>,
       )
     }
@@ -86,10 +88,6 @@ export const BuyInPoolModal: React.FC<React.PropsWithChildren<BuyInPoolModalProp
   })
 
   const usdValueStaked = formatLpBalance(minApproveAmount, 18)
-  // console.log('minApproveAmount: ', minApproveAmount)
-  console.log('usdValueStaked: ', usdValueStaked.toString())
-  // const formattedUsdValueBought = !usdValueStaked.isNaN() && formatNumber(usdValueStaked.toNumber())
-  // console.log('formattedUsdValueBought: ', formattedUsdValueBought)
 
   const handleBuyInputChange = (input: string) => {
     setBuyAmount(input)
@@ -141,7 +139,7 @@ export const BuyInPoolModal: React.FC<React.PropsWithChildren<BuyInPoolModalProp
       </Text>
 
       <Flex alignItems="center" justifyContent="space-between" mb="8px" mt="16px">
-        <Text bold>Referrer address:</Text>
+        <Text bold>{t('Referrer address')}:</Text>
       </Flex>
       <Input onChange={handleAddressChange} value={address} />
 

@@ -70,7 +70,7 @@ const Harvest = ({ pendingReward }: HarvestProps) => {
       <ActionContainer>
         <ActionTitles>
           <Text fontSize="12px" bold color="secondary" as="span" textTransform="uppercase">
-            {t(' NIKA Earned')}
+            {t('%asset% Earned', { asset: 'NIKA' })}
           </Text>
         </ActionTitles>
         <ActionContent>
@@ -85,7 +85,7 @@ const Harvest = ({ pendingReward }: HarvestProps) => {
     <ActionContainer>
       <ActionTitles>
         <Text fontSize="12px" bold color="secondary" as="span" textTransform="uppercase">
-          {t(' NIKA Earned')}
+          {t('%asset% Earned', { asset: 'NIKA' })}
         </Text>
       </ActionTitles>
       <ActionContent>

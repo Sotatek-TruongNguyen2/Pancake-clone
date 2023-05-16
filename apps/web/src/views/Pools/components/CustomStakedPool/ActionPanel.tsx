@@ -263,8 +263,8 @@ const ActionPanel: React.FC<React.PropsWithChildren<ActionPanelProps>> = ({ expa
       claimedInterest: Number(_totalClaimed),
       f1Referee: Number(f1Referee),
       referrer: accountEllipsis,
-      claimEndsIn: formatTime(claimEndsIn.times(1000).toString()),
-      vestingEndsIn: formatTime(vestingEndsIn.times(1000).toString()),
+      claimEndsIn: claimEndsIn.lte(0) ? 'No Data' : formatTime(claimEndsIn.times(1000).toString()),
+      vestingEndsIn: vestingEndsIn.lte(0) ? 'No Data' : formatTime(vestingEndsIn.times(1000).toString()),
       pendingRewards: Number(_pendingRewards),
       totalStaked: Number(_totalStakes),
     }

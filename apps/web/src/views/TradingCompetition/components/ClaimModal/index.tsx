@@ -60,12 +60,12 @@ const ClaimModal: React.FC<React.PropsWithChildren<CompetitionProps>> = ({
         </Text>
         <Flex mt="16px" alignItems="center">
           {/* achievements */}
-          <Image
+          {/* <Image
             src={`/images/achievements/${achievement.image}`}
             alt="achievement-claim-image"
             width={25}
             height={25}
-          />
+          /> */}
           <Text ml={['4px', '8px']}>
             +{userPointReward} {t('Points')}
           </Text>

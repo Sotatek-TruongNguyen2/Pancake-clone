@@ -44,7 +44,7 @@ export const vaultPoolConfig = {
     },
   },
   [VaultKey.IfoPool]: {
-    name: 'IFO CAKE',
+    name: 'IFO NIKA',
     description: <Trans>Stake NIKA to participate in IFOs</Trans>,
     autoCompoundFrequency: 1,
     gasLimit: 500000,

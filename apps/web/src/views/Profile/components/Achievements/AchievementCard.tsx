@@ -20,7 +20,7 @@ const Details = styled(Flex)`
 const AchievementCard: React.FC<React.PropsWithChildren<AchievementCardProps>> = ({ achievement }) => {
   return (
     <Flex>
-      <AchievementAvatar badge={achievement.badge} />
+      {/* <AchievementAvatar badge={achievement.badge} /> */}
       <Details>
         <AchievementTitle title={achievement.title} />
         <AchievementDescription description={achievement.description} />

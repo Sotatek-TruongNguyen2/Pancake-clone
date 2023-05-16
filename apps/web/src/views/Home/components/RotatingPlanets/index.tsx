@@ -339,7 +339,7 @@ const SolanaPlanet = styled.div`
   height: 27px;
   border-radius: 50%;
   transform: scaleX(0.5);
-  background-image: url('/images/home/flying-pancakes/solana-left.png');
+  background-image: url('/images/home/flying-pancakes/solana-right.png');
   background-size: contain;
 `
 const EthereumPlanet = styled.div`

@@ -49,7 +49,7 @@ const StyledCell = styled(Pool.BaseCell)`
 const BuyInPool = () => {
   const { t } = useTranslation()
   const { address: account } = useAccount()
-  const { isTablet, isDesktop, isMobile } = useMatchBreakpoints()
+  const { isMobile } = useMatchBreakpoints()
 
   const [onPresentBuyInPoolModal] = useModal(
     <BuyInPoolModal
@@ -62,7 +62,7 @@ const BuyInPool = () => {
     return (
       <BuyContainer>
         <Flex>
-          <NameCell title="Buy NIKA" />
+          <NameCell title={t('Buy NIKA')} />
           <TokenPrice />
           <Status status="Open" />
         </Flex>
@@ -80,9 +80,9 @@ const BuyInPool = () => {
   return (
     <BuyContainer>
       <Flex>
-        <NameCell title="Buy NIKA" />
+        <NameCell title={t('Buy NIKA')} />
         <TokenPrice />
-        <Status status="Open" />
+        <Status status={t('Open')} />
 
         <StyledCell />
         <ActionWrapper>

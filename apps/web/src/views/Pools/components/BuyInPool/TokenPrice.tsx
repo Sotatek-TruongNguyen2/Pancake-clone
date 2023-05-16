@@ -18,6 +18,7 @@ import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import { readContracts, useNetwork } from 'wagmi'
 import oracleAbi from 'config/abi/oracleAbi.json'
+import { useTranslation } from '@pancakeswap/localization'
 
 const StyledCell = styled(Pool.BaseCell)`
   flex: 4.5;
@@ -27,11 +28,12 @@ const StyledCell = styled(Pool.BaseCell)`
 `
 
 const TokenPrice = () => {
+  const { t } = useTranslation()
   const [isLoading, setIsLoading] = useState(true)
   const { isMobile } = useMatchBreakpoints()
   const [price, setPrice] = useState<BigNumber>(BIG_ZERO)
   const oracleContract = useOracleContract()
-  const tooltipContent = price.toString()
+  const tooltipContent = price.toString().substring(0, 20)
   const { targetRef, tooltip, tooltipVisible } = useTooltip(tooltipContent, {
     placement: 'bottom-start',
   })
@@ -71,7 +73,7 @@ const TokenPrice = () => {
   return (
     <StyledCell role="cell">
       <Text fontSize="12px" color="textSubtle" textAlign="left">
-        TokenPrice
+        {t('Token Price')}
       </Text>
       {isLoading ? (
         <Skeleton width="80px" height="16px" />
@@ -81,7 +83,7 @@ const TokenPrice = () => {
             <Box mr="8px" height="32px">
               {tooltipVisible && tooltip}
               <TooltipText ref={targetRef}>
-                <Text color="primary" fontSize={isMobile ? '14px' : '16px'} bold={!isMobile}>
+                <Text color="primary" fontSize={isMobile ? '14px' : '16px'} bold={!isMobile} overflowX="hidden">
                   {formatPriceAmount(price)}
                 </Text>
               </TooltipText>

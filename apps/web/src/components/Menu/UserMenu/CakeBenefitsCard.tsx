@@ -63,7 +63,7 @@ const CakeBenefitsCard: React.FC<React.PropsWithChildren<CakeBenefitsCardProps>>
   } = useTooltip(
     <>
       <Text>
-        {t(`%lockedCake% NIKA (including rewards) are locked in the NIKA Pool until %lockedEndTime%`, {
+        {t(`%lockedNika% NIKA (including rewards) are locked in the NIKA Pool until %lockedEndTime%`, {
           lockedCake: cakeBenefits?.lockedCake,
           lockedEndTime: cakeBenefits?.lockedEndTime,
         })}
@@ -87,7 +87,7 @@ const CakeBenefitsCard: React.FC<React.PropsWithChildren<CakeBenefitsCardProps>>
   } = useTooltip(
     <>
       <Text>
-        {t(`NIKA allows you to participate in the IFO public sales and commit up to %iCake% amount of NIKA.`, {
+        {t(`NIKA allows you to participate in the IFO public sales and commit up to %iNika% amount of NIKA.`, {
           iCake: cakeBenefits?.iCake,
         })}
       </Text>

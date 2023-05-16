@@ -41,7 +41,7 @@ export function WithdrawModal({
       headerBackground={getThemeValue(theme, 'colors.gradientCardHeader')}
     >
       <Flex justifyContent="space-between" alignItems="center" mb="8px">
-        <Text>{t('UnStake')}:</Text>
+        <Text>{t('Unstake')}:</Text>
       </Flex>
       <Flex flexDirection="column" mb="24px">
         <Heading>
