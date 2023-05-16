@@ -15,8 +15,6 @@ const useCakeApprove = (setLastUpdated: () => void, spender, successMsg) => {
   const { chainId } = useActiveChainId()
   const { signer: cakeContract } = useCake(chainId)
 
-  // console.log('CAKE CONTRACT:', cakeContract.address)
-
   const handleApprove = async () => {
     const receipt = await fetchWithCatchTxError(() => {
       return callWithGasPrice(cakeContract, 'approve', [spender, MaxUint256])

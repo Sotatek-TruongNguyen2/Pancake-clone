@@ -21,7 +21,7 @@ const PancakeCollectibles = () => {
     <>
       <PageHeader>
         <Heading as="h1" scale="xxl" color="secondary" data-test="nft-collections-title">
-          {t('Pancake Collectibles')}
+          {t('Nika Collectibles')}
         </Heading>
       </PageHeader>
       <Page>
