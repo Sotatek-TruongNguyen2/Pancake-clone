@@ -73,13 +73,13 @@ const Step1 = ({ hasProfile }: { hasProfile: boolean }) => {
     <Box>
       <Text>
         {t(
-          'The number of iCAKE equals the locked staking amount if the staking duration is longer than %weeks% weeks. If the staking duration is less than %weeks% weeks, it will linearly decrease based on the staking duration.',
+          'The number of iNIKA equals the locked staking amount if the staking duration is longer than %weeks% weeks. If the staking duration is less than %weeks% weeks, it will linearly decrease based on the staking duration.',
           {
             weeks: weeksDisplay,
           },
         )}
       </Text>
-      <InlineLink href="">{t('Learn more about iCAKE')}</InlineLink>
+      <InlineLink href="">{t('Learn more about iNIKA')}</InlineLink>
     </Box>,
     {},
   )
@@ -88,20 +88,20 @@ const Step1 = ({ hasProfile }: { hasProfile: boolean }) => {
     <CardBody>
       {tooltipVisible && tooltip}
       <Heading as="h4" color="secondary" mb="16px">
-        {t('Lock CAKE in the CAKE pool')}
+        {t('Lock NIKA in the NIKA pool')}
       </Heading>
       <Box>
         <Text mb="4px" color="textSubtle" small>
           {t(
-            'The maximum amount of CAKE you can commit to the Public Sale equals the number of your iCAKE. Lock more CAKE for longer durations to increase the maximum CAKE you can commit to the sale.',
+            'The maximum amount of NIKA you can commit to the Public Sale equals the number of your iNIKA. Lock more NIKA for longer durations to increase the maximum NIKA you can commit to the sale.',
           )}
         </Text>
         <TooltipText as="span" fontWeight={700} ref={targetRef} color="textSubtle" small>
-          {t('How does the number of iCAKE calculated?')}
+          {t('How does the number of iNIKA calculated?')}
         </TooltipText>
         <Text mt="4px" color="textSubtle" small>
           {t(
-            'Missed this IFO? You will enjoy the same amount of iCAKE for future IFOs if your locked-staking position is not unlocked.',
+            'Missed this IFO? You will enjoy the same amount of iNIKA for future IFOs if your locked-staking position is not unlocked.',
           )}
         </Text>
       </Box>
@@ -112,7 +112,7 @@ const Step1 = ({ hasProfile }: { hasProfile: boolean }) => {
               <LogoRoundIcon style={{ alignSelf: 'flex-start' }} width={32} height={32} />
               <Box ml="16px">
                 <Text bold fontSize="12px" textTransform="uppercase" color="secondary">
-                  {t('Your max CAKE entry')}
+                  {t('Your max NIKA entry')}
                 </Text>
                 <Balance fontSize="20px" bold decimals={5} value={getBalanceNumber(credit)} />
                 <Text fontSize="12px" color="textSubtle">
@@ -143,17 +143,17 @@ const Step2 = ({ hasProfile, isLive, isCommitted }: { hasProfile: boolean; isLiv
   return (
     <CardBody>
       <Heading as="h4" color="secondary" mb="16px">
-        {t('Commit CAKE')}
+        {t('Commit NIKA')}
       </Heading>
       <Text color="textSubtle" small>
         {t(
-          'Please note that CAKE in the fixed-term staking positions will remain locked and can not be used for committing to IFO sales. You will need a separate amount of CAKE in your wallet balance to commit to the IFO sales.',
+          'Please note that NIKA in the fixed-term staking positions will remain locked and can not be used for committing to IFO sales. You will need a separate amount of NIKA in your wallet balance to commit to the IFO sales.',
         )}{' '}
         <br />
       </Text>
       {hasProfile && isLive && !isCommitted && (
         <Button as="a" href="#current-ifo" mt="16px">
-          {t('Commit CAKE')}
+          {t('Commit NIKA')}
         </Button>
       )}
     </CardBody>
@@ -214,7 +214,7 @@ const IfoSteps: React.FC<React.PropsWithChildren<TypeProps>> = ({
               {t('Activate your Profile')}
             </Heading>
             <Text color="textSubtle" small mb="16px">
-              {t('You’ll need an active PancakeSwap Profile to take part in an IFO!')}
+              {t('You’ll need an active NikaSwap Profile to take part in an IFO!')}
             </Text>
             {renderAccountStatus()}
           </CardBody>
@@ -231,7 +231,7 @@ const IfoSteps: React.FC<React.PropsWithChildren<TypeProps>> = ({
             </Heading>
             <Text color="textSubtle" small>
               {t(
-                'After the IFO sales finish, you can claim any IFO tokens that you bought, and any unspent CAKE tokens will be returned to your wallet.',
+                'After the IFO sales finish, you can claim any IFO tokens that you bought, and any unspent NIKA tokens will be returned to your wallet.',
               )}
             </Text>
           </CardBody>

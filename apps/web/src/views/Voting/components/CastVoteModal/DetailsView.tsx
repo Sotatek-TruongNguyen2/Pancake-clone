@@ -210,7 +210,7 @@ const DetailsView: React.FC<React.PropsWithChildren<DetailsViewProps>> = ({
       {Number.isFinite(cakeBnbLpBalance) && (
         <Flex alignItems="center" justifyContent="space-between" mb="4px">
           <Text color="textSubtle" fontSize="16px">
-            {t('CAKE BNB LP')}
+            {t('NIKA BNB LP')}
           </Text>
           <Text textAlign="right">{formatNumber(cakeBnbLpBalance, 0, 3)}</Text>
         </Flex>

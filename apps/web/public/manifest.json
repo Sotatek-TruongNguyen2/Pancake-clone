@@ -1,8 +1,8 @@
 {
-  "short_name": "PancakeSwap",
-  "name": "PancakeSwap",
-  "description": "Farm CAKE with Pancake LP Tokens",
-  "homepage_url": "https://pancakeswap.finance",
+  "short_name": "NikaSwap",
+  "name": "NikaSwap",
+  "description": "Farm NIKA with Nika LP Tokens",
+  "homepage_url": "https://nikaswap.com",
   "start_url": ".",
   "display": "standalone",
   "theme_color": "#1FC7D4",

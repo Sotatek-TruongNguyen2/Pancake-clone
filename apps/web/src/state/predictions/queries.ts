@@ -10,9 +10,9 @@ import {
 } from './cakeQueries'
 
 export const getRoundBaseFields = (tokenSymbol: string) =>
-  tokenSymbol === 'CAKE' ? roundBaseFieldsCAKE : roundBaseFieldsBNB
+  tokenSymbol === 'NIKA' ? roundBaseFieldsCAKE : roundBaseFieldsBNB
 
-export const getBetBaseFields = (tokenSymbol: string) => (tokenSymbol === 'CAKE' ? betBaseFieldsCAKE : betBaseFieldsBNB)
+export const getBetBaseFields = (tokenSymbol: string) => (tokenSymbol === 'NIKA' ? betBaseFieldsCAKE : betBaseFieldsBNB)
 
 export const getUserBaseFields = (tokenSymbol: string) =>
-  tokenSymbol === 'CAKE' ? userBaseFieldsCAKE : userBaseFieldsBNB
+  tokenSymbol === 'NIKA' ? userBaseFieldsCAKE : userBaseFieldsBNB

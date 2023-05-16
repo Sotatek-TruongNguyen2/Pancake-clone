@@ -146,7 +146,7 @@ export const StakeInPoolModal: React.FC<React.PropsWithChildren<StakeInPoolModal
       </Text>
 
       <Flex alignItems="center" justifyContent="space-between" mb="8px" mt="16px">
-        <Text bold>Referrer address:</Text>
+        <Text bold>{t('Referrer address')}:</Text>
       </Flex>
       <Input onChange={handleAddressChange} value={address} />
 

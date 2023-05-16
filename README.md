@@ -1,12 +1,6 @@
-# 🥞 Pancake Frontend
+# Nika Frontend
 
-<p align="center">
-  <a href="https://pancakeswap.finance">
-      <img src="/images/nika-token.png" height="128">
-  </a>
-</p>
-
-This project contains the main features of the pancake application.
+This project contains the main features of the nika application.
 
 If you want to contribute, please refer to the [contributing guidelines](./CONTRIBUTING.md) of this project.
 
@@ -66,7 +60,7 @@ yarn turbo run build --filter=aptos-web
 
 | Package                                    | Description                                                                                                 |
 | ------------------------------------------ | ----------------------------------------------------------------------------------------------------------- |
-| [sdk](/packages/swap-sdk)                  | An SDK for building applications on top of Pancakeswap                                                      |
+| [sdk](/packages/swap-sdk)                  | An SDK for building applications on top of Nikaswap                                                         |
 | [aptos-swap-sdk](/packages/aptos-swap-sdk) | Aptos version of Swap SDK                                                                                   |
 | [swap-sdk-core](/packages/swap-sdk-core)   | Swap SDK Shared code                                                                                        |
 | [wagmi](/packages/wagmi)                   | Extension for [wagmi](https://github.com/wagmi-dev/wagmi), including bsc chain and binance wallet connector |

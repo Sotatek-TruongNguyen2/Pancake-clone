@@ -1,7 +1,7 @@
 import { useIsMounted } from "@pancakeswap/hooks";
 import { AtomBox } from "@pancakeswap/ui/components/AtomBox";
 import throttle from "lodash/throttle";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useMemo, useRef, useState } from "react";
 import styled from "styled-components";
 import { BellIcon, IconButton, NotificationDot } from "../../components";
 import BottomNav from "../../components/BottomNav";
@@ -131,9 +131,9 @@ const Menu: React.FC<React.PropsWithChildren<NavProps>> = ({
 
   const subLinksWithoutMobile = subLinks?.filter((subLink) => !subLink.isMobileOnly);
   const subLinksMobileOnly = subLinks?.filter((subLink) => subLink.isMobileOnly);
-
+  const providerValue = useMemo(() => ({ linkComponent }), [linkComponent]);
   return (
-    <MenuContext.Provider value={{ linkComponent }}>
+    <MenuContext.Provider value={providerValue}>
       <AtomBox
         asChild
         minHeight={{
@@ -146,7 +146,7 @@ const Menu: React.FC<React.PropsWithChildren<NavProps>> = ({
             {banner && isMounted && <TopBannerContainer height={topBannerHeight}>{banner}</TopBannerContainer>}
             <StyledNav>
               <Flex>
-                <Logo href={homeLink?.href ?? "/"} />
+                <Logo href="/" />
                 <AtomBox display={{ xs: "none", md: "block" }}>
                   <MenuItems items={links} activeItem={activeItem} activeSubItem={activeSubItem} ml="24px" />
                 </AtomBox>

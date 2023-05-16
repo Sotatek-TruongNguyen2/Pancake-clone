@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { Text, Flex, Skeleton, Image, Balance } from '@pancakeswap/uikit'
+import { Text, Flex, Skeleton, Balance } from '@pancakeswap/uikit'
 import { useFarmAuctionContract } from 'hooks/useContract'
 import { useIntersectionObserver } from '@pancakeswap/hooks'
 import { useTranslation } from '@pancakeswap/localization'
@@ -32,7 +32,7 @@ const AuctionCakeBurn: React.FC<React.PropsWithChildren> = () => {
         const amountAsBN = ethersToBigNumber(amount)
         setBurnedCakeAmount(getBalanceNumber(amountAsBN))
       } catch (error) {
-        console.error('Failed to fetch burned auction cake', error)
+        console.error('Failed to fetch burned auction nika', error)
       }
     }
     if (isIntersecting && burnedCakeAmount === 0) {
@@ -43,7 +43,7 @@ const AuctionCakeBurn: React.FC<React.PropsWithChildren> = () => {
     <Flex flexDirection={['column-reverse', null, 'row']}>
       <Flex flexDirection="column" flex="2" ref={observerRef}>
         {burnedCakeAmount !== 0 ? (
-          <Balance fontSize="64px" bold value={burnedCakeAmount} decimals={0} unit=" CAKE" />
+          <Balance fontSize="64px" bold value={burnedCakeAmount} decimals={0} unit=" NIKA" />
         ) : (
           <Skeleton width="256px" height="64px" />
         )}
@@ -61,7 +61,6 @@ const AuctionCakeBurn: React.FC<React.PropsWithChildren> = () => {
           <Skeleton width="128px" />
         )}
       </Flex>
-      {/* <Image width={350} height={320} src="" alt={t('Burnt CAKE')} /> */}
     </Flex>
   )
 }

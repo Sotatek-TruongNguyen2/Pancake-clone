@@ -34,22 +34,6 @@ const teams: Team[] = [
     users: 0,
     points: 0,
   },
-  {
-    id: 3,
-    name: 'Chaotic Cakers',
-    description: 'Can you stand the heat? Stay out of the kitchen or you might get burned to a crisp!',
-    images: {
-      lg: 'chaotic-cakers-lg.png',
-      md: 'chaotic-cakers-md.png',
-      sm: 'chaotic-cakers-sm.png',
-      alt: 'chaotic-cakers-alt.png',
-      ipfs: `${IPFS_GATEWAY}/QmXKzSojwzYjtDCVgR6mVx7w7DbyYpS7zip4ovJB9fQdMG/chaotic-cakers.png`,
-    },
-    background: 'chaotic-cakers-bg.svg',
-    textColor: '#191326',
-    users: 0,
-    points: 0,
-  },
 ]
 
 export default teams

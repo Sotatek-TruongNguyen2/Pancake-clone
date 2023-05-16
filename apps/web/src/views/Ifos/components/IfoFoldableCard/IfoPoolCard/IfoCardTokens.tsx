@@ -135,7 +135,7 @@ const IfoCardTokens: React.FC<React.PropsWithChildren<IfoCardTokensProps>> = ({
   const { t } = useTranslation()
   const { targetRef, tooltip, tooltipVisible } = useTooltip(
     t(
-      'Sorry, you didn’t contribute enough CAKE to meet the minimum threshold. You didn’t buy anything in this sale, but you can still reclaim your CAKE.',
+      'Sorry, you didn’t contribute enough NIKA to meet the minimum threshold. You didn’t buy anything in this sale, but you can still reclaim your NIKA.',
     ),
     { placement: 'bottom' },
   )
@@ -194,8 +194,8 @@ const IfoCardTokens: React.FC<React.PropsWithChildren<IfoCardTokensProps>> = ({
           <Box>
             <MessageText display="inline">
               {publicIfoData.status === 'finished'
-                ? t('Activate PancakeSwap Profile to take part in next IFO‘s!')
-                : t('You need an active PancakeSwap Profile to take part in an IFO!')}
+                ? t('Activate NikaSwap Profile to take part in next IFO‘s!')
+                : t('You need an active NikaSwap Profile to take part in an IFO!')}
             </MessageText>{' '}
             <MessageTextLink href="/ifo#ifo-how-to" color="#D67E0A" display="inline">
               {t('How does it work?')} »
@@ -239,7 +239,7 @@ const IfoCardTokens: React.FC<React.PropsWithChildren<IfoCardTokensProps>> = ({
       message = (
         <Message my="24px" p="8px" variant="danger">
           <Box>
-            <MessageText display="inline">{t('You don’t have any iCAKE available for IFO public sale.')}</MessageText>{' '}
+            <MessageText display="inline">{t('You don’t have any iNIKA available for IFO public sale.')}</MessageText>{' '}
             <MessageTextLink display="inline" fontWeight={700} href="/ifo#ifo-how-to" color="failure">
               {t('How does it work?')} »
             </MessageTextLink>
@@ -342,7 +342,7 @@ const IfoCardTokens: React.FC<React.PropsWithChildren<IfoCardTokensProps>> = ({
           {ifov31Msg || (
             <>
               <Text textAlign="center" fontSize="14px">
-                {t('To participate in the next IFO, lock some CAKE in the fixed-term staking CAKE pool!')}
+                {t('To participate in the next IFO, lock some NIKA in the fixed-term staking NIKA pool!')}
               </Text>
               <MessageTextLink href="/ifo#ifo-how-to" textAlign="center">
                 {t('How does it work?')} »

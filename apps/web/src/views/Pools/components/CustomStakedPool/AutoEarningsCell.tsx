@@ -20,11 +20,10 @@ const AutoEarningsCell = () => {
   const earningTokenBalance = 0
   const earningTokenPrice = 0
   const earningTokenDollarBalance = 0
-
   return (
     <StyledCell role="cell">
       <Text fontSize="12px" color="textSubtle" textAlign="left">
-        NIKA Eared
+        {t('%asset% Earned', { asset: 'NIKA' })}
       </Text>
       {isLoading ? (
         <Skeleton width="80px" height="16px" />

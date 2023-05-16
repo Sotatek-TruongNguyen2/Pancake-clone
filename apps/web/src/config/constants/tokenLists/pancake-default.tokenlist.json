@@ -8,7 +8,10 @@
   },
   "tags": {},
   "logoURI": "/images/nika-token.png",
-  "keywords": ["pancake", "default"],
+  "keywords": [
+    "pancake",
+    "default"
+  ],
   "tokens": [
     {
       "name": "Wrapped BNB",
@@ -51,7 +54,7 @@
       "logoURI": "https://tokens.pancakeswap.finance/images/symbol/usdt.png"
     },
     {
-      "name": "Tiktak Code",
+      "name": "NikaSwap",
       "symbol": "NIKA",
       "address": "0x0E09FaBB73Bd3Ade0a17ECC321fD13a19e81cE82",
       "chainId": 56,

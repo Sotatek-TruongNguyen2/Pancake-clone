@@ -19,13 +19,13 @@ const IfoCakeRow: React.FC<React.PropsWithChildren> = () => {
     <Box>
       <Text>
         {t(
-          'The number of iCAKE equals the locked staking amount if the staking duration is longer than %weeks% weeks. If the staking duration is less than %weeks% weeks, it will linearly decrease based on the staking duration.',
+          'The number of iNIKA equals the locked staking amount if the staking duration is longer than %weeks% weeks. If the staking duration is less than %weeks% weeks, it will linearly decrease based on the staking duration.',
           {
             weeks: weeksDisplay,
           },
         )}
       </Text>
-      <InlineLink href="">{t('Learn more about iCAKE')}</InlineLink>
+      <InlineLink href="">{t('Learn more about iNIKA')}</InlineLink>
     </Box>,
     {
       placement: 'bottom-start',
@@ -37,7 +37,7 @@ const IfoCakeRow: React.FC<React.PropsWithChildren> = () => {
       {tooltipVisible && tooltip}
       <TooltipText>
         <Text ref={targetRef} color="textSubtle" bold fontSize="12px">
-          {t('iCAKE')}
+          {t('iNIKA')}
         </Text>
       </TooltipText>
       <BalanceWithLoading color="text" bold fontSize="16px" decimals={3} value={getBalanceNumber(credit)} />

@@ -24,7 +24,6 @@ const useCakeBenefits = () => {
   } = useTranslation()
   const ifoCreditAddressContract = useIfoCreditAddressContract()
   const cakeVaultAddress = getCakeVaultAddress()
-  console.log('CAKE VAULT: ', cakeVaultAddress)
   const currentBscBlock = useChainCurrentBlock(ChainId.BSC)
 
   const { data, status } = useSWR(account && currentBscBlock && ['cakeBenefits', account], async () => {

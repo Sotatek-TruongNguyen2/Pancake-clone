@@ -11,8 +11,6 @@ import { useActiveChainId } from 'hooks/useActiveChainId'
 import { useContext, useMemo } from 'react'
 import { multiChainPaths } from 'state/info/constant'
 import styled, { css, keyframes } from 'styled-components'
-import { getBlockExploreLink } from 'utils'
-import getLiquidityUrlPathParts from 'utils/getLiquidityUrlPathParts'
 import { FarmWithStakedValue } from '@pancakeswap/farms'
 
 import BoostedAction from '../../YieldBooster/components/BoostedAction'
@@ -136,12 +134,8 @@ const ActionPanel: React.FunctionComponent<React.PropsWithChildren<ActionPanelPr
   } = useTranslation()
   const isActive = farm.multiplier !== '0X'
   const { quoteToken, token, stableSwapAddress } = farm
-  const lpLabel = farm.lpSymbol && farm.lpSymbol.toUpperCase().replace('PANCAKE', '')
-  const liquidityUrlPathParts = getLiquidityUrlPathParts({
-    quoteTokenAddress: quoteToken.address,
-    tokenAddress: token.address,
-    chainId,
-  })
+  const lpLabel = farm.lpSymbol && farm.lpSymbol.toUpperCase().replace('NIKA', '')
+
   const { lpAddress } = farm
   // const bsc = getBlockExploreLink(lpAddress, 'address', chainId)
   const bsc = ''

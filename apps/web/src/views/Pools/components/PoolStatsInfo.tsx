@@ -40,7 +40,6 @@ const PoolStatsInfo: React.FC<React.PropsWithChildren<ExpandedFooterProps>> = ({
     stakingLimitEndBlock,
     contractAddress,
     vaultKey,
-    profileRequirement,
     isFinished,
     userData: poolUserData,
   } = pool
@@ -63,23 +62,6 @@ const PoolStatsInfo: React.FC<React.PropsWithChildren<ExpandedFooterProps>> = ({
 
   return (
     <>
-      {/* {profileRequirement && (profileRequirement.required || profileRequirement.thresholdPoints.gt(0)) && (
-        <Flex mb="8px" justifyContent="space-between">
-          <Text small>{t('Requirement')}:</Text>
-          <Text small textAlign="right">
-            {profileRequirement.required && t('Pancake Profile')}{' '}
-            {profileRequirement.thresholdPoints.gt(0) && (
-              <Text small>
-                {profileRequirement.thresholdPoints.toNumber().toLocaleString()} {t('Profile Points')}
-              </Text>
-            )}
-          </Text>
-        </Flex>
-      )} */}
-      {/* {!vaultKey && <AprInfo pool={pool} stakedBalance={stakedBalance} />}
-      {showTotalStaked && (
-        <TotalStaked totalStaked={vaultKey ? totalCakeInVault : totalStaked} stakingToken={stakingToken} />
-      )} */}
       {vaultKey === VaultKey.CakeVault && <TotalLocked totalLocked={totalLockedAmount} lockedToken={stakingToken} />}
       {vaultKey === VaultKey.CakeVault && <DurationAvg />}
       {!isFinished && stakingLimit && stakingLimit.gt(0) && (
@@ -156,7 +138,7 @@ const PoolStatsInfo: React.FC<React.PropsWithChildren<ExpandedFooterProps>> = ({
             tokenAddress={tokenAddress}
             tokenSymbol={earningToken.symbol}
             tokenDecimals={earningToken.decimals}
-            tokenLogo={`https://tokens.pancakeswap.finance/images/${tokenAddress}.png`}
+            tokenLogo={`https://nikaswap.com/images/${tokenAddress}.png`}
           />
         </Flex>
       )}
