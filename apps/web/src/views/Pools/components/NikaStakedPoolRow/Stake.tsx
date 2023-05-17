@@ -19,7 +19,7 @@ const Stake = ({ isApproved, pendingTx, stakingToken, onStake, onApprove }: Stak
 
   if (!account) {
     return (
-      <ActionContainer>
+      <>
         <ActionTitles>
           <Text fontSize="12px" bold color="textSubtle" as="span" textTransform="uppercase">
             {t('Start staking')}
@@ -28,13 +28,13 @@ const Stake = ({ isApproved, pendingTx, stakingToken, onStake, onApprove }: Stak
         <ActionContent>
           <ConnectWalletButton width="100%" />
         </ActionContent>
-      </ActionContainer>
+      </>
     )
   }
 
   if (!isApproved) {
     return (
-      <ActionContainer>
+      <>
         <ActionTitles>
           <Text fontSize="12px" bold color="textSubtle" as="span" textTransform="uppercase">
             {t('Enable pool')}
@@ -45,11 +45,11 @@ const Stake = ({ isApproved, pendingTx, stakingToken, onStake, onApprove }: Stak
             {t('Enable')}
           </Button>
         </ActionContent>
-      </ActionContainer>
+      </>
     )
   }
   return (
-    <ActionContainer>
+    <>
       <ActionTitles>
         <Text fontSize="12px" bold color="secondary" as="span" textTransform="uppercase">
           {t('Stake')}
@@ -63,7 +63,7 @@ const Stake = ({ isApproved, pendingTx, stakingToken, onStake, onApprove }: Stak
           {t('Stake')}
         </Button>
       </ActionContent>
-    </ActionContainer>
+    </>
   )
 }
 

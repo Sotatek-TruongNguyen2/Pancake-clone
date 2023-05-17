@@ -143,12 +143,6 @@ const FinishedTextContainer = styled(Flex)`
   }
 `
 
-const FinishedTextLink = styled(Link)`
-  font-weight: 400;
-  white-space: nowrap;
-  text-decoration: underline;
-`
-
 const NUMBER_OF_FARMS_VISIBLE = 12
 
 const Farms: React.FC<React.PropsWithChildren> = ({ children }) => {
@@ -309,7 +303,6 @@ const Farms: React.FC<React.PropsWithChildren> = ({ children }) => {
   ])
 
   const chosenFarmsMemoized = useMemo(() => {
-    console.log('chosenFarms:', chosenFarms)
     const sortFarms = (farms: FarmWithStakedValue[]): FarmWithStakedValue[] => {
       switch (sortOption) {
         case 'apr':
@@ -339,8 +332,6 @@ const Farms: React.FC<React.PropsWithChildren> = ({ children }) => {
   }, [chosenFarms, sortOption, numberOfFarmsVisible])
 
   chosenFarmsLength.current = chosenFarmsMemoized.length
-
-  console.log('chosenFarmsMemoized: ', chosenFarmsMemoized)
 
   useEffect(() => {
     if (isIntersecting) {

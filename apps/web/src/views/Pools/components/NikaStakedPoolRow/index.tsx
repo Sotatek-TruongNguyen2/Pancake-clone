@@ -1,13 +1,14 @@
 import { Pool, useMatchBreakpoints } from '@pancakeswap/uikit'
+import { NikaPoolState } from 'state/types'
+import { useNikaPool } from 'state/pools/hooks'
 import React, { useEffect, useState } from 'react'
 import BigNumber from 'bignumber.js'
 import { Token } from '@pancakeswap/sdk'
 import { formatLpBalance } from '@pancakeswap/utils/formatBalance'
-import { readContracts, useAccount } from 'wagmi'
-import { useNikaStakingContract } from 'hooks/useContract'
-import nikaStakingAbi from 'config/abi/nikaStakingAbi.json'
 import styled from 'styled-components'
 import { useTranslation } from '@pancakeswap/localization'
+import { NIKA_ADDR } from 'config/constants/nikaContract'
+import { useOracleContract } from 'hooks/useContract'
 import ActionPanel from './ActionPanel'
 import NameCell from './NameCell'
 import TotalStakedCell from '../PoolsTable/Cells/TotalStakedCell'
@@ -21,56 +22,47 @@ const StyledCell = styled(Pool.BaseCell)`
   }
 `
 
-const CustomStakedPool = () => {
+const NikaStakedPoolRow = () => {
   const { t } = useTranslation()
   const { isXs, isSm, isMd, isLg, isXl, isXxl } = useMatchBreakpoints()
   const isLargerScreen = isLg || isXl || isXxl
   const isXLargerScreen = isXl || isXxl
-  const [totalStaked, setTotalStaked] = useState(0)
-  const nikaStakingContract = useNikaStakingContract()
+  const [usdcAmount, setUsdcAmount] = useState(0)
+  const oracleContract = useOracleContract()
+  const { totalStaked, poolPendingRewardPerDay } = useNikaPool() as NikaPoolState
+  const _totalStaked = formatLpBalance(new BigNumber(totalStaked), 18)
+
+  const pendingReward = Number(formatLpBalance(new BigNumber(poolPendingRewardPerDay), 18))
 
   useEffect(() => {
-    const getContractData = async () => {
-      const stakingContract = {
-        address: nikaStakingContract.address,
-        abi: nikaStakingAbi,
-        chainId: 97,
-      }
-      const [_totalStaked] = await readContracts({
-        contracts: [
-          {
-            ...stakingContract,
-            functionName: 'getTotalStaked',
-          },
-        ],
-      })
-
-      const amount = formatLpBalance(new BigNumber(_totalStaked.toString()), 18)
-      console.log('_totalStaked: ', Number(amount))
-      setTotalStaked(Number(amount))
+    const fetchData = async () => {
+      if (!pendingReward) return
+      const _usdcAmount = await oracleContract.consult(
+        NIKA_ADDR,
+        new BigNumber(pendingReward || 0).times(new BigNumber(10).pow(18)).toString(),
+      )
+      setUsdcAmount(new BigNumber(_usdcAmount.toString() || 0).dividedBy(new BigNumber(10).pow(18)).toNumber())
     }
-    getContractData()
-    const timer = setInterval(getContractData, 10000)
-    return () => {
-      clearInterval(timer)
-    }
-  }, [])
+    fetchData()
+  }, [pendingReward])
 
   return (
     <Pool.ExpandRow panel={<ActionPanel expanded breakpoints={{ isXs, isSm, isMd, isLg, isXl, isXxl }} />}>
       <NameCell title={t('Stake NIKA')} />
-      {isXLargerScreen && <AutoEarningsCell />}
+      {isXLargerScreen && (
+        <AutoEarningsCell earningTokenBalance={pendingReward} earningTokenDollarBalance={usdcAmount} />
+      )}
       <Status status={t('Active')} />
       <StyledCell />
       {isLargerScreen && (
         <TotalStakedCell
           stakingToken={new Token(56, '0x483Ed007BA31da2D570bA816F028135d1F0c60A6', 18, 'NIKA')}
           totalStaked={new BigNumber(totalStaked || 0)}
-          totalStakedBalance={totalStaked}
+          totalStakedBalance={Number(_totalStaked)}
         />
       )}
     </Pool.ExpandRow>
   )
 }
 
-export default CustomStakedPool
+export default NikaStakedPoolRow

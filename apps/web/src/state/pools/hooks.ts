@@ -13,6 +13,7 @@ import { Pool } from '@pancakeswap/uikit'
 import { Token } from '@pancakeswap/sdk'
 
 import { useActiveChainId } from 'hooks/useActiveChainId'
+import { fetchNikaPoolData } from 'state/nikaPool'
 import {
   fetchPoolsPublicDataAsync,
   fetchPoolsUserDataAsync,
@@ -37,6 +38,7 @@ import {
   ifoCreditSelector,
   ifoCeilingSelector,
   makeVaultPoolWithKeySelector,
+  nikaPoolSelector,
 } from './selectors'
 
 const lPoolAddresses = livePools.filter(({ sousId }) => sousId !== 0).map(({ earningToken }) => earningToken.address)
@@ -100,6 +102,10 @@ export const usePoolsWithVault = () => {
   return useSelector(poolsWithVaultSelector)
 }
 
+export const useNikaPool = () => {
+  return useSelector(nikaPoolSelector)
+}
+
 export const useDeserializedPoolByVaultKey = (vaultKey) => {
   const vaultPoolWithKeySelector = useMemo(() => makeVaultPoolWithKeySelector(vaultKey), [vaultKey])
 
@@ -131,6 +137,15 @@ export const usePoolsPageFetch = () => {
       dispatch(fetchCakeFlexibleSideVaultFees({ chainId }))
     })
   }, [dispatch, chainId])
+}
+
+export const useNikaPoolFetch = () => {
+  const { address: account } = useAccount()
+  const { chainId } = useActiveChainId()
+  const dispatch = useAppDispatch()
+  useFastRefreshEffect(() => {
+    dispatch(fetchNikaPoolData({ account, chainId }))
+  }, [account, dispatch, chainId])
 }
 
 export const useCakeVaultUserData = () => {
