@@ -10,3 +10,4 @@ export {
   updateUserPendingReward,
   updateUserStakedBalance,
 } from './pools'
+export { fetchNikaPoolData } from './nikaPool'

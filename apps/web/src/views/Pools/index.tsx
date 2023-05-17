@@ -1,9 +1,9 @@
 import styled from 'styled-components'
 
 import { useAccount } from 'wagmi'
-import { Heading, Flex, Text, Link, FlexLayout, PageHeader, Loading, Pool, ViewMode } from '@pancakeswap/uikit'
+import { Heading, Flex, Text, FlexLayout, PageHeader, Loading, Pool, ViewMode } from '@pancakeswap/uikit'
 import { useTranslation } from '@pancakeswap/localization'
-import { usePoolsPageFetch, usePoolsWithVault } from 'state/pools/hooks'
+import { useNikaPoolFetch, usePoolsPageFetch, usePoolsWithVault } from 'state/pools/hooks'
 import Page from 'components/Layout/Page'
 import ConnectWalletButton from 'components/ConnectWalletButton'
 import { Token } from '@pancakeswap/sdk'
@@ -16,7 +16,8 @@ import CakeVaultCard from './components/CakeVaultCard'
 import PoolControls from './components/PoolControls'
 import PoolRow, { VaultPoolRow } from './components/PoolsTable/PoolRow'
 import BuyInPool from './components/BuyInPool'
-import CustomStakedPool from './components/CustomStakedPool'
+import NikaStakedPoolRow from './components/NikaStakedPoolRow'
+import NikaStakePoolCard from './components/NikaStakePoolCard'
 
 const CardLayout = styled(FlexLayout)`
   justify-content: center;
@@ -26,10 +27,9 @@ const Pools: React.FC<React.PropsWithChildren> = () => {
   const { t } = useTranslation()
   const { address: account } = useAccount()
   const { pools, userDataLoaded } = usePoolsWithVault()
-  // console.log('pools:', pools)
-  // console.log('userDataLoaded: ', userDataLoaded)
 
   usePoolsPageFetch()
+  useNikaPoolFetch()
 
   return (
     <>
@@ -61,8 +61,8 @@ const Pools: React.FC<React.PropsWithChildren> = () => {
 
               {viewMode === ViewMode.CARD ? (
                 <CardLayout>
+                  <NikaStakePoolCard />
                   {chosenPools.map((pool) => {
-                    console.log('pOOO: ', pool)
                     return pool.vaultKey ? (
                       <CakeVaultCard key={pool.vaultKey} pool={pool} showStakedOnly={stakedOnly} />
                     ) : (
@@ -98,7 +98,7 @@ const Pools: React.FC<React.PropsWithChildren> = () => {
                 </CardLayout>
               ) : (
                 <Pool.PoolsTable>
-                  <CustomStakedPool />
+                  <NikaStakedPoolRow />
                   {chosenPools.map((pool) =>
                     pool.vaultKey ? (
                       <VaultPoolRow

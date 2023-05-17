@@ -12,6 +12,7 @@ const selectUserDataLoaded = (state: State) => state.pools.userDataLoaded
 const selectVault = (key: VaultKey) => (state: State) => key ? state.pools[key] : initialPoolVaultState
 const selectIfo = (state: State) => state.pools.ifo
 const selectIfoUserCredit = (state: State) => state.pools.ifo.credit ?? BIG_ZERO
+const selectNikaPoolData = (state: State) => state.nikaPool
 
 export const makePoolWithUserDataLoadingSelector = (sousId) =>
   createSelector([selectPoolData(sousId), selectUserDataLoaded], (pool, userDataLoaded) => {
@@ -73,4 +74,8 @@ export const ifoCreditSelector = createSelector([selectIfoUserCredit], (ifoUserC
 
 export const ifoCeilingSelector = createSelector([selectIfo], (ifoData) => {
   return new BigNumber(ifoData.ceiling)
+})
+
+export const nikaPoolSelector = createSelector([selectNikaPoolData], (poolData) => {
+  return poolData
 })

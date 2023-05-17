@@ -175,6 +175,53 @@ export interface PoolsState {
   userDataLoaded: boolean
 }
 
+export interface NikaPoolUser {
+  totalStakes: string
+  totalWithdrawClaimed: string
+  totalClaimed: string
+  claimStakedPerDay: string
+  maxClaim: string
+  vestingDuration: string
+  interestDuration: string
+  lastClaimStaked: string
+  lastUpdatedTime: string
+  lastTimeDeposited: string
+  lastTimeClaimed: string
+  interestRates: number
+  joinByReferral: boolean
+}
+export interface NikaPoolState {
+  totalStaked: string
+  f1Referee: string
+  referrer: string
+  poolPendingRewardPerDay: string
+  userData: NikaPoolUser
+}
+
+export interface SerializedNikaPoolUser {
+  totalStakes?: SerializedBigNumber
+  totalWithdrawClaimed?: SerializedBigNumber
+  totalClaimed?: SerializedBigNumber
+  claimStakedPerDay?: SerializedBigNumber
+  maxClaim?: SerializedBigNumber
+  vestingDuration?: SerializedBigNumber
+  interestDuration?: SerializedBigNumber
+  lastClaimStaked?: SerializedBigNumber
+  lastUpdatedTime?: SerializedBigNumber
+  lastTimeDeposited?: SerializedBigNumber
+  lastTimeClaimed?: SerializedBigNumber
+  interestRates?: number
+  joinByReferral?: boolean
+}
+
+export interface SerializedNikaPool {
+  totalStaked?: SerializedBigNumber
+  f1Referee?: SerializedBigNumber
+  referrer?: string
+  poolPendingRewardPerDay?: SerializedBigNumber
+  userData?: SerializedNikaPoolUser
+}
+
 export type TeamsById = {
   [key: string]: Team
 }
@@ -616,6 +663,7 @@ export interface State {
   farms: SerializedFarmsState
   farmsV1: SerializedFarmsState
   pools: PoolsState
+  nikaPool: NikaPoolState
   predictions: PredictionsState
   lottery: LotteryState
   pottery: PotteryState

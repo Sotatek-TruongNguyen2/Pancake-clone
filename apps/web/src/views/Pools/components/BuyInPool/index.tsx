@@ -5,8 +5,8 @@ import { useTranslation } from '@pancakeswap/localization'
 import { useAccount } from 'wagmi'
 import ConnectWalletButton from 'components/ConnectWalletButton'
 import { BuyInPoolModal } from './BuyInPoolModal'
-import NameCell from '../CustomStakedPool/NameCell'
-import Status from '../CustomStakedPool/Status'
+import NameCell from '../NikaStakedPoolRow/NameCell'
+import Status from '../NikaStakedPoolRow/Status'
 import TokenPrice from './TokenPrice'
 
 const BuyContainer = styled(Flex)`

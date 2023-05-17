@@ -12,6 +12,9 @@ import { MaxUint256 } from '@ethersproject/constants'
 import useCatchTxError from 'hooks/useCatchTxError'
 import { useCallWithGasPrice } from 'hooks/useCallWithGasPrice'
 import { NIKA_ADDR, NULL_ADDR } from 'config/constants/nikaContract'
+import { useAppDispatch } from 'state'
+import { useActiveChainId } from 'hooks/useActiveChainId'
+import { fetchNikaPoolData } from 'state/nikaPool'
 
 interface StakeInPoolModalProps {
   // Pool attributes
@@ -20,7 +23,6 @@ interface StakeInPoolModalProps {
   stakingTokenAddress: string
   onDismiss?: () => void
   imageUrl?: string
-  updateStakingData: any
 }
 
 const MIN_AMOUNT = 100
@@ -31,7 +33,6 @@ export const StakeInPoolModal: React.FC<React.PropsWithChildren<StakeInPoolModal
   stakingTokenAddress,
   onDismiss,
   imageUrl = '/images/tokens/',
-  updateStakingData,
 }) => {
   const { t } = useTranslation()
   const theme = useTheme()
@@ -47,6 +48,8 @@ export const StakeInPoolModal: React.FC<React.PropsWithChildren<StakeInPoolModal
   const [approveTxHash, setApproveTxHash] = useState<string>()
   const [isValidAmount, setIsValidAmount] = useState(true)
   const [minApproveAmount, setMinApproveAmount] = useState<BigNumber>()
+  const dispatch = useAppDispatch()
+  const { chainId } = useActiveChainId()
 
   const handleSubmit = async () => {
     const approvedAmount = await nikaTokenContract.allowance(account, nikaStakingContract.address)
@@ -78,7 +81,7 @@ export const StakeInPoolModal: React.FC<React.PropsWithChildren<StakeInPoolModal
         </ToastDescriptionWithTx>,
       )
 
-      updateStakingData()
+      dispatch(fetchNikaPoolData({ account, chainId }))
     }
   }
 
