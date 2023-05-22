@@ -1,18 +1,5 @@
-import {
-  Box,
-  CardBody,
-  CardProps,
-  Flex,
-  Text,
-  TokenPairImage,
-  FlexGap,
-  Skeleton,
-  Pool,
-  useModal,
-  useToast,
-} from '@pancakeswap/uikit'
+import { Flex, TokenPairImage, Skeleton, Pool, useModal, useToast } from '@pancakeswap/uikit'
 import { useAccount } from 'wagmi'
-import ConnectWalletButton from 'components/ConnectWalletButton'
 import { useTranslation } from '@pancakeswap/localization'
 import { useCallback, useEffect, useState } from 'react'
 import useCatchTxError from 'hooks/useCatchTxError'
