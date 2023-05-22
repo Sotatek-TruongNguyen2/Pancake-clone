@@ -46,7 +46,7 @@ const StyledCell = styled(Pool.BaseCell)`
     flex: 1 0 120px;
   }
 `
-const BuyInPool = () => {
+const BuyInPoolRow = () => {
   const { t } = useTranslation()
   const { address: account } = useAccount()
   const { isMobile } = useMatchBreakpoints()
@@ -99,4 +99,4 @@ const BuyInPool = () => {
   )
 }
 
-export default BuyInPool
+export default BuyInPoolRow

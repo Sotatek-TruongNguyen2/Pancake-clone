@@ -22,7 +22,7 @@ export const StakingApy = memo(({ pool }: { pool: Pool.DeserializedPool<Token> }
   const [onPresentFlexibleApyModal] = useModal(<VaultRoiCalculatorModal pool={pool} />)
 
   const [onPresentLockedApyModal] = useModal(<VaultRoiCalculatorModal pool={pool} initialView={1} />)
-  console.log('Flexible, locked: ', flexibleApy, lockedApy)
+
   return (
     <LightGreyCard>
       <Flex alignItems="center" justifyContent="space-between">
