@@ -16,8 +16,8 @@ import { format } from 'date-fns'
 import { formatNumber, formatLpBalance } from '@pancakeswap/utils/formatBalance'
 import StakedActionComponent from '@pancakeswap/uikit/src/widgets/Farm/components/FarmTable/Actions/StakedActionComponent'
 import { NIKA_ADDR } from 'config/constants/nikaContract'
-import { useNikaPool } from 'state/pools/hooks'
 import { NikaPoolState } from 'state/types'
+import { useNikaPool } from 'state/nikaPool/hooks'
 
 const StatWrapper: FC<React.PropsWithChildren<{ label: ReactNode }>> = ({ children, label }) => {
   return (

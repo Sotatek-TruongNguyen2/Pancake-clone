@@ -16,8 +16,8 @@ import { format } from 'date-fns'
 import { formatNumber, formatLpBalance } from '@pancakeswap/utils/formatBalance'
 import StakedActionComponent from '@pancakeswap/uikit/src/widgets/Farm/components/FarmTable/Actions/StakedActionComponent'
 import { NIKA_ADDR } from 'config/constants/nikaContract'
-import { useNikaPool } from 'state/pools/hooks'
 import { NikaPoolState } from 'state/types'
+import { useNikaPool } from 'state/nikaPool/hooks'
 import Harvest from './Harvest'
 import { StakeInPoolModal } from '../StakeInPool'
 import { WithdrawModal } from './WithdrawModal'
@@ -123,8 +123,7 @@ const StatWrapper: FC<React.PropsWithChildren<{ label: ReactNode }>> = ({ childr
 
 const formatTime = (time: string | undefined) => {
   const type = 'HH:mm MM/dd/yyyy'
-  if (!time) return ''
-  console.log('time: ', time)
+  if (!time || Number.isNaN(time) || time === 'NaN') return ''
   return format(new Date(Number(time)), type)
 }
 
@@ -163,7 +162,6 @@ const ActionPanel: React.FC<React.PropsWithChildren<ActionPanelProps>> = ({ expa
   const { fetchWithCatchTxError, loading: pendingTx } = useCatchTxError()
   const [isApproved, setIsApproved] = useState(false)
   const blockExplorers = chainId === 97 ? 'https://testnet.bscscan.com/' : 'https://bscscan.com/'
-  // const [stakeData, setStakeData] = useState<StakeData>()
 
   const {
     poolPendingRewardPerDay,
@@ -242,12 +240,13 @@ const ActionPanel: React.FC<React.PropsWithChildren<ActionPanelProps>> = ({ expa
   }, [])
 
   useEffect(() => {
-    const fetchData = async () => {
-      const amount = await nikaTokenContract.allowance(account, nikaStakingContract.address)
+    const fetchData = async (_account: string) => {
+      const amount = await nikaTokenContract.allowance(_account, nikaStakingContract.address)
       const _isApproved = new BigNumber(amount.toString()).gt(0)
       setIsApproved(_isApproved)
     }
-    fetchData()
+    if (!account) return
+    fetchData(account)
   }, [])
 
   const handleStake = () => {

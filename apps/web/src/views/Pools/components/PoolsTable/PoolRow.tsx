@@ -72,6 +72,15 @@ const PoolRow: React.FC<React.PropsWithChildren<{ sousId: number; account: strin
         <ActionPanel account={account} pool={pool} expanded breakpoints={{ isXs, isSm, isMd, isLg, isXl, isXxl }} />
       }
     >
+      <NameCell pool={pool} />
+      <EarningsCell pool={pool} account={account} />
+      {isLargerScreen && (
+        <TotalStakedCell
+          stakingToken={stakingToken}
+          totalStaked={totalStaked}
+          totalStakedBalance={totalStakedBalance}
+        />
+      )}
       <AprCell pool={pool} />
       {isDesktop && <EndsInCell pool={pool} />}
     </Pool.ExpandRow>
