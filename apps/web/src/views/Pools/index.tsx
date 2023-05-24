@@ -98,27 +98,33 @@ const Pools: React.FC<React.PropsWithChildren> = () => {
                   })}
                 </CardLayout>
               ) : (
-                <Pool.PoolsTable>
+                <>
                   <BuyInPoolRow />
                   <NikaStakedPoolRow />
-                  {chosenPools.map((pool) =>
-                    pool.vaultKey ? (
-                      <VaultPoolRow
-                        initialActivity={normalizedUrlSearch.toLowerCase() === pool.earningToken.symbol?.toLowerCase()}
-                        key={pool.vaultKey}
-                        vaultKey={pool.vaultKey}
-                        account={account}
-                      />
-                    ) : (
-                      <PoolRow
-                        initialActivity={normalizedUrlSearch.toLowerCase() === pool.earningToken.symbol?.toLowerCase()}
-                        key={pool.sousId}
-                        sousId={pool.sousId}
-                        account={account}
-                      />
-                    ),
-                  )}
-                </Pool.PoolsTable>
+                  <Pool.PoolsTable>
+                    {chosenPools.map((pool) =>
+                      pool.vaultKey ? (
+                        <VaultPoolRow
+                          initialActivity={
+                            normalizedUrlSearch.toLowerCase() === pool.earningToken.symbol?.toLowerCase()
+                          }
+                          key={pool.vaultKey}
+                          vaultKey={pool.vaultKey}
+                          account={account}
+                        />
+                      ) : (
+                        <PoolRow
+                          initialActivity={
+                            normalizedUrlSearch.toLowerCase() === pool.earningToken.symbol?.toLowerCase()
+                          }
+                          key={pool.sousId}
+                          sousId={pool.sousId}
+                          account={account}
+                        />
+                      ),
+                    )}
+                  </Pool.PoolsTable>
+                </>
               )}
             </>
           )}

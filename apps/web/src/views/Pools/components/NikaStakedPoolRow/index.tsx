@@ -1,6 +1,5 @@
-import { Pool, useMatchBreakpoints } from '@pancakeswap/uikit'
+import { Flex, Pool, useMatchBreakpoints } from '@pancakeswap/uikit'
 import { NikaPoolState } from 'state/types'
-import { useNikaPool } from 'state/pools/hooks'
 import React, { useEffect, useState } from 'react'
 import BigNumber from 'bignumber.js'
 import { Token } from '@pancakeswap/sdk'
@@ -9,11 +8,30 @@ import styled from 'styled-components'
 import { useTranslation } from '@pancakeswap/localization'
 import { NIKA_ADDR } from 'config/constants/nikaContract'
 import { useOracleContract } from 'hooks/useContract'
+import { useNikaPool } from 'state/nikaPool/hooks'
 import ActionPanel from './ActionPanel'
 import NameCell from './NameCell'
 import TotalStakedCell from '../PoolsTable/Cells/TotalStakedCell'
 import AutoEarningsCell from './AutoEarningsCell'
 import Status from './Status'
+
+const PoolContainer = styled(Flex)`
+  background-color: ${({ theme }) => theme.card.background};
+  display: block;
+  border: 2px solid ${({ theme }) => theme.colors.input};
+  border-radius: 16px;
+  margin-bottom: 16px!important;
+
+  ${({ theme }) => theme.mediaQueries.sm} {
+    margin-right: 12px;
+    margin-bottom: 0;
+  }
+}
+
+  ${({ theme }) => theme.mediaQueries.xl} {
+    margin-right: 0;
+  }
+`
 
 const StyledCell = styled(Pool.BaseCell)`
   flex: 1;
@@ -47,21 +65,23 @@ const NikaStakedPoolRow = () => {
   }, [pendingReward])
 
   return (
-    <Pool.ExpandRow panel={<ActionPanel expanded breakpoints={{ isXs, isSm, isMd, isLg, isXl, isXxl }} />}>
-      <NameCell title={t('Stake NIKA')} />
-      {isXLargerScreen && (
-        <AutoEarningsCell earningTokenBalance={pendingReward} earningTokenDollarBalance={usdcAmount} />
-      )}
-      <Status status={t('Active')} />
-      <StyledCell />
-      {isLargerScreen && (
-        <TotalStakedCell
-          stakingToken={new Token(56, '0x483Ed007BA31da2D570bA816F028135d1F0c60A6', 18, 'NIKA')}
-          totalStaked={new BigNumber(totalStaked || 0)}
-          totalStakedBalance={Number(_totalStaked)}
-        />
-      )}
-    </Pool.ExpandRow>
+    <PoolContainer>
+      <Pool.ExpandRow panel={<ActionPanel expanded breakpoints={{ isXs, isSm, isMd, isLg, isXl, isXxl }} />}>
+        <NameCell title={t('Stake NIKA')} />
+        {isXLargerScreen && (
+          <AutoEarningsCell earningTokenBalance={pendingReward} earningTokenDollarBalance={usdcAmount} />
+        )}
+        <Status status={t('Active')} />
+        <StyledCell />
+        {isLargerScreen && (
+          <TotalStakedCell
+            stakingToken={new Token(56, '0x483Ed007BA31da2D570bA816F028135d1F0c60A6', 18, 'NIKA')}
+            totalStaked={new BigNumber(totalStaked || 0)}
+            totalStakedBalance={Number(_totalStaked)}
+          />
+        )}
+      </Pool.ExpandRow>
+    </PoolContainer>
   )
 }
 

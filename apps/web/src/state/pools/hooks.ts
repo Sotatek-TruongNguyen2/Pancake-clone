@@ -38,7 +38,6 @@ import {
   ifoCreditSelector,
   ifoCeilingSelector,
   makeVaultPoolWithKeySelector,
-  nikaPoolSelector,
 } from './selectors'
 
 const lPoolAddresses = livePools.filter(({ sousId }) => sousId !== 0).map(({ earningToken }) => earningToken.address)
@@ -78,6 +77,7 @@ export const useFetchPublicPoolsData = () => {
     (currentBlock) => {
       const fetchPoolsDataWithFarms = async () => {
         const activeFarms = await getActiveFarms(chainId)
+        console.log('activeFarms: ', activeFarms)
 
         await dispatch(fetchFarmsPublicDataAsync({ pids: activeFarms, chainId, flag: farmFlag }))
 
@@ -100,10 +100,6 @@ export const usePool = (sousId: number): { pool: Pool.DeserializedPool<Token>; u
 
 export const usePoolsWithVault = () => {
   return useSelector(poolsWithVaultSelector)
-}
-
-export const useNikaPool = () => {
-  return useSelector(nikaPoolSelector)
 }
 
 export const useDeserializedPoolByVaultKey = (vaultKey) => {
