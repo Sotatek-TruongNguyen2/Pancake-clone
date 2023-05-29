@@ -162,6 +162,6 @@ export default {
     97: '0xBab5d3B6bA24E185f216419f3ba07f03984bF983',
   },
   nikaStaking: {
-    97: '0xEC3678A05633eEAC73668c32b4c495A343574756',
+    97: '0x3739fF04b506C7424bef68013A255fa0341ADD24',
   },
 }
