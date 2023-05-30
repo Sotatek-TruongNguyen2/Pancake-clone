@@ -16,6 +16,8 @@ export const initialUserData: NikaPoolUser = {
   lastTimeClaimed: null,
   interestRates: null,
   joinByReferral: null,
+  directBonus: null,
+  matchingBonus: null,
 }
 
 export const initialState: NikaPoolState = {

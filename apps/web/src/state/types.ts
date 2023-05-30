@@ -189,6 +189,8 @@ export interface NikaPoolUser {
   lastTimeClaimed: string
   interestRates: number
   joinByReferral: boolean
+  directBonus: string
+  matchingBonus: string
 }
 export interface NikaPoolState {
   totalStaked: string
@@ -212,6 +214,8 @@ export interface SerializedNikaPoolUser {
   lastTimeClaimed?: SerializedBigNumber
   interestRates?: number
   joinByReferral?: boolean
+  directBonus?: SerializedBigNumber
+  matchingBonus?: SerializedBigNumber
 }
 
 export interface SerializedNikaPool {
