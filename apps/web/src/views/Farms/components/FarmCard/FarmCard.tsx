@@ -69,7 +69,7 @@ const FarmCard: React.FC<React.PropsWithChildren<FarmCardProps>> = ({
       ? `$${liquidity.toNumber().toLocaleString(undefined, { maximumFractionDigits: 0 })}`
       : ''
 
-  const lpLabel = farm.lpSymbol && farm.lpSymbol.toUpperCase().replace('NIKA', '')
+  const lpLabel = farm.lpSymbol && farm.lpSymbol.toUpperCase()
   const earnLabel = farm.dual ? farm.dual.earnLabel : t('NIKA + Fees')
 
   const liquidityUrlPathParts = getLiquidityUrlPathParts({
