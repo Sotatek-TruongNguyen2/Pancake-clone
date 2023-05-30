@@ -81,6 +81,8 @@ const InfoSection = () => {
       interestDuration,
       lastTimeDeposited,
       interestRates,
+      directBonus,
+      matchingBonus,
     },
   } = useNikaPool() as NikaPoolState
 
@@ -89,6 +91,8 @@ const InfoSection = () => {
 
   const monthlyAPR = formatPercent(interestRates || 0)
   const maxInterest = formatLpBalance(new BigNumber(maxClaim), 18)
+  const formattedDirectBonus = formatLpBalance(new BigNumber(directBonus), 18)
+  const formattedMatchingBonus = formatLpBalance(new BigNumber(matchingBonus), 18)
   const claimedInterest = formatLpBalance(new BigNumber(totalClaimed), 18)
   const formattedReferrer = referrer ? `${referrer.substring(0, 2)}...${referrer.substring(referrer.length - 4)}` : ''
   const claimEndsIn = claimEndsInAsBigNumber.lte(0)
@@ -97,8 +101,8 @@ const InfoSection = () => {
   const vestingEndsIn = vestingEndsInAsBigNumber.lte(0)
     ? 'No Data'
     : formatTime(vestingEndsInAsBigNumber.times(1000).toString())
-  const pendingRewards = formatLpBalance(new BigNumber(poolPendingRewardPerDay), 18)
-  const totalStaked = formatLpBalance(new BigNumber(totalStakes), 18)
+  // const pendingRewards = formatLpBalance(new BigNumber(poolPendingRewardPerDay), 18)
+  // const totalStaked = formatLpBalance(new BigNumber(totalStakes), 18)
 
   return (
     <Flex flexDirection="column" mb="8px">
@@ -113,6 +117,16 @@ const InfoSection = () => {
       <StatWrapper label={<Text small>{t('Claimed Interest')}:</Text>}>
         <Text ml="4px" small>
           <TotalToken value={Number(claimedInterest)} unit=" NIKA" />
+        </Text>
+      </StatWrapper>
+      <StatWrapper label={<Text small>{t('Direct Bonus')}:</Text>}>
+        <Text ml="4px" small>
+          <TotalToken value={Number(formattedDirectBonus)} unit=" NIKA" />
+        </Text>
+      </StatWrapper>
+      <StatWrapper label={<Text small>{t('Matching Bonus')}:</Text>}>
+        <Text ml="4px" small>
+          <TotalToken value={Number(formattedMatchingBonus)} unit=" NIKA" />
         </Text>
       </StatWrapper>
       <StatWrapper label={<Text small>{t('F1-Referee')}:</Text>}>

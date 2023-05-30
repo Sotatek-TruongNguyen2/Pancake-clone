@@ -9,14 +9,19 @@ export const fetchPoolData = async (account: string, chainId?: number) => {
   console.log('fetch nika pool data', account, chainId)
   const nikaStakingAddress = getNikaStakingAddress(chainId)
   try {
-    const calls = ['poolPendingRewardPerday', 'getUserInformation', 'getF1Invited', 'getUserReferrer'].map(
-      (method) => ({
-        abi: nikaStakingAbi,
-        address: nikaStakingAddress,
-        name: method,
-        params: [account],
-      }),
-    )
+    const calls = [
+      'poolPendingRewardPerday',
+      'getUserInformation',
+      'getF1Invited',
+      'getUserReferrer',
+      'getDirectBonus',
+      'getMatchingBonus',
+    ].map((method) => ({
+      abi: nikaStakingAbi,
+      address: nikaStakingAddress,
+      name: method,
+      params: [account],
+    }))
 
     const totalStakedCall = {
       abi: nikaStakingAbi,
@@ -24,7 +29,15 @@ export const fetchPoolData = async (account: string, chainId?: number) => {
       name: 'getTotalStaked',
     }
 
-    const [[pendingRewards], [userInformation], [f1Referee], [referrer], [totalStaked]] = await multicallv3({
+    const [
+      [pendingRewards],
+      [userInformation],
+      [f1Referee],
+      [referrer],
+      [directBonus],
+      [matchingBonus],
+      [totalStaked],
+    ] = await multicallv3({
       calls: [...calls, totalStakedCall],
       allowFailure: true,
       chainId,
@@ -62,6 +75,8 @@ export const fetchPoolData = async (account: string, chainId?: number) => {
     const lastTimeDepositedAsBigNumber = lastTimeDeposited ? new BigNumber(lastTimeDeposited.toString()) : BIG_ZERO
     const lastTimeClaimedAsBigNumber = lastTimeClaimed ? new BigNumber(lastTimeClaimed.toString()) : BIG_ZERO
     const interestRatesAsNumber = interestRates ? Number(interestRates) : 0
+    const directBonusBigNumber = directBonus ? new BigNumber(directBonus.toString()) : BIG_ZERO
+    const matchingBonusBigNumber = matchingBonus ? new BigNumber(matchingBonus.toString()) : BIG_ZERO
 
     const f1RefereeAsBigNumber = f1Referee ? new BigNumber(f1Referee.toString()) : BIG_ZERO
     const referrerAsString = referrer as string
@@ -86,6 +101,8 @@ export const fetchPoolData = async (account: string, chainId?: number) => {
         lastTimeClaimed: lastTimeClaimedAsBigNumber.toJSON(),
         interestRates: interestRatesAsNumber,
         joinByReferral: joinByReferral as boolean,
+        directBonus: directBonusBigNumber.toJSON(),
+        matchingBonus: matchingBonusBigNumber.toJSON(),
       },
     }
   } catch (error) {
@@ -109,6 +126,8 @@ export const fetchPoolData = async (account: string, chainId?: number) => {
         lastTimeClaimed: BIG_ZERO.toJSON(),
         interestRates: 0,
         joinByReferral: false,
+        directBonus: BIG_ZERO.toJSON(),
+        matchingBonus: BIG_ZERO.toJSON(),
       },
     }
   }
