@@ -1,4 +1,4 @@
-import { Flex, TokenPairImage, Skeleton, Pool, useModal, Button, Text, Box } from '@pancakeswap/uikit'
+import { Flex, TokenPairImage, Skeleton, Pool, useModal, Button, Text, Box, Image } from '@pancakeswap/uikit'
 import { useAccount } from 'wagmi'
 import { useTranslation } from '@pancakeswap/localization'
 import { useState } from 'react'
@@ -32,7 +32,14 @@ const BuyInPoolCard = ({ showSkeleton = false }: BuyInPoolCardProps) => {
   )
 
   return (
-    <Pool.StyledCard isActive>
+    <Pool.StyledCard isActive style={{ overflow: 'visible' }}>
+      <Image
+        style={{ position: 'absolute', top: '-25px', left: '-25px' }}
+        alt="star-icon"
+        src="./images/star-icon.png"
+        width={60}
+        height={60}
+      />
       <Pool.PoolCardHeader>
         {!showSkeleton ? (
           <>

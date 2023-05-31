@@ -1,4 +1,4 @@
-import { Flex, Pool, useMatchBreakpoints } from '@pancakeswap/uikit'
+import { Flex, Image, Pool, useMatchBreakpoints } from '@pancakeswap/uikit'
 import { NikaPoolState } from 'state/types'
 import React, { useEffect, useState } from 'react'
 import BigNumber from 'bignumber.js'
@@ -65,7 +65,14 @@ const NikaStakedPoolRow = () => {
   }, [pendingReward])
 
   return (
-    <PoolContainer>
+    <PoolContainer style={{ position: 'relative' }}>
+      <Image
+        style={{ position: 'absolute', top: '-25px', left: '-25px' }}
+        alt="star-icon"
+        src="./images/star-icon.png"
+        width={60}
+        height={60}
+      />
       <Pool.ExpandRow panel={<ActionPanel expanded breakpoints={{ isXs, isSm, isMd, isLg, isXl, isXxl }} />}>
         <NameCell title={t('Stake NIKA')} />
         {isXLargerScreen && (
