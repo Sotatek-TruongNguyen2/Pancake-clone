@@ -143,10 +143,10 @@ const InfoSection = () => {
           <LoadingData value={formattedReferrer} />
         )}
       </StatWrapper>
-      <StatWrapper label={<Text small>{t('Claim Ends In')}:</Text>}>
+      <StatWrapper label={<Text small>{t('End Claim')}:</Text>}>
         <LoadingData value={claimEndsIn} />
       </StatWrapper>
-      <StatWrapper label={<Text small>{t('Vesting Ends In')}:</Text>}>
+      <StatWrapper label={<Text small>{t('End Vesting')}:</Text>}>
         <LoadingData value={vestingEndsIn} />
       </StatWrapper>
       <StyledLinkExternal isBscScan href={`${blockExplorers}address/${nikaTokenContract.address}`}>

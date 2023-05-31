@@ -6,7 +6,6 @@ import { useTheme } from 'styled-components'
 
 export interface WithdrawModalProps {
   formattedBalance: string
-  fullBalance: string
   stakingTokenSymbol: string
   earningsDollarValue: number
   sousId: number
@@ -48,7 +47,7 @@ export function WithdrawModal({
           {formattedBalance} {stakingTokenSymbol}
         </Heading>
         {earningsDollarValue > 0 && (
-          <Text fontSize="12px" color="textSubtle">{`~${formatNumber(earningsDollarValue)} USD`}</Text>
+          <Text fontSize="12px" color="textSubtle">{`~${formatNumber(earningsDollarValue, 2, 5)} USD`}</Text>
         )}
       </Flex>
 
@@ -57,6 +56,7 @@ export function WithdrawModal({
         onClick={handleWithdrawConfirm}
         isLoading={pendingTx}
         endIcon={pendingTx ? <AutoRenewIcon spin color="currentColor" /> : null}
+        disabled={earningsDollarValue <= 0}
       >
         {pendingTx ? t('Confirming') : t('Confirm')}
       </Button>

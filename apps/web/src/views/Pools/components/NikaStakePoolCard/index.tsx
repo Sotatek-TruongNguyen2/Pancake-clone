@@ -57,7 +57,6 @@ const NikaStakePoolCard = ({ showSkeleton = false }: NikaStakePoolCardProps) => 
       handleWithdrawConfirm={onWithdraw}
       pendingTx={pendingTx}
       formattedBalance=""
-      fullBalance=""
       stakingTokenSymbol="NIKA"
       earningsDollarValue={0}
     />,
