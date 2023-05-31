@@ -8,23 +8,11 @@ import { BuyInPoolModal } from './BuyInPoolModal'
 import NameCell from '../NikaStakedPoolRow/NameCell'
 import Status from '../NikaStakedPoolRow/Status'
 import TokenPrice from './TokenPrice'
+import ActionPanel from './ActionPanel'
 
 const BuyContainer = styled(Flex)`
-  background-color: ${({ theme }) => theme.card.background};
   display: block;
-  border: 2px solid ${({ theme }) => theme.colors.input};
-  border-radius: 16px;
-  margin-bottom: 16px!important;
-
-  ${({ theme }) => theme.mediaQueries.sm} {
-    margin-right: 12px;
-    margin-bottom: 0;
-  }
-}
-
-  ${({ theme }) => theme.mediaQueries.xl} {
-    margin-right: 0;
-  }
+  width: 100%;
 `
 
 const ActionWrapper = styled(Flex)`
@@ -46,8 +34,28 @@ const StyledCell = styled(Pool.BaseCell)`
     flex: 1 0 120px;
   }
 `
+const PoolContainer = styled(Flex)`
+  background-color: ${({ theme }) => theme.card.background};
+  display: block;
+  border: 2px solid ${({ theme }) => theme.colors.input};
+  border-radius: 16px;
+  margin-bottom: 16px!important;
+
+  ${({ theme }) => theme.mediaQueries.sm} {
+    margin-right: 12px;
+    margin-bottom: 0;
+  }
+}
+
+  ${({ theme }) => theme.mediaQueries.xl} {
+    margin-right: 0;
+  }
+`
 const BuyInPoolRow = () => {
   const { t } = useTranslation()
+  const { isXs, isSm, isMd, isLg, isXl, isXxl } = useMatchBreakpoints()
+  // const isLargerScreen = isLg || isXl || isXxl
+  // const isXLargerScreen = isXl || isXxl
   const { address: account } = useAccount()
   const { isMobile } = useMatchBreakpoints()
 
@@ -60,42 +68,45 @@ const BuyInPoolRow = () => {
   )
   if (isMobile)
     return (
-      <BuyContainer>
-        <Flex>
-          <NameCell title={t('Buy NIKA')} />
-          <TokenPrice />
-          <Status status="Open" />
-        </Flex>
-        <ActionWrapper>
-          {account ? (
-            <Button width="100%" onClick={onPresentBuyInPoolModal}>
-              {t('Buy')}
-            </Button>
-          ) : (
-            <ConnectWalletButton width="100%" />
-          )}
-        </ActionWrapper>
-      </BuyContainer>
+      <PoolContainer>
+        <Pool.ExpandRow panel={<ActionPanel expanded breakpoints={{ isXs, isSm, isMd, isLg, isXl, isXxl }} />}>
+          <BuyContainer>
+            <Flex>
+              <NameCell title={t('Buy NIKA')} />
+              <TokenPrice />
+              <Status status="Open" />
+            </Flex>
+            <ActionWrapper>
+              {account ? (
+                <Button width="100%" onClick={onPresentBuyInPoolModal}>
+                  {t('Buy')}
+                </Button>
+              ) : (
+                <ConnectWalletButton width="100%" />
+              )}
+            </ActionWrapper>
+          </BuyContainer>
+        </Pool.ExpandRow>
+      </PoolContainer>
     )
   return (
-    <BuyContainer>
-      <Flex>
+    <PoolContainer>
+      <Pool.ExpandRow panel={<ActionPanel expanded breakpoints={{ isXs, isSm, isMd, isLg, isXl, isXxl }} />}>
         <NameCell title={t('Buy NIKA')} />
         <TokenPrice />
         <Status status={t('Open')} />
-
         <StyledCell />
         <ActionWrapper>
           {account ? (
-            <Button width={300} onClick={onPresentBuyInPoolModal}>
+            <Button width={200} onClick={onPresentBuyInPoolModal}>
               {t('Buy')}
             </Button>
           ) : (
-            <ConnectWalletButton width={300} />
+            <ConnectWalletButton width={200} />
           )}
         </ActionWrapper>
-      </Flex>
-    </BuyContainer>
+      </Pool.ExpandRow>
+    </PoolContainer>
   )
 }
 

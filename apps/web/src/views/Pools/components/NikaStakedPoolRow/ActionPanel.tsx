@@ -4,7 +4,7 @@ import BigNumber from 'bignumber.js'
 import { Token } from '@pancakeswap/sdk'
 import { FC, ReactNode, useCallback, useEffect, useState } from 'react'
 import { useTranslation } from '@pancakeswap/localization'
-import { useNikaStakingContract, useTokenContract } from 'hooks/useContract'
+import { useNikaStakingContract, useOracleContract, useTokenContract } from 'hooks/useContract'
 import { useCallWithGasPrice } from 'hooks/useCallWithGasPrice'
 import { MaxUint256 } from '@ethersproject/constants'
 import { ToastDescriptionWithTx } from 'components/Toast'
@@ -162,6 +162,9 @@ const ActionPanel: React.FC<React.PropsWithChildren<ActionPanelProps>> = ({ expa
   const { fetchWithCatchTxError, loading: pendingTx } = useCatchTxError()
   const [isApproved, setIsApproved] = useState(false)
   const blockExplorers = chainId === 97 ? 'https://testnet.bscscan.com/' : 'https://bscscan.com/'
+  const [withdrawableAmount, setWithdrawableAmount] = useState('')
+  const oracleContract = useOracleContract()
+  const [usdcAmount, setUsdcAmount] = useState(0)
 
   const {
     poolPendingRewardPerDay,
@@ -223,10 +226,9 @@ const ActionPanel: React.FC<React.PropsWithChildren<ActionPanelProps>> = ({ expa
     <WithdrawModal
       handleWithdrawConfirm={onWithdraw}
       pendingTx={pendingTx}
-      formattedBalance=""
-      fullBalance=""
+      formattedBalance={withdrawableAmount}
       stakingTokenSymbol="NIKA"
-      earningsDollarValue={0}
+      earningsDollarValue={usdcAmount}
     />,
     false,
   )
@@ -250,6 +252,22 @@ const ActionPanel: React.FC<React.PropsWithChildren<ActionPanelProps>> = ({ expa
     const fetchData = async (_account: string) => {
       const amount = await nikaTokenContract.allowance(_account, nikaStakingContract.address)
       const _isApproved = new BigNumber(amount.toString()).gt(0)
+
+      const withdrawAbleAmount = await nikaStakingContract.withdrawAble(_account)
+
+      const withdrawAbleAmountBigNumber = new BigNumber(withdrawAbleAmount)
+      console.log('withdrawAbleAmount: ', withdrawAbleAmount.toString())
+      if (withdrawAbleAmountBigNumber.gt(0)) {
+        const formattedWithdrawableAmount = formatLpBalance(withdrawAbleAmountBigNumber, 18)
+        const _usdcAmount = await oracleContract.consult(NIKA_ADDR, withdrawAbleAmountBigNumber.toString())
+        const formattedUsdcAmount = formatLpBalance(_usdcAmount.toString(), 18)
+        setUsdcAmount(Number(formattedUsdcAmount))
+        setWithdrawableAmount(formattedWithdrawableAmount)
+      } else {
+        setUsdcAmount(0)
+        setWithdrawableAmount('0')
+      }
+
       setIsApproved(_isApproved)
     }
     if (!account) return
