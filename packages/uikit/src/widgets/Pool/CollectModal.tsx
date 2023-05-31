@@ -48,7 +48,7 @@ export function CollectModal({
           {formattedBalance} {earningTokenSymbol}
         </Heading>
         {earningsDollarValue > 0 && (
-          <Text fontSize="12px" color="textSubtle">{`~${formatNumber(earningsDollarValue)} USD`}</Text>
+          <Text fontSize="12px" color="textSubtle">{`~${formatNumber(earningsDollarValue, 2, 5)} USD`}</Text>
         )}
       </Flex>
 

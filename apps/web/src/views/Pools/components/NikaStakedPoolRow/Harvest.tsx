@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Balance, Button, Flex, Heading, Text, useModal, useToast } from '@pancakeswap/uikit'
 import { useAccount } from 'wagmi'
 import { useTranslation } from '@pancakeswap/localization'
@@ -9,6 +9,7 @@ import { NIKA_ADDR } from 'config/constants/nikaContract'
 import { CollectModal } from '@pancakeswap/uikit/src/widgets/Pool'
 import useCatchTxError from 'hooks/useCatchTxError'
 import { ToastDescriptionWithTx } from 'components/Toast'
+import { formatLpBalance, getDecimalAmount } from '@pancakeswap/utils/formatBalance'
 import { ActionContainer, ActionContent, ActionTitles } from '../PoolsTable/ActionPanel/styles'
 
 interface HarvestProps {
@@ -25,6 +26,7 @@ const Harvest = ({ pendingReward }: HarvestProps) => {
   const oracleContract = useOracleContract()
   const [usdcAmount, setUsdcAmount] = useState(0)
   const { fetchWithCatchTxError, loading: pendingTx } = useCatchTxError()
+  const [earningsDollarValue, setEarningsDollarValue] = useState(0)
 
   const handleClaimRewards = async () => {
     const receipt = await fetchWithCatchTxError(() => {
@@ -42,12 +44,25 @@ const Harvest = ({ pendingReward }: HarvestProps) => {
     }
   }
 
+  useEffect(() => {
+    const updateData = async () => {
+      const bigBuyAmount = new BigNumber(earnings.toString() || 0)
+      const amount = await oracleContract.consult(NIKA_ADDR, getDecimalAmount(bigBuyAmount).toString())
+      if (amount) {
+        const amountBigNumber = new BigNumber(amount.toString())
+        const usdValue = formatLpBalance(amountBigNumber, 18)
+        setEarningsDollarValue(Number(usdValue))
+      }
+    }
+    updateData()
+  }, [earnings, oracleContract])
+
   const [onPresentCollect, onDismiss] = useModal(
     <CollectModal
       formattedBalance={earnings.toString()}
       fullBalance=""
       earningTokenSymbol="NIKA"
-      earningsDollarValue={100}
+      earningsDollarValue={earningsDollarValue}
       handleHarvestConfirm={handleClaimRewards}
       pendingTx={pendingTx}
     />,
@@ -99,7 +114,7 @@ const Harvest = ({ pendingReward }: HarvestProps) => {
                   display="inline"
                   fontSize="12px"
                   color="textSubtle"
-                  decimals={2}
+                  decimals={5}
                   prefix="~"
                   value={usdcAmount}
                   unit=" USDC"

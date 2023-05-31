@@ -134,7 +134,7 @@ const formatPercent = (number: any) => {
 
 const TotalToken = ({ value, unit }: { value: number; unit?: string }) => {
   if (value >= 0) {
-    return <Balance small value={value} decimals={0} unit={unit} />
+    return <Balance small value={value} decimals={2} unit={unit} />
   }
   return <Skeleton width="90px" height="21px" />
 }
@@ -179,7 +179,6 @@ const ActionPanel: React.FC<React.PropsWithChildren<ActionPanelProps>> = ({ expa
       matchingBonus,
     },
   } = useNikaPool() as NikaPoolState
-
   const claimEndsInAsBigNumber = new BigNumber(lastTimeDeposited).plus(interestDuration)
   const vestingEndsInAsBigNumber = claimEndsInAsBigNumber.plus(vestingDuration)
 
@@ -290,7 +289,7 @@ const ActionPanel: React.FC<React.PropsWithChildren<ActionPanelProps>> = ({ expa
           </StatWrapper>
           <StatWrapper label={<Text small>{t('F1-Referee')}:</Text>}>
             <Text ml="4px" small>
-              <TotalToken value={Number(f1Referee)} />
+              {f1Referee}
             </Text>
           </StatWrapper>
           <StatWrapper label={<Text small>{t('Referrer')}:</Text>}>

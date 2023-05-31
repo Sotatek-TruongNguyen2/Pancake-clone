@@ -1,39 +1,19 @@
-import {
-  Balance,
-  Box,
-  Flex,
-  Pool,
-  Skeleton,
-  Text,
-  TooltipText,
-  useMatchBreakpoints,
-  useTooltip,
-} from '@pancakeswap/uikit'
+import { Box, Flex, Skeleton, Text, TooltipText, useMatchBreakpoints, useTooltip } from '@pancakeswap/uikit'
 import { BIG_ZERO } from '@pancakeswap/utils/bigNumber'
-import { formatLpBalance } from '@pancakeswap/utils/formatBalance'
 import BigNumber from 'bignumber.js'
-import useActiveWeb3React from 'hooks/useActiveWeb3React'
 import { useOracleContract } from 'hooks/useContract'
-import React, { useEffect, useState } from 'react'
-import styled from 'styled-components'
-import { readContracts, useNetwork } from 'wagmi'
+import { useEffect, useState } from 'react'
+import { readContracts } from 'wagmi'
 import oracleAbi from 'config/abi/oracleAbi.json'
-import { useTranslation } from '@pancakeswap/localization'
-
-const StyledCell = styled(Pool.BaseCell)`
-  flex: 4.5;
-  ${({ theme }) => theme.mediaQueries.sm} {
-    flex: 1 0 120px;
-  }
-`
+import { useActiveChainId } from 'hooks/useActiveChainId'
 
 const TokenPrice = () => {
-  const { t } = useTranslation()
   const [isLoading, setIsLoading] = useState(true)
   const { isMobile } = useMatchBreakpoints()
   const [price, setPrice] = useState<BigNumber>(BIG_ZERO)
   const oracleContract = useOracleContract()
   const tooltipContent = price.toString().substring(0, 20)
+  const { chainId } = useActiveChainId()
   const { targetRef, tooltip, tooltipVisible } = useTooltip(tooltipContent, {
     placement: 'bottom-start',
   })
@@ -46,7 +26,7 @@ const TokenPrice = () => {
             address: oracleContract.address,
             abi: oracleAbi,
             functionName: 'price0Average',
-            chainId: 97,
+            chainId,
           },
         ],
       })
