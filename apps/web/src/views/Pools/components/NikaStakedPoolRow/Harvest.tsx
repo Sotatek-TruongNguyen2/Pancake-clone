@@ -6,10 +6,10 @@ import BigNumber from 'bignumber.js'
 import { BIG_ZERO } from '@pancakeswap/utils/bigNumber'
 import { useNikaStakingContract, useOracleContract } from 'hooks/useContract'
 import { NIKA_ADDR } from 'config/constants/nikaContract'
-import { CollectModal } from '@pancakeswap/uikit/src/widgets/Pool'
 import useCatchTxError from 'hooks/useCatchTxError'
 import { ToastDescriptionWithTx } from 'components/Toast'
 import { formatLpBalance, getDecimalAmount } from '@pancakeswap/utils/formatBalance'
+import { CollectModal } from '@pancakeswap/uikit/src/widgets/Pool'
 import { ActionContainer, ActionContent, ActionTitles } from '../PoolsTable/ActionPanel/styles'
 
 interface HarvestProps {
@@ -82,7 +82,7 @@ const Harvest = ({ pendingReward }: HarvestProps) => {
 
   if (!account) {
     return (
-      <ActionContainer>
+      <>
         <ActionTitles>
           <Text fontSize="12px" bold color="secondary" as="span" textTransform="uppercase">
             {t('%asset% Earned', { asset: 'NIKA' })}
@@ -92,12 +92,12 @@ const Harvest = ({ pendingReward }: HarvestProps) => {
           <Heading>0</Heading>
           <Button disabled>{t('Harvest')}</Button>
         </ActionContent>
-      </ActionContainer>
+      </>
     )
   }
 
   return (
-    <ActionContainer>
+    <>
       <ActionTitles>
         <Text fontSize="12px" bold color="secondary" as="span" textTransform="uppercase">
           {t('%asset% Earned', { asset: 'NIKA' })}
@@ -134,7 +134,7 @@ const Harvest = ({ pendingReward }: HarvestProps) => {
           {t('Harvest')}
         </Button>
       </ActionContent>
-    </ActionContainer>
+    </>
   )
 }
 

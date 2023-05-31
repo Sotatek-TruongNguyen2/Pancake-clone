@@ -86,7 +86,8 @@ const InfoSection = () => {
     },
   } = useNikaPool() as NikaPoolState
 
-  const claimEndsInAsBigNumber = new BigNumber(lastTimeDeposited).plus(interestDuration)
+  const lastTimeDepositedBigNumber = new BigNumber(lastTimeDeposited)
+  const claimEndsInAsBigNumber = lastTimeDepositedBigNumber.plus(interestDuration)
   const vestingEndsInAsBigNumber = claimEndsInAsBigNumber.plus(vestingDuration)
 
   const monthlyAPR = formatPercent(interestRates || 0)
@@ -95,6 +96,9 @@ const InfoSection = () => {
   const formattedMatchingBonus = formatLpBalance(new BigNumber(matchingBonus), 18)
   const claimedInterest = formatLpBalance(new BigNumber(totalClaimed), 18)
   const formattedReferrer = referrer ? `${referrer.substring(0, 2)}...${referrer.substring(referrer.length - 4)}` : ''
+  const startClaim = lastTimeDepositedBigNumber.lte(0)
+    ? 'No Data'
+    : formatTime(lastTimeDepositedBigNumber.times(1000).toString())
   const claimEndsIn = claimEndsInAsBigNumber.lte(0)
     ? 'No Data'
     : formatTime(claimEndsInAsBigNumber.times(1000).toString())
@@ -143,7 +147,13 @@ const InfoSection = () => {
           <LoadingData value={formattedReferrer} />
         )}
       </StatWrapper>
+      <StatWrapper label={<Text small>{t('Start Claim')}:</Text>}>
+        <LoadingData value={startClaim} />
+      </StatWrapper>
       <StatWrapper label={<Text small>{t('End Claim')}:</Text>}>
+        <LoadingData value={claimEndsIn} />
+      </StatWrapper>
+      <StatWrapper label={<Text small>{t('Start Vesting')}:</Text>}>
         <LoadingData value={claimEndsIn} />
       </StatWrapper>
       <StatWrapper label={<Text small>{t('End Vesting')}:</Text>}>

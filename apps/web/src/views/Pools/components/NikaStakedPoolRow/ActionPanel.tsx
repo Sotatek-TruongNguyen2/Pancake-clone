@@ -18,6 +18,7 @@ import StakedActionComponent from '@pancakeswap/uikit/src/widgets/Farm/component
 import { NIKA_ADDR } from 'config/constants/nikaContract'
 import { NikaPoolState } from 'state/types'
 import { useNikaPool } from 'state/nikaPool/hooks'
+import { StyledActionContainer } from '@pancakeswap/uikit/src/widgets/Farm/components/FarmTable/Actions/styles'
 import Harvest from './Harvest'
 import { StakeInPoolModal } from '../StakeInPool'
 import { WithdrawModal } from './WithdrawModal'
@@ -252,9 +253,12 @@ const ActionPanel: React.FC<React.PropsWithChildren<ActionPanelProps>> = ({ expa
     const fetchData = async (_account: string) => {
       const amount = await nikaTokenContract.allowance(_account, nikaStakingContract.address)
       const _isApproved = new BigNumber(amount.toString()).gt(0)
+      console.log('_account: ', _account, nikaStakingContract.address)
+      console.log('amount: ', amount.toString())
+      console.log('_isApproved: ', _isApproved)
+      setIsApproved(_isApproved)
 
       const withdrawAbleAmount = await nikaStakingContract.withdrawAble(_account)
-
       const withdrawAbleAmountBigNumber = new BigNumber(withdrawAbleAmount)
       console.log('withdrawAbleAmount: ', withdrawAbleAmount.toString())
       if (withdrawAbleAmountBigNumber.gt(0)) {
@@ -267,8 +271,6 @@ const ActionPanel: React.FC<React.PropsWithChildren<ActionPanelProps>> = ({ expa
         setUsdcAmount(0)
         setWithdrawableAmount('0')
       }
-
-      setIsApproved(_isApproved)
     }
     if (!account) return
     fetchData(account)
@@ -365,23 +367,31 @@ const ActionPanel: React.FC<React.PropsWithChildren<ActionPanelProps>> = ({ expa
       <ActionsContainer>
         <Box width="100%">
           <ActionsContainer>
-            <Harvest pendingReward={Number(pendingRewards)} />
+            <ActionContainer>
+              <Harvest pendingReward={Number(pendingRewards)} />
+            </ActionContainer>
             {Number(totalStaked) > 0 ? (
-              <StakedActionComponent lpSymbol="NIKA" onPresentWithdraw={handleWithdraw} onPresentDeposit={handleStake}>
-                <Flex flex="1" flexDirection="column" alignSelf="flex-center">
-                  <Balance lineHeight="1" bold fontSize="20px" decimals={5} value={Number(totalStaked)} />
+              <StyledActionContainer>
+                <StakedActionComponent
+                  lpSymbol="NIKA"
+                  onPresentWithdraw={handleWithdraw}
+                  onPresentDeposit={handleStake}
+                >
+                  <Flex flex="1" flexDirection="column" alignSelf="flex-center">
+                    <Balance lineHeight="1" bold fontSize="20px" decimals={5} value={Number(totalStaked)} />
 
-                  <Balance
-                    display="inline"
-                    fontSize="12px"
-                    color="textSubtle"
-                    decimals={2}
-                    prefix="~"
-                    value={Number(totalStaked)}
-                    unit=" USDC"
-                  />
-                </Flex>
-              </StakedActionComponent>
+                    <Balance
+                      display="inline"
+                      fontSize="12px"
+                      color="textSubtle"
+                      decimals={2}
+                      prefix="~"
+                      value={Number(totalStaked)}
+                      unit=" USDC"
+                    />
+                  </Flex>
+                </StakedActionComponent>
+              </StyledActionContainer>
             ) : (
               <ActionContainer>
                 <Stake
