@@ -1,22 +1,13 @@
-import { Flex, TokenPairImage, Skeleton, Pool, useModal, useToast, Button, Text } from '@pancakeswap/uikit'
+import { Flex, TokenPairImage, Skeleton, Pool, useModal, Button, Text, Box, Image } from '@pancakeswap/uikit'
 import { useAccount } from 'wagmi'
 import { useTranslation } from '@pancakeswap/localization'
-import { useCallback, useEffect, useState } from 'react'
-import useCatchTxError from 'hooks/useCatchTxError'
-import { useNikaStakingContract, useTokenContract } from 'hooks/useContract'
-import { NIKA_ADDR } from 'config/constants/nikaContract'
-import { useCallWithGasPrice } from 'hooks/useCallWithGasPrice'
-import { MaxUint256, Token } from '@pancakeswap/sdk'
-import { ToastDescriptionWithTx } from 'components/Toast'
-import BigNumber from 'bignumber.js'
+import { useState } from 'react'
 import styled from 'styled-components'
 import ConnectWalletButton from 'components/ConnectWalletButton'
 import { LightGreyCard } from 'components/Card'
-import { WithdrawModal } from '../NikaStakedPoolRow/WithdrawModal'
-import Stake from '../NikaStakedPoolRow/Stake'
-import { StakeInPoolModal } from '../StakeInPool'
 import { BuyInPoolModal } from '../BuyInPoolRow/BuyInPoolModal'
 import TokenPrice from './TokenPrice'
+import CardFooter from './CardFooter'
 
 export const ActionContainer = styled(Flex)`
   flex-direction: column;
@@ -41,7 +32,14 @@ const BuyInPoolCard = ({ showSkeleton = false }: BuyInPoolCardProps) => {
   )
 
   return (
-    <Pool.StyledCard isActive>
+    <Pool.StyledCard isActive style={{ overflow: 'visible' }}>
+      <Image
+        style={{ position: 'absolute', top: '-25px', left: '-25px' }}
+        alt="star-icon"
+        src="./images/star-icon.png"
+        width={60}
+        height={60}
+      />
       <Pool.PoolCardHeader>
         {!showSkeleton ? (
           <>
@@ -63,20 +61,22 @@ const BuyInPoolCard = ({ showSkeleton = false }: BuyInPoolCardProps) => {
           </Flex>
         )}
       </Pool.PoolCardHeader>
-      <LightGreyCard>
-        <Flex alignItems="center" justifyContent="space-between">
-          <Text color="textSubtle" textTransform="uppercase" bold fontSize="12px">
-            {t('Token Price')}
-          </Text>
-          <TokenPrice />
-        </Flex>
-        <Flex alignItems="center" justifyContent="space-between">
-          <Text color="textSubtle" textTransform="uppercase" bold fontSize="12px">
-            {t('Status')}
-          </Text>
-          <Text color={status === t('Active') || status === t('Open') ? 'primary' : 'text'}>{status}</Text>
-        </Flex>
-      </LightGreyCard>
+      <Box px="24px" pt="24px">
+        <LightGreyCard>
+          <Flex alignItems="center" justifyContent="space-between">
+            <Text color="textSubtle" textTransform="uppercase" bold fontSize="12px">
+              {t('Token Price')}
+            </Text>
+            <TokenPrice />
+          </Flex>
+          <Flex alignItems="center" justifyContent="space-between">
+            <Text color="textSubtle" textTransform="uppercase" bold fontSize="12px">
+              {t('Status')}
+            </Text>
+            <Text color={status === t('Active') || status === t('Open') ? 'primary' : 'text'}>{status}</Text>
+          </Flex>
+        </LightGreyCard>
+      </Box>
       <ActionContainer>
         {account ? (
           <Button width={300} onClick={onPresentBuyInPoolModal}>
@@ -86,6 +86,7 @@ const BuyInPoolCard = ({ showSkeleton = false }: BuyInPoolCardProps) => {
           <ConnectWalletButton width={300} />
         )}
       </ActionContainer>
+      <CardFooter />
     </Pool.StyledCard>
   )
 }

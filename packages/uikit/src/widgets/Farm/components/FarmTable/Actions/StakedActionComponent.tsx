@@ -3,7 +3,7 @@ import { useTranslation } from "@pancakeswap/localization";
 import { Text } from "../../../../../components/Text";
 import { IconButton } from "../../../../../components/Button";
 import { MinusIcon, AddIcon } from "../../../../../components/Svg";
-import { StyledActionContainer, ActionContent, ActionTitles, IconButtonWrapper } from "./styles";
+import { ActionContent, ActionTitles, IconButtonWrapper } from "./styles";
 
 interface StakedActionComponentProps {
   lpSymbol: string;
@@ -25,7 +25,7 @@ const StakedActionComponent: React.FunctionComponent<React.PropsWithChildren<Sta
   const { t } = useTranslation();
 
   return (
-    <StyledActionContainer>
+    <>
       <ActionTitles>
         <Text bold color="secondary" fontSize="12px" pr="4px">
           {lpSymbol}
@@ -45,7 +45,7 @@ const StakedActionComponent: React.FunctionComponent<React.PropsWithChildren<Sta
           </IconButton>
         </IconButtonWrapper>
       </ActionContent>
-    </StyledActionContainer>
+    </>
   );
 };
 

@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Button, Flex, Pool, useMatchBreakpoints, useModal } from '@pancakeswap/uikit'
+import { Button, Flex, Image, Pool, useMatchBreakpoints, useModal } from '@pancakeswap/uikit'
 import { useTranslation } from '@pancakeswap/localization'
 import { useAccount } from 'wagmi'
 import ConnectWalletButton from 'components/ConnectWalletButton'
@@ -68,7 +68,14 @@ const BuyInPoolRow = () => {
   )
   if (isMobile)
     return (
-      <PoolContainer>
+      <PoolContainer style={{ position: 'relative' }}>
+        <Image
+          style={{ position: 'absolute', top: '-25px', left: '-25px' }}
+          alt="star-icon"
+          src="./images/star-icon.png"
+          width={60}
+          height={60}
+        />
         <Pool.ExpandRow panel={<ActionPanel expanded breakpoints={{ isXs, isSm, isMd, isLg, isXl, isXxl }} />}>
           <BuyContainer>
             <Flex>
@@ -90,7 +97,14 @@ const BuyInPoolRow = () => {
       </PoolContainer>
     )
   return (
-    <PoolContainer>
+    <PoolContainer style={{ position: 'relative' }}>
+      <Image
+        style={{ position: 'absolute', top: '-25px', left: '-25px' }}
+        alt="star-icon"
+        src="./images/star-icon.png"
+        width={60}
+        height={60}
+      />
       <Pool.ExpandRow panel={<ActionPanel expanded breakpoints={{ isXs, isSm, isMd, isLg, isXl, isXxl }} />}>
         <NameCell title={t('Buy NIKA')} />
         <TokenPrice />

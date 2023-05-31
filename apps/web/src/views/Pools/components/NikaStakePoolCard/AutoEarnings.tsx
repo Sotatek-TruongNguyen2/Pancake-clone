@@ -1,32 +1,23 @@
-import React from 'react'
-import { Text, Flex, Box, useMatchBreakpoints, Balance, Pool } from '@pancakeswap/uikit'
-import styled from 'styled-components'
+import { Text, Flex, useMatchBreakpoints, Balance, Pool } from '@pancakeswap/uikit'
 import { useTranslation } from '@pancakeswap/localization'
 
-const StyledCell = styled(Pool.BaseCell)`
-  flex: 4.5;
-  ${({ theme }) => theme.mediaQueries.sm} {
-    flex: 1 0 120px;
-  }
-`
-interface AutoEarningsCellProps {
+interface AutoEarningsProps {
   earningTokenBalance: number
   earningTokenDollarBalance: number
 }
-const AutoEarningsCell = ({ earningTokenBalance, earningTokenDollarBalance }: AutoEarningsCellProps) => {
+const AutoEarnings = ({ earningTokenBalance, earningTokenDollarBalance }: AutoEarningsProps) => {
   const { t } = useTranslation()
   const { isMobile } = useMatchBreakpoints()
   const hasEarnings = earningTokenBalance > 0
   return (
-    <StyledCell role="cell">
-      <Text fontSize="12px" color="textSubtle" textAlign="left">
+    <>
+      <Text color="textSubtle" textTransform="uppercase" bold fontSize="12px">
         {t('%asset% Earned', { asset: 'NIKA' })}
       </Text>
 
-      <Flex>
-        <Box mr="8px" height="32px">
+      <Flex justifyContent="flex-end" flexGrow="1">
+        <Flex alignItems="center">
           <Balance
-            mt="4px"
             bold={!isMobile}
             fontSize={isMobile ? '14px' : '16px'}
             color={hasEarnings ? 'primary' : 'textDisabled'}
@@ -48,12 +39,12 @@ const AutoEarningsCell = ({ earningTokenBalance, earningTokenDollarBalance }: Au
               0 USD
             </Text>
           )}
-        </Box>
+        </Flex>
       </Flex>
 
       <Pool.CellContent />
-    </StyledCell>
+    </>
   )
 }
 
-export default AutoEarningsCell
+export default AutoEarnings
