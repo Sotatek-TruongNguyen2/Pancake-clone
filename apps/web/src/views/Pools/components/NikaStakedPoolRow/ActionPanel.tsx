@@ -220,10 +220,11 @@ const ActionPanel: React.FC<React.PropsWithChildren<ActionPanelProps>> = ({ expa
     if (receipt?.status) {
       setIsApproved(true)
       toastSuccess(t('Successfully withdraw'))
+      closeWithdrawModal()
     }
   }
 
-  const [onPresentWithdrawModal] = useModal(
+  const [onPresentWithdrawModal, closeWithdrawModal] = useModal(
     <WithdrawModal
       handleWithdrawConfirm={onWithdraw}
       pendingTx={pendingTx}
@@ -251,16 +252,13 @@ const ActionPanel: React.FC<React.PropsWithChildren<ActionPanelProps>> = ({ expa
 
   useEffect(() => {
     const fetchData = async (_account: string) => {
+      if (!nikaTokenContract) return
       const amount = await nikaTokenContract.allowance(_account, nikaStakingContract.address)
       const _isApproved = new BigNumber(amount.toString()).gt(0)
-      console.log('_account: ', _account, nikaStakingContract.address)
-      console.log('amount: ', amount.toString())
-      console.log('_isApproved: ', _isApproved)
       setIsApproved(_isApproved)
 
       const withdrawAbleAmount = await nikaStakingContract.withdrawAble(_account)
-      const withdrawAbleAmountBigNumber = new BigNumber(withdrawAbleAmount)
-      console.log('withdrawAbleAmount: ', withdrawAbleAmount.toString())
+      const withdrawAbleAmountBigNumber = new BigNumber(withdrawAbleAmount.toString())
       if (withdrawAbleAmountBigNumber.gt(0)) {
         const formattedWithdrawableAmount = formatLpBalance(withdrawAbleAmountBigNumber, 18)
         const _usdcAmount = await oracleContract.consult(NIKA_ADDR, withdrawAbleAmountBigNumber.toString())
@@ -274,7 +272,7 @@ const ActionPanel: React.FC<React.PropsWithChildren<ActionPanelProps>> = ({ expa
     }
     if (!account) return
     fetchData(account)
-  }, [])
+  }, [account, nikaTokenContract, nikaStakingContract])
 
   const handleStake = () => {
     onPresentStakeInPoolModal()

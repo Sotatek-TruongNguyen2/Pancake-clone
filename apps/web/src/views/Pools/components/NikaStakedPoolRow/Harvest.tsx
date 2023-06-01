@@ -10,7 +10,7 @@ import useCatchTxError from 'hooks/useCatchTxError'
 import { ToastDescriptionWithTx } from 'components/Toast'
 import { formatLpBalance, getDecimalAmount } from '@pancakeswap/utils/formatBalance'
 import { CollectModal } from '@pancakeswap/uikit/src/widgets/Pool'
-import { ActionContainer, ActionContent, ActionTitles } from '../PoolsTable/ActionPanel/styles'
+import { ActionContent, ActionTitles } from '../PoolsTable/ActionPanel/styles'
 
 interface HarvestProps {
   pendingReward: number
@@ -47,7 +47,9 @@ const Harvest = ({ pendingReward }: HarvestProps) => {
   useEffect(() => {
     const updateData = async () => {
       const bigBuyAmount = new BigNumber(earnings.toString() || 0)
-      const amount = await oracleContract.consult(NIKA_ADDR, getDecimalAmount(bigBuyAmount).toString())
+      const buyAmount = getDecimalAmount(bigBuyAmount).toString()
+      if (new BigNumber(buyAmount).eq(0)) return
+      const amount = await oracleContract.consult(NIKA_ADDR, buyAmount)
       if (amount) {
         const amountBigNumber = new BigNumber(amount.toString())
         const usdValue = formatLpBalance(amountBigNumber, 18)

@@ -44,7 +44,7 @@ export function WithdrawModal({
       </Flex>
       <Flex flexDirection="column" mb="24px">
         <Heading>
-          {formattedBalance} {stakingTokenSymbol}
+          {formatNumber(Number(formattedBalance), 2, 5)} {stakingTokenSymbol}
         </Heading>
         {earningsDollarValue > 0 && (
           <Text fontSize="12px" color="textSubtle">{`~${formatNumber(earningsDollarValue, 2, 5)} USD`}</Text>
