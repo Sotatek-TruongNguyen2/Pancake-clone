@@ -106,7 +106,7 @@ export const fetchPoolData = async (account: string, chainId?: number) => {
       },
     }
   } catch (error) {
-    console.log(error)
+    console.error(error)
     return {
       f1Referee: BIG_ZERO.toJSON(),
       referrer: NULL_ADDR,

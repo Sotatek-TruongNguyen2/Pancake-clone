@@ -50,9 +50,9 @@ const NikaStakePoolCard = ({ showSkeleton = false }: NikaStakePoolCardProps) => 
     totalStaked: totalStakedAmount,
     userData: { totalStakes },
   } = useNikaPool() as NikaPoolState
-  const pendingRewards = formatLpBalance(new BigNumber(poolPendingRewardPerDay), 18)
-  const totalStaked = formatLpBalance(new BigNumber(totalStakes), 18)
-  const _totalStakedAmount = formatLpBalance(new BigNumber(totalStakedAmount), 18)
+  const pendingRewards = formatLpBalance(new BigNumber(poolPendingRewardPerDay || 0), 18)
+  const totalStaked = formatLpBalance(new BigNumber(totalStakes || 0), 18)
+  const _totalStakedAmount = formatLpBalance(new BigNumber(totalStakedAmount || 0), 18)
 
   const onWithdraw = async () => {
     const receipt = await fetchWithCatchTxError(() => {
@@ -100,13 +100,15 @@ const NikaStakePoolCard = ({ showSkeleton = false }: NikaStakePoolCardProps) => 
 
   useEffect(() => {
     const fetchData = async (_account: string) => {
+      if (!nikaStakingContract) return
       const amount = await nikaTokenContract.allowance(_account, nikaStakingContract.address)
       const _isApproved = new BigNumber(amount.toString()).gt(0)
       setIsApproved(_isApproved)
 
       const withdrawAbleAmount = await nikaStakingContract.withdrawAble(_account)
-      const withdrawAbleAmountBigNumber = new BigNumber(withdrawAbleAmount)
-      console.log('withdrawAbleAmount: ', withdrawAbleAmount.toString())
+
+      const withdrawAbleAmountBigNumber = new BigNumber(withdrawAbleAmount.toString())
+
       if (withdrawAbleAmountBigNumber.gt(0)) {
         const formattedWithdrawableAmount = formatLpBalance(withdrawAbleAmountBigNumber, 18)
         const _usdcAmount = await oracleContract.consult(NIKA_ADDR, withdrawAbleAmountBigNumber.toString())
@@ -120,11 +122,12 @@ const NikaStakePoolCard = ({ showSkeleton = false }: NikaStakePoolCardProps) => 
     }
     if (!account) return
     fetchData(account)
-  }, [account])
+  }, [account, nikaStakingContract])
 
   useEffect(() => {
     const fetchData = async (_pendingRewards: string) => {
-      if (!_pendingRewards) return
+      if (!_pendingRewards || !oracleContract) return
+      if (new BigNumber(_pendingRewards).eq(0)) return
       const _usdcAmount = await oracleContract.consult(
         NIKA_ADDR,
         new BigNumber(_pendingRewards || 0).times(new BigNumber(10).pow(18)).toString(),

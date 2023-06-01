@@ -353,21 +353,21 @@ export const usePotterytVaultContract = (address) => {
   return useMemo(() => getPotteryVaultContract(address, signer), [address, signer])
 }
 
-export const useNikaStakingContract = () => {
-  const { data: signer } = useSigner()
-  const address = process.env.NEXT_PUBLIC_NIKA_STAKING_CONTRACT || NIKA_STAKING_CONTRACT_ADDR
-  return useMemo(() => getNikaStakingContract(address, signer), [address, signer])
+export const useNikaStakingContract = (withSignerIfPossible = true) => {
+  const providerOrSigner = useProviderOrSigner(withSignerIfPossible)
+  const address = NIKA_STAKING_CONTRACT_ADDR
+  return useMemo(() => getNikaStakingContract(address, providerOrSigner), [address, providerOrSigner])
 }
 
 export const useNikaIdoPoolContract = () => {
   const { data: signer } = useSigner()
-  const address = process.env.NEXT_PUBLIC_NIKA_IDO_POOL_CONTRACT || NIKA_IDO_POOL_CONTRACT_ADDR
+  const address = NIKA_IDO_POOL_CONTRACT_ADDR
   return useMemo(() => getNikaIdoPoolContract(address, signer), [address, signer])
 }
 
 export const useOracleContract = () => {
   const { data: signer } = useSigner()
-  const address = process.env.NEXT_PUBLIC_ORACLE_CONTRACT || ORACLE_CONTRACT_ADDR
+  const address = ORACLE_CONTRACT_ADDR
   return useMemo(() => getOracleContract(address, signer), [address, signer])
 }
 
