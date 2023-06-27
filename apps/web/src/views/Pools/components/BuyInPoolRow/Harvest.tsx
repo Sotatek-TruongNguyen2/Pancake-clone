@@ -59,6 +59,10 @@ const Harvest = ({ pendingReward }: HarvestProps) => {
     updateData()
   }, [earnings, oracleContract])
 
+  useEffect(() => {
+    console.log('pendingTx: ', pendingTx)
+  }, [pendingTx])
+
   const [onPresentCollect, onDismiss] = useModal(
     <CollectModal
       formattedBalance={earnings.toString()}

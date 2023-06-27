@@ -1,6 +1,6 @@
 import styled, { keyframes, css } from 'styled-components'
 import { Balance, Box, Flex, useMatchBreakpoints, useModal, useToast } from '@pancakeswap/uikit'
-import { useCallback, useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useAccount } from 'wagmi'
 import Divider from 'components/Divider'
 import { StyledActionContainer } from '@pancakeswap/uikit/src/widgets/Farm/components/FarmTable/Actions/styles'
@@ -12,12 +12,7 @@ import useCatchTxError from 'hooks/useCatchTxError'
 import { useNikaStakingContract, useOracleContract, useTokenContract } from 'hooks/useContract'
 import { NIKA_ADDR } from 'config/constants/nikaContract'
 import { useTranslation } from '@pancakeswap/localization'
-import { MaxUint256, Token } from '@pancakeswap/sdk'
-import { useCallWithGasPrice } from 'hooks/useCallWithGasPrice'
-import { ToastDescriptionWithTx } from 'components/Toast'
-import { StakeInPoolModal } from '../StakeInPool'
 import { WithdrawModal } from './WithdrawModal'
-import Stake from './Stake'
 import Harvest from './Harvest'
 import { ActionContainer } from '../PoolsTable/ActionPanel/styles'
 import BuyingPoolInfoSection from '../BuyingPoolInfoSection'
@@ -113,7 +108,6 @@ const ActionPanel: React.FC<React.PropsWithChildren<ActionPanelProps>> = ({ expa
   const oracleContract = useOracleContract()
   const nikaTokenContract = useTokenContract(NIKA_ADDR)
   const { toastSuccess } = useToast()
-  const { callWithGasPrice } = useCallWithGasPrice()
   const {
     poolPendingRewardPerDay,
     userData: { totalStakes },
@@ -122,22 +116,12 @@ const ActionPanel: React.FC<React.PropsWithChildren<ActionPanelProps>> = ({ expa
 
   const [withdrawableAmount, setWithdrawableAmount] = useState('')
   const [usdcAmount, setUsdcAmount] = useState(0)
-  const [isApproved, setIsApproved] = useState(false)
-
-  const [onPresentStakeInPoolModal] = useModal(
-    <StakeInPoolModal
-      stakingTokenDecimals={18}
-      stakingTokenSymbol="NIKA"
-      stakingTokenAddress="0x483Ed007BA31da2D570bA816F028135d1F0c60A6" // to show token image
-    />,
-  )
 
   const onWithdraw = async () => {
     const receipt = await fetchWithCatchTxError(() => {
       return nikaStakingContract.withdraw()
     })
     if (receipt?.status) {
-      setIsApproved(true)
       toastSuccess(t('Successfully withdraw'))
       closeWithdrawModal()
     }
@@ -159,7 +143,6 @@ const ActionPanel: React.FC<React.PropsWithChildren<ActionPanelProps>> = ({ expa
       if (!nikaTokenContract) return
       const amount = await nikaTokenContract.allowance(_account, nikaStakingContract.address)
       const _isApproved = new BigNumber(amount.toString()).gt(0)
-      setIsApproved(_isApproved)
 
       const withdrawAbleAmount = await nikaStakingContract.withdrawAble(_account)
       const withdrawAbleAmountBigNumber = new BigNumber(withdrawAbleAmount.toString())
@@ -178,26 +161,8 @@ const ActionPanel: React.FC<React.PropsWithChildren<ActionPanelProps>> = ({ expa
     fetchData(account)
   }, [account, nikaTokenContract, nikaStakingContract])
 
-  const handleApprove = useCallback(async () => {
-    const receipt = await fetchWithCatchTxError(() => {
-      return callWithGasPrice(nikaTokenContract, 'approve', [nikaStakingContract.address, MaxUint256])
-    })
-    if (receipt?.status) {
-      setIsApproved(true)
-      toastSuccess(
-        t('Contract Enabled'),
-        <ToastDescriptionWithTx txHash={receipt.transactionHash}>
-          {t('You can now stake in the %symbol% pool!', { symbol: 'NIKA' })}
-        </ToastDescriptionWithTx>,
-      )
-    }
-  }, [])
-
   const handleWithdraw = () => {
     onPresentWithdrawModal()
-  }
-  const handleStake = () => {
-    onPresentStakeInPoolModal()
   }
 
   const pendingRewards = formatLpBalance(new BigNumber(poolPendingRewardPerDay), 18)

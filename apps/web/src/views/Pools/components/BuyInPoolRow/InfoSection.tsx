@@ -82,6 +82,7 @@ const InfoSection = () => {
   const claimEndsInAsBigNumber = lastTimeDepositedBigNumber.plus(interestDuration)
   const vestingEndsInAsBigNumber = claimEndsInAsBigNumber.plus(vestingDuration)
 
+  const formattedTotalStaked = formatLpBalance(new BigNumber(totalStaked), 18)
   const monthlyAPR = formatPercent(interestRates || 0)
   const maxInterest = formatLpBalance(new BigNumber(maxClaim), 18)
   const formattedDirectBonus = formatLpBalance(new BigNumber(directBonus), 18)
@@ -102,7 +103,7 @@ const InfoSection = () => {
     <Flex flexDirection="column" mb="8px">
       <StatWrapper label={<Text small>{t('Total Staked')}:</Text>}>
         <Text ml="4px" small>
-          <TotalToken value={Number(totalStaked)} unit=" NIKA" />
+          <TotalToken value={Number(formattedTotalStaked)} unit=" NIKA" />
         </Text>
       </StatWrapper>
       <StatWrapper label={<Text small>{t('Monthly APR')}:</Text>}>

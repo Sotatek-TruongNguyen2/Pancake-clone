@@ -33,7 +33,7 @@ export function CollectModal({
 }: CollectModalWithHandlerProps) {
   const { t } = useTranslation();
   const theme = useTheme();
-
+  console.log("pendingTx CollectModal: ", pendingTx);
   return (
     <Modal
       title={`${earningTokenSymbol} ${t("Harvest")}`}
