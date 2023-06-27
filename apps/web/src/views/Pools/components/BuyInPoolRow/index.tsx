@@ -1,14 +1,13 @@
-import React from 'react'
 import styled from 'styled-components'
 import { Button, Flex, Image, Pool, useMatchBreakpoints, useModal } from '@pancakeswap/uikit'
 import { useTranslation } from '@pancakeswap/localization'
 import { useAccount } from 'wagmi'
 import ConnectWalletButton from 'components/ConnectWalletButton'
 import { BuyInPoolModal } from './BuyInPoolModal'
-import NameCell from '../NikaStakedPoolRow/NameCell'
-import Status from '../NikaStakedPoolRow/Status'
+import Status from './Status'
 import TokenPrice from './TokenPrice'
 import ActionPanel from './ActionPanel'
+import NameCell from './NameCell'
 
 const BuyContainer = styled(Flex)`
   display: block;
@@ -42,7 +41,6 @@ const PoolContainer = styled(Flex)`
   margin-bottom: 16px!important;
 
   ${({ theme }) => theme.mediaQueries.sm} {
-    margin-right: 12px;
     margin-bottom: 0;
   }
 }
@@ -55,17 +53,11 @@ const BuyInPoolRow = () => {
   const { t } = useTranslation()
   const { isXs, isSm, isMd, isLg, isXl, isXxl } = useMatchBreakpoints()
   // const isLargerScreen = isLg || isXl || isXxl
-  // const isXLargerScreen = isXl || isXxl
+  const isXLargerScreen = isXl || isXxl
   const { address: account } = useAccount()
   const { isMobile } = useMatchBreakpoints()
 
-  const [onPresentBuyInPoolModal] = useModal(
-    <BuyInPoolModal
-      buyingTokenDecimals={18}
-      buyingTokenSymbol="NIKA"
-      buyingTokenAddress="0x483Ed007BA31da2D570bA816F028135d1F0c60A6" // to show token image
-    />,
-  )
+  const [onPresentBuyInPoolModal] = useModal(<BuyInPoolModal />)
   if (isMobile)
     return (
       <PoolContainer style={{ position: 'relative' }}>
@@ -79,13 +71,19 @@ const BuyInPoolRow = () => {
         <Pool.ExpandRow panel={<ActionPanel expanded breakpoints={{ isXs, isSm, isMd, isLg, isXl, isXxl }} />}>
           <BuyContainer>
             <Flex>
-              <NameCell title={t('Buy NIKA')} />
+              <NameCell title={t('Buy/ Stake NIKA')} />
               <TokenPrice />
               <Status status="Open" />
             </Flex>
             <ActionWrapper>
               {account ? (
-                <Button width="100%" onClick={onPresentBuyInPoolModal}>
+                <Button
+                  width="100%"
+                  onClick={(e) => {
+                    e.stopPropagation()
+                    onPresentBuyInPoolModal()
+                  }}
+                >
                   {t('Buy')}
                 </Button>
               ) : (
@@ -106,13 +104,19 @@ const BuyInPoolRow = () => {
         height={60}
       />
       <Pool.ExpandRow panel={<ActionPanel expanded breakpoints={{ isXs, isSm, isMd, isLg, isXl, isXxl }} />}>
-        <NameCell title={t('Buy NIKA')} />
+        <NameCell title={t('Buy/ Stake NIKA')} />
         <TokenPrice />
         <Status status={t('Open')} />
-        <StyledCell />
+        {isXLargerScreen && <StyledCell />}
         <ActionWrapper>
           {account ? (
-            <Button width={200} onClick={onPresentBuyInPoolModal}>
+            <Button
+              width={200}
+              onClick={(e) => {
+                e.stopPropagation()
+                onPresentBuyInPoolModal()
+              }}
+            >
               {t('Buy')}
             </Button>
           ) : (

@@ -16,8 +16,6 @@ import CakeVaultCard from './components/CakeVaultCard'
 import PoolControls from './components/PoolControls'
 import PoolRow, { VaultPoolRow } from './components/PoolsTable/PoolRow'
 import BuyInPoolRow from './components/BuyInPoolRow'
-import NikaStakedPoolRow from './components/NikaStakedPoolRow'
-import NikaStakePoolCard from './components/NikaStakePoolCard'
 import BuyInPoolCard from './components/BuyInPoolCard'
 
 const CardLayout = styled(FlexLayout)`
@@ -62,7 +60,6 @@ const Pools: React.FC<React.PropsWithChildren> = () => {
               {viewMode === ViewMode.CARD ? (
                 <CardLayout>
                   <BuyInPoolCard />
-                  <NikaStakePoolCard />
                   {chosenPools.map((pool) => {
                     return pool.vaultKey ? (
                       <CakeVaultCard key={pool.vaultKey} pool={pool} showStakedOnly={stakedOnly} />
@@ -100,7 +97,6 @@ const Pools: React.FC<React.PropsWithChildren> = () => {
               ) : (
                 <>
                   <BuyInPoolRow />
-                  <NikaStakedPoolRow />
                   <Pool.PoolsTable>
                     {chosenPools.map((pool) =>
                       pool.vaultKey ? (

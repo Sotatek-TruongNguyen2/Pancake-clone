@@ -1,20 +1,14 @@
-import styled, { keyframes, css } from 'styled-components'
-import { Box, Flex, Text, LinkExternal, useToast, useModal, Skeleton, Balance } from '@pancakeswap/uikit'
+import styled from 'styled-components'
+import { Flex, Text, LinkExternal, Skeleton, Balance } from '@pancakeswap/uikit'
 import BigNumber from 'bignumber.js'
-import { Token } from '@pancakeswap/sdk'
-import { FC, ReactNode, useCallback, useEffect, useState } from 'react'
+import { FC, ReactNode } from 'react'
 import { useTranslation } from '@pancakeswap/localization'
 import { useNikaStakingContract, useTokenContract } from 'hooks/useContract'
-import { useCallWithGasPrice } from 'hooks/useCallWithGasPrice'
-import { MaxUint256 } from '@ethersproject/constants'
-import { ToastDescriptionWithTx } from 'components/Toast'
-import useCatchTxError from 'hooks/useCatchTxError'
 import AddToWalletButton, { AddToWalletTextOptions } from 'components/AddToWallet/AddToWalletButton'
 import { useActiveChainId } from 'hooks/useActiveChainId'
 import { useAccount } from 'wagmi'
 import { format } from 'date-fns'
 import { formatNumber, formatLpBalance } from '@pancakeswap/utils/formatBalance'
-import StakedActionComponent from '@pancakeswap/uikit/src/widgets/Farm/components/FarmTable/Actions/StakedActionComponent'
 import { NIKA_ADDR } from 'config/constants/nikaContract'
 import { NikaPoolState } from 'state/types'
 import { useNikaPool } from 'state/nikaPool/hooks'
@@ -35,7 +29,6 @@ const StyledLinkExternal = styled(LinkExternal)`
 const formatTime = (time: string | undefined) => {
   const type = 'HH:mm MM/dd/yyyy'
   if (!time) return ''
-  console.log('time: ', time)
   return format(new Date(Number(time)), type)
 }
 
@@ -70,11 +63,10 @@ const InfoSection = () => {
   const nikaTokenContract = useTokenContract(NIKA_ADDR)
   const blockExplorers = chainId === 97 ? 'https://testnet.bscscan.com/' : 'https://bscscan.com/'
   const {
-    poolPendingRewardPerDay,
+    totalStaked,
     f1Referee,
     referrer,
     userData: {
-      totalStakes,
       totalClaimed,
       maxClaim,
       vestingDuration,
@@ -105,11 +97,14 @@ const InfoSection = () => {
   const vestingEndsIn = vestingEndsInAsBigNumber.lte(0)
     ? 'No Data'
     : formatTime(vestingEndsInAsBigNumber.times(1000).toString())
-  // const pendingRewards = formatLpBalance(new BigNumber(poolPendingRewardPerDay), 18)
-  // const totalStaked = formatLpBalance(new BigNumber(totalStakes), 18)
 
   return (
     <Flex flexDirection="column" mb="8px">
+      <StatWrapper label={<Text small>{t('Total Staked')}:</Text>}>
+        <Text ml="4px" small>
+          <TotalToken value={Number(totalStaked)} unit=" NIKA" />
+        </Text>
+      </StatWrapper>
       <StatWrapper label={<Text small>{t('Monthly APR')}:</Text>}>
         <LoadingData value={monthlyAPR} unit="%" />
       </StatWrapper>

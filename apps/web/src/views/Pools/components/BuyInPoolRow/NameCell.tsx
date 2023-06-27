@@ -1,10 +1,9 @@
 import { useTranslation } from '@pancakeswap/localization'
 import { Pool, Skeleton, Text, TokenPairImage, useMatchBreakpoints } from '@pancakeswap/uikit'
-import React from 'react'
 import styled from 'styled-components'
 
 const StyledCell = styled(Pool.BaseCell)`
-  flex: 5;
+  flex: 25;
   flex-direction: row;
   padding-left: 12px;
   ${({ theme }) => theme.mediaQueries.sm} {

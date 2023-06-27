@@ -1,41 +1,27 @@
-import { useTranslation } from '@pancakeswap/localization'
-import BigNumber from 'bignumber.js'
-import { useEffect, useState } from 'react'
-import { useTheme } from 'styled-components'
-import { formatNumber } from '@pancakeswap/utils/formatBalance'
-import { AutoRenewIcon, BalanceInput, Button, Flex, Image, Text, Modal, Input, useToast } from '@pancakeswap/uikit'
-import getThemeValue from '@pancakeswap/uikit/src/util/getThemeValue'
-import { useNikaStakingContract, useOracleContract, useTokenContract } from 'hooks/useContract'
-import { ToastDescriptionWithTx } from 'components/Toast'
-import { useAccount, useWaitForTransaction } from 'wagmi'
 import { MaxUint256 } from '@ethersproject/constants'
-import useCatchTxError from 'hooks/useCatchTxError'
-import { useCallWithGasPrice } from 'hooks/useCallWithGasPrice'
+import { useTranslation } from '@pancakeswap/localization'
+import { AutoRenewIcon, BalanceInput, Button, Flex, Input, Text, useToast } from '@pancakeswap/uikit'
+import { formatLpBalance, getDecimalAmount } from '@pancakeswap/utils/formatBalance'
+import BigNumber from 'bignumber.js'
+import { ToastDescriptionWithTx } from 'components/Toast'
 import { NIKA_ADDR, NULL_ADDR } from 'config/constants/nikaContract'
-import { useAppDispatch } from 'state'
+import { useCurrency } from 'hooks/Tokens'
 import { useActiveChainId } from 'hooks/useActiveChainId'
+import { useCallWithGasPrice } from 'hooks/useCallWithGasPrice'
+import useCatchTxError from 'hooks/useCatchTxError'
+import { useNikaStakingContract, useOracleContract, useTokenContract } from 'hooks/useContract'
+import React, { useEffect, useState } from 'react'
+import { useAppDispatch } from 'state'
 import { fetchNikaPoolData } from 'state/nikaPool'
+import { useNikaPool } from 'state/nikaPool/hooks'
+import { NikaPoolState } from 'state/types'
+import { useCurrencyBalance } from 'state/wallet/hooks'
+import { useAccount, useWaitForTransaction } from 'wagmi'
 
-interface StakeInPoolModalProps {
-  // Pool attributes
-  stakingTokenDecimals: number
-  stakingTokenSymbol: string
-  stakingTokenAddress: string
-  onDismiss?: () => void
-  imageUrl?: string
-}
+const MIN_AMOUNT = 50
 
-const MIN_AMOUNT = 100
-
-export const StakeInPoolModal: React.FC<React.PropsWithChildren<StakeInPoolModalProps>> = ({
-  stakingTokenDecimals,
-  stakingTokenSymbol,
-  stakingTokenAddress,
-  onDismiss,
-  imageUrl = '/images/tokens/',
-}) => {
+const StakeNika = ({ onDismiss }) => {
   const { t } = useTranslation()
-  const theme = useTheme()
   const [stakeAmount, setStakeAmount] = useState('')
   const [address, setAddress] = useState('')
   const nikaStakingContract = useNikaStakingContract()
@@ -50,6 +36,11 @@ export const StakeInPoolModal: React.FC<React.PropsWithChildren<StakeInPoolModal
   const [minApproveAmount, setMinApproveAmount] = useState<BigNumber>()
   const dispatch = useAppDispatch()
   const { chainId } = useActiveChainId()
+  const currency = useCurrency(NIKA_ADDR)
+  const selectedCurrencyBalance = useCurrencyBalance(account ?? undefined, currency ?? undefined)
+  const {
+    userData: { joinByReferral },
+  } = useNikaPool() as NikaPoolState
 
   const handleSubmit = async () => {
     const approvedAmount = await nikaTokenContract.allowance(account, nikaStakingContract.address)
@@ -92,10 +83,7 @@ export const StakeInPoolModal: React.FC<React.PropsWithChildren<StakeInPoolModal
     },
   })
 
-  const usdValueStaked = new BigNumber(minApproveAmount ? minApproveAmount.toString() : 0).dividedBy(
-    new BigNumber(10).pow(18),
-  )
-  const formattedUsdValueStaked = !usdValueStaked.isNaN() && formatNumber(usdValueStaked.toNumber())
+  const usdValueStaked = formatLpBalance(minApproveAmount, 18)
 
   const handleStakeInputChange = (input: string) => {
     setStakeAmount(input)
@@ -109,49 +97,39 @@ export const StakeInPoolModal: React.FC<React.PropsWithChildren<StakeInPoolModal
 
   useEffect(() => {
     const updateData = async () => {
-      const _stakeAmount = new BigNumber(stakeAmount || 0)
-      const isValid = _stakeAmount.gte(MIN_AMOUNT)
-      const minAmount = await oracleContract.consult(
-        NIKA_ADDR,
-        _stakeAmount.times(new BigNumber(10).pow(18)).toString(),
-      )
+      const bigStakeAmount = new BigNumber(stakeAmount || 0)
+      const isValid = bigStakeAmount.gte(MIN_AMOUNT)
+      const minAmount = await oracleContract.consult(NIKA_ADDR, getDecimalAmount(bigStakeAmount).toString())
       setIsValidAmount(isValid)
-      setMinApproveAmount(minAmount)
+      if (minAmount) setMinApproveAmount(new BigNumber(minAmount.toString()))
     }
     updateData()
-  }, [stakeAmount])
+  }, [stakeAmount, oracleContract])
 
   return (
-    <Modal
-      minWidth="346px"
-      title={t('Stake in Pool')}
-      onDismiss={onDismiss}
-      headerBackground={getThemeValue(theme, 'colors.gradientCardHeader')}
-    >
-      <Flex alignItems="center" justifyContent="space-between" mb="8px">
-        <Text bold>{t('Stake')}:</Text>
-        <Flex alignItems="center" minWidth="70px">
-          <Image src={`${imageUrl}${stakingTokenAddress}.png`} width={24} height={24} alt={stakingTokenSymbol} />
-          <Text ml="4px" bold>
-            {stakingTokenSymbol}
-          </Text>
-        </Flex>
-      </Flex>
+    <>
+      <Text ml="auto" color="textSubtle" fontSize="14px">
+        {t('Balance')}: {selectedCurrencyBalance?.toFixed(4)} NIKA
+      </Text>
       <BalanceInput
         value={stakeAmount}
         onUserInput={handleStakeInputChange}
-        currencyValue={`~${formattedUsdValueStaked || 0} USDC`}
-        decimals={stakingTokenDecimals}
+        currencyValue={`~${usdValueStaked || 0} USDT`}
+        decimals={18}
         isWarning={!isValidAmount}
       />
       <Text ml="auto" color="textSubtle" fontSize="12px" mb="8px">
         {t('Minimum amount of NIKA to stake is 50 tokens')}
       </Text>
 
-      <Flex alignItems="center" justifyContent="space-between" mb="8px" mt="16px">
-        <Text bold>{t('Referrer address')}:</Text>
-      </Flex>
-      <Input onChange={handleAddressChange} value={address} />
+      {!joinByReferral && (
+        <>
+          <Flex alignItems="center" justifyContent="space-between" mb="8px" mt="16px">
+            <Text bold>{t('Referrer address')}:</Text>
+          </Flex>
+          <Input onChange={handleAddressChange} value={address} />
+        </>
+      )}
 
       <Button
         isLoading={pendingTx}
@@ -162,6 +140,8 @@ export const StakeInPoolModal: React.FC<React.PropsWithChildren<StakeInPoolModal
       >
         {pendingTx ? t('Confirming') : t('Confirm')}
       </Button>
-    </Modal>
+    </>
   )
 }
+
+export default StakeNika
