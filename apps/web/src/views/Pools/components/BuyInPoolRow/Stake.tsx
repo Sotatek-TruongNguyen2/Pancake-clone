@@ -1,10 +1,9 @@
-import React from 'react'
 import { Button, Text } from '@pancakeswap/uikit'
 import { useAccount } from 'wagmi'
 import ConnectWalletButton from 'components/ConnectWalletButton'
 import { useTranslation } from '@pancakeswap/localization'
 import { Token } from '@pancakeswap/sdk'
-import { ActionContainer, ActionContent, ActionTitles } from '../PoolsTable/ActionPanel/styles'
+import { ActionContent, ActionTitles } from '../PoolsTable/ActionPanel/styles'
 
 interface StakeProps {
   isApproved: boolean

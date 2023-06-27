@@ -25,7 +25,7 @@ const BuyingPoolInfoSection = () => {
   return (
     <>
       <Flex flexDirection="column" width="100%">
-        <Text color="textSubtle">1000 - 16.000 NKS</Text>
+        <Text color="textSubtle">50 - 16.000 NKS</Text>
         <Divider color="#53DEE9" />
         <StatWrapper
           label={
