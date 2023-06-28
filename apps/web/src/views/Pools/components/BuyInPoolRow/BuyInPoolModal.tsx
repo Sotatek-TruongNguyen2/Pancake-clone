@@ -3,6 +3,7 @@ import { useState } from 'react'
 import { useTheme } from 'styled-components'
 import { Flex, Text, Modal } from '@pancakeswap/uikit'
 import getThemeValue from '@pancakeswap/uikit/src/util/getThemeValue'
+import { USDT_ADDR } from 'config/constants/nikaContract'
 import TokenSwitcher from './TokenSwitcher'
 import BuyNika from './BuyNika'
 import StakeNika from './StakeNika'
@@ -12,7 +13,7 @@ interface BuyInPoolModalProps {
 }
 
 const NIKA_INFO = { address: '0x483Ed007BA31da2D570bA816F028135d1F0c60A6', symbol: 'NIKA', decimals: 18 }
-const USDT_INFO = { address: '0x40af3827F39D0EAcBF4A168f8D4ee67c121D11c9', symbol: 'USDT', decimals: 18 }
+const USDT_INFO = { address: USDT_ADDR, symbol: 'USDT', decimals: 18 }
 const itemsList = [NIKA_INFO, USDT_INFO]
 
 export const BuyInPoolModal: React.FC<React.PropsWithChildren<BuyInPoolModalProps>> = ({ onDismiss }) => {
