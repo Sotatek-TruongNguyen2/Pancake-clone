@@ -49,7 +49,7 @@ const BuyingPoolInfoSection = () => {
             547 {t('days')}
           </Text>
         </StatWrapper>
-        <StatWrapper
+        {/* <StatWrapper
           label={
             <Text color="textSubtle" small>
               {t('Lock Time')}:
@@ -59,7 +59,7 @@ const BuyingPoolInfoSection = () => {
           <Text ml="4px" small>
             547 {t('days')}
           </Text>
-        </StatWrapper>
+        </StatWrapper> */}
         <StatWrapper
           label={
             <Text color="textSubtle" small>
@@ -97,7 +97,7 @@ const BuyingPoolInfoSection = () => {
             547 {t('days')}
           </Text>
         </StatWrapper>
-        <StatWrapper
+        {/* <StatWrapper
           label={
             <Text color="textSubtle" small>
               {t('Lock Time')}:
@@ -107,7 +107,7 @@ const BuyingPoolInfoSection = () => {
           <Text ml="4px" small>
             547 {t('days')}
           </Text>
-        </StatWrapper>
+        </StatWrapper> */}
         <StatWrapper
           label={
             <Text color="textSubtle" small>
@@ -145,7 +145,7 @@ const BuyingPoolInfoSection = () => {
             547 {t('days')}
           </Text>
         </StatWrapper>
-        <StatWrapper
+        {/* <StatWrapper
           label={
             <Text color="textSubtle" small>
               {t('Lock Time')}:
@@ -155,7 +155,7 @@ const BuyingPoolInfoSection = () => {
           <Text ml="4px" small>
             547 {t('days')}
           </Text>
-        </StatWrapper>
+        </StatWrapper> */}
         <StatWrapper
           label={
             <Text color="textSubtle" small>
@@ -193,7 +193,7 @@ const BuyingPoolInfoSection = () => {
             547 {t('days')}
           </Text>
         </StatWrapper>
-        <StatWrapper
+        {/* <StatWrapper
           label={
             <Text color="textSubtle" small>
               {t('Lock Time')}:
@@ -203,7 +203,7 @@ const BuyingPoolInfoSection = () => {
           <Text ml="4px" small>
             547 {t('days')}
           </Text>
-        </StatWrapper>
+        </StatWrapper> */}
         <StatWrapper
           label={
             <Text color="textSubtle" small>
