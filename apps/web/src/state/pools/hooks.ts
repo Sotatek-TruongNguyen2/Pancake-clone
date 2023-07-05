@@ -140,7 +140,9 @@ export const useNikaPoolFetch = () => {
   const { chainId } = useActiveChainId()
   const dispatch = useAppDispatch()
   useFastRefreshEffect(() => {
-    dispatch(fetchNikaPoolData({ account, chainId }))
+    if (account) {
+      dispatch(fetchNikaPoolData({ account, chainId }))
+    }
   }, [account, dispatch, chainId])
 }
 

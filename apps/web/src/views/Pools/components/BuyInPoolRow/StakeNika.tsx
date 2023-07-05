@@ -72,7 +72,9 @@ const StakeNika = ({ onDismiss }) => {
         </ToastDescriptionWithTx>,
       )
 
-      dispatch(fetchNikaPoolData({ account, chainId }))
+      if (account) {
+        dispatch(fetchNikaPoolData({ account, chainId }))
+      }
     }
   }
 

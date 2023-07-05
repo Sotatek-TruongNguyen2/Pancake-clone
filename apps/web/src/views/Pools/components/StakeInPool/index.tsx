@@ -81,7 +81,9 @@ export const StakeInPoolModal: React.FC<React.PropsWithChildren<StakeInPoolModal
         </ToastDescriptionWithTx>,
       )
 
-      dispatch(fetchNikaPoolData({ account, chainId }))
+      if (account) {
+        dispatch(fetchNikaPoolData({ account, chainId }))
+      }
     }
   }
 
