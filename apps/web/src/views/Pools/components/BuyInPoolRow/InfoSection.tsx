@@ -28,7 +28,8 @@ const StyledLinkExternal = styled(LinkExternal)`
 
 const formatTime = (time: string | undefined) => {
   const type = 'HH:mm MM/dd/yyyy'
-  if (!time) return ''
+  if (!time || Number.isNaN(Number(time))) return ''
+
   return format(new Date(Number(time)), type)
 }
 
