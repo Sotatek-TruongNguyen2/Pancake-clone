@@ -76,6 +76,7 @@ const InfoSection = () => {
       interestRates,
       directBonus,
       matchingBonus,
+      totalStakes,
     },
   } = useNikaPool() as NikaPoolState
 
@@ -83,7 +84,7 @@ const InfoSection = () => {
   const claimEndsInAsBigNumber = lastTimeDepositedBigNumber.plus(interestDuration)
   const vestingEndsInAsBigNumber = claimEndsInAsBigNumber.plus(vestingDuration)
 
-  const formattedTotalStaked = formatLpBalance(new BigNumber(totalStaked), 18)
+  const formattedTotalStaked = formatLpBalance(new BigNumber(totalStakes), 18)
   const monthlyAPR = formatPercent(interestRates || 0)
   const maxInterest = formatLpBalance(new BigNumber(maxClaim), 18)
   const formattedDirectBonus = formatLpBalance(new BigNumber(directBonus), 18)
