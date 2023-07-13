@@ -38,9 +38,9 @@ const formatPercent = (number: any) => {
   return formatNumber(new BigNumber(number.toString()).dividedBy(100).toNumber(), 2, 4)
 }
 
-const TotalToken = ({ value, unit }: { value: number; unit?: string }) => {
+const TotalToken = ({ value, unit, decimals = 0 }: { value: number; unit?: string; decimals?: number }) => {
   if (value >= 0) {
-    return <Balance small value={value} decimals={0} unit={unit} />
+    return <Balance small value={value} decimals={decimals} unit={unit} />
   }
   return <Skeleton width="90px" height="21px" />
 }
@@ -103,9 +103,9 @@ const InfoSection = () => {
 
   return (
     <Flex flexDirection="column" mb="8px">
-      <StatWrapper label={<Text small>{t('Total Staked')}:</Text>}>
+      <StatWrapper label={<Text small>{t('Total staked')}:</Text>}>
         <Text ml="4px" small>
-          <TotalToken value={Number(formattedTotalStaked)} unit=" NIKA" />
+          <TotalToken value={Number(formattedTotalStaked)} unit=" NIKA" decimals={5} />
         </Text>
       </StatWrapper>
       <StatWrapper label={<Text small>{t('Monthly APR')}:</Text>}>
@@ -117,6 +117,11 @@ const InfoSection = () => {
         </Text>
       </StatWrapper>
       <StatWrapper label={<Text small>{t('Claimed Interest')}:</Text>}>
+        <Text ml="4px" small>
+          <TotalToken value={Number(claimedInterest)} unit=" NIKA" />
+        </Text>
+      </StatWrapper>
+      <StatWrapper label={<Text small>{t('Claimed Interest 1')}:</Text>}>
         <Text ml="4px" small>
           <TotalToken value={Number(claimedInterest)} unit=" NIKA" />
         </Text>
