@@ -121,7 +121,7 @@ const InfoSection = () => {
           <TotalToken value={Number(claimedInterest)} unit=" NIKA" />
         </Text>
       </StatWrapper>
-      <StatWrapper label={<Text small>{t('Claimed Interest 1')}:</Text>}>
+      <StatWrapper label={<Text small>{t('Level')}:</Text>}>
         <Text ml="4px" small>
           <TotalToken value={Number(claimedInterest)} unit=" NIKA" />
         </Text>

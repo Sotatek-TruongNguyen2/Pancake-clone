@@ -136,7 +136,7 @@ const BuyingPoolInfoSection = () => {
         </StatWrapper>
       </Flex>
       <Flex flexDirection="column" width="100%">
-        <Text color="textSubtle">160.000- 300.000 NKS</Text>
+        <Text color="textSubtle">{'>'} 300.000 NKS</Text>
         <Divider color="#ED4B9E" />
         <StatWrapper
           label={
@@ -173,7 +173,7 @@ const BuyingPoolInfoSection = () => {
         </StatWrapper>
       </Flex>
       <Flex flexDirection="column" width="100%">
-        <Text color="textSubtle">160.000- 300.000 NKS</Text>
+        <Text color="textSubtle">{'>'} 300.000 NKS</Text>
         <Divider color="#d13f68" />
         <StatWrapper
           label={
