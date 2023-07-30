@@ -114,7 +114,7 @@ const BuyNika = ({ onDismiss }) => {
       />
 
       <Text ml="auto" color="textSubtle" fontSize="12px" mb="8px">
-        {t('Minimum amount of NIKA to buy is 1000 tokens')}
+        {t('Minimum amount of NIKA to buy is 1000 USDT')}
       </Text>
 
       {!joinByReferral && (

@@ -34,7 +34,7 @@ const NameCell = ({ title }: { title: string }) => {
             </Text>
             {showSubtitle && (
               <Text fontSize="12px" color="textSubtle">
-                {t('Stake, Earn – And more!')}
+                {t('Share, Earn – And more!')}
               </Text>
             )}
           </Pool.CellContent>

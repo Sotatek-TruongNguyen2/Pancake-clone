@@ -71,7 +71,7 @@ const BuyInPoolRow = () => {
         <Pool.ExpandRow panel={<ActionPanel expanded breakpoints={{ isXs, isSm, isMd, isLg, isXl, isXxl }} />}>
           <BuyContainer>
             <Flex>
-              <NameCell title={t('Buy/ Stake NIKA')} />
+              <NameCell title={t('Buy/ Share NIKA')} />
               <TokenPrice />
               <Status status="Open" />
             </Flex>
@@ -104,7 +104,7 @@ const BuyInPoolRow = () => {
         height={60}
       />
       <Pool.ExpandRow panel={<ActionPanel expanded breakpoints={{ isXs, isSm, isMd, isLg, isXl, isXxl }} />}>
-        <NameCell title={t('Buy/ Stake NIKA')} />
+        <NameCell title={t('Buy/ Share NIKA')} />
         <TokenPrice />
         <Status status={t('Open')} />
         {isXLargerScreen && <StyledCell />}

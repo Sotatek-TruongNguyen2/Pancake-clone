@@ -36,7 +36,7 @@ const CakeVaultCardActions: React.FC<
             bold
             fontSize="12px"
           >
-            {accountHasSharesStaked ? stakingToken.symbol : t('Stake')}{' '}
+            {accountHasSharesStaked ? stakingToken.symbol : t('Share')}{' '}
           </InlineText>
           <InlineText
             color={accountHasSharesStaked ? 'textSubtle' : 'secondary'}

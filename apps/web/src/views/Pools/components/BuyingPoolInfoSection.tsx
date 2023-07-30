@@ -183,7 +183,7 @@ const BuyingPoolInfoSection = () => {
           }
         >
           <Text ml="4px" small>
-            10%
+            12%
           </Text>
         </StatWrapper>
         <StatWrapper

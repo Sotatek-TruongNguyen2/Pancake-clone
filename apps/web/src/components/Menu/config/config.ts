@@ -83,7 +83,7 @@ const config: (
       ].map((item) => addMenuItemSupported(item, chainId)),
     },
     {
-      label: t('Affiliate'),
+      label: t('Shares'),
       href: '/farms',
       icon: EarnIcon,
       fillIcon: EarnFillIcon,

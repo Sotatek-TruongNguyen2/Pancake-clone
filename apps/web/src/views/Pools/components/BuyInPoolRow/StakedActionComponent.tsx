@@ -29,7 +29,7 @@ const StakedActionComponent: React.FunctionComponent<React.PropsWithChildren<Sta
           {lpSymbol}
         </Text>
         <Text bold textTransform="uppercase" color="textSubtle" fontSize="12px">
-          {t('Staked')}
+          {t('Shares')}
         </Text>
       </ActionTitles>
       <ActionContent>

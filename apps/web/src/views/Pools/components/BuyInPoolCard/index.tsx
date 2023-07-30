@@ -121,7 +121,7 @@ const BuyInPoolCard = ({ showSkeleton = false }: BuyInPoolCardProps) => {
       <Pool.PoolCardHeader>
         {!showSkeleton ? (
           <>
-            <Pool.PoolCardHeaderTitle title={t('Buy/ Stake NIKA')} subTitle={t('Stake, Earn – And more!')} />
+            <Pool.PoolCardHeaderTitle title={t('Buy/ Share NIKA')} subTitle={t('Share, Earn – And more!')} />
             <TokenPairImage
               primarySrc="/images/tokens/0x483Ed007BA31da2D570bA816F028135d1F0c60A6.png"
               secondarySrc="/images/tokens/autorenew.svg"

@@ -43,7 +43,6 @@ const MenuItem: React.FC<React.PropsWithChildren<FooterProps>> = ({
           flexDirection={["column", null, "row"]}
           justifyContent="space-between"
           alignItems="flex-start"
-          mb={["42px", null, "36px"]}
         >
           <Flex flexDirection="column" alignItems={isMobile ? "left" : "center"} style={{ gap: "15px" }} mb="24px">
             <Image src="/images/nav-title-dark.png" width={130} height={28} />

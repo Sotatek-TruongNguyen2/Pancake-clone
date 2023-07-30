@@ -31,7 +31,7 @@ export function PoolCard<T>({ pool, cardContent, aprRow, isStaked, cardFooter, t
             <Pool.PoolCardHeaderTitle
               title={isCakePool ? t("Manual") : t("Earn %asset%", { asset: earningToken?.symbol || "" })}
               subTitle={
-                isCakePool ? t("Earn NIKA, stake NIKA") : t("Stake %symbol%", { symbol: stakingToken?.symbol || "" })
+                isCakePool ? t("Earn NIKA, share NIKA") : t("Share %symbol%", { symbol: stakingToken?.symbol || "" })
               }
             />
             {tokenPairImage}

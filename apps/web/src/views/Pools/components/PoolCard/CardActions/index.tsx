@@ -40,10 +40,10 @@ const CardActions: React.FC<React.PropsWithChildren<CardActionsProps>> = ({ pool
         <></>
         <Box display="inline">
           <InlineText color={isStaked ? 'secondary' : 'textSubtle'} textTransform="uppercase" bold fontSize="12px">
-            {isStaked ? stakingToken.symbol : t('Stake')}{' '}
+            {isStaked ? stakingToken.symbol : t('Share')}{' '}
           </InlineText>
           <InlineText color={isStaked ? 'textSubtle' : 'secondary'} textTransform="uppercase" bold fontSize="12px">
-            {isStaked ? t('Staked') : `${stakingToken.symbol}`}
+            {isStaked ? t('Shared') : `${stakingToken.symbol}`}
           </InlineText>
         </Box>
         {notMeetRequired || notMeetThreshold ? (
