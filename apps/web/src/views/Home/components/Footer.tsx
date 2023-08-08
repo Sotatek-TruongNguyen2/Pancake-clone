@@ -25,15 +25,10 @@ const Wrapper = styled(Flex)`
 const FloatingPancakesWrapper = styled(Container)`
   position: absolute;
   width: 100%;
-  height: 100%;
   top: 0;
   left: 50%;
   transform: translateX(-50%);
   visibility: visible;
-
-  // ${({ theme }) => theme.mediaQueries.md} {
-  //   visibility: visible;
-  // }
 `
 
 const topLeftImage = {

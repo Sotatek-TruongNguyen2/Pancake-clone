@@ -251,7 +251,7 @@ export function SmartSwapForm() {
       />
       <Wrapper id="swap-page" style={{ minHeight: '412px' }}>
         <AutoColumn gap="sm">
-          {/* <CurrencyInputPanel
+          <CurrencyInputPanel
             label={independentField === Field.OUTPUT && !showWrap && tradeInfo ? t('From (estimated)') : t('From')}
             value={formattedAmounts[Field.INPUT]}
             showMaxButton
@@ -267,9 +267,9 @@ export function SmartSwapForm() {
             showCommonBases
             showBUSD={!!tokenMap[chainId]?.[inputCurrencyId] || inputCurrencyId === NATIVE[chainId]?.symbol}
             commonBasesType={CommonBasesType.SWAP_LIMITORDER}
-          /> */}
+          />
 
-          {/* <AutoColumn justify="space-between">
+          <AutoColumn justify="space-between">
             <AutoRow justify={isExpertMode ? 'space-between' : 'center'} style={{ padding: '0 1rem' }}>
               <SwapUI.SwitchButton
                 onClick={() => {
@@ -285,7 +285,7 @@ export function SmartSwapForm() {
                 </Button>
               ) : null}
             </AutoRow>
-          </AutoColumn> */}
+          </AutoColumn>
           <CurrencyInputPanel
             value={formattedAmounts[Field.OUTPUT]}
             onUserInput={handleTypeOutput}
