@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 import { Flex, Text, LinkExternal, Skeleton, Balance } from '@pancakeswap/uikit'
 import BigNumber from 'bignumber.js'
-import { FC, ReactNode } from 'react'
+import { FC, ReactNode, useEffect, useState } from 'react'
 import { useTranslation } from '@pancakeswap/localization'
 import { useNikaStakingContract, useTokenContract } from 'hooks/useContract'
 import AddToWalletButton, { AddToWalletTextOptions } from 'components/AddToWallet/AddToWalletButton'
@@ -62,6 +62,7 @@ const InfoSection = () => {
   const { address: account } = useAccount()
   const nikaStakingContract = useNikaStakingContract()
   const nikaTokenContract = useTokenContract(NIKA_ADDR)
+  const [level, setLevel] = useState('UNKNOWN')
   const blockExplorers = chainId === 97 ? 'https://testnet.bscscan.com/' : 'https://bscscan.com/'
   const {
     totalStaked,
@@ -79,6 +80,16 @@ const InfoSection = () => {
       totalStakes,
     },
   } = useNikaPool() as NikaPoolState
+
+  useEffect(() => {
+    const fetchLevel = async () => {
+      if (!account) return
+      const response = await fetch(`https://api.nikaswap.com/users/level/${account}`)
+      const data = await response.json()
+      setLevel(data.level)
+    }
+    fetchLevel()
+  }, [account])
 
   const lastTimeDepositedBigNumber = new BigNumber(lastTimeDeposited)
   const claimEndsInAsBigNumber = lastTimeDepositedBigNumber.plus(interestDuration)
@@ -123,7 +134,7 @@ const InfoSection = () => {
       </StatWrapper>
       <StatWrapper label={<Text small>{t('Level')}:</Text>}>
         <Text ml="4px" small>
-          <TotalToken value={Number(claimedInterest)} unit=" NIKA" />
+          {level}
         </Text>
       </StatWrapper>
       <StatWrapper label={<Text small>{t('Direct Bonus')}:</Text>}>
