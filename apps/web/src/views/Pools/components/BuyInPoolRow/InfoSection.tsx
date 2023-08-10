@@ -56,13 +56,14 @@ const LoadingData = ({ value, unit }: { value: string; unit?: string }) => {
   return <Skeleton width="90px" height="21px" />
 }
 
+const levelDefault = 'MEMBER'
 const InfoSection = () => {
   const { t } = useTranslation()
   const { chainId } = useActiveChainId()
   const { address: account } = useAccount()
   const nikaStakingContract = useNikaStakingContract()
   const nikaTokenContract = useTokenContract(NIKA_ADDR)
-  const [level, setLevel] = useState('UNKNOWN')
+  const [level, setLevel] = useState(levelDefault)
   const blockExplorers = chainId === 97 ? 'https://testnet.bscscan.com/' : 'https://bscscan.com/'
   const {
     totalStaked,
@@ -83,10 +84,14 @@ const InfoSection = () => {
 
   useEffect(() => {
     const fetchLevel = async () => {
-      if (!account) return
+      if (!account) {
+        setLevel(levelDefault)
+        return
+      }
       const response = await fetch(`https://api.nikaswap.com/users/level/${account}`)
       const data = await response.json()
-      setLevel(data.level)
+      const newLevel = data.level.toUpperCase() === 'UNKNOWN' ? levelDefault : data.level.toUpperCase()
+      setLevel(newLevel)
     }
     fetchLevel()
   }, [account])
