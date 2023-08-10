@@ -83,7 +83,7 @@ const config: (
       ].map((item) => addMenuItemSupported(item, chainId)),
     },
     {
-      label: t('Shares'),
+      label: t('Affiliate'),
       href: '/farms',
       icon: EarnIcon,
       fillIcon: EarnFillIcon,
@@ -96,7 +96,7 @@ const config: (
           href: '/farms',
         },
         {
-          label: t('Staking'),
+          label: t('Shares'),
           href: '/pools',
           supportChainIds: SUPPORT_ONLY_BSC,
         },

@@ -6,20 +6,12 @@ export const footerLinks: (t: ContextApi["t"]) => FooterLinkType[] = (t) => [
     label: "Community",
     items: [
       {
-        label: "Twiter",
-        href: "",
-      },
-      {
-        label: "Discord",
-        href: "",
+        label: "Twitter",
+        href: "https://twitter.com/nikaswap01",
       },
       {
         label: "Telegram",
-        href: "",
-      },
-      {
-        label: "Medium",
-        href: "",
+        href: "https://t.me/NikaSwapAnn",
       },
     ],
   },
@@ -32,7 +24,7 @@ export const footerLinks: (t: ContextApi["t"]) => FooterLinkType[] = (t) => [
       },
       {
         label: "Docs",
-        href: "",
+        href: "https://tikex-cc.gitbook.io/nikaswap/",
       },
     ],
   },
