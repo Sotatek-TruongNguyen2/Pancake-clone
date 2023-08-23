@@ -80,7 +80,7 @@ const aptos = {
   },
 }
 
-const CHAINS = [mainnet, polygon, arbitrum, celo, bsc, bscTestnet, aptos, sui]
+const CHAINS = [mainnet, polygon, arbitrum, celo, bsc, aptos, sui]
 
 const getNodeRealUrl = (networkName: string) => {
   let host = null
