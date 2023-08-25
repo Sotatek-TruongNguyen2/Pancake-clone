@@ -7,7 +7,7 @@ export const footerLinks: (t: ContextApi["t"]) => FooterLinkType[] = (t) => [
     items: [
       {
         label: "Twitter",
-        href: "https://twitter.com/nikaswap01",
+        href: "https://twitter.com/NikaSwapChannel",
       },
       {
         label: "Telegram",
@@ -24,7 +24,7 @@ export const footerLinks: (t: ContextApi["t"]) => FooterLinkType[] = (t) => [
       },
       {
         label: "Docs",
-        href: "https://tikex-cc.gitbook.io/nikaswap/",
+        href: "https://docs.nikaswap.com/",
       },
     ],
   },
