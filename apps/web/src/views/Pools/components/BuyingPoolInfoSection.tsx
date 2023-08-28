@@ -25,8 +25,82 @@ const BuyingPoolInfoSection = () => {
   return (
     <>
       <Flex flexDirection="column" width="100%">
-        <Text color="textSubtle">100 - 16.000 NKS</Text>
+        <Text color="textSubtle">100 - 8.000 NKS</Text>
         <Divider color="#53DEE9" />
+        <StatWrapper
+          label={
+            <Text color="textSubtle" small>
+              {t('Monthly APR')}:
+            </Text>
+          }
+        >
+          <Text ml="4px" small>
+            4%
+          </Text>
+        </StatWrapper>
+        <StatWrapper
+          label={
+            <Text color="textSubtle" small>
+              {t('Mining Duration')}:
+            </Text>
+          }
+        >
+          <Text ml="4px" small>
+            547 {t('days')}
+          </Text>
+        </StatWrapper>
+        <StatWrapper
+          label={
+            <Text color="textSubtle" small>
+              {t('Distribute')}:
+            </Text>
+          }
+        >
+          <Text ml="4px" small>
+            30 {t('days')}
+          </Text>
+        </StatWrapper>
+      </Flex>
+      <Flex flexDirection="column" width="100%">
+        <Text color="textSubtle">8.100 - 20.000 NKS</Text>
+        <Divider color="#4c95e0" />
+        <StatWrapper
+          label={
+            <Text color="textSubtle" small>
+              {t('Monthly APR')}:
+            </Text>
+          }
+        >
+          <Text ml="4px" small>
+            5%
+          </Text>
+        </StatWrapper>
+        <StatWrapper
+          label={
+            <Text color="textSubtle" small>
+              {t('Mining Duration')}:
+            </Text>
+          }
+        >
+          <Text ml="4px" small>
+            547 {t('days')}
+          </Text>
+        </StatWrapper>
+        <StatWrapper
+          label={
+            <Text color="textSubtle" small>
+              {t('Distribute')}:
+            </Text>
+          }
+        >
+          <Text ml="4px" small>
+            30 {t('days')}
+          </Text>
+        </StatWrapper>
+      </Flex>
+      <Flex flexDirection="column" width="100%">
+        <Text color="textSubtle">20.100 - 50.000 NKS</Text>
+        <Divider color="#7645D9" />
         <StatWrapper
           label={
             <Text color="textSubtle" small>
@@ -57,50 +131,13 @@ const BuyingPoolInfoSection = () => {
           }
         >
           <Text ml="4px" small>
-            100 {t('days')}
+            30 {t('days')}
           </Text>
         </StatWrapper>
       </Flex>
       <Flex flexDirection="column" width="100%">
-        <Text color="textSubtle">16.100 - 60.000 NKS</Text>
-        <Divider color="#4c95e0" />
-        <StatWrapper
-          label={
-            <Text color="textSubtle" small>
-              {t('Monthly APR')}:
-            </Text>
-          }
-        >
-          <Text ml="4px" small>
-            7%
-          </Text>
-        </StatWrapper>
-        <StatWrapper
-          label={
-            <Text color="textSubtle" small>
-              {t('Mining Duration')}:
-            </Text>
-          }
-        >
-          <Text ml="4px" small>
-            547 {t('days')}
-          </Text>
-        </StatWrapper>
-        <StatWrapper
-          label={
-            <Text color="textSubtle" small>
-              {t('Distribute')}:
-            </Text>
-          }
-        >
-          <Text ml="4px" small>
-            100 {t('days')}
-          </Text>
-        </StatWrapper>
-      </Flex>
-      <Flex flexDirection="column" width="100%">
-        <Text color="textSubtle">60.100 - 155.000 NKS</Text>
-        <Divider color="#7645D9" />
+        <Text color="textSubtle">51.000- 120.000 NKS</Text>
+        <Divider color="#ED4B9E" />
         <StatWrapper
           label={
             <Text color="textSubtle" small>
@@ -131,13 +168,13 @@ const BuyingPoolInfoSection = () => {
           }
         >
           <Text ml="4px" small>
-            100 {t('days')}
+            30 {t('days')}
           </Text>
         </StatWrapper>
       </Flex>
       <Flex flexDirection="column" width="100%">
-        <Text color="textSubtle">160.000- 300.000 NKS</Text>
-        <Divider color="#ED4B9E" />
+        <Text color="textSubtle">{'>'} 120.000 NKS</Text>
+        <Divider color="#d13f68" />
         <StatWrapper
           label={
             <Text color="textSubtle" small>
@@ -168,44 +205,7 @@ const BuyingPoolInfoSection = () => {
           }
         >
           <Text ml="4px" small>
-            100 {t('days')}
-          </Text>
-        </StatWrapper>
-      </Flex>
-      <Flex flexDirection="column" width="100%">
-        <Text color="textSubtle">{'>'} 300.000 NKS</Text>
-        <Divider color="#d13f68" />
-        <StatWrapper
-          label={
-            <Text color="textSubtle" small>
-              {t('Monthly APR')}:
-            </Text>
-          }
-        >
-          <Text ml="4px" small>
-            12%
-          </Text>
-        </StatWrapper>
-        <StatWrapper
-          label={
-            <Text color="textSubtle" small>
-              {t('Mining Duration')}:
-            </Text>
-          }
-        >
-          <Text ml="4px" small>
-            547 {t('days')}
-          </Text>
-        </StatWrapper>
-        <StatWrapper
-          label={
-            <Text color="textSubtle" small>
-              {t('Distribute')}:
-            </Text>
-          }
-        >
-          <Text ml="4px" small>
-            100 {t('days')}
+            30 {t('days')}
           </Text>
         </StatWrapper>
       </Flex>

@@ -2,7 +2,7 @@ import { ChainId, ERC20Token } from '@pancakeswap/sdk'
 
 export const CAKE_MAINNET = new ERC20Token(
   ChainId.BSC,
-  '0x3B91962E96938Db6b64D0eA9D9b8BE30BaBc95e4',
+  '0x27a738731c859ffc61a3B0D62cd54781B3CFC613',
   18,
   'NIKA',
   'NIKA Token',
