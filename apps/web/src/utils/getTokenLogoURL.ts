@@ -10,7 +10,7 @@ const getTokenLogoURL = memoize(
   (token?: Token) => {
     if (token && mapping[token.chainId]) {
       if (
-        token.address === '0x0E09FaBB73Bd3Ade0a17ECC321fD13a19e81cE82' ||
+        token.address === '0x27a738731c859ffc61a3B0D62cd54781B3CFC613' ||
         token.address === '0x483Ed007BA31da2D570bA816F028135d1F0c60A6'
       )
         return '/images/nika-token.png'
@@ -27,7 +27,7 @@ export const getTokenLogoURLByAddress = memoize(
   (address?: string, chainId?: number) => {
     if (address && chainId && mapping[chainId]) {
       if (
-        address === '0x0E09FaBB73Bd3Ade0a17ECC321fD13a19e81cE82' ||
+        address === '0x27a738731c859ffc61a3B0D62cd54781B3CFC613' ||
         address === '0x483Ed007BA31da2D570bA816F028135d1F0c60A6'
       )
         return '/images/nika-token.png'
